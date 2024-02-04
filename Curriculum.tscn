@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Curriculum.gd" type="Script" id=1]
-[ext_resource path="res://SkillPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://curriculum.gd" type="Script" id=1]
+[ext_resource path="res://skill_panel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.781738, 0.775631, 0.775631, 1 )
@@ -29,7 +29,7 @@ margin_top = -209.5
 margin_right = 175.5
 margin_bottom = 209.5
 script = ExtResource( 1 )
-skill_Scene = ExtResource( 2 )
+skillScene = ExtResource( 2 )
 
 [node name="CVPanel" type="Panel" parent="."]
 anchor_left = 0.5

@@ -1,9 +1,9 @@
 extends Control
 
-export(PackedScene) var skill_Scene
+export(PackedScene) var skillScene
 
-var MouseOver = false
-var eventFired = false
+var mouse_over = false
+var event_fired = false
 var skill_string_1 = "skill 1 loaded"
 var skill_string_2 = "skill 2 loaded"
 
@@ -12,19 +12,19 @@ func _init():
 
 func _ready():
 	var CVPanel = get_node("CVPanel/VBoxContainer")
-	instanceNewSkillLine("skill 1","asnwer 1",CVPanel)
-	instanceNewSkillLine("skill 2","asnwer 2",CVPanel)
-	instanceNewSkillLine("skill 3","asnwer 3",CVPanel)
+	instance_new_skill_line("skill 1","asnwer 1",CVPanel)
+	instance_new_skill_line("skill 2","asnwer 2",CVPanel)
+	instance_new_skill_line("skill 3","asnwer 3",CVPanel)
 
 
 func _on_Panel_gui_input(event,skill_answer):
 	if event is InputEventMouseButton:
-		if MouseOver == true && eventFired == false:
+		if mouse_over == true && event_fired == false:
 			print(skill_answer)
-			eventFired = true
+			event_fired = true
 
-func instanceNewSkillLine(skill_name, skill_answer, CVPanel):
-	var skillPanel = skill_Scene.instance()
+func instance_new_skill_line(skill_name, skill_answer, CVPanel):
+	var skillPanel = skillScene.instance()
 	skillPanel.skill_text = skill_name
 	skillPanel.skill_answer = skill_answer
 	skillPanel.get_node("SkillText").text = skillPanel.skill_text
@@ -32,8 +32,8 @@ func instanceNewSkillLine(skill_name, skill_answer, CVPanel):
 	
 
 func _on_Panel_mouse_entered():
-	MouseOver = true
+	mouse_over = true
 
 func _on_Panel_mouse_exited():
-	MouseOver = false
-	eventFired = false
+	mouse_over = false
+	event_fired = false
