@@ -17,10 +17,10 @@ func _ready():
 	instanceNewSkillLine("skill 3","asnwer 3",CVPanel)
 
 
-func _on_Panel_gui_input(event):
+func _on_Panel_gui_input(event,skill_answer):
 	if event is InputEventMouseButton:
 		if MouseOver == true && eventFired == false:
-			print("Answer 1")
+			print(skill_answer)
 			eventFired = true
 
 func instanceNewSkillLine(skill_name, skill_answer, CVPanel):
