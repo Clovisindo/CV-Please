@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://skill_panel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/items/skill_panel.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.482353, 0.490196, 0.505882, 1 )
