@@ -29,6 +29,7 @@ func instance_new_requisite_line(requisite_name, requisite_answer, jobOfferPanel
 	requisitePanel.requisite_answer = requisite_answer
 	requisitePanel.get_node("RequisiteText").text = requisitePanel.requisite_text
 	jobOfferPanel.add_child(requisitePanel)
+	requisitePanel._instantiate_connect(get_node("."))
 	
 
 func _on_Panel_mouse_entered():

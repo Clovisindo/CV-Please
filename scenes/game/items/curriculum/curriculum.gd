@@ -29,6 +29,7 @@ func instance_new_skill_line(skill_name, skill_answer, CVPanel):
 	skillPanel.skill_answer = skill_answer
 	skillPanel.get_node("SkillText").text = skillPanel.skill_text
 	CVPanel.add_child(skillPanel)
+	skillPanel._instantiate_connect(get_node("."))
 	
 
 func _on_Panel_mouse_entered():
