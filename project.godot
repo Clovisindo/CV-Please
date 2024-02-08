@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Object",
+"class": "EnumUtils",
+"language": "GDScript",
+"path": "res://src/Enum.gd"
+} ]
+_global_script_class_icons={
+"EnumUtils": ""
+}
+
 [application]
 
 config/name="CV-Please!"
