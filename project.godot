@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "EnumUtils",
 "language": "GDScript",
 "path": "res://src/Enum.gd"
+}, {
+"base": "Node2D",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://GameManager.gd"
+}, {
+"base": "Node",
+"class": "applicationResult",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicantResult.gd"
 } ]
 _global_script_class_icons={
-"EnumUtils": ""
+"EnumUtils": "",
+"GameManager": "",
+"applicationResult": ""
 }
 
 [application]

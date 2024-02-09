@@ -1,6 +1,6 @@
 extends Button
 
-export (bool) var result 
+export (EnumUtils.applicantSolution) var result  = EnumUtils.applicantSolution.valid
 
 func _instantiate_connect(gameManagerNode):
 	self.connect("mouse_entered",gameManagerNode,"_on_Panel_mouse_entered")

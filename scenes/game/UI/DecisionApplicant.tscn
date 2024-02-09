@@ -15,7 +15,6 @@ margin_right = -0.0250092
 margin_bottom = 0.0200005
 text = "Accept"
 script = ExtResource( 1 )
-result = true
 
 [node name="DecisionNOKButton" type="Button" parent="."]
 anchor_right = 0.475
@@ -25,3 +24,4 @@ margin_right = -0.0250092
 margin_bottom = 58.02
 text = "Deny"
 script = ExtResource( 1 )
+result = 1
