@@ -16,7 +16,7 @@ func _ready():
 	instance_new_skill_line("skill 2","asnwer 2",CVPanel)
 	instance_new_skill_line("skill 3","asnwer 3",CVPanel)
 
-func _on_Panel_gui_input(event,skill_answer):
+func _on_skill_panel_gui_input(event,skill_answer):
 	if event is InputEventMouseButton:
 		if mouse_over == true && event_fired == false:
 			print(skill_answer)
@@ -30,9 +30,9 @@ func instance_new_skill_line(skill_name, skill_answer, CVPanel):
 	CVPanel.add_child(skillPanel)
 	skillPanel._instantiate_signal_skill_panel(get_node("."))
 
-func _on_Panel_mouse_entered():
+func _on_panel_mouse_entered():
 	mouse_over = true
 
-func _on_Panel_mouse_exited():
+func _on_panel_mouse_exited():
 	mouse_over = false
 	event_fired = false

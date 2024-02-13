@@ -17,7 +17,7 @@ func _ready():
 	instance_new_requisite_line("requisite 3","asnwer 3",jobOfferPanel)
 
 
-func _on_Panel_gui_input(event,requisite_answer):
+func _on_job_requisite_panel_gui_input(event,requisite_answer):
 	if event is InputEventMouseButton:
 		if mouse_over == true && event_fired == false:
 			print(requisite_answer)
@@ -29,12 +29,12 @@ func instance_new_requisite_line(requisite_name, requisite_answer, jobOfferPanel
 	requisitePanel.requisite_answer = requisite_answer
 	requisitePanel.get_node("RequisiteText").text = requisitePanel.requisite_text
 	jobOfferPanel.add_child(requisitePanel)
-	requisitePanel._instantiate_connect(get_node("."))
+	requisitePanel._instantiate_signal_job_requisite(get_node("."))
 	
 
-func _on_Panel_mouse_entered():
+func _on_panel_mouse_entered():
 	mouse_over = true
 
-func _on_Panel_mouse_exited():
+func _on_panel_mouse_exited():
 	mouse_over = false
 	event_fired = false
