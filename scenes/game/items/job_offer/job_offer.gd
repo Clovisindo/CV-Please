@@ -12,9 +12,9 @@ func _init():
 
 func _ready():
 	var jobOfferPanel = get_node("JobOfferPanel/VBoxContainer")
-	instance_new_requisite_line("requisite 1","asnwer 1",jobOfferPanel)
-	instance_new_requisite_line("requisite 2","asnwer 2",jobOfferPanel)
-	instance_new_requisite_line("requisite 3","asnwer 3",jobOfferPanel)
+	instance_new_requisite_line("requisite 1","answer 1",jobOfferPanel)
+	instance_new_requisite_line("requisite 2","answer 2",jobOfferPanel)
+	instance_new_requisite_line("requisite 3","answer 3",jobOfferPanel)
 
 
 func _on_job_requisite_panel_gui_input(event,requisite_answer):
