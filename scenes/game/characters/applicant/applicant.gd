@@ -23,5 +23,5 @@ func _set_applicant_data( texture, name):
 func _get_application_result():
 	return applResult
 
-func _input(event):
+func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)

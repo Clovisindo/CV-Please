@@ -1,0 +1,3 @@
+extends StateJobOffer
+
+class_name StateJobOfferNotMatched

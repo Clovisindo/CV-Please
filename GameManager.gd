@@ -32,10 +32,11 @@ func _on_Panel_mouse_exited():
 
 # evento de los botones de aceptar o rechazar
 func _on_Panel_gui_input(event,result):
-	if event is InputEventMouseButton:
-		if mouse_over == true && event_fired == false:
-			event_fired = true
-			_apply_applicant_decision(result)
+	pass
+#	if event is InputEventMouseButton:
+#		if mouse_over == true && event_fired == false:
+#			event_fired = true
+#			_apply_applicant_decision(result)
 
 func _apply_applicant_decision(result):
 	var appResult = currentAplicant._get_application_result()

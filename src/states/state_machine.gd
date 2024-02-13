@@ -7,7 +7,6 @@ export var initial_state := NodePath()
 var current_state: State
 
 func _ready():
-	yield(owner, "ready")
 	current_state = get_node(initial_state)
 	for child in get_children():
 		if child is State:

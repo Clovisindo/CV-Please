@@ -18,10 +18,11 @@ func _ready():
 
 
 func _on_job_requisite_panel_gui_input(event,requisite_answer):
-	if event is InputEventMouseButton:
-		if mouse_over == true && event_fired == false:
-			print(requisite_answer)
-			event_fired = true
+	pass
+#	if event is InputEventMouseButton:
+#		if mouse_over == true && event_fired == false:
+#			print(requisite_answer)
+#			event_fired = true
 
 func instance_new_requisite_line(requisite_name, requisite_answer, jobOfferPanel):
 	var requisitePanel = requisiteScene.instance()

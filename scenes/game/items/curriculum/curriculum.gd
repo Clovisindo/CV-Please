@@ -17,10 +17,11 @@ func _ready():
 	instance_new_skill_line("skill 3","answer 3",CVPanel)
 
 func _on_skill_panel_gui_input(event,skill_answer):
-	if event is InputEventMouseButton:
-		if mouse_over == true && event_fired == false:
-			print(skill_answer)
-			event_fired = true
+	pass
+#	if event is InputEventMouseButton:
+#		if mouse_over == true && event_fired == false:
+#			print(skill_answer)
+#			event_fired = true
 
 func instance_new_skill_line(skill_name, skill_answer, CVPanel):
 	var skillPanel = skillScene.instance()
