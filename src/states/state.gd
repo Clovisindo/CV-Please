@@ -1,10 +1,8 @@
 extends Node
 
-class_name CVState
+class_name State
 
 signal transitioned(new_state_name)
-
-var cv: Control
  
 func enter() -> void:
 	pass

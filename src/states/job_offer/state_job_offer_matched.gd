@@ -1,15 +1,15 @@
-extends CVState
+extends State
 
-class_name CVStateApproved
+class_name StateJobOfferMatched
 
 func _ready():
 	pass # Replace with function body.
 
 func enter() -> void:
-	print("Enter CV Approved State")
+	print("Enter Job Offer Matched State")
 	
 func exit() -> void:
-	print("Exit CV Approved State")
+	print("Exit Job Offer Matched State")
 	
 func update(delta: float) -> void:
 	pass

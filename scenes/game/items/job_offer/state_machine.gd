@@ -1,12 +1,12 @@
 extends Node
 
-class_name CVStateMachine
+class_name JobOfferStateMachine
 
 var current_state
 var states: Dictionary
 
 func _ready():
-	current_state = get_node("Idle")
+	current_state = get_node("NotMatched")
 	for child in get_children():
 		if child is State:
 			states[child.name] = child

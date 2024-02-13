@@ -1,15 +1,15 @@
-extends CVState
+extends State
 
-class_name CVStateRejected
+class_name StateCVApproved
 
 func _ready():
 	pass # Replace with function body.
 
 func enter() -> void:
-	print("Enter CV Rejected State")
+	print("Enter CV Approved State")
 	
 func exit() -> void:
-	print("Exit CV Rejected State")
+	print("Exit CV Approved State")
 	
 func update(delta: float) -> void:
 	pass
