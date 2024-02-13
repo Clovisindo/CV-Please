@@ -66,3 +66,5 @@ script = ExtResource( 6 )
 
 [node name="Rejected" type="Node" parent="StatusMachine"]
 script = ExtResource( 5 )
+
+[connection signal="show" from="." to="." method="_on_Curriculum_show"]

@@ -4,6 +4,7 @@ class_name StateMachineApplicant
 
 func init(applicant: Applicant):
 	for child in get_children():
+		child.applicant = applicant
 		child.portrait = applicant.get_node("Portrait")
 
 func _ready():

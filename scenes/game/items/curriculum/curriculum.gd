@@ -2,13 +2,12 @@ extends Control
 
 export(PackedScene) var skillScene
 
+signal show()
+
 var mouse_over = false
 var event_fired = false
 var skill_string_1 = "skill 1 loaded"
 var skill_string_2 = "skill 2 loaded"
-
-func _init():
-	pass
 
 func _ready():
 	var CVPanel = get_node("CVPanel/VBoxContainer")

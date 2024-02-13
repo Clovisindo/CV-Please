@@ -10,6 +10,8 @@ var applResult:applicationResult = applicationResult.new()
 onready var state_machine = $StateMachine
 onready var applicant_name = $Name
 
+signal show_cv(show)
+
 func _ready():
 	_set_applicant_data(portrait,"applicant 1")
 	state_machine.init(self)
@@ -25,3 +27,6 @@ func _get_application_result():
 
 func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
+
+func show_cv(show: bool):
+	emit_signal("show_cv", show)

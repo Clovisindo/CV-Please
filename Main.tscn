@@ -21,6 +21,7 @@ margin_right = 1023.0
 margin_bottom = 598.0
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 76.0

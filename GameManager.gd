@@ -22,6 +22,11 @@ func _ready():
 	curentCV =  get_node("MainScene/CVContainer/Curriculum")
 	currentAplicant = get_node("MainScene/ApplicantContainer/Applicant")
 	currentJobOffer = get_node("MainScene/JobOfferContainer/JobOffer")
+	
+	currentAplicant.connect("show_cv", self, "_on_show_cv")
+	
+func _on_show_cv(show: bool):
+	get_node("MainScene/CVContainer").visible = show
 
 func _on_Panel_mouse_entered():
 	mouse_over = true
@@ -55,7 +60,6 @@ func _instantiate_panels():
 	var applicantPanel = applicantScene.instance()
 	var decisionApplicantPanel = decisionApplicantScene.instance()
 	
-	
 	cvContainer.add_child(cvPanel)
 	jobOfferContainer.add_child(jobOfferPanel)
 	applicantContainer.add_child(applicantPanel)
@@ -65,3 +69,4 @@ func _instantiate_panels():
 	var nokButton = decisionApplContainer.get_child(0).get_child(1)
 	okButton._instantiate_connect_decision_button(get_node("."))
 	nokButton._instantiate_connect_decision_button(get_node("."))
+	
