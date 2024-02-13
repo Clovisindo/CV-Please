@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Panel",
+"class": "Applicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/applicant.gd"
+}, {
 "base": "Object",
 "class": "EnumUtils",
 "language": "GDScript",
@@ -30,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://src/states/state.gd"
 }, {
 "base": "State",
+"class": "StateApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant.gd"
+}, {
+"base": "StateApplicant",
 "class": "StateApplicantEvaluated",
 "language": "GDScript",
 "path": "res://src/states/applicant/state_applicant_evaluated.gd"
@@ -44,15 +54,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/levels/puzzle_manager.gd"
 }, {
-"base": "State",
+"base": "StateApplicant",
 "class": "StateApplicantReviewing",
 "language": "GDScript",
-"path": "res://src/states/applicant/state_applicant_reviewing.gd"
+"path": "res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd"
 }, {
-"base": "State",
+"base": "StateApplicant",
 "class": "StateApplicantWaiting",
 "language": "GDScript",
-"path": "res://src/states/applicant/state_applicant_waiting.gd"
+"path": "res://scenes/game/characters/applicant/states/state_applicant_waiting.gd"
 }, {
 "base": "State",
 "class": "StateCVActive",
@@ -92,7 +102,7 @@ _global_script_classes=[ {
 "base": "StateMachine",
 "class": "StateMachineApplicant",
 "language": "GDScript",
-"path": "res://scenes/game/characters/state_machine.gd"
+"path": "res://scenes/game/characters/applicant/state_machine.gd"
 }, {
 "base": "StateMachine",
 "class": "StateMachineCV",
@@ -107,15 +117,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "applicationResult",
 "language": "GDScript",
-"path": "res://scenes/game/characters/applicantResult.gd"
+"path": "res://scenes/game/characters/applicant/applicantResult.gd"
 } ]
 _global_script_class_icons={
+"Applicant": "",
 "EnumUtils": "",
 "GameManager": "",
 "JobOfferStateMachine": "",
 "Puzzle": "",
 "PuzzleManager": "",
 "State": "",
+"StateApplicant": "",
 "StateApplicantEvaluated": "",
 "StateApplicantReviewing": "",
 "StateApplicantWaiting": "",

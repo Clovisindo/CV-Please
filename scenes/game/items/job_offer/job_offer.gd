@@ -9,7 +9,7 @@ var requisite_string_2 = "requisite 2 loaded"
 
 func _init():
 	print("Init")
-
+	
 func _ready():
 	var jobOfferPanel = get_node("JobOfferPanel/VBoxContainer")
 	instance_new_requisite_line("requisite 1","answer 1",jobOfferPanel)

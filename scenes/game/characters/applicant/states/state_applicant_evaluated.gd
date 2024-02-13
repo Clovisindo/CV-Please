@@ -1,0 +1,3 @@
+extends StateApplicant
+
+class_name StateApplicantEvaluated

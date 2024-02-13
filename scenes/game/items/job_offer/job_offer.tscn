@@ -3,8 +3,8 @@
 [ext_resource path="res://scenes/game/items/job_offer/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/game/items/job_offer/job_requisite.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/states/applicant/state_applicant_reviewing.gd" type="Script" id=4]
-[ext_resource path="res://src/states/applicant/state_applicant_waiting.gd" type="Script" id=5]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd" type="Script" id=4]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_waiting.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.781738, 0.775631, 0.775631, 1 )
@@ -49,6 +49,7 @@ anchor_bottom = 1.0
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
+initial_state = NodePath("NotMatched")
 
 [node name="NotMatched" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )

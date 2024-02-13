@@ -8,7 +8,7 @@ var skill_string_1 = "skill 1 loaded"
 var skill_string_2 = "skill 2 loaded"
 
 func _init():
-	print("Init")
+	pass
 
 func _ready():
 	var CVPanel = get_node("CVPanel/VBoxContainer")

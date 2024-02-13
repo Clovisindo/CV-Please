@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/game/characters/applicant.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameManager.gd" type="Script" id=4]

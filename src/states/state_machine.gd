@@ -2,11 +2,13 @@ extends Node
 
 class_name StateMachine
 
-var current_state
 var states: Dictionary
+export var initial_state := NodePath()
+var current_state: State
 
 func _ready():
-	current_state = _get_initial_state()
+	yield(owner, "ready")
+	current_state = get_node(initial_state)
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
@@ -14,10 +16,6 @@ func _ready():
 		else:
 			push_warning("State machine contains child which is not 'State'")
 	current_state.enter()
-
-# Must implement in each defined state machine
-func _get_initial_state():
-	pass
 
 func on_child_transitioned(new_state_name):
 	var new_state = states.get(new_state_name)

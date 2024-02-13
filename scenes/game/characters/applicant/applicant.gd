@@ -1,13 +1,18 @@
 extends Panel
 
+class_name Applicant
+
 export (Texture) var portrait 
 var appl_name
 export (EnumUtils.applicantSolution) var solution
 var applResult:applicationResult = applicationResult.new()
 
+onready var state_machine = $StateMachine
+onready var applicant_name = $Name
+
 func _ready():
 	_set_applicant_data(portrait,"applicant 1")
-
+	state_machine.init(self)
 
 #TODO carga dinamica de los applicants al currentApplicant en la UI
 func _set_applicant_data( texture, name):
@@ -17,3 +22,6 @@ func _set_applicant_data( texture, name):
 
 func _get_application_result():
 	return applResult
+
+func _input(event):
+	$StateMachine.current_state.handle_input(event)

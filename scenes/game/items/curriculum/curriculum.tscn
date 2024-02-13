@@ -53,6 +53,7 @@ __meta__ = {
 
 [node name="StatusMachine" type="Node" parent="."]
 script = ExtResource( 3 )
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StatusMachine"]
 script = ExtResource( 4 )
