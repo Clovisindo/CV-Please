@@ -7,10 +7,10 @@ func _ready():
 
 func enter() -> void:
 	print("Enter Job Offer Matched State")
-	
+
 func exit() -> void:
 	print("Exit Job Offer Matched State")
-	
+
 func update(delta: float) -> void:
 	pass
  

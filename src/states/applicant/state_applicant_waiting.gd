@@ -1,15 +1,15 @@
 extends State
 
-class_name StateJobOfferNotMatched
+class_name StateApplicantWaiting
 
 func _ready():
 	pass # Replace with function body.
 
 func enter() -> void:
-	print("Enter Job Offer NotMatched State")
+	pass
 
 func exit() -> void:
-	print("Exit Job Offer NotMatched State")
+	pass
 
 func update(delta: float) -> void:
 	pass
