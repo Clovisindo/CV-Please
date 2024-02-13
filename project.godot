@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "CVStateMachine",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/state_machine.gd"
+}, {
 "base": "Object",
 "class": "EnumUtils",
 "language": "GDScript",
@@ -20,20 +25,69 @@ _global_script_classes=[ {
 "path": "res://GameManager.gd"
 }, {
 "base": "Node",
+"class": "JobOfferStateMachine",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/state_machine.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/states/state.gd"
+}, {
+"base": "State",
+"class": "StateCVActive",
+"language": "GDScript",
+"path": "res://src/states/curriculum/state_cv_active.gd"
+}, {
+"base": "State",
+"class": "StateCVApproved",
+"language": "GDScript",
+"path": "res://src/states/curriculum/state_cv_approved.gd"
+}, {
+"base": "State",
+"class": "StateCVIdle",
+"language": "GDScript",
+"path": "res://src/states/curriculum/state_cv_idle.gd"
+}, {
+"base": "State",
+"class": "StateCVRejected",
+"language": "GDScript",
+"path": "res://src/states/curriculum/state_cv_rejected.gd"
+}, {
+"base": "State",
+"class": "StateJobOfferMatched",
+"language": "GDScript",
+"path": "res://src/states/job_offer/state_job_offer_matched.gd"
+}, {
+"base": "State",
+"class": "StateJobOfferNotMatched",
+"language": "GDScript",
+"path": "res://src/states/job_offer/state_job_offer_not_matched.gd"
+}, {
+"base": "Node",
 "class": "applicationResult",
 "language": "GDScript",
 "path": "res://scenes/game/characters/applicantResult.gd"
 } ]
 _global_script_class_icons={
+"CVStateMachine": "",
 "EnumUtils": "",
 "GameManager": "",
+"JobOfferStateMachine": "",
+"State": "",
+"StateCVActive": "",
+"StateCVApproved": "",
+"StateCVIdle": "",
+"StateCVRejected": "",
+"StateJobOfferMatched": "",
+"StateJobOfferNotMatched": "",
 "applicationResult": ""
 }
 
 [application]
 
 config/name="CV-Please!"
-run/main_scene="res://main.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [gui]
@@ -46,4 +100,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"

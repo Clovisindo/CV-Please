@@ -12,9 +12,9 @@ func _init():
 
 func _ready():
 	var CVPanel = get_node("CVPanel/VBoxContainer")
-	instance_new_skill_line("skill 1","asnwer 1",CVPanel)#TODO carga dinamica desde fichero
-	instance_new_skill_line("skill 2","asnwer 2",CVPanel)
-	instance_new_skill_line("skill 3","asnwer 3",CVPanel)
+	instance_new_skill_line("skill 1","answer 1",CVPanel)
+	instance_new_skill_line("skill 2","answer 2",CVPanel)
+	instance_new_skill_line("skill 3","answer 3",CVPanel)
 
 func _on_skill_panel_gui_input(event,skill_answer):
 	if event is InputEventMouseButton:
