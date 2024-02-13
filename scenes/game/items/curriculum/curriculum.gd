@@ -12,7 +12,7 @@ func _init():
 
 func _ready():
 	var CVPanel = get_node("CVPanel/VBoxContainer")
-	instance_new_skill_line("skill 1","asnwer 1",CVPanel)
+	instance_new_skill_line("skill 1","asnwer 1",CVPanel)#TODO carga dinamica desde fichero
 	instance_new_skill_line("skill 2","asnwer 2",CVPanel)
 	instance_new_skill_line("skill 3","asnwer 3",CVPanel)
 
@@ -28,8 +28,7 @@ func instance_new_skill_line(skill_name, skill_answer, CVPanel):
 	skillPanel.skill_answer = skill_answer
 	skillPanel.get_node("SkillText").text = skillPanel.skill_text
 	CVPanel.add_child(skillPanel)
-	skillPanel._instantiate_connect(get_node("."))
-	
+	skillPanel._instantiate_signal_skill_panel(get_node("."))
 
 func _on_Panel_mouse_entered():
 	mouse_over = true

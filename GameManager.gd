@@ -35,10 +35,13 @@ func _on_Panel_gui_input(event,result):
 	if event is InputEventMouseButton:
 		if mouse_over == true && event_fired == false:
 			event_fired = true
-			var appResult = currentAplicant._get_applicationResult()
-			appResult._checkResultApplicant(result,100)#TODO implementar tiempo
-			listApplResults.append(appResult)
-			print("Tu eleccion ha sido: " + str(appResult.result) + " el candidato era: " + str(appResult.solution))
+			_apply_applicant_decision(result)
+
+func _apply_applicant_decision(result):
+	var appResult = currentAplicant._get_application_result()
+	appResult._validate_result_applicant(result,100)#TODO implementar tiempo
+	listApplResults.append(appResult)
+	print("Your choice has been: " + str(appResult.result) + " applicant was: " + str(EnumUtils.applicantSolution.keys()[appResult.solution]))
 
 func _instantiate_panels():
 	var jobOfferContainer = get_node("MainScene/JobOfferContainer")
@@ -59,5 +62,5 @@ func _instantiate_panels():
 #	create signals for decision buttons
 	var okButton = decisionApplContainer.get_child(0).get_child(0)
 	var nokButton = decisionApplContainer.get_child(0).get_child(1)
-	okButton._instantiate_connect(get_node("."))
-	nokButton._instantiate_connect(get_node("."))
+	okButton._instantiate_connect_decision_button(get_node("."))
+	nokButton._instantiate_connect_decision_button(get_node("."))
