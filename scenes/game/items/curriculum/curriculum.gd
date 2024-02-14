@@ -1,38 +1,24 @@
 extends Control
 
+class_name Curriculum
+
 export(PackedScene) var skillScene
 
-signal show()
-
-var mouse_over = false
-var event_fired = false
-var skill_string_1 = "skill 1 loaded"
-var skill_string_2 = "skill 2 loaded"
+onready var state_machine = $StateMachine
 
 func _ready():
-	var CVPanel = get_node("CVPanel/VBoxContainer")
-	instance_new_skill_line("skill 1","answer 1",CVPanel)
-	instance_new_skill_line("skill 2","answer 2",CVPanel)
-	instance_new_skill_line("skill 3","answer 3",CVPanel)
+	var skill_container = get_node("CVPanel/VBoxContainer")
+	instance_new_skill_line("skill 1","answer 1",skill_container)
+	instance_new_skill_line("skill 2","answer 2",skill_container)
+	instance_new_skill_line("skill 3","answer 3",skill_container)
 
-func _on_skill_panel_gui_input(event,skill_answer):
-	pass
-#	if event is InputEventMouseButton:
-#		if mouse_over == true && event_fired == false:
-#			print(skill_answer)
-#			event_fired = true
-
-func instance_new_skill_line(skill_name, skill_answer, CVPanel):
+func instance_new_skill_line(skill_name, skill_answer, container):
 	var skillPanel = skillScene.instance()
-	skillPanel.skill_text = skill_name
-	skillPanel.skill_answer = skill_answer
-	skillPanel.get_node("SkillText").text = skillPanel.skill_text
-	CVPanel.add_child(skillPanel)
-	skillPanel._instantiate_signal_skill_panel(get_node("."))
+	skillPanel.initialize(self, skill_name, skill_answer)
+	container.add_child(skillPanel)
 
-func _on_panel_mouse_entered():
-	mouse_over = true
+func skill_checked(skill):
+	print(skill)
 
-func _on_panel_mouse_exited():
-	mouse_over = false
-	event_fired = false
+func _gui_input(event):
+	state_machine.current_state.handle_input(event)

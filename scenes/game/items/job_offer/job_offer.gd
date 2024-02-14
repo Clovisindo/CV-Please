@@ -17,7 +17,7 @@ func _ready():
 	instance_new_requisite_line("requisite 3","answer 3",jobOfferPanel)
 
 
-func _on_job_requisite_panel_gui_input(event,requisite_answer):
+func _on_job_requisite_panel_gui_input(_event,_requisite_answer):
 	pass
 #	if event is InputEventMouseButton:
 #		if mouse_over == true && event_fired == false:

@@ -4,17 +4,17 @@ class_name State
 
 signal transitioned(new_state_name)
  
-func enter() -> void:
+func enter():
 	pass
 	
-func exit() -> void:
+func exit():
 	pass
 	
-func update(delta: float) -> void:
+func update(_delta):
 	pass
  
-func physics_update(delta: float) -> void:
+func physics_update(_delta):
 	pass
 
-func handle_input(event):
+func handle_input(_event):
 	pass

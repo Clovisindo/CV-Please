@@ -30,6 +30,7 @@ margin_right = -747.0
 margin_bottom = -166.0
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 329.0
@@ -48,6 +49,7 @@ margin_bottom = 0.0419922
 custom_styles/panel = SubResource( 1 )
 
 [node name="DecisionApplContainer" type="PanelContainer" parent="MainScene"]
+visible = false
 anchor_left = 0.77
 anchor_top = 0.153846
 anchor_right = 0.868

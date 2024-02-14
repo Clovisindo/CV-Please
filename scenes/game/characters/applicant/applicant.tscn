@@ -19,9 +19,6 @@ portrait = ExtResource( 6 )
 [node name="Portrait" type="Sprite" parent="."]
 scale = Vector2( 1.6875, 1.70312 )
 centered = false
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Name" type="RichTextLabel" parent="."]
 anchor_top = 1.0

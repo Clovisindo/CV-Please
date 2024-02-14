@@ -19,14 +19,25 @@ var event_fired = false
 func _ready():
 #	instantiate panels and signals for UI elements to the gameManager
 	_instantiate_panels()
-	curentCV =  get_node("MainScene/CVContainer/Curriculum")
 	currentAplicant = get_node("MainScene/ApplicantContainer/Applicant")
 	currentJobOffer = get_node("MainScene/JobOfferContainer/JobOffer")
+	_wire_events()
+
+func _wire_events():
+	currentAplicant.connect("interaction_started", self, "_on_interaction_started")
+	currentAplicant.connect("interaction_ended", self, "_on_interaction_ended")
+
+func _on_interaction_started():
+	var cvContainer = get_node("MainScene/CVContainer")
+	cvContainer.visible = true
+	# TODO: recoger el CV del candidato en lugar de crear uno nuevo
+	curentCV = cvScene.instance()
+	cvContainer.add_child(curentCV)
 	
-	currentAplicant.connect("show_cv", self, "_on_show_cv")
-	
-func _on_show_cv(show: bool):
-	get_node("MainScene/CVContainer").visible = show
+func _on_interaction_ended():
+	var cvContainer = get_node("MainScene/CVContainer")
+	cvContainer.visible = false
+	cvContainer.remove_child(curentCV)
 
 func _on_Panel_mouse_entered():
 	mouse_over = true
@@ -36,7 +47,7 @@ func _on_Panel_mouse_exited():
 	event_fired = false
 
 # evento de los botones de aceptar o rechazar
-func _on_Panel_gui_input(event,result):
+func _on_Panel_gui_input(_event,_result):
 	pass
 #	if event is InputEventMouseButton:
 #		if mouse_over == true && event_fired == false:
@@ -51,16 +62,13 @@ func _apply_applicant_decision(result):
 
 func _instantiate_panels():
 	var jobOfferContainer = get_node("MainScene/JobOfferContainer")
-	var cvContainer = get_node("MainScene/CVContainer")
 	var applicantContainer = get_node("MainScene/ApplicantContainer")
 	var decisionApplContainer = get_node("MainScene/DecisionApplContainer")
 	
-	var cvPanel = cvScene.instance()
 	var jobOfferPanel = jobOfferScene.instance()
 	var applicantPanel = applicantScene.instance()
 	var decisionApplicantPanel = decisionApplicantScene.instance()
 	
-	cvContainer.add_child(cvPanel)
 	jobOfferContainer.add_child(jobOfferPanel)
 	applicantContainer.add_child(applicantPanel)
 	decisionApplContainer.add_child(decisionApplicantPanel)

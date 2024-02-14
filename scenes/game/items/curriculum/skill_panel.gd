@@ -1,11 +1,18 @@
 extends Panel
 
+class_name SkillPanel
+
 export(PackedScene) var curriculumNode
 
-var skill_text
-var skill_answer
+var skill_text: String
+var skill_answer: String
+var cv: Curriculum
 
-func _instantiate_signal_skill_panel(cvNode):
-	self.connect("mouse_entered",cvNode,"_on_panel_mouse_entered")
-	self.connect("mouse_exited",cvNode,"_on_panel_mouse_exited")
-	self.connect("gui_input",cvNode,"_on_skill_panel_gui_input",[skill_answer])
+func initialize(applicant_cv: Curriculum, text: String, answer: String):
+	cv = applicant_cv
+	skill_answer = answer
+	$SkillText.text = text
+
+func _gui_input(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		cv.skill_checked(self)

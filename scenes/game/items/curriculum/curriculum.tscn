@@ -25,6 +25,8 @@ shadow_size = 4
 shadow_offset = Vector2( 4, 4 )
 
 [node name="Curriculum" type="Control"]
+modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -47,24 +49,20 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CVPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="StatusMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 3 )
 initial_state = NodePath("Idle")
+cv = NodePath("..")
 
-[node name="Idle" type="Node" parent="StatusMachine"]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
-[node name="Active" type="Node" parent="StatusMachine"]
+[node name="Active" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
-[node name="Approved" type="Node" parent="StatusMachine"]
+[node name="Approved" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
-[node name="Rejected" type="Node" parent="StatusMachine"]
+[node name="Rejected" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
-
-[connection signal="show" from="." to="." method="_on_Curriculum_show"]
