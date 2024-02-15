@@ -1,0 +1,30 @@
+{
+	"applicant_name": "Zippy",
+	"appl_image": "",
+	"validate_solution": true,
+	"work_type": "special_type1",
+	"difficulty": "easy",
+	"level_day": "level_1",
+	"time_limit": 5,
+	"requisites_answers": {
+		"requisite1": "question 1 player | answer 1 applicant",
+		"requisite2": "question 2 player | answer 2 applicant",
+		"requisite3": "question 3 player | answer 3 applicant"
+	},
+	"cross_questions": {
+		"requisite1|requisite2": "question 1 player | answer 1 applicant"
+	},
+	"salary_offer": 15000,
+	"special_condition": "first job",
+	"skills_answers": {
+		"Skill1": "question 1 player | answer 1 applicant",
+		"Skill2": "question 2 player | answer 2 applicant",
+		"Skill3": "question 3 player | answer 3 applicant"
+	},
+	"timeline_jobs": {
+		"job1": "from date to date",
+		"job2": "from date to date",
+		"job3": "from date to date"
+	},
+	"min_salary": 18000
+}
