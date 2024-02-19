@@ -1,9 +1,9 @@
 extends Object
 class_name EnumUtils
 
-enum applicantSolution {
-	valid,
-	notValid
+enum ApplicantResult {
+	VALID,
+	NOT_VALID,
 }
 
 enum typeWork {

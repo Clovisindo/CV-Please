@@ -2,7 +2,7 @@ extends Node
 class_name applicationResult
 
 var timeInterview
-export (EnumUtils.applicantSolution) var solution  = EnumUtils.applicantSolution.valid
+export (EnumUtils.ApplicantResult) var solution  = EnumUtils.ApplicantResult.VALID
 var result = false
 
 func _init_appl_result(_solution):
