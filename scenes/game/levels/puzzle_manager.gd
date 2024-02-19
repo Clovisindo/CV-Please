@@ -56,6 +56,12 @@ func save_puzzle():
 	file.store_string(JSON.print(puzzle,"\t"))
 	file.close()
 
+#func save_puzzle(_puzzle):
+#	var file = File.new()
+#	file.open(FILE_NAME, File.WRITE)
+#	file.store_string(JSON.print(_puzzle,"\t"))
+#	file.close()
+
 func load_puzzle():
 	var file = File.new()
 	if file.file_exists(FILE_NAME):

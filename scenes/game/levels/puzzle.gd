@@ -34,8 +34,8 @@ export var timeline_jobs = {
 	}
 export var min_salary = 18000
 
-func _init(_applicant_name, _appl_image, _validate_solution, _work_type, _difficulty, _level_day, _time_limit, _requisites_answers, _cross_questions, _salary_offer, _special_condition, 
-_skills_answers, _timeline_jobs, _min_salary):
+func _instantiate(_applicant_name, _appl_image, _validate_solution, _work_type, _difficulty, _level_day, _time_limit, _requisites_answers, _cross_questions, _salary_offer, _special_condition, 
+_skills_answers, _timeline_jobs, _min_salary) -> Puzzle:
 	applicant_name = _applicant_name
 	appl_image = _appl_image
 	validate_solution = _validate_solution
@@ -52,3 +52,5 @@ _skills_answers, _timeline_jobs, _min_salary):
 	skills_answers = _skills_answers
 	timeline_jobs = _timeline_jobs
 	min_salary = _min_salary
+	
+	return self
