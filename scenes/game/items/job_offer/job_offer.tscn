@@ -32,7 +32,7 @@ margin_top = -209.5
 margin_right = 175.5
 margin_bottom = 209.5
 script = ExtResource( 2 )
-requisiteScene = ExtResource( 3 )
+requisite_scene = ExtResource( 3 )
 
 [node name="JobOfferPanel" type="Panel" parent="."]
 anchor_left = -0.002849

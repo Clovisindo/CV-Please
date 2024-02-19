@@ -4,7 +4,6 @@ class_name SkillPanel
 
 export(PackedScene) var curriculumNode
 
-var skill_text: String
 var skill_answer: String
 var cv: Curriculum
 

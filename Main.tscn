@@ -30,7 +30,6 @@ margin_right = -798.0
 margin_bottom = -279.0
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 502.0
