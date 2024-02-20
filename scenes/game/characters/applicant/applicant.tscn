@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/game/characters/applicant/applicant.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_waiting.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd" type="Script" id=4]
 [ext_resource path="res://scenes/game/characters/applicant/state_machine.gd" type="Script" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=7]
 
 [node name="Applicant" type="Panel"]
 anchor_right = 0.098
@@ -16,6 +17,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 portrait = ExtResource( 6 )
+cv_scene = ExtResource( 7 )
 
 [node name="Portrait" type="Sprite" parent="."]
 scale = Vector2( 1.6875, 1.70312 )

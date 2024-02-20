@@ -18,7 +18,10 @@ func _instance_new_skill_line(skill_name, skill_answer, container):
 	container.add_child(skill_panel)
 
 func skill_checked(skill):
-	print(skill)
+	$StateMachine.current_state.process_skill_selected(skill)
 
 func _gui_input(event):
 	state_machine.current_state.handle_input(event)
+
+func process_cv(result):
+	$StateMachine.current_state.process_cv(result)

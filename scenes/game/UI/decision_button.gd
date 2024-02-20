@@ -9,7 +9,7 @@ func _ready():
 	$DecisionNOKButton.connect("pressed", self, "_on_button_no_ok_pressed")
 
 func _on_button_ok_pressed():
-	emit_signal("decision_made", EnumUtils.ApplicantResult.VALID)
+	emit_signal("decision_made", ApplicantResult.Status.VALID)
 
 func _on_button_no_ok_pressed():
-	emit_signal("decision_made", EnumUtils.ApplicantResult.NOT_VALID)
+	emit_signal("decision_made", ApplicantResult.Status.NOT_VALID)

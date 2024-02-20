@@ -1,10 +1,6 @@
 extends Object
-class_name EnumUtils
 
-enum ApplicantResult {
-	VALID,
-	NOT_VALID,
-}
+class_name EnumUtils
 
 enum typeWork {
 	special_type1,

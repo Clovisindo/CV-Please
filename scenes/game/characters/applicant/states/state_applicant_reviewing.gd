@@ -25,3 +25,6 @@ func update(delta):
 	if portrait.position.y >= y_limit || portrait.position.y <= 0-y_limit:
 		velocity *= -1
 	portrait.position.y += velocity * delta
+
+func process_applicant():
+	emit_signal("transitioned","Evaluated")

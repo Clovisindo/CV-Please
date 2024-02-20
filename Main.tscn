@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameManager.gd" type="Script" id=4]
 [ext_resource path="res://scenes/game/UI/DecisionApplicant.tscn" type="PackedScene" id=5]
 
@@ -11,7 +10,6 @@ bg_color = Color( 0.00784314, 0, 0, 0 )
 
 [node name="GameMainScene" type="Node2D"]
 script = ExtResource( 4 )
-cvScene = ExtResource( 3 )
 jobOfferScene = ExtResource( 2 )
 applicantScene = ExtResource( 1 )
 decisionApplicantScene = ExtResource( 5 )

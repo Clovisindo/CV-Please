@@ -1,16 +1,13 @@
 extends Node2D
 class_name GameManager
 
-export(PackedScene) var cvScene
 export(PackedScene) var jobOfferScene
 export(PackedScene) var applicantScene
 export(PackedScene) var decisionApplicantScene
 
-var applicationResultClass = load("res://scenes/game/characters/applicantResult.gd")
-var listApplResults:Array = []
+var candidates_list = []
 
 var current_job_offer: JobOffer
-var curent_cv : Curriculum
 var current_aplicant: Applicant
 var current_decision_applicant: DecisionApplicant
 
@@ -32,18 +29,20 @@ func _wire_events():
 func _on_interaction_started():
 	var cv_container = get_node("MainScene/CVContainer")
 	cv_container.visible = true
-	# TODO: recoger el CV del candidato en lugar de crear uno nuevo
-	curent_cv = cvScene.instance()
-	cv_container.add_child(curent_cv)
-	
-	
+	cv_container.add_child(current_aplicant.get_cv())
+
+
 func _on_interaction_ended():
 	var cv_container = get_node("MainScene/CVContainer")
 	cv_container.visible = false
-	cv_container.remove_child(curent_cv)
+	cv_container.remove_child(current_aplicant.get_cv())
+
 
 func _apply_applicant_decision(result):
-	print("Your choice has been: %s, applicant was: %s" % [result, current_aplicant])
+	var evaluation = ApplicantResult.new()
+	evaluation.current_status = result
+	self.current_aplicant.process_applicant(evaluation)
+
 
 func _instantiate_panels():
 	var jobOfferContainer = get_node("MainScene/JobOfferContainer")
@@ -57,3 +56,5 @@ func _instantiate_panels():
 	jobOfferContainer.add_child(jobOfferPanel)
 	applicantContainer.add_child(applicantPanel)
 	decisionApplContainer.add_child(decisionApplicantPanel)
+
+	candidates_list.append(applicantPanel)
