@@ -20,8 +20,6 @@ var min_salary:int
 var mouse_over = false
 var event_fired = false
 
-var puzzleClass = load("res://scenes/game/levels/puzzle.gd")
-
 func _ready():
 	#validation_solution menu
 	$"../Panel/ValSolOptionButton".get_popup().add_item("True")
@@ -33,7 +31,10 @@ func _ready():
 		$"../../JobOfferPanel/DifficultyOpMenu".get_popup().add_item(str(dificculty))
 	for level in EnumUtils.levels:
 		$"../../JobOfferPanel/LevelOpMenu".get_popup().add_item(str(level))
-
+	
+#	var levels = ResourceLoader.get_dependencies("res://scenes/game/levels/")
+#	for level_tres in levels:
+#		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres))
 
 func _load_data_form():
 	#applicant
@@ -103,12 +104,14 @@ func _load_data_form():
 	min_salary = int($"../../CurriculumPanel/MinSalaryLineEdit".text)
 
 
+
 func GeneratePuzzle():
-	var puzzle_test = puzzleClass.new()
-	var puzzle = puzzle_test._instantiate(applicant_name, applicant_image, validate_solution, work_type, difficulty, level_day,time_limit, requisites_answers,
-	cross_questions,salary_offer,	special_condition,skills_answers,timeline_jobs,min_salary)
+	var puzzle_test = Puzzle.new()
+	var puzzle:Puzzle = puzzle_test._instantiate(applicant_name, applicant_image, validate_solution, work_type, difficulty, level_day,time_limit, requisites_answers,
+	cross_questions,salary_offer,special_condition,skills_answers,timeline_jobs,min_salary)
 	var puzzleManager = PuzzleManager.new()
-	puzzleManager.save_puzzle(puzzle_test)
+	puzzleManager.save_puzzle(puzzle)
+#	var test = puzzleManager.load_puzzle("res://scenes/game/levels/levels_puzzle.tres")
 
 func _on_Button_gui_input(event):
 	if event is InputEventMouseButton:
