@@ -20,6 +20,8 @@ var min_salary:int
 var mouse_over = false
 var event_fired = false
 
+var puzzleManager = PuzzleManager.new()
+
 func _ready():
 	#validation_solution menu
 	$"../Panel/ValSolOptionButton".get_popup().add_item("True")
@@ -31,10 +33,10 @@ func _ready():
 		$"../../JobOfferPanel/DifficultyOpMenu".get_popup().add_item(str(dificculty))
 	for level in EnumUtils.levels:
 		$"../../JobOfferPanel/LevelOpMenu".get_popup().add_item(str(level))
-	
-#	var levels = ResourceLoader.get_dependencies("res://scenes/game/levels/")
-#	for level_tres in levels:
-#		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres))
+	#carga de ficheros de recursos
+	var levels = get_filelist("res://scenes/game/levels/",["tres"])
+	for level_tres in levels:
+		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres))
 
 func _load_data_form():
 	#applicant
@@ -106,12 +108,40 @@ func _load_data_form():
 
 
 func GeneratePuzzle():
-	var puzzle_test = Puzzle.new()
-	var puzzle:Puzzle = puzzle_test._instantiate(applicant_name, applicant_image, validate_solution, work_type, difficulty, level_day,time_limit, requisites_answers,
+	var puzzle = Puzzle.new()
+	var puzzle_new:Puzzle = puzzle._instantiate(applicant_name, applicant_image, validate_solution, work_type, difficulty, level_day,time_limit, requisites_answers,
 	cross_questions,salary_offer,special_condition,skills_answers,timeline_jobs,min_salary)
-	var puzzleManager = PuzzleManager.new()
-	puzzleManager.save_puzzle(puzzle)
-#	var test = puzzleManager.load_puzzle("res://scenes/game/levels/levels_puzzle.tres")
+	
+	puzzleManager.save_puzzle(puzzle_new)
+#	
+
+func Load_Puzzle(resource_filename):
+	var puzzle = puzzleManager.load_puzzle(resource_filename)
+
+func get_filelist(scan_dir : String, filter_exts : Array = []) -> Array:
+	var my_files : Array = []
+	var dir := Directory.new()
+	if dir.open(scan_dir) != OK:
+		printerr("Warning: could not open directory: ", scan_dir)
+		return []
+
+	if dir.list_dir_begin(true, true) != OK:
+		printerr("Warning: could not list contents of: ", scan_dir)
+		return []
+
+	var file_name := dir.get_next()
+	while file_name != "":
+		if dir.current_is_dir():
+			my_files += get_filelist(dir.get_current_dir() + "/" + file_name, filter_exts)
+		else:
+			if filter_exts.size() == 0:
+				my_files.append(dir.get_current_dir() + "/" + file_name)
+			else:
+				for ext in filter_exts:
+					if file_name.get_extension() == ext:
+						my_files.append(dir.get_current_dir() + "/" + file_name)
+		file_name = dir.get_next()
+	return my_files
 
 func _on_Button_gui_input(event):
 	if event is InputEventMouseButton:

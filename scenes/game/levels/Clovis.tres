@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-applicant_name = "clovis"
+applicant_name = "Clovis"
 appl_image = "clovis.png"
 validate_solution = true
 work_type = "special_type1"
-difficulty = "medium"
-level_day = "level_2"
+difficulty = "easy"
+level_day = "level_1"
 time_limit = 11
 requisites_answers = {
 "requisite1:": " question 1 player | answer 1 applicant",
@@ -19,13 +19,12 @@ cross_questions = {
 "requisite1|requisite2:": " question 1 player | answer 1 applicant"
 }
 salary_offer = 15000
-special_condition = "yes"
+special_condition = "test"
 skills_answers = {
 "Skills1:": " question 1 player | answer 1 applicant",
 "Skills2:": " question 2 player | answer 2 applicant"
 }
 timeline_jobs = {
-"job1 ": " from date X to date Y",
-"job2 ": " from date x2 to date Y2"
+"job1 ": " from date X to date Y"
 }
 min_salary = 18000

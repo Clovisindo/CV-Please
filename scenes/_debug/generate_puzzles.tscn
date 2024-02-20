@@ -154,10 +154,11 @@ margin_bottom = 123.0
 
 [node name="ReqAnswerLabel" type="Label" parent="JobOfferPanel"]
 margin_left = 6.0
-margin_top = 134.0
-margin_right = 235.0
-margin_bottom = 157.0
-text = "Requisite: question + answer"
+margin_top = 118.0
+margin_right = 465.0
+margin_bottom = 165.0
+text = "Requisite: question + answer
+(Example: requisite1:| question 1 player | answer 1 applicant)"
 autowrap = true
 
 [node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel"]
@@ -261,10 +262,11 @@ margin_bottom = 111.0
 
 [node name="SkillnswerLabel" type="Label" parent="CurriculumPanel"]
 margin_left = 11.0
-margin_top = 136.0
-margin_right = 240.0
-margin_bottom = 159.0
-text = "Requisite: question + answer"
+margin_top = 121.0
+margin_right = 477.0
+margin_bottom = 167.0
+text = "Requisite: question + answer
+(Example : Skills1:| question 1 player | answer 1 applicant)"
 autowrap = true
 
 [node name="SkillAnswerLineEdit" type="LineEdit" parent="CurriculumPanel"]
@@ -300,9 +302,9 @@ margin_bottom = 289.0
 [node name="TimelineJobLabel" type="Label" parent="CurriculumPanel"]
 margin_left = 8.0
 margin_top = 296.0
-margin_right = 237.0
+margin_right = 465.0
 margin_bottom = 319.0
-text = "job + from date to date"
+text = "job + from date to date ( job1 | from date X to date Y)"
 autowrap = true
 
 [node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel"]

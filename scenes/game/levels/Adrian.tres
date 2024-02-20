@@ -7,9 +7,9 @@ script = ExtResource( 1 )
 applicant_name = "Adrian"
 appl_image = "adrian.png"
 validate_solution = false
-work_type = "special_type1"
-difficulty = "easy"
-level_day = "level_1"
+work_type = 0
+difficulty = 0
+level_day = 0
 time_limit = 11
 requisites_answers = {
 "requisite1:": " question 1 player | answer 1 applicant",

@@ -7,9 +7,9 @@ export var applicant_name = "Rival"
 export var appl_image = "rival.png"#TODO ruta recursos imagenes
 export var validate_solution = true
 #job offer
-export var work_type = EnumUtils.typeWork.special_type1
-export var difficulty = EnumUtils.dificulty.easy
-export var level_day = EnumUtils.levels.level_1
+export(EnumUtils.typeWork) var work_type = EnumUtils.typeWork.special_type1
+export(EnumUtils.dificulty) var difficulty = EnumUtils.dificulty.easy
+export(EnumUtils.levels) var level_day = EnumUtils.levels.level_1
 export var time_limit = 5 #se mide en acciones, no en tiempo real
 export var requisites_answers = {
 		"requisite1": "question 1 player | answer 1 applicant",
