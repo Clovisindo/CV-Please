@@ -25,3 +25,6 @@ func _gui_input(event):
 
 func process_cv(result):
 	$StateMachine.current_state.process_cv(result)
+	
+func get_status():
+	return $StateMachine.current_state

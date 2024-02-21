@@ -12,7 +12,6 @@ var current_aplicant: Applicant
 var current_decision_applicant: DecisionApplicant
 
 func _ready():
-#	instantiate panels and signals for UI elements to the gameManager
 	_instantiate_panels()
 	current_aplicant = get_node("MainScene/ApplicantContainer/Applicant")
 	current_job_offer = get_node("MainScene/JobOfferContainer/JobOffer")
@@ -24,6 +23,7 @@ func _wire_events():
 	current_aplicant.connect("interaction_started", self, "_on_interaction_started")
 	current_aplicant.connect("interaction_ended", self, "_on_interaction_ended")
 	current_decision_applicant.connect("decision_made", self, "_apply_applicant_decision")
+	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
 
 
 func _on_interaction_started():
@@ -58,3 +58,11 @@ func _instantiate_panels():
 	decisionApplContainer.add_child(decisionApplicantPanel)
 
 	candidates_list.append(applicantPanel)
+
+func _on_working_day_ended():
+	for candidate in candidates_list:
+		if candidate.get_status() is StateApplicantEvaluated:
+			if candidate.get_cv().get_status() is StateCVApproved:
+				print("Candidate %s is accepted" % candidate.name)
+			elif candidate.get_cv().get_status() is StateCVRejected:
+				print("Candidate %s is rejected" % candidate.name)

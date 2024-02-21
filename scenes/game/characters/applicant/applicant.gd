@@ -39,3 +39,6 @@ func show_cv(show: bool):
 func process_applicant(result):
 	evaluation = result
 	$StateMachine.current_state.process_applicant()
+	
+func get_status():
+	return state_machine.current_state

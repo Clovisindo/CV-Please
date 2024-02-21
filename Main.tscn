@@ -55,3 +55,10 @@ margin_top = 1.0
 margin_right = 112.036
 margin_bottom = 1.04199
 custom_styles/panel = SubResource( 1 )
+
+[node name="EndWorkingDayButton" type="Button" parent="MainScene"]
+margin_left = 423.0
+margin_top = 11.0
+margin_right = 435.0
+margin_bottom = 31.0
+text = "Terminar Día"
