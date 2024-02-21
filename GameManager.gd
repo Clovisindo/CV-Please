@@ -4,7 +4,9 @@ class_name GameManager
 export(PackedScene) var jobOfferScene
 export(PackedScene) var applicantScene
 export(PackedScene) var decisionApplicantScene
+export(PackedScene) var puzzle_manager_scene
 
+var puzzle_manager
 var candidates_list = []
 
 var current_job_offer: JobOffer
@@ -56,6 +58,12 @@ func _instantiate_panels():
 	jobOfferContainer.add_child(jobOfferPanel)
 	applicantContainer.add_child(applicantPanel)
 	decisionApplContainer.add_child(decisionApplicantPanel)
+
+	puzzle_manager = puzzle_manager_scene.instance()
+	var puzzles = puzzle_manager.get_all_puzzle()
+	for puzzle in puzzles:
+		# TODO: ahora mismo se queda cargado el último nombre creado, poder crear N applicants
+		applicantPanel.set_applicant_data(null,puzzle.applicant_name)
 
 	candidates_list.append(applicantPanel)
 
