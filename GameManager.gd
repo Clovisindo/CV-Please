@@ -22,16 +22,22 @@ func _wire_events():
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
 
 
-func _on_interaction_started(cv):
+func _on_interaction_started(applicant):
 	var cv_container = get_node("MainScene/CVContainer")
 	cv_container.visible = true
-	cv_container.add_child(cv)
+	cv_container.add_child(applicant.get_cv())
+	for each in applicant_list:
+		if not each == applicant:
+			each.lock_applicant(true)
 
 
 func _on_interaction_ended(applicant):
 	var cv_container = get_node("MainScene/CVContainer")
 	cv_container.visible = false
 	cv_container.remove_child(applicant)
+	for each in applicant_list:
+		if not each == applicant:
+			each.lock_applicant(false)
 
 
 func _apply_applicant_decision(result):

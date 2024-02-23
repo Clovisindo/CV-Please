@@ -34,7 +34,7 @@ func _gui_input(event):
 
 func show_cv(show: bool):
 	if show:
-		emit_signal("interaction_started", cv)
+		emit_signal("interaction_started", self)
 	else:
 		emit_signal("interaction_ended", self)
 
@@ -43,6 +43,9 @@ func process_applicant(result):
 	evaluation = result
 	$StateMachine.current_state.process_applicant()
 	
+	
+func lock_applicant(is_locked: bool):
+	$StateMachine.current_state.lock_applicant(is_locked)
 
 func get_status():
 	return $StateMachine.current_state
