@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "EnumUtils",
 "language": "GDScript",
-"path": "res://src/Enum.gd"
+"path": "res://src/enum.gd"
 }, {
 "base": "Node2D",
 "class": "GameManager",

@@ -66,6 +66,7 @@ func _instantiate_panels():
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
 
+
 func _on_working_day_ended():
 	for applicant in applicant_list:
 		if applicant.get_status() is StateApplicantEvaluated:

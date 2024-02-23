@@ -2,8 +2,10 @@ extends StateCV
 
 class_name StateCVActive
 
+
 func enter():
 	print("CV in Active State...")
+
 
 func process_cv(result):
 	if result.current_status == ApplicantResult.Status.VALID:

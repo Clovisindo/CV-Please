@@ -12,6 +12,13 @@ var applicant_name = "Default name"
 signal interaction_started()
 signal interaction_ended()
 
+
+func _ready():
+	$StateMachine.init(self)
+	$Container/PortraitRect/Portrait.texture = portrait_texture
+	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
+
+
 func add_data(name: String, skills: Dictionary):
 	if name:
 		applicant_name = name
@@ -20,9 +27,6 @@ func add_data(name: String, skills: Dictionary):
 		cv = curriculum_scene.instance()
 		cv.add_skills(skills)
 
-func _ready():
-	$StateMachine.init(self)
-	$Container/PortraitRect/Portrait.texture = portrait_texture
 
 func get_cv():
 	return self.cv
@@ -46,6 +50,7 @@ func process_applicant(result):
 	
 func lock_applicant(is_locked: bool):
 	$StateMachine.current_state.lock_applicant(is_locked)
+
 
 func get_status():
 	return $StateMachine.current_state

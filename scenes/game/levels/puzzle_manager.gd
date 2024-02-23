@@ -1,7 +1,6 @@
 extends Node
 
 class_name PuzzleManager
-var puzzle
 const LEVELS_DIR = "res://scenes/game/levels/"
 
 func save_puzzle(_puzzle):

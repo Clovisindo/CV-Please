@@ -2,6 +2,7 @@ extends StateMachine
 
 class_name StateMachineJobOffer
 
+
 func _ready():
 	current_state = get_node(initial_state)
 	for child in get_children():

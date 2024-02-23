@@ -6,9 +6,11 @@ var velocity = 50
 var y_limit = 10
 var initial_y_pos = 0
 
+
 func enter():
 	applicant.show_cv(true)
 	initial_y_pos = portrait.position.y
+
 
 func exit():
 	applicant.show_cv(false)
@@ -16,15 +18,18 @@ func exit():
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
 
+
 func handle_input(event: InputEvent):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		emit_signal("transitioned","Waiting")
+
 
 func update(delta):
 	# Si se ha salido del limite, cambiamos la direccion
 	if portrait.position.y >= y_limit || portrait.position.y <= 0-y_limit:
 		velocity *= -1
 	portrait.position.y += velocity * delta
+
 
 func process_applicant():
 	emit_signal("transitioned","Evaluated")
