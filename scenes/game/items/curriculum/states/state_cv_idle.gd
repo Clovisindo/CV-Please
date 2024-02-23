@@ -2,7 +2,7 @@ extends StateCV
 
 class_name StateCVIdle
 
-export var animation_velocity = 20
+export var animation_velocity = 3
 
 
 func enter():

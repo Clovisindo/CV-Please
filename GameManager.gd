@@ -44,7 +44,10 @@ func _apply_applicant_decision(result):
 	var evaluation = ApplicantResult.new()
 	evaluation.current_status = result
 	for applicant in applicant_list:
-		if applicant.get_status() is StateApplicantReviewing:
+		if (
+			applicant.get_status() is StateApplicantReviewing 
+			and applicant.get_cv().get_status() is StateCVActive
+		):
 			applicant.process_applicant(evaluation)
 
 

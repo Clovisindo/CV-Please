@@ -2,6 +2,7 @@ extends StateCV
 
 class_name StateCVActive
 
+export var animation_velocity = 3
 
 func enter():
 	print("CV in Active State...")
