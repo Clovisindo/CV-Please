@@ -19,7 +19,8 @@ text = "Accept"
 [node name="DecisionNOKButton" type="Button" parent="."]
 anchor_right = 0.475
 anchor_bottom = 0.407
-margin_top = 58.0
-margin_right = -0.0250092
-margin_bottom = 58.02
+margin_left = 1.0
+margin_top = 56.0
+margin_right = 0.974991
+margin_bottom = 56.02
 text = "Deny"

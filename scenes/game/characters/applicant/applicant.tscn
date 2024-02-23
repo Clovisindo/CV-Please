@@ -9,27 +9,40 @@
 [ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=7]
 
 [node name="Applicant" type="Panel"]
-anchor_right = 0.098
-anchor_bottom = 0.167
-mouse_default_cursor_shape = 2
+anchor_right = 0.146484
+anchor_bottom = 0.0833333
+size_flags_horizontal = 5
+size_flags_vertical = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-portrait = ExtResource( 6 )
-cv_scene = ExtResource( 7 )
+portrait_texture = ExtResource( 6 )
+curriculum_scene = ExtResource( 7 )
 
-[node name="Portrait" type="Sprite" parent="."]
-scale = Vector2( 1.6875, 1.70312 )
+[node name="Container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PortraitRect" type="TextureRect" parent="Container"]
+margin_right = 72.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Portrait" type="Sprite" parent="Container/PortraitRect"]
 centered = false
 
-[node name="Name" type="RichTextLabel" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.148
-margin_top = 1.0
-margin_bottom = 9.016
+[node name="Name" type="RichTextLabel" parent="Container"]
+margin_left = 76.0
+margin_right = 149.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 5 )

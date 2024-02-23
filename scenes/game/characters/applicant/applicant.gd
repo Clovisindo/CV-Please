@@ -2,33 +2,27 @@ extends Panel
 
 class_name Applicant
 
-export (Texture) var portrait
+export(Texture) onready var portrait_texture
+export(PackedScene) onready var curriculum_scene
 
-onready var state_machine = $StateMachine
-onready var applicant_name = $Name
-
-export(PackedScene) var cv_scene
 var cv: Curriculum
-
 var evaluation: ApplicantResult
+var applicant_name = "Default name"
 
 signal interaction_started()
 signal interaction_ended()
 
+func add_data(name: String, skills: Dictionary):
+	if name:
+		applicant_name = name
+		$Container/Name.bbcode_text = "[center]%s[/center]" % name
+	if skills:
+		cv = curriculum_scene.instance()
+		cv.add_skills(skills)
 
 func _ready():
-	set_applicant_data(portrait,"applicant 1")
-	state_machine.init(self)
-	cv = cv_scene.instance()
-
-
-func set_applicant_data(texture, name):
-	# TODO: incluir también los datos del CV
-	if texture:
-		$Portrait.texture = texture
-	if name:
-		$Name.set_bbcode("[center]%s[/center]" % name)
-	
+	$StateMachine.init(self)
+	$Container/PortraitRect/Portrait.texture = portrait_texture
 
 func get_cv():
 	return self.cv
@@ -40,9 +34,9 @@ func _gui_input(event):
 
 func show_cv(show: bool):
 	if show:
-		emit_signal("interaction_started")
+		emit_signal("interaction_started", cv)
 	else:
-		emit_signal("interaction_ended")
+		emit_signal("interaction_ended", self)
 
 
 func process_applicant(result):
@@ -51,4 +45,4 @@ func process_applicant(result):
 	
 
 func get_status():
-	return state_machine.current_state
+	return $StateMachine.current_state

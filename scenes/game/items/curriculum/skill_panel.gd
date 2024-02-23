@@ -2,9 +2,8 @@ extends Panel
 
 class_name SkillPanel
 
-export(PackedScene) var curriculumNode
-
 var skill_answer: String
+var skill_name: String
 var cv: Curriculum
 
 enum SkillStatus {
@@ -15,9 +14,9 @@ enum SkillStatus {
 
 export(SkillStatus) var current_status
 
-func initialize(applicant_cv: Curriculum, text: String, answer: String):
-	cv = applicant_cv
+func add_data(text: String, answer: String):
 	skill_answer = answer
+	skill_name = text
 	$SkillText.text = text
 
 func _gui_input(event):
@@ -30,9 +29,8 @@ func _gui_input(event):
 
 func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
-		if cv:
-			cv.skill_checked(self)
 		current_status = SkillStatus.SELECTED
+		cv._skill_checked(self)
 		rect_position.x += 10
 
 func _process_as_selected(event):

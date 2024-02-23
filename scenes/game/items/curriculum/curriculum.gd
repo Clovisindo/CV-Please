@@ -2,26 +2,21 @@ extends Control
 
 class_name Curriculum
 
-export(PackedScene) var skill_scene
+export(PackedScene) onready var skill_panel_scene
 
-onready var state_machine = $StateMachine
+func add_skills(skills):
+	if skills:
+		for skill in skills:
+			var skill_panel = skill_panel_scene.instance()
+			skill_panel.cv = self
+			skill_panel.add_data(skill, "Answer")
+			$CVPanel/VBoxContainer.add_child(skill_panel)
 
-func _ready():
-	var skill_container = get_node("CVPanel/VBoxContainer")
-	_instance_new_skill_line("skill 1","answer 1",skill_container)
-	_instance_new_skill_line("skill 2","answer 2",skill_container)
-	_instance_new_skill_line("skill 3","answer 3",skill_container)
-
-func _instance_new_skill_line(skill_name, skill_answer, container):
-	var skill_panel = skill_scene.instance()
-	skill_panel.initialize(self, skill_name, skill_answer)
-	container.add_child(skill_panel)
-
-func skill_checked(skill):
+func _skill_checked(skill):
 	$StateMachine.current_state.process_skill_selected(skill)
 
 func _gui_input(event):
-	state_machine.current_state.handle_input(event)
+	$StateMachine.current_state.handle_input(event)
 
 func process_cv(result):
 	$StateMachine.current_state.process_cv(result)

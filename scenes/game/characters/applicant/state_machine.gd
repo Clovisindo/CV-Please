@@ -5,7 +5,7 @@ class_name StateMachineApplicant
 func init(applicant: Applicant):
 	for child in get_children():
 		child.applicant = applicant
-		child.portrait = applicant.get_node("Portrait")
+		child.portrait = applicant.get_node("Container/PortraitRect/Portrait")
 
 func _ready():
 	current_state = get_node(initial_state)
