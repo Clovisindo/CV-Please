@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+applicant_name = "Adrian"
+appl_image = "adrian.png"
+validate_solution = false
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 11
+requisites_answers = {
+"requisite1:": " question 1 player | answer 1 applicant",
+"requisite2:": " question 2 player | answer 2 applicant"
+}
+cross_questions = {
+"requisite1|requisite2:": " question 1 player | answer 1 applicant"
+}
+salary_offer = 20000
+special_condition = "test"
+skills_answers = {
+"Skills1:": " question 1 player | answer 1 applicant",
+"Skills2:": " question 2 player | answer 2 applicant"
+}
+timeline_jobs = {
+"job1 ": " from date X to date Y",
+"job2 ": " from date 2X to date 2Y"
+}
+min_salary = 25000

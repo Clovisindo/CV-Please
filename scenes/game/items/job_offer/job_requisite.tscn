@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/game/items/job_offer/job_requisite.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.482353, 0.490196, 0.505882, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="RequisitePanel" type="Panel"]
+anchor_right = 0.277344
+anchor_bottom = 0.065
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RequisiteText" type="RichTextLabel" parent="."]
+anchor_left = 0.0211268
+anchor_top = 0.0769231
+anchor_right = 0.982394
+anchor_bottom = 0.897436
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tab_size = 11
+text = "Requisite 1"
+__meta__ = {
+"_edit_use_anchors_": true
+}

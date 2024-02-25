@@ -8,11 +8,181 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Panel",
+"class": "Applicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/applicant.gd"
+}, {
+"base": "Object",
+"class": "ApplicantResult",
+"language": "GDScript",
+"path": "res://src/domain/applicant_result.gd"
+}, {
+"base": "Control",
+"class": "Curriculum",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/curriculum.gd"
+}, {
+"base": "Control",
+"class": "DecisionApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/ui/decision_button.gd"
+}, {
+"base": "Object",
+"class": "EnumUtils",
+"language": "GDScript",
+"path": "res://src/enum.gd"
+}, {
+"base": "Node2D",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://game_manager.gd"
+}, {
+"base": "Control",
+"class": "JobOffer",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_offer.gd"
+}, {
+"base": "Panel",
+"class": "JobRequisite",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_requisite.gd"
+}, {
+"base": "Resource",
+"class": "Puzzle",
+"language": "GDScript",
+"path": "res://src/levels/puzzle.gd"
+}, {
+"base": "Panel",
+"class": "SkillPanel",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/skill_panel.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/states/state.gd"
+}, {
+"base": "State",
+"class": "StateApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantEvaluated",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantReviewing",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantWaiting",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_waiting.gd"
+}, {
+"base": "State",
+"class": "StateCV",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVActive",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_active.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVApproved",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_approved.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVIdle",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_idle.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVRejected",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_rejected.gd"
+}, {
+"base": "State",
+"class": "StateJobOffer",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/states/state_job_offer.gd"
+}, {
+"base": "StateJobOffer",
+"class": "StateJobOfferMatched",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/states/state_job_offer_matched.gd"
+}, {
+"base": "StateJobOffer",
+"class": "StateJobOfferNotMatched",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/states/state_job_offer_not_matched.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://src/states/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineCV",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineJobOffer",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/state_machine.gd"
+} ]
+_global_script_class_icons={
+"Applicant": "",
+"ApplicantResult": "",
+"Curriculum": "",
+"DecisionApplicant": "",
+"EnumUtils": "",
+"GameManager": "",
+"JobOffer": "",
+"JobRequisite": "",
+"Puzzle": "",
+"SkillPanel": "",
+"State": "",
+"StateApplicant": "",
+"StateApplicantEvaluated": "",
+"StateApplicantReviewing": "",
+"StateApplicantWaiting": "",
+"StateCV": "",
+"StateCVActive": "",
+"StateCVApproved": "",
+"StateCVIdle": "",
+"StateCVRejected": "",
+"StateJobOffer": "",
+"StateJobOfferMatched": "",
+"StateJobOfferNotMatched": "",
+"StateMachine": "",
+"StateMachineApplicant": "",
+"StateMachineCV": "",
+"StateMachineJobOffer": ""
+}
+
 [application]
 
 config/name="CV-Please!"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PuzzleManager="*res://src/levels/puzzle_manager.gd"
 
 [gui]
 
@@ -24,4 +194,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"
