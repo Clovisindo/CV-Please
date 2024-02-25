@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "DecisionApplicant",
 "language": "GDScript",
-"path": "res://scenes/game/UI/decision_button.gd"
+"path": "res://scenes/game/ui/decision_button.gd"
 }, {
 "base": "Object",
 "class": "EnumUtils",

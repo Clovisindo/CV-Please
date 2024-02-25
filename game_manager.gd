@@ -66,11 +66,13 @@ func _on_working_day_ended():
 			elif applicant.get_cv().get_status() is StateCVRejected:
 				print("Applicant %s is rejected" % applicant.applicant_name)
 
+
 func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):
 	applicant.process_applicant(evaluation)
 	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
 	_load_next_applicant()
+
 
 func _load_next_applicant():
 	if applicant_list.size() - 1 >= current_applicant_index:
