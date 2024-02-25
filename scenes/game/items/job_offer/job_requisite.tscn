@@ -34,7 +34,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_size = 11
-text = "Skill 1"
+text = "Requisite 1"
 __meta__ = {
 "_edit_use_anchors_": true
 }

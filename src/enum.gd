@@ -1,21 +1,20 @@
 extends Object
+
 class_name EnumUtils
 
-enum applicantSolution {
-	valid,
-	notValid
-}
 
 enum typeWork {
 	special_type1,
 	special_type2
 }
 
+
 enum dificulty {
 	easy,
 	medium,
 	hard
 }
+
 
 enum levels {
 	level_1,

@@ -1,11 +1,50 @@
 extends Panel
 
-export(PackedScene) var curriculumNode
+class_name SkillPanel
 
-var skill_text
-var skill_answer
+var skill_answer: String
+var skill_name: String
+var cv: Curriculum
 
-func _instantiate_signal_skill_panel(cvNode):
-	self.connect("mouse_entered",cvNode,"_on_panel_mouse_entered")
-	self.connect("mouse_exited",cvNode,"_on_panel_mouse_exited")
-	self.connect("gui_input",cvNode,"_on_skill_panel_gui_input",[skill_answer])
+enum SkillStatus {
+	IDLE,
+	SELECTED,
+	MATCHED,
+}
+
+export(SkillStatus) var current_status
+
+
+func add_data(text: String, answer: String):
+	skill_answer = answer
+	skill_name = text
+	$SkillText.text = text
+
+
+func _gui_input(event):
+	if current_status == SkillStatus.IDLE:
+		_process_as_idle(event)
+	elif current_status == SkillStatus.SELECTED:
+		_process_as_selected(event)
+	elif current_status == SkillStatus.MATCHED:
+		_process_as_matched(event)
+
+
+func _process_as_idle(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		current_status = SkillStatus.SELECTED
+		rect_position.x += 10
+		if cv:
+			cv._skill_checked(self)
+
+
+func _process_as_selected(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		current_status = SkillStatus.IDLE
+		rect_position.x = 0
+
+
+func _process_as_matched(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		pass
+
