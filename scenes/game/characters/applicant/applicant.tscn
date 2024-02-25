@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd" type="Script" id=3]
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd" type="Script" id=4]
 [ext_resource path="res://scenes/game/characters/applicant/state_machine.gd" type="Script" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://assets/icon.png" type="Texture" id=6]
 [ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.tscn" type="PackedScene" id=9]
 

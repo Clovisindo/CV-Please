@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/game/ui/decision_applicant.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game_manager.gd" type="Script" id=4]
-[ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/ui/decision_applicant.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.00784314, 0, 0, 0 )
 
 [node name="GameMainScene" type="Node2D"]
-script = ExtResource( 4 )
-applicant_scene = ExtResource( 5 )
-decision_applicant_scene = ExtResource( 2 )
+script = ExtResource( 1 )
+applicant_scene = ExtResource( 2 )
+decision_applicant_scene = ExtResource( 3 )
 
 [node name="MainScene" type="Panel" parent="."]
 margin_right = 1023.0
