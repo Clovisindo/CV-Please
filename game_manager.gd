@@ -5,12 +5,14 @@ export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
 
 var applicant_list = []
+var current_applicant_index = 0
 
 var current_decision_applicant: DecisionApplicant
 
 func _ready():
 	_instantiate_panels()
 	_wire_events()
+	_load_next_applicant()
 
 
 func _wire_events():
@@ -23,9 +25,6 @@ func _on_interaction_started(applicant):
 	$MainScene/CVContainer.add_child(applicant.get_cv())
 	$MainScene/JobOfferContainer.visible = true
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
-	for each in applicant_list:
-		if not each == applicant:
-			each.lock_applicant(true)
 
 
 func _on_interaction_ended(applicant):
@@ -33,20 +32,15 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	$MainScene/JobOfferContainer.visible = false
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
-	for each in applicant_list:
-		if not each == applicant:
-			each.lock_applicant(false)
 
 
-func _apply_applicant_decision(result):
-	var evaluation = ApplicantResult.new()
-	evaluation.current_status = result
-	for applicant in applicant_list:
-		if (
-			applicant.get_status() is StateApplicantReviewing 
-			and applicant.get_cv().get_status() is StateCVActive
+func _apply_applicant_decision(evaluation: ApplicantResult):
+	var current_applicant = applicant_list[current_applicant_index]
+	if (
+			current_applicant.get_status() is StateApplicantReviewing 
+			and current_applicant.get_cv().get_status() is StateCVActive
 		):
-			applicant.process_applicant(evaluation)
+			_process_applicant(current_applicant, evaluation)
 
 
 func _instantiate_panels():
@@ -60,7 +54,6 @@ func _instantiate_panels():
 		new_applicant.add_data(puzzle.applicant_name, puzzle.skills_answers,
 			puzzle.requisites_answers)
 		applicant_list.append(new_applicant)
-		$MainScene/ApplicantContainer/VBoxContainer.add_child(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
 
@@ -72,3 +65,15 @@ func _on_working_day_ended():
 				print("Applicant %s is accepted" % applicant.applicant_name)
 			elif applicant.get_cv().get_status() is StateCVRejected:
 				print("Applicant %s is rejected" % applicant.applicant_name)
+
+func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):
+	applicant.process_applicant(evaluation)
+	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
+	current_applicant_index += 1
+	_load_next_applicant()
+
+func _load_next_applicant():
+	if applicant_list.size() - 1 >= current_applicant_index:
+		$MainScene/ApplicantContainer/VBoxContainer.add_child(applicant_list[current_applicant_index])
+	else:
+		$MainScene/EndWorkingDayButton.visible = true

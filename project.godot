@@ -75,11 +75,6 @@ _global_script_classes=[ {
 "path": "res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd"
 }, {
 "base": "StateApplicant",
-"class": "StateApplicantLocked",
-"language": "GDScript",
-"path": "res://scenes/game/characters/applicant/states/state_applicant_locked.gd"
-}, {
-"base": "StateApplicant",
 "class": "StateApplicantReviewing",
 "language": "GDScript",
 "path": "res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd"
@@ -163,7 +158,6 @@ _global_script_class_icons={
 "State": "",
 "StateApplicant": "",
 "StateApplicantEvaluated": "",
-"StateApplicantLocked": "",
 "StateApplicantReviewing": "",
 "StateApplicantWaiting": "",
 "StateCV": "",

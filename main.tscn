@@ -57,6 +57,7 @@ margin_bottom = 388.042
 custom_styles/panel = SubResource( 1 )
 
 [node name="EndWorkingDayButton" type="Button" parent="MainScene"]
+visible = false
 margin_left = 888.0
 margin_top = 480.0
 margin_right = 1011.0

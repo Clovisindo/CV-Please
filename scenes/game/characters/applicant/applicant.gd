@@ -54,10 +54,6 @@ func _applicant_selected(show: bool):
 func process_applicant(result):
 	evaluation = result
 	$StateMachine.current_state.process_applicant()
-	
-	
-func lock_applicant(is_locked: bool):
-	$StateMachine.current_state.lock_applicant(is_locked)
 
 
 func get_status():
