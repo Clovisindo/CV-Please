@@ -8,12 +8,12 @@ var initial_y_pos = 0
 
 
 func enter():
-	applicant.show_cv(true)
+	applicant._applicant_selected(true)
 	initial_y_pos = portrait.position.y
 
 
 func exit():
-	applicant.show_cv(false)
+	applicant._applicant_selected(false)
 	var tween = create_tween().tween_property(portrait, "position:y", initial_y_pos, 1)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)

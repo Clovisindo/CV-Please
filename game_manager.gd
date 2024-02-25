@@ -1,15 +1,11 @@
 extends Node2D
 class_name GameManager
 
-export(PackedScene) onready var job_offer_scene
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
-export(PackedScene) onready var puzzle_manager_scene
 
-var puzzle_manager: PuzzleManager
 var applicant_list = []
 
-var current_job_offer: JobOffer
 var current_decision_applicant: DecisionApplicant
 
 func _ready():
@@ -23,18 +19,20 @@ func _wire_events():
 
 
 func _on_interaction_started(applicant):
-	var cv_container = get_node("MainScene/CVContainer")
-	cv_container.visible = true
-	cv_container.add_child(applicant.get_cv())
+	$MainScene/CVContainer.visible = true
+	$MainScene/CVContainer.add_child(applicant.get_cv())
+	$MainScene/JobOfferContainer.visible = true
+	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	for each in applicant_list:
 		if not each == applicant:
 			each.lock_applicant(true)
 
 
 func _on_interaction_ended(applicant):
-	var cv_container = get_node("MainScene/CVContainer")
-	cv_container.visible = false
-	cv_container.remove_child(applicant)
+	$MainScene/CVContainer.visible = false
+	$MainScene/CVContainer.remove_child(applicant.get_cv())
+	$MainScene/JobOfferContainer.visible = false
+	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
 	for each in applicant_list:
 		if not each == applicant:
 			each.lock_applicant(false)
@@ -53,19 +51,16 @@ func _apply_applicant_decision(result):
 
 func _instantiate_panels():
 	# Static Panels
-	current_job_offer = job_offer_scene.instance()
-	$MainScene/JobOfferContainer.add_child(current_job_offer)
 	current_decision_applicant = decision_applicant_scene.instance()
 	$MainScene/DecisionApplContainer.add_child(current_decision_applicant)
 
 	# Dynamic Panels
-	puzzle_manager = puzzle_manager_scene.instance()
-	var puzzles = puzzle_manager.get_all_puzzle()
-	for puzzle in puzzles:
+	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
-		new_applicant.add_data(puzzle.applicant_name, puzzle.skills_answers)
-		$MainScene/ApplicantContainer/VBoxContainer.add_child(new_applicant)
+		new_applicant.add_data(puzzle.applicant_name, puzzle.skills_answers,
+			puzzle.requisites_answers)
 		applicant_list.append(new_applicant)
+		$MainScene/ApplicantContainer/VBoxContainer.add_child(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
 

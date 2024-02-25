@@ -5,7 +5,7 @@ class_name Curriculum
 export(PackedScene) onready var skill_panel_scene
 
 
-func add_skills(skills):
+func add_skills(skills: Dictionary):
 	if skills:
 		for skill in skills:
 			var skill_panel = skill_panel_scene.instance()

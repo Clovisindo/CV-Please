@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/characters/applicant/applicant.gd"
 }, {
-"base": "Node",
+"base": "Object",
 "class": "ApplicantResult",
 "language": "GDScript",
 "path": "res://src/domain/applicant_result.gd"
@@ -37,22 +37,22 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "GameManager",
 "language": "GDScript",
-"path": "res://GameManager.gd"
+"path": "res://game_manager.gd"
 }, {
 "base": "Control",
 "class": "JobOffer",
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/job_offer.gd"
 }, {
+"base": "Panel",
+"class": "JobRequisite",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_requisite.gd"
+}, {
 "base": "Resource",
 "class": "Puzzle",
 "language": "GDScript",
-"path": "res://scenes/game/levels/puzzle.gd"
-}, {
-"base": "Node",
-"class": "PuzzleManager",
-"language": "GDScript",
-"path": "res://scenes/game/levels/puzzle_manager.gd"
+"path": "res://src/levels/puzzle.gd"
 }, {
 "base": "Panel",
 "class": "SkillPanel",
@@ -157,8 +157,8 @@ _global_script_class_icons={
 "EnumUtils": "",
 "GameManager": "",
 "JobOffer": "",
+"JobRequisite": "",
 "Puzzle": "",
-"PuzzleManager": "",
 "SkillPanel": "",
 "State": "",
 "StateApplicant": "",
@@ -183,8 +183,12 @@ _global_script_class_icons={
 [application]
 
 config/name="CV-Please!"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PuzzleManager="*res://src/levels/puzzle_manager.gd"
 
 [gui]
 

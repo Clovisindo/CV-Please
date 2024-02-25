@@ -1,18 +1,13 @@
 extends Node
 
-class_name PuzzleManager
-const LEVELS_DIR = "res://scenes/game/levels/"
+
+const LEVELS_DIR = "res://data/puzzles/"
+const TRES_SUFIX = ".tres"
 
 func save_puzzle(_puzzle):
-	var result = ResourceSaver.save(LEVELS_DIR + _puzzle.applicant_name + ".tres", _puzzle)
+	var result = ResourceSaver.save(LEVELS_DIR + _puzzle.applicant_name + TRES_SUFIX, _puzzle)
 	assert(result == OK)
 
-func load_puzzle(_applicant_name):
-	var file_name = LEVELS_DIR + _applicant_name + ".tres"
-	if ResourceLoader.exists(file_name):
-		var puzzle = ResourceLoader.load(file_name)
-		if puzzle is Puzzle:
-			return puzzle
 
 func get_all_puzzle():
 	var puzzles = []
