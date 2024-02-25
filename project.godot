@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/characters/applicant/applicant.gd"
 }, {
-"base": "Object",
+"base": "Node",
 "class": "ApplicantResult",
 "language": "GDScript",
 "path": "res://src/domain/applicant_result.gd"
