@@ -4,27 +4,36 @@
 
 [resource]
 script = ExtResource( 1 )
+validation_response = {
+"NOK": "Guess better luck next time...",
+"OK": "Thanks for the job!"
+}
+description = "First level design"
+dummy_comments = {
+"dummy1": "Already talk about that",
+"dummy2": "Don't know what to say"
+}
 applicant_name = "Clovis"
 appl_image = "clovis.png"
 validate_solution = true
-work_type = "special_type1"
-difficulty = "easy"
-level_day = "level_1"
-time_limit = 11
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 5
 requisites_answers = {
-"requisite1:": " question 1 player | answer 1 applicant",
-"requisite2:": " question 2 player | answer 2 applicant"
+"Sql server relational DB:": " You work something with relational databases? | Yes, all my project work with relational tables.",
+"Visual C# and entity framework:": " How many work experience you have in these tecnologies? | I made some tiny projects in class, like a videoclub and hotel check in app."
 }
 cross_questions = {
-"requisite1|requisite2:": " question 1 player | answer 1 applicant"
+"Visual C# and entity framework:|Good resolution skills and proactive:": " question 1 player | answer 1 applicant"
 }
 salary_offer = 15000
-special_condition = "test"
+special_condition = "not first job or not work experience."
 skills_answers = {
-"Skills1:": " question 1 player | answer 1 applicant",
-"Skills2:": " question 2 player | answer 2 applicant"
+"Good communication and self organization skills:": " What would you say are your strenghts in this? | I work and organize well my job on little tasks to improve my perfomance.",
+"Good resolution skills and proactive:": " What do you mean with this? | I work step by step trying to find the better solution with independence."
 }
 timeline_jobs = {
-"job1 ": " from date X to date Y"
+"Infrastructure technician at University of Vigo ": " from April 2014 to date June 2014"
 }
 min_salary = 18000
