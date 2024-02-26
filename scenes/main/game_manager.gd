@@ -30,6 +30,7 @@ func _on_reference_used(reference):
 	elif reference is JobRequisite:
 		reference.requisite_asked()
 
+
 func _on_interaction_started(applicant):
 	$MainScene/CVContainer.visible = true
 	$MainScene/CVContainer.add_child(applicant.get_cv())
@@ -47,12 +48,16 @@ func _on_interaction_ended(applicant):
 
 
 func _on_skill_selected(skill: SkillPanel):
+	applicant_list[current_applicant_index].get_cv().idle_other_skills(skill)
+	applicant_list[current_applicant_index].get_job_offer().idle_other_requisites(null)
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
 			, skill)
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
+	applicant_list[current_applicant_index].get_job_offer().idle_other_requisites(job_requisite)
+	applicant_list[current_applicant_index].get_cv().idle_other_skills(null)
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
 			, job_requisite)

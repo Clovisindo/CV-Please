@@ -16,6 +16,11 @@ func add_requisites(requisites: Dictionary):
 			$JobOfferPanel/VBoxContainer.add_child(requisite_panel)
 
 
+func idle_other_requisites(selected_requisite):
+	for requisite in $JobOfferPanel/VBoxContainer.get_children():
+		if requisite != selected_requisite:
+			requisite.requisite_idle()
+
 func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
 

@@ -24,6 +24,11 @@ func requisite_asked():
 	rect_position.x = -10
 
 
+func requisite_idle():
+	if current_status == JobOfferStatus.SELECTED:
+		current_status = JobOfferStatus.IDLE
+		rect_position.x = 0
+
 func add_data(text: String, question: String, answer: String):
 	requisite_answer = answer
 	requisite_question = question

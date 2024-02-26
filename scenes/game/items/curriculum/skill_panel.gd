@@ -31,6 +31,12 @@ func skill_asked():
 	rect_position.x = 10
 
 
+func skill_idle():
+	if current_status == SkillStatus.SELECTED:
+		current_status = SkillStatus.IDLE
+		rect_position.x = 0
+
+
 func _gui_input(event):
 	if current_status == SkillStatus.IDLE:
 		_process_as_idle(event)

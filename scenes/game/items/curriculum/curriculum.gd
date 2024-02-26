@@ -17,6 +17,12 @@ func add_skills(skills: Dictionary):
 			$CVPanel/VBoxContainer.add_child(skill_panel)
 
 
+func idle_other_skills(selected_skill):
+	for skill in $CVPanel/VBoxContainer.get_children():
+		if skill != selected_skill:
+			skill.skill_idle()
+
+
 func _skill_checked(skill):
 	emit_signal("skill_selected", skill)
 	$StateMachine.current_state.process_skill_selected(skill)
