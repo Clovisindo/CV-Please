@@ -4,6 +4,8 @@ class_name Curriculum
 
 export(PackedScene) onready var skill_panel_scene
 
+signal skill_selected(skill)
+
 
 func add_skills(skills: Dictionary):
 	if skills:
@@ -15,6 +17,7 @@ func add_skills(skills: Dictionary):
 
 
 func _skill_checked(skill):
+	emit_signal("skill_selected", skill)
 	$StateMachine.current_state.process_skill_selected(skill)
 
 

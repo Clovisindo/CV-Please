@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "DecisionApplicant",
 "language": "GDScript",
-"path": "res://scenes/game/ui/decision_button.gd"
+"path": "res://scenes/game/ui/decision_applicant/decision_button.gd"
 }, {
 "base": "Object",
 "class": "EnumUtils",
@@ -38,6 +38,16 @@ _global_script_classes=[ {
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://scenes/main/game_manager.gd"
+}, {
+"base": "Control",
+"class": "InteractionDialog",
+"language": "GDScript",
+"path": "res://scenes/game/ui/interaction_dialog/interaction_dialog.gd"
+}, {
+"base": "Control",
+"class": "InteractionLine",
+"language": "GDScript",
+"path": "res://scenes/game/ui/interaction_dialog/interaction_line.gd"
 }, {
 "base": "Control",
 "class": "JobOffer",
@@ -151,6 +161,8 @@ _global_script_class_icons={
 "DecisionApplicant": "",
 "EnumUtils": "",
 "GameManager": "",
+"InteractionDialog": "",
+"InteractionLine": "",
 "JobOffer": "",
 "JobRequisite": "",
 "Puzzle": "",

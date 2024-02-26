@@ -4,6 +4,7 @@ class_name JobOffer
 
 export(PackedScene) onready var requisite_scene
 
+signal job_requisite_selected(job_requisite)
 
 func add_requisites(requisites: Dictionary):
 	if requisites:
@@ -19,4 +20,4 @@ func _gui_input(event):
 
 
 func _requisite_checked(requisite):
-	print(requisite)
+	emit_signal("job_requisite_selected", requisite)

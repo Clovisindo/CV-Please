@@ -3,11 +3,14 @@ class_name GameManager
 
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
+export(PackedScene) onready var interaction_dialog_scene
 
 var applicant_list = []
 var current_applicant_index = 0
 
 var current_decision_applicant: DecisionApplicant
+var current_interaction_dialog: InteractionDialog
+
 
 func _ready():
 	_instantiate_panels()
@@ -25,6 +28,8 @@ func _on_interaction_started(applicant):
 	$MainScene/CVContainer.add_child(applicant.get_cv())
 	$MainScene/JobOfferContainer.visible = true
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
+	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
+	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
 
 
 func _on_interaction_ended(applicant):
@@ -32,6 +37,14 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	$MainScene/JobOfferContainer.visible = false
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
+
+
+func _on_skill_selected(skill: SkillPanel):
+	current_interaction_dialog.add_interaction_line(skill.skill_name)
+
+
+func _on_job_requisite_selected(job_requisite: JobRequisite):
+	current_interaction_dialog.add_interaction_line(job_requisite.requisite_name)
 
 
 func _apply_applicant_decision(evaluation: ApplicantResult):
@@ -47,6 +60,8 @@ func _instantiate_panels():
 	# Static Panels
 	current_decision_applicant = decision_applicant_scene.instance()
 	$MainScene/DecisionApplContainer.add_child(current_decision_applicant)
+	current_interaction_dialog = interaction_dialog_scene.instance()
+	$MainScene/InteractionDialogContainer.add_child(current_interaction_dialog)
 
 	# Dynamic Panels
 	for puzzle in PuzzleManager.get_all_puzzle():
