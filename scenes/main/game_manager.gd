@@ -3,11 +3,14 @@ class_name GameManager
 
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
+export(PackedScene) onready var interaction_dialog_scene
 
 var applicant_list = []
 var current_applicant_index = 0
 
 var current_decision_applicant: DecisionApplicant
+var current_interaction_dialog: InteractionDialog
+
 
 func _ready():
 	_instantiate_panels()
@@ -18,6 +21,14 @@ func _ready():
 func _wire_events():
 	current_decision_applicant.connect("decision_made", self, "_apply_applicant_decision")
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
+	current_interaction_dialog.connect("reference_used", self, "_on_reference_used")
+
+
+func _on_reference_used(reference):
+	if reference is SkillPanel:
+		reference.skill_asked()
+	elif reference is JobRequisite:
+		reference.requisite_asked()
 
 
 func _on_interaction_started(applicant):
@@ -25,6 +36,8 @@ func _on_interaction_started(applicant):
 	$MainScene/CVContainer.add_child(applicant.get_cv())
 	$MainScene/JobOfferContainer.visible = true
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
+	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
+	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
 
 
 func _on_interaction_ended(applicant):
@@ -32,6 +45,22 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	$MainScene/JobOfferContainer.visible = false
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
+
+
+func _on_skill_selected(skill: SkillPanel):
+	applicant_list[current_applicant_index].get_cv().idle_other_skills(skill)
+	applicant_list[current_applicant_index].get_job_offer().idle_other_requisites(null)
+	current_interaction_dialog.add_interaction_line(
+		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
+			, skill)
+
+
+func _on_job_requisite_selected(job_requisite: JobRequisite):
+	applicant_list[current_applicant_index].get_job_offer().idle_other_requisites(job_requisite)
+	applicant_list[current_applicant_index].get_cv().idle_other_skills(null)
+	current_interaction_dialog.add_interaction_line(
+		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
+			, job_requisite)
 
 
 func _apply_applicant_decision(evaluation: ApplicantResult):
@@ -47,12 +76,14 @@ func _instantiate_panels():
 	# Static Panels
 	current_decision_applicant = decision_applicant_scene.instance()
 	$MainScene/DecisionApplContainer.add_child(current_decision_applicant)
+	current_interaction_dialog = interaction_dialog_scene.instance()
+	$MainScene/InteractionDialogContainer.add_child(current_interaction_dialog)
 
 	# Dynamic Panels
 	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name, puzzle.skills_answers,
-			puzzle.requisites_answers)
+			puzzle.requisites_answers, puzzle.validate_solution)
 		applicant_list.append(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
@@ -62,9 +93,11 @@ func _on_working_day_ended():
 	for applicant in applicant_list:
 		if applicant.get_status() is StateApplicantEvaluated:
 			if applicant.get_cv().get_status() is StateCVApproved:
-				print("Applicant %s is accepted" % applicant.applicant_name)
+				print("Applicant %s is accepted, it was valid?: %s" 
+					% [applicant.applicant_name, applicant.is_valid_applicant])
 			elif applicant.get_cv().get_status() is StateCVRejected:
-				print("Applicant %s is rejected" % applicant.applicant_name)
+				print("Applicant %s is rejected, it was valid?: %s" 
+					%  [applicant.applicant_name, applicant.is_valid_applicant])
 
 
 func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):

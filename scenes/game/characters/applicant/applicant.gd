@@ -10,6 +10,7 @@ var cv: Curriculum
 var job_offer: JobOffer
 var evaluation: ApplicantResult
 var applicant_name = "Default name"
+var is_valid_applicant = false
 
 signal interaction_started()
 signal interaction_ended()
@@ -21,7 +22,7 @@ func _ready():
 	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
 
 
-func add_data(name: String, skills: Dictionary, requisites: Dictionary):
+func add_data(name: String, skills: Dictionary, requisites: Dictionary, valid: bool):
 	if name:
 		applicant_name = name
 		$Container/Name.bbcode_text = "[center]%s[/center]" % name
@@ -31,6 +32,8 @@ func add_data(name: String, skills: Dictionary, requisites: Dictionary):
 	if requisites:
 		job_offer = job_offer_scene.instance()
 		job_offer.add_requisites(requisites)
+	if valid:
+		is_valid_applicant = valid
 
 
 func get_cv():

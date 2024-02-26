@@ -3,6 +3,7 @@ extends Panel
 class_name SkillPanel
 
 var skill_answer: String
+var skill_question: String
 var skill_name: String
 var cv: Curriculum
 
@@ -14,11 +15,26 @@ enum SkillStatus {
 
 export(SkillStatus) var current_status
 
+var velocity = 25
+var x_limit = 10
 
-func add_data(text: String, answer: String):
+
+func add_data(text: String, question:String, answer: String):
 	skill_answer = answer
+	skill_question = question
 	skill_name = text
 	$SkillText.text = text
+
+
+func skill_asked():
+	current_status = SkillStatus.MATCHED
+	rect_position.x = 10
+
+
+func skill_idle():
+	if current_status == SkillStatus.SELECTED:
+		current_status = SkillStatus.IDLE
+		rect_position.x = 0
 
 
 func _gui_input(event):
@@ -33,7 +49,6 @@ func _gui_input(event):
 func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		current_status = SkillStatus.SELECTED
-		rect_position.x += 10
 		if cv:
 			cv._skill_checked(self)
 
@@ -48,3 +63,9 @@ func _process_as_matched(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		pass
 
+
+func _process(delta):
+	if current_status == SkillStatus.SELECTED:
+		if rect_position.x >= x_limit || rect_position.x <= -1:
+			velocity *= -1
+		rect_position.x += velocity * delta

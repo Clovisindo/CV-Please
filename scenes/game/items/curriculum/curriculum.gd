@@ -4,17 +4,27 @@ class_name Curriculum
 
 export(PackedScene) onready var skill_panel_scene
 
+signal skill_selected(skill)
+
 
 func add_skills(skills: Dictionary):
 	if skills:
 		for skill in skills:
 			var skill_panel = skill_panel_scene.instance()
 			skill_panel.cv = self
-			skill_panel.add_data(skill, "Answer")
+			var value = skills[skill].split('|')
+			skill_panel.add_data(skill, value[0], value[1])
 			$CVPanel/VBoxContainer.add_child(skill_panel)
 
 
+func idle_other_skills(selected_skill):
+	for skill in $CVPanel/VBoxContainer.get_children():
+		if skill != selected_skill:
+			skill.skill_idle()
+
+
 func _skill_checked(skill):
+	emit_signal("skill_selected", skill)
 	$StateMachine.current_state.process_skill_selected(skill)
 
 
