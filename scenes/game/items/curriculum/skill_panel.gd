@@ -26,6 +26,11 @@ func add_data(text: String, question:String, answer: String):
 	$SkillText.text = text
 
 
+func skill_asked():
+	current_status = SkillStatus.MATCHED
+	rect_position.x = 10
+
+
 func _gui_input(event):
 	if current_status == SkillStatus.IDLE:
 		_process_as_idle(event)
@@ -40,7 +45,6 @@ func _process_as_idle(event):
 		current_status = SkillStatus.SELECTED
 		if cv:
 			cv._skill_checked(self)
-
 
 
 func _process_as_selected(event):

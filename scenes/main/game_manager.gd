@@ -21,7 +21,14 @@ func _ready():
 func _wire_events():
 	current_decision_applicant.connect("decision_made", self, "_apply_applicant_decision")
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
+	current_interaction_dialog.connect("reference_used", self, "_on_reference_used")
 
+
+func _on_reference_used(reference):
+	if reference is SkillPanel:
+		reference.skill_asked()
+	elif reference is JobRequisite:
+		reference.requisite_asked()
 
 func _on_interaction_started(applicant):
 	$MainScene/CVContainer.visible = true
@@ -41,12 +48,14 @@ func _on_interaction_ended(applicant):
 
 func _on_skill_selected(skill: SkillPanel):
 	current_interaction_dialog.add_interaction_line(
-		QuestionAnswer.new(skill.skill_question, skill.skill_answer))
+		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
+			, skill)
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
 	current_interaction_dialog.add_interaction_line(
-		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer))
+		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
+			, job_requisite)
 
 
 func _apply_applicant_decision(evaluation: ApplicantResult):

@@ -2,8 +2,10 @@ extends Control
 
 class_name InteractionLine
 
-var answer_question: QuestionAnswer
+func enable_text(text: String):
+	$Label.set_modulate(Color("c05151"))
+	$Label.text = text
 
-func set_data(qa: QuestionAnswer):
-	answer_question = qa
-	$RichTextLabel.text = qa.question
+
+func disable_text():
+	$Label.set_modulate(Color("000000"))
