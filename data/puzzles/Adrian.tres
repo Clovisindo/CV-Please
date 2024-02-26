@@ -4,6 +4,15 @@
 
 [resource]
 script = ExtResource( 1 )
+validation_response = {
+"validationNOK": "message NOK",
+"validationOK": "message OK"
+}
+description = "description for design"
+dummy_comments = {
+"dummy1": "Dummy message 1",
+"dummy2": "Dummy message 2"
+}
 applicant_name = "Adrian"
 appl_image = "adrian.png"
 validate_solution = false

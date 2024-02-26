@@ -3,6 +3,10 @@ extends Button
 var applicant_name:String
 var applicant_image:String
 var validate_solution:bool
+#additional info
+var validation_response:Dictionary
+var description:String
+var dummy_comments:Dictionary
 #job offer
 var work_type
 var difficulty
@@ -41,6 +45,16 @@ func _load_data_form():
 	applicant_name = $"../Panel/AppNameLineEdit".text
 	applicant_image = $"../Panel/ImageLineEdit".text
 	validate_solution = $"../Panel/ValSolOptionButton".get_item_text($"../Panel/ValSolOptionButton".get_selected_id()) == "True"
+	#additional info
+	if $"../../AdditionalInfoPanel/ValidationResponseLineEdit".text.length() != 0:
+		validation_response["OK"] =$"../../AdditionalInfoPanel/ValidationResponseLineEdit".text
+	if $"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text.length() != 0:
+		validation_response["NOK"] =$"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text
+	description = $"../../AdditionalInfoPanel/DescriptionLineEdit".text
+	if $"../../AdditionalInfoPanel/DummyCommentLineEdit".text.length() != 0:
+		dummy_comments["dummy1"] = $"../../AdditionalInfoPanel/DummyCommentLineEdit".text
+	if $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text.length() != 0:
+		dummy_comments["dummy2"] = $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text
 	#job offer
 	work_type = $"../../JobOfferPanel/WorkTypeOptionMenu".get_item_text($"../../JobOfferPanel/WorkTypeOptionMenu".get_selected_id())
 	difficulty = $"../../JobOfferPanel/DifficultyOpMenu".get_item_text($"../../JobOfferPanel/DifficultyOpMenu".get_selected_id())
@@ -103,11 +117,10 @@ func _load_data_form():
 	
 	min_salary = int($"../../CurriculumPanel/MinSalaryLineEdit".text)
 
-
 func _generate_puzzle():
 	var puzzle = Puzzle.new()
-	puzzle.instantiate(applicant_name, applicant_image, validate_solution, work_type, difficulty, level_day,time_limit, requisites_answers,
-	cross_questions,salary_offer,special_condition,skills_answers,timeline_jobs,min_salary)
+	puzzle.instantiate(applicant_name, applicant_image, validate_solution, description, dummy_comments, work_type, difficulty, level_day,time_limit, requisites_answers,
+	cross_questions,salary_offer,special_condition,skills_answers,timeline_jobs,min_salary, validation_response)
 	
 	PuzzleManager.save_puzzle(puzzle)
 

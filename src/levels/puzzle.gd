@@ -2,6 +2,16 @@ extends Resource
 
 class_name Puzzle
 
+#Additional info
+export var validation_response = {
+	"validationOK": "message OK",
+	"validationNOK": "message NOK"
+}
+export var description = "description for design"
+export var dummy_comments = {
+	"dummy1": "Dummy message 1",
+	"dummy2": "Dummy message 2"
+}
 # applicant
 export var applicant_name = "Rival"
 export var appl_image = "rival.png"#TODO ruta recursos imagenes
@@ -35,11 +45,14 @@ export var timeline_jobs = {
 export var min_salary = 18000
 
 
-func instantiate(_applicant_name, _appl_image, _validate_solution, _work_type, _difficulty, _level_day, _time_limit, _requisites_answers, _cross_questions, _salary_offer, _special_condition, 
-_skills_answers, _timeline_jobs, _min_salary):
+func instantiate(_applicant_name, _appl_image, _validate_solution, _description, _dummy_comments, _work_type, _difficulty, _level_day, _time_limit, _requisites_answers, _cross_questions, _salary_offer, _special_condition, 
+_skills_answers, _timeline_jobs, _min_salary, _validation_response):
 	applicant_name = _applicant_name
 	appl_image = _appl_image
 	validate_solution = _validate_solution
+	
+	description = _description
+	dummy_comments = _dummy_comments
 	
 	work_type = _work_type
 	difficulty = _difficulty
@@ -53,4 +66,6 @@ _skills_answers, _timeline_jobs, _min_salary):
 	skills_answers = _skills_answers
 	timeline_jobs = _timeline_jobs
 	min_salary = _min_salary
+	
+	validation_response = _validation_response
 
