@@ -40,11 +40,13 @@ func _on_interaction_ended(applicant):
 
 
 func _on_skill_selected(skill: SkillPanel):
-	current_interaction_dialog.add_interaction_line(skill.skill_name)
+	current_interaction_dialog.add_interaction_line(
+		QuestionAnswer.new(skill.skill_question, skill.skill_answer))
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
-	current_interaction_dialog.add_interaction_line(job_requisite.requisite_name)
+	current_interaction_dialog.add_interaction_line(
+		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer))
 
 
 func _apply_applicant_decision(evaluation: ApplicantResult):
@@ -67,7 +69,7 @@ func _instantiate_panels():
 	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name, puzzle.skills_answers,
-			puzzle.requisites_answers)
+			puzzle.requisites_answers, puzzle.validate_solution)
 		applicant_list.append(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
@@ -77,9 +79,11 @@ func _on_working_day_ended():
 	for applicant in applicant_list:
 		if applicant.get_status() is StateApplicantEvaluated:
 			if applicant.get_cv().get_status() is StateCVApproved:
-				print("Applicant %s is accepted" % applicant.applicant_name)
+				print("Applicant %s is accepted, it was valid?: %s" 
+					% [applicant.applicant_name, applicant.is_valid_applicant])
 			elif applicant.get_cv().get_status() is StateCVRejected:
-				print("Applicant %s is rejected" % applicant.applicant_name)
+				print("Applicant %s is rejected, it was valid?: %s" 
+					%  [applicant.applicant_name, applicant.is_valid_applicant])
 
 
 func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):

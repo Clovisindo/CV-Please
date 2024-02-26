@@ -2,5 +2,8 @@ extends Control
 
 class_name InteractionLine
 
-func add_text(text: String):
-	$RichTextLabel.text = text
+var answer_question: QuestionAnswer
+
+func set_data(qa: QuestionAnswer):
+	answer_question = qa
+	$RichTextLabel.text = qa.question

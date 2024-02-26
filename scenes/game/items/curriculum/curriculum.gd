@@ -12,7 +12,8 @@ func add_skills(skills: Dictionary):
 		for skill in skills:
 			var skill_panel = skill_panel_scene.instance()
 			skill_panel.cv = self
-			skill_panel.add_data(skill, "Answer")
+			var value = skills[skill].split('|')
+			skill_panel.add_data(skill, value[0], value[1])
 			$CVPanel/VBoxContainer.add_child(skill_panel)
 
 

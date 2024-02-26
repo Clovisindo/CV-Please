@@ -3,6 +3,7 @@ extends Panel
 class_name JobRequisite
 
 var requisite_answer: String
+var requisite_question: String
 var requisite_name: String
 var job_offer: JobOffer
 
@@ -15,8 +16,9 @@ enum JobOfferStatus {
 export(JobOfferStatus) var current_status
 
 
-func add_data(text: String, answer: String):
+func add_data(text: String, question: String, answer: String):
 	requisite_answer = answer
+	requisite_question = question
 	requisite_name = text
 	$RequisiteText.text = text
 

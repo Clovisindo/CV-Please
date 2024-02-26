@@ -11,7 +11,8 @@ func add_requisites(requisites: Dictionary):
 		for requisite in requisites:
 			var requisite_panel = requisite_scene.instance()
 			requisite_panel.job_offer = self
-			requisite_panel.add_data(requisite, "Answer")
+			var value = requisites[requisite].split('|')
+			requisite_panel.add_data(requisite, value[0], value[1])
 			$JobOfferPanel/VBoxContainer.add_child(requisite_panel)
 
 
