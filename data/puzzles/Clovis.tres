@@ -1,39 +1,45 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+textUI = ""
+response = ""
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+textUI = ""
+response = ""
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+validationOKResp = ""
+validationNOKResp = ""
 
 [resource]
 script = ExtResource( 1 )
-validation_response = {
-"NOK": "Guess better luck next time...",
-"OK": "Thanks for the job!"
-}
-description = "First level design"
-dummy_comments = {
-"dummy1": "Already talk about that",
-"dummy2": "Don't know what to say"
-}
+validation_response = [ SubResource( 2 ), SubResource( 4 ) ]
+description = ""
+dummy_comments = [ SubResource( 1 ), SubResource( 3 ) ]
 applicant_name = "Clovis"
-appl_image = "clovis.png"
-validate_solution = true
-work_type = 0
-difficulty = 0
-level_day = 0
-time_limit = 5
-requisites_answers = {
-"Sql server relational DB:": " You work something with relational databases? | Yes, all my project work with relational tables.",
-"Visual C# and entity framework:": " How many work experience you have in these tecnologies? | I made some tiny projects in class, like a videoclub and hotel check in app."
-}
-cross_questions = {
-"Visual C# and entity framework:|Good resolution skills and proactive:": " question 1 player | answer 1 applicant"
-}
-salary_offer = 15000
-special_condition = "not first job or not work experience."
-skills_answers = {
-"Good communication and self organization skills:": " What would you say are your strenghts in this? | I work and organize well my job on little tasks to improve my perfomance.",
-"Good resolution skills and proactive:": " What do you mean with this? | I work step by step trying to find the better solution with independence."
-}
-timeline_jobs = {
-"Infrastructure technician at University of Vigo ": " from April 2014 to date June 2014"
-}
-min_salary = 18000
+appl_image = "clovis"
+validate_solution = false
+work_type = "special_type2"
+difficulty = "hard"
+level_day = "level_3"
+time_limit = 11
+requisites_answers = [  ]
+cross_questions = [  ]
+salary_offer = 0
+special_condition = ""
+skills_answers = [  ]
+timeline_jobs = [  ]
+min_salary = 0
