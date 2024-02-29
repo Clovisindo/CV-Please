@@ -64,9 +64,9 @@ func _load_data_form():
 		dummy2 = $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text
 	dummy_comments.append(ResourceDummyResponse.new(dummy1,dummy2))
 	#job offer
-	work_type = $"../../JobOfferPanel/WorkTypeOptionMenu".get_item_text($"../../JobOfferPanel/WorkTypeOptionMenu".get_selected_id())
-	difficulty = $"../../JobOfferPanel/DifficultyOpMenu".get_item_text($"../../JobOfferPanel/DifficultyOpMenu".get_selected_id())
-	level_day = $"../../JobOfferPanel/LevelOpMenu".get_item_text($"../../JobOfferPanel/LevelOpMenu".get_selected_id())
+	work_type = $"../../JobOfferPanel/WorkTypeOptionMenu".get_selected_id()
+	difficulty = $"../../JobOfferPanel/DifficultyOpMenu".get_selected_id()
+	level_day = $"../../JobOfferPanel/LevelOpMenu".get_selected_id()
 	time_limit = int($"../../JobOfferPanel/TimeLimitLineEdit".text)
 	
 	#dictionary requisites

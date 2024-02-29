@@ -1,40 +1,77 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=14 format=2]
 
-[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+textUI = "requisite1"
+textUI_secondary = "requisite2"
+question = "question1"
+answer = "answer1"
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+textUI = "no response"
+response = "no response2"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 4 )
+textUI = "test1"
+textUI_secondary = ""
+question = "question1"
+answer = "answer1"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 4 )
+textUI = "test2"
+textUI_secondary = ""
+question = "question2"
+answer = "answer2"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 4 )
+textUI = "skill1"
+textUI_secondary = ""
+question = "question1"
+answer = "answer1"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+textUI = "skill2"
+textUI_secondary = ""
+question = "question2"
+answer = "answer2"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "job1"
+timejob = " from date X to date Y"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 1 )
+validationOKResp = "ok"
+validationNOKResp = "nok"
 
 [resource]
-script = ExtResource( 1 )
-validation_response = {
-"validationNOK": "message NOK",
-"validationOK": "message OK"
-}
-description = "description for design"
-dummy_comments = {
-"dummy1": "Dummy message 1",
-"dummy2": "Dummy message 2"
-}
+script = ExtResource( 2 )
+validation_response = [ SubResource( 8 ) ]
+description = "test puzzle"
+dummy_comments = [ SubResource( 2 ) ]
 applicant_name = "Adrian"
-appl_image = "adrian.png"
+appl_image = "Adrian.png"
 validate_solution = false
-work_type = 0
-difficulty = 0
-level_day = 0
-time_limit = 11
-requisites_answers = {
-"requisite1:": " question 1 player | answer 1 applicant",
-"requisite2:": " question 2 player | answer 2 applicant"
-}
-cross_questions = {
-"requisite1|requisite2:": " question 1 player | answer 1 applicant"
-}
+work_type = 1
+difficulty = 1
+level_day = 1
+time_limit = 5
+requisites_answers = [ SubResource( 3 ), SubResource( 4 ) ]
+cross_questions = [ SubResource( 1 ) ]
 salary_offer = 20000
 special_condition = "test"
-skills_answers = {
-"Skills1:": " question 1 player | answer 1 applicant",
-"Skills2:": " question 2 player | answer 2 applicant"
-}
-timeline_jobs = {
-"job1 ": " from date X to date Y",
-"job2 ": " from date 2X to date 2Y"
-}
-min_salary = 25000
+skills_answers = [ SubResource( 5 ), SubResource( 6 ) ]
+timeline_jobs = [ SubResource( 7 ) ]
+min_salary = 22000
