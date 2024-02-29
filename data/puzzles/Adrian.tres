@@ -15,41 +15,39 @@ answer = "answer1"
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 3 )
-textUI = "no response"
-response = "no response2"
+response1 = "response1"
+response2 = "response2"
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 4 )
 textUI = "test1"
-textUI_secondary = ""
-question = "question1"
-answer = "answer1"
+textUI_secondary = "test2"
+question = "q1"
+answer = "r1"
 
 [sub_resource type="Resource" id=4]
-script = ExtResource( 4 )
-textUI = "test2"
-textUI_secondary = ""
-question = "question2"
-answer = "answer2"
+script = ExtResource( 3 )
+response1 = "response1"
+response2 = "response2"
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 4 )
-textUI = "skill1"
+textUI = "test1"
 textUI_secondary = ""
-question = "question1"
-answer = "answer1"
+question = "q1"
+answer = "r1"
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 4 )
-textUI = "skill2"
+textUI = "skill1"
 textUI_secondary = ""
-question = "question2"
-answer = "answer2"
+question = "q1"
+answer = "r1"
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 5 )
-textUI = "job1"
-timejob = " from date X to date Y"
+jobDescription = "test1"
+timejob = " date x date y"
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 1 )

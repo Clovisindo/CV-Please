@@ -15,8 +15,8 @@ answer = " answer 1 applicant"
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 3 )
-textUI = "Already talk about that"
-response = "Don't know what to say"
+response1 = "Already talk about that"
+response2 = "Don't know what to say"
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 4 )
@@ -48,7 +48,7 @@ answer = " I work step by step trying to find the better solution with independe
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 5 )
-textUI = "Infrastructure technician at University of Vigo "
+jobDescription = "Infrastructure technician at University of Vigo"
 timejob = "from April 2014 to date June 2014"
 
 [sub_resource type="Resource" id=13]
