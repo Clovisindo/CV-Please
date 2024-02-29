@@ -70,59 +70,87 @@ func _load_data_form():
 	time_limit = int($"../../JobOfferPanel/TimeLimitLineEdit".text)
 	
 	#dictionary requisites
-	if $"../../JobOfferPanel/ReqAnswerLineEdit".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit".text.split("|")
-		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split[0],req_ans_split[1],req_ans_split[2]))
-	if $"../../JobOfferPanel/ReqAnswerLineEdit2".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit2".text.split("|")
-		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split[0],req_ans_split[1],req_ans_split[2]))
-	if $"../../JobOfferPanel/ReqAnswerLineEdit3".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit3".text.split("|")
-		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split[0],req_ans_split[1],req_ans_split[2]))
-	if $"../../JobOfferPanel/ReqAnswerLineEdit4".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit4".text.split("|")
-		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split[0],req_ans_split[1],req_ans_split[2]))
-	if $"../../JobOfferPanel/ReqAnswerLineEdit5".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit5".text.split("|")
-		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split[0],req_ans_split[1],req_ans_split[2]))
+	if $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
 	
-	if $"../../JobOfferPanel/CrossQuestionsLineEdit".text.length() != 0:
-		var cross_ans_split = $"../../JobOfferPanel/CrossQuestionsLineEdit".text.split("|")
-		cross_questions.append(ResourceQuestAnsw.new(cross_ans_split[0],cross_ans_split[2],cross_ans_split[3],cross_ans_split[1]))
+	if $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit".text.length() != 0:
+		var cross_ans_split = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit".text
+		var cross_ans_split2 = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit2".text
+		var cross_ans_split3 = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit3".text
+		var cross_ans_split4 = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit4".text
+		cross_questions.append(ResourceQuestAnsw.new(cross_ans_split,cross_ans_split3,cross_ans_split4,cross_ans_split2))
 	salary_offer = int($"../../JobOfferPanel/SalaryOfferLineEdit".text)
 	special_condition = $"../../JobOfferPanel/SpecialConditionLineEdit".text
 	#Curriculum 
-	if $"../../CurriculumPanel/SkillAnswerLineEdit".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit".text.split("|")
-		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split[0],skill_ans_split[1],skill_ans_split[2]))
-	if $"../../CurriculumPanel/SkillAnswerLineEdit2".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit2".text.split("|")
-		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split[0],skill_ans_split[1],skill_ans_split[2]))
-	if $"../../CurriculumPanel/SkillAnswerLineEdit3".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit3".text.split("|")
-		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split[0],skill_ans_split[1],skill_ans_split[2]))
-	if $"../../CurriculumPanel/SkillAnswerLineEdit4".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit4".text.split("|")
-		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split[0],skill_ans_split[1],skill_ans_split[2]))
-	if $"../../CurriculumPanel/SkillAnswerLineEdit5".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit5".text.split("|")
-		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split[0],skill_ans_split[1],skill_ans_split[2]))
+	if $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
 	
-	if $"../../CurriculumPanel/TimelineJobLineEdit".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit".text.split("|")
-		timeline_jobs.append(ResourceTimelineJob.new(timeline[0],timeline[1]))
-	if $"../../CurriculumPanel/TimelineJobLineEdit2".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit2".text.split("|")
-		timeline_jobs.append(ResourceTimelineJob.new(timeline[0],timeline[1]))
-	if $"../../CurriculumPanel/TimelineJobLineEdit3".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit3".text.split("|")
-		timeline_jobs.append(ResourceTimelineJob.new(timeline[0],timeline[1]))
-	if $"../../CurriculumPanel/TimelineJobLineEdit4".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit4".text.split("|")
-		timeline_jobs.append(ResourceTimelineJob.new(timeline[0],timeline[1]))
-	if $"../../CurriculumPanel/TimelineJobLineEdit5".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit5".text.split("|")
-		timeline_jobs.append(ResourceTimelineJob.new(timeline[0],timeline[1]))
+	if $"../../CurriculumPanel/timelinejobPanel/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel2/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel2/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel2/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel3/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel3/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel3/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel4/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel4/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel4/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel5/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel5/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel5/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
 	
 	min_salary = int($"../../CurriculumPanel/MinSalaryLineEdit".text)
 
