@@ -3,15 +3,9 @@ extends Resource
 class_name Puzzle
 
 #Additional info
-export var validation_response = {
-	"validationOK": "message OK",
-	"validationNOK": "message NOK"
-}
+export (Array,Resource) var validation_response
 export var description = "description for design"
-export var dummy_comments = {
-	"dummy1": "Dummy message 1",
-	"dummy2": "Dummy message 2"
-}
+export (Array,Resource)  var dummy_comments
 # applicant
 export var applicant_name = "Rival"
 export var appl_image = "rival.png"#TODO ruta recursos imagenes
@@ -21,27 +15,13 @@ export(EnumUtils.typeWork) var work_type = EnumUtils.typeWork.special_type1
 export(EnumUtils.dificulty) var difficulty = EnumUtils.dificulty.easy
 export(EnumUtils.levels) var level_day = EnumUtils.levels.level_1
 export var time_limit = 5 #se mide en acciones, no en tiempo real
-export var requisites_answers = {
-		"requisite1": "question 1 player | answer 1 applicant",
-		"requisite2": "question 2 player | answer 2 applicant",
-		"requisite3": "question 3 player | answer 3 applicant"
-	}
-export var cross_questions = {
-		"requisite1|requisite2": "question 1 player | answer 1 applicant",
-	}#TODO esto tiene sentido asi?no hace falta definir todos, avisar de cuales no dicen nada
+export (Array,Resource) var requisites_answers
+export (Array,Resource) var cross_questions
 export var salary_offer = 15000
 export var special_condition ="first job for applicant"#no invalida al candidato, es un plus si se cumple
 #Curriculum
-export var skills_answers = {
-		"Skill1": "question 1 player | answer 1 applicant",
-		"Skill2": "question 2 player | answer 2 applicant",
-		"Skill3": "question 3 player | answer 3 applicant"
-	}
-export var timeline_jobs = {
-		"job1": "from date to date",
-		"job2": "from date to date",
-		"job3": "from date to date"
-	}
+export (Array,Resource) var skills_answers
+export (Array,Resource) var timeline_jobs
 export var min_salary = 18000
 
 

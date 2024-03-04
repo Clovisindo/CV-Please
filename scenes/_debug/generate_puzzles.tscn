@@ -90,9 +90,6 @@ margin_left = 21.0
 margin_top = 131.0
 margin_right = 503.0
 margin_bottom = 548.0
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="JobOfferLabel" type="Label" parent="JobOfferPanel"]
 margin_top = -5.0
@@ -152,58 +149,13 @@ margin_right = 239.0
 margin_bottom = 123.0
 
 [node name="ReqAnswerLabel" type="Label" parent="JobOfferPanel"]
-margin_left = 6.0
-margin_top = 118.0
-margin_right = 465.0
-margin_bottom = 165.0
+margin_left = 1.0
+margin_top = 136.0
+margin_right = 200.0
+margin_bottom = 167.0
 text = "Requisite: question + answer
-(Example: requisite1:| question 1 player | answer 1 applicant)"
+"
 autowrap = true
-
-[node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel"]
-margin_left = -3.0
-margin_top = 152.0
-margin_right = 468.0
-margin_bottom = 179.0
-
-[node name="ReqAnswerLineEdit2" type="LineEdit" parent="JobOfferPanel"]
-margin_left = -3.0
-margin_top = 179.0
-margin_right = 468.0
-margin_bottom = 206.0
-
-[node name="ReqAnswerLineEdit3" type="LineEdit" parent="JobOfferPanel"]
-margin_left = -4.0
-margin_top = 206.0
-margin_right = 467.0
-margin_bottom = 233.0
-
-[node name="ReqAnswerLineEdit4" type="LineEdit" parent="JobOfferPanel"]
-margin_left = -4.0
-margin_top = 233.0
-margin_right = 467.0
-margin_bottom = 260.0
-
-[node name="ReqAnswerLineEdit5" type="LineEdit" parent="JobOfferPanel"]
-margin_left = -3.0
-margin_top = 260.0
-margin_right = 468.0
-margin_bottom = 287.0
-
-[node name="CrossQuestionsLabel" type="Label" parent="JobOfferPanel"]
-margin_left = 2.0
-margin_top = 290.0
-margin_right = 367.0
-margin_bottom = 325.0
-text = "Cross question:
-requisite1|requisite2: question1 +  answer2"
-autowrap = true
-
-[node name="CrossQuestionsLineEdit" type="LineEdit" parent="JobOfferPanel"]
-margin_left = -3.0
-margin_top = 325.0
-margin_right = 468.0
-margin_bottom = 352.0
 
 [node name="SalaryOfferLabel" type="Label" parent="JobOfferPanel"]
 margin_left = -1.0
@@ -232,14 +184,165 @@ margin_top = 379.0
 margin_right = 276.0
 margin_bottom = 406.0
 
+[node name="linepanel1" type="Panel" parent="JobOfferPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = -1.0
+margin_top = 155.0
+margin_right = 24.59
+margin_bottom = 162.494
+
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel/linepanel1"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="JobOfferPanel/linepanel1"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="JobOfferPanel/linepanel1"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="linepanel2" type="Panel" parent="JobOfferPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = -1.0
+margin_top = 182.0
+margin_right = 24.59
+margin_bottom = 189.494
+
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel/linepanel2"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="JobOfferPanel/linepanel2"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="JobOfferPanel/linepanel2"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="linepanel3" type="Panel" parent="JobOfferPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = -1.0
+margin_top = 209.0
+margin_right = 24.59
+margin_bottom = 216.494
+
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel/linepanel3"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="JobOfferPanel/linepanel3"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="JobOfferPanel/linepanel3"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="linepanel4" type="Panel" parent="JobOfferPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = -1.0
+margin_top = 236.0
+margin_right = 24.59
+margin_bottom = 243.494
+
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel/linepanel4"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="JobOfferPanel/linepanel4"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="JobOfferPanel/linepanel4"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="linepanel5" type="Panel" parent="JobOfferPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = -1.0
+margin_top = 263.0
+margin_right = 24.59
+margin_bottom = 270.494
+
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="JobOfferPanel/linepanel5"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="JobOfferPanel/linepanel5"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="JobOfferPanel/linepanel5"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="CrossPanel" type="Panel" parent="JobOfferPanel"]
+margin_left = -1.0
+margin_top = 303.0
+margin_right = 8.0
+margin_bottom = 313.0
+
+[node name="CrossQuestionsLabel" type="Label" parent="JobOfferPanel/CrossPanel"]
+margin_left = -2.0
+margin_top = -13.0
+margin_right = 363.0
+margin_bottom = 22.0
+text = "Cross question:
+requisite1|requisite2: question1 +  answer2"
+autowrap = true
+
+[node name="CrossQuestionsLineEdit" type="LineEdit" parent="JobOfferPanel/CrossPanel"]
+margin_left = -7.0
+margin_top = 22.0
+margin_right = 110.0
+margin_bottom = 49.0
+
+[node name="CrossQuestionsLineEdit2" type="LineEdit" parent="JobOfferPanel/CrossPanel"]
+margin_left = 112.0
+margin_top = 22.0
+margin_right = 229.0
+margin_bottom = 49.0
+
+[node name="CrossQuestionsLineEdit3" type="LineEdit" parent="JobOfferPanel/CrossPanel"]
+margin_left = 232.0
+margin_top = 22.0
+margin_right = 349.0
+margin_bottom = 49.0
+
+[node name="CrossQuestionsLineEdit4" type="LineEdit" parent="JobOfferPanel/CrossPanel"]
+margin_left = 353.0
+margin_top = 22.0
+margin_right = 470.0
+margin_bottom = 49.0
+
 [node name="CurriculumPanel" type="Panel" parent="."]
 margin_left = 519.0
 margin_top = 202.0
 margin_right = 1007.0
 margin_bottom = 591.0
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CurriculumLabel" type="Label" parent="CurriculumPanel"]
 margin_right = 40.0
@@ -260,77 +363,219 @@ margin_right = 273.0
 margin_bottom = 41.0
 
 [node name="SkillnswerLabel" type="Label" parent="CurriculumPanel"]
-margin_left = 1.0
-margin_top = 52.0
-margin_right = 467.0
-margin_bottom = 98.0
+margin_top = 65.0
+margin_right = 191.0
+margin_bottom = 96.0
 text = "Requisite: question + answer
-(Example : Skills1:| question 1 player | answer 1 applicant)"
+"
 autowrap = true
 
-[node name="SkillAnswerLineEdit" type="LineEdit" parent="CurriculumPanel"]
-margin_left = 1.0
-margin_top = 84.0
-margin_right = 472.0
-margin_bottom = 111.0
+[node name="skillpanel" type="Panel" parent="CurriculumPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_top = 85.0
+margin_right = 25.59
+margin_bottom = 92.494
 
-[node name="SkillAnswerLineEdit2" type="LineEdit" parent="CurriculumPanel"]
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="CurriculumPanel/skillpanel"]
 margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="CurriculumPanel/skillpanel"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="CurriculumPanel/skillpanel"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="skillpanel2" type="Panel" parent="CurriculumPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
 margin_top = 111.0
-margin_right = 472.0
-margin_bottom = 138.0
+margin_right = 25.59
+margin_bottom = 118.494
 
-[node name="SkillAnswerLineEdit3" type="LineEdit" parent="CurriculumPanel"]
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="CurriculumPanel/skillpanel2"]
 margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="CurriculumPanel/skillpanel2"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="CurriculumPanel/skillpanel2"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="skillpanel3" type="Panel" parent="CurriculumPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
 margin_top = 138.0
-margin_right = 472.0
-margin_bottom = 165.0
+margin_right = 25.59
+margin_bottom = 145.494
 
-[node name="SkillAnswerLineEdit4" type="LineEdit" parent="CurriculumPanel"]
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="CurriculumPanel/skillpanel3"]
 margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="CurriculumPanel/skillpanel3"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="CurriculumPanel/skillpanel3"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="skillpanel4" type="Panel" parent="CurriculumPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
 margin_top = 165.0
-margin_right = 472.0
-margin_bottom = 192.0
+margin_right = 25.59
+margin_bottom = 172.494
 
-[node name="SkillAnswerLineEdit5" type="LineEdit" parent="CurriculumPanel"]
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="CurriculumPanel/skillpanel4"]
 margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="CurriculumPanel/skillpanel4"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="CurriculumPanel/skillpanel4"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="skillpanel5" type="Panel" parent="CurriculumPanel"]
+anchor_right = 0.005
+anchor_bottom = 0.018
 margin_top = 192.0
-margin_right = 472.0
-margin_bottom = 219.0
+margin_right = 25.59
+margin_bottom = 199.494
 
-[node name="TimelineJobLabel" type="Label" parent="CurriculumPanel"]
+[node name="ReqAnswerLineEdit" type="LineEdit" parent="CurriculumPanel/skillpanel5"]
 margin_left = 1.0
-margin_top = 227.0
-margin_right = 458.0
-margin_bottom = 250.0
-text = "job + from date to date ( job1 | from date X to date Y)"
-autowrap = true
+margin_right = 145.0
+margin_bottom = 27.0
 
-[node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel"]
-margin_top = 244.0
-margin_right = 471.0
-margin_bottom = 271.0
+[node name="ReqAnswerLineEdit2" type="LineEdit" parent="CurriculumPanel/skillpanel5"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
 
-[node name="TimelineJobLineEdit2" type="LineEdit" parent="CurriculumPanel"]
-margin_top = 271.0
-margin_right = 471.0
-margin_bottom = 298.0
-
-[node name="TimelineJobLineEdit3" type="LineEdit" parent="CurriculumPanel"]
-margin_top = 298.0
-margin_right = 471.0
-margin_bottom = 325.0
-
-[node name="TimelineJobLineEdit4" type="LineEdit" parent="CurriculumPanel"]
-margin_top = 325.0
-margin_right = 471.0
-margin_bottom = 352.0
-
-[node name="TimelineJobLineEdit5" type="LineEdit" parent="CurriculumPanel"]
-margin_left = 1.0
-margin_top = 352.0
+[node name="ReqAnswerLineEdit3" type="LineEdit" parent="CurriculumPanel/skillpanel5"]
+margin_left = 323.0
 margin_right = 472.0
-margin_bottom = 379.0
+margin_bottom = 27.0
+
+[node name="TimeLineJobLabel" type="Label" parent="CurriculumPanel"]
+margin_left = 1.0
+margin_top = 232.0
+margin_right = 233.0
+margin_bottom = 246.0
+text = "Time line job : job + date X to date Y"
+
+[node name="timelinejobPanel" type="Panel" parent="CurriculumPanel"]
+margin_left = 1.0
+margin_top = 232.0
+margin_right = 1.0
+margin_bottom = 234.0
+
+[node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel/timelinejobPanel"]
+margin_left = -1.0
+margin_top = 22.0
+margin_right = 224.0
+margin_bottom = 49.0
+
+[node name="TimelineJobLineEdit2" type="LineEdit" parent="CurriculumPanel/timelinejobPanel"]
+margin_left = 224.0
+margin_top = 22.0
+margin_right = 470.0
+margin_bottom = 49.0
+
+[node name="timelinejobPanel2" type="Panel" parent="CurriculumPanel"]
+margin_left = 1.0
+margin_top = 254.0
+margin_right = 1.0
+margin_bottom = 254.0
+
+[node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel/timelinejobPanel2"]
+margin_left = -1.0
+margin_top = 22.0
+margin_right = 224.0
+margin_bottom = 49.0
+
+[node name="TimelineJobLineEdit2" type="LineEdit" parent="CurriculumPanel/timelinejobPanel2"]
+margin_left = 224.0
+margin_top = 22.0
+margin_right = 470.0
+margin_bottom = 49.0
+
+[node name="timelinejobPanel3" type="Panel" parent="CurriculumPanel"]
+margin_left = 1.0
+margin_top = 281.0
+margin_right = 1.0
+margin_bottom = 281.0
+
+[node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel/timelinejobPanel3"]
+margin_left = -1.0
+margin_top = 22.0
+margin_right = 224.0
+margin_bottom = 49.0
+
+[node name="TimelineJobLineEdit2" type="LineEdit" parent="CurriculumPanel/timelinejobPanel3"]
+margin_left = 224.0
+margin_top = 22.0
+margin_right = 470.0
+margin_bottom = 49.0
+
+[node name="timelinejobPanel4" type="Panel" parent="CurriculumPanel"]
+margin_left = 1.0
+margin_top = 303.0
+margin_right = 1.0
+margin_bottom = 303.0
+
+[node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel/timelinejobPanel4"]
+margin_left = -1.0
+margin_top = 22.0
+margin_right = 224.0
+margin_bottom = 49.0
+
+[node name="TimelineJobLineEdit2" type="LineEdit" parent="CurriculumPanel/timelinejobPanel4"]
+margin_left = 224.0
+margin_top = 22.0
+margin_right = 470.0
+margin_bottom = 49.0
+
+[node name="timelinejobPanel5" type="Panel" parent="CurriculumPanel"]
+margin_left = 1.0
+margin_top = 330.0
+margin_right = 1.0
+margin_bottom = 330.0
+
+[node name="TimelineJobLineEdit" type="LineEdit" parent="CurriculumPanel/timelinejobPanel5"]
+margin_left = -1.0
+margin_top = 22.0
+margin_right = 224.0
+margin_bottom = 49.0
+
+[node name="TimelineJobLineEdit2" type="LineEdit" parent="CurriculumPanel/timelinejobPanel5"]
+margin_left = 224.0
+margin_top = 22.0
+margin_right = 470.0
+margin_bottom = 49.0
 
 [node name="AdditionalInfoPanel" type="Panel" parent="."]
 margin_left = 512.0

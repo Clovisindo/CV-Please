@@ -4,21 +4,21 @@ var applicant_name:String
 var applicant_image:String
 var validate_solution:bool
 #additional info
-var validation_response:Dictionary
+var validation_response:Array
 var description:String
-var dummy_comments:Dictionary
+var dummy_comments:Array
 #job offer
 var work_type
 var difficulty
 var level_day
 var time_limit:int 
-var requisites_answers:Dictionary
-var cross_questions:Dictionary
+var requisites_answers:Array
+var cross_questions:Array
 var salary_offer:int
 var special_condition:String
 #Curriculum
-var skills_answers:Dictionary
-var timeline_jobs:Dictionary
+var skills_answers:Array
+var timeline_jobs:Array
 var min_salary:int
 
 var mouse_over = false
@@ -36,9 +36,9 @@ func _ready():
 		$"../../JobOfferPanel/DifficultyOpMenu".get_popup().add_item(str(dificculty))
 	for level in EnumUtils.levels:
 		$"../../JobOfferPanel/LevelOpMenu".get_popup().add_item(str(level))
-	# Carga de ficheros de recursos
-	for level_tres in PuzzleManager.get_all_puzzle():
-		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres.applicant_name))
+#	# Carga de ficheros de recursos
+#	for level_tres in PuzzleManager.get_all_puzzle():
+#		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres.applicant_name))
 
 func _load_data_form():
 	#applicant
@@ -46,76 +46,120 @@ func _load_data_form():
 	applicant_image = $"../Panel/ImageLineEdit".text
 	validate_solution = $"../Panel/ValSolOptionButton".get_item_text($"../Panel/ValSolOptionButton".get_selected_id()) == "True"
 	#additional info
+	var responseOK:String
+	var responseNOK:String
 	if $"../../AdditionalInfoPanel/ValidationResponseLineEdit".text.length() != 0:
-		validation_response["OK"] =$"../../AdditionalInfoPanel/ValidationResponseLineEdit".text
+		responseOK =$"../../AdditionalInfoPanel/ValidationResponseLineEdit".text
 	if $"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text.length() != 0:
-		validation_response["NOK"] =$"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text
-	description = $"../../AdditionalInfoPanel/DescriptionLineEdit".text
-	if $"../../AdditionalInfoPanel/DummyCommentLineEdit".text.length() != 0:
-		dummy_comments["dummy1"] = $"../../AdditionalInfoPanel/DummyCommentLineEdit".text
-	if $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text.length() != 0:
-		dummy_comments["dummy2"] = $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text
-	#job offer
-	work_type = $"../../JobOfferPanel/WorkTypeOptionMenu".get_item_text($"../../JobOfferPanel/WorkTypeOptionMenu".get_selected_id())
-	difficulty = $"../../JobOfferPanel/DifficultyOpMenu".get_item_text($"../../JobOfferPanel/DifficultyOpMenu".get_selected_id())
-	level_day = $"../../JobOfferPanel/LevelOpMenu".get_item_text($"../../JobOfferPanel/LevelOpMenu".get_selected_id())
-	time_limit = int($"../../JobOfferPanel/TimeLimitLineEdit".text)
-	#dictionary requisites
-	if $"../../JobOfferPanel/ReqAnswerLineEdit".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit".text.split("|")
-		requisites_answers[req_ans_split[0]] = req_ans_split[1] + "|" + req_ans_split[2]
-	if $"../../JobOfferPanel/ReqAnswerLineEdit2".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit2".text.split("|")
-		requisites_answers[req_ans_split[0]] = req_ans_split[1] + "|" + req_ans_split[2]
-	if $"../../JobOfferPanel/ReqAnswerLineEdit3".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit3".text.split("|")
-		requisites_answers[req_ans_split[0]] = req_ans_split[1] + "|" + req_ans_split[2]
-	if $"../../JobOfferPanel/ReqAnswerLineEdit4".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit4".text.split("|")
-		requisites_answers[req_ans_split[0]] = req_ans_split[1] + "|" + req_ans_split[2]
-	if $"../../JobOfferPanel/ReqAnswerLineEdit5".text.length() != 0:
-		var req_ans_split = $"../../JobOfferPanel/ReqAnswerLineEdit5".text.split("|")
-		requisites_answers[req_ans_split[0]] = req_ans_split[1] + "|" + req_ans_split[2]
+		responseNOK =$"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text
+	validation_response.append(ResourceValidationResponse.new(responseOK,responseNOK))
 	
-	if $"../../JobOfferPanel/CrossQuestionsLineEdit".text.length() != 0:
-		var cross_ans_split = $"../../JobOfferPanel/CrossQuestionsLineEdit".text.split("|")
-		cross_questions[cross_ans_split[0] + "|" + cross_ans_split[1]] = cross_ans_split[2] + "|" + cross_ans_split[3]
+	description = $"../../AdditionalInfoPanel/DescriptionLineEdit".text
+	
+	var dummy1:String
+	var dummy2:String
+	if $"../../AdditionalInfoPanel/DummyCommentLineEdit".text.length() != 0:
+		dummy1 = $"../../AdditionalInfoPanel/DummyCommentLineEdit".text
+	if $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text.length() != 0:
+		dummy2 = $"../../AdditionalInfoPanel/DummyCommentLineEdit2".text
+	dummy_comments.append(ResourceDummyResponse.new(dummy1,dummy2))
+	#job offer
+	work_type = $"../../JobOfferPanel/WorkTypeOptionMenu".get_selected_id()
+	difficulty = $"../../JobOfferPanel/DifficultyOpMenu".get_selected_id()
+	level_day = $"../../JobOfferPanel/LevelOpMenu".get_selected_id()
+	time_limit = int($"../../JobOfferPanel/TimeLimitLineEdit".text)
+	
+	#dictionary requisites
+	if $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel2/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel3/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel4/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	if $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit".text.length() != 0:
+		var req_ans_split = $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit".text
+		var req_ans_split2 = $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit2".text
+		var req_ans_split3 = $"../../JobOfferPanel/linepanel5/ReqAnswerLineEdit3".text
+		requisites_answers.append(ResourceQuestAnsw.new(req_ans_split,req_ans_split2,req_ans_split3))
+	
+	if $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit".text.length() != 0:
+		var cross_ans_split = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit".text
+		var cross_ans_split2 = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit2".text
+		var cross_ans_split3 = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit3".text
+		var cross_ans_split4 = $"../../JobOfferPanel/CrossPanel/CrossQuestionsLineEdit4".text
+		cross_questions.append(ResourceQuestAnsw.new(cross_ans_split,cross_ans_split3,cross_ans_split4,cross_ans_split2))
 	salary_offer = int($"../../JobOfferPanel/SalaryOfferLineEdit".text)
 	special_condition = $"../../JobOfferPanel/SpecialConditionLineEdit".text
 	#Curriculum 
-	if $"../../CurriculumPanel/SkillAnswerLineEdit".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit".text.split("|")
-		skills_answers[skill_ans_split[0]] = skill_ans_split[1] + "|" + skill_ans_split[2]
-	if $"../../CurriculumPanel/SkillAnswerLineEdit2".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit2".text.split("|")
-		skills_answers[skill_ans_split[0]] = skill_ans_split[1] + "|" + skill_ans_split[2]
-	if $"../../CurriculumPanel/SkillAnswerLineEdit3".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit3".text.split("|")
-		skills_answers[skill_ans_split[0]] = skill_ans_split[1] + "|" + skill_ans_split[2]
-	if $"../../CurriculumPanel/SkillAnswerLineEdit4".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit4".text.split("|")
-		skills_answers[skill_ans_split[0]] = skill_ans_split[1] + "|" + skill_ans_split[2]
-	if $"../../CurriculumPanel/SkillAnswerLineEdit5".text.length() != 0:
-		var skill_ans_split = $"../../CurriculumPanel/SkillAnswerLineEdit5".text.split("|")
-		skills_answers[skill_ans_split[0]] = skill_ans_split[1] + "|" + skill_ans_split[2]
+	if $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel2/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel3/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel4/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
+	if $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit".text.length() != 0:
+		var skill_ans_split = $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit".text
+		var skill_ans_split2 = $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit2".text
+		var skill_ans_split3 = $"../../CurriculumPanel/skillpanel5/ReqAnswerLineEdit3".text
+		skills_answers.append(ResourceQuestAnsw.new(skill_ans_split,skill_ans_split2,skill_ans_split3))
 	
-	if $"../../CurriculumPanel/TimelineJobLineEdit".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit".text.split("|")
-		timeline_jobs[timeline[0]] = timeline[1] 
-	if $"../../CurriculumPanel/TimelineJobLineEdit2".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit2".text.split("|")
-		timeline_jobs[timeline[0]] = timeline[1] 
-	if $"../../CurriculumPanel/TimelineJobLineEdit3".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit3".text.split("|")
-		timeline_jobs[timeline[0]] = timeline[1] 
-	if $"../../CurriculumPanel/TimelineJobLineEdit4".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit4".text.split("|")
-		timeline_jobs[timeline[0]] = timeline[1] 
-	if $"../../CurriculumPanel/TimelineJobLineEdit5".text.length() != 0:
-		var timeline = $"../../CurriculumPanel/TimelineJobLineEdit5".text.split("|")
-		timeline_jobs[timeline[0]] = timeline[1] 
+	if $"../../CurriculumPanel/timelinejobPanel/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel2/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel2/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel2/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel3/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel3/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel3/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel4/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel4/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel4/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
+	if $"../../CurriculumPanel/timelinejobPanel5/TimelineJobLineEdit".text.length() != 0:
+		var timeline = $"../../CurriculumPanel/timelinejobPanel5/TimelineJobLineEdit".text
+		var timeline2 = $"../../CurriculumPanel/timelinejobPanel5/TimelineJobLineEdit2".text
+		timeline_jobs.append(ResourceTimelineJob.new(timeline,timeline2))
 	
 	min_salary = int($"../../CurriculumPanel/MinSalaryLineEdit".text)
+
+func _generate_question_answer(dictionary, _key, _question, _answer):
+	dictionary[_key] = {
+		key = _key,
+		question = _question,
+		answer = _answer
+	}
 
 func _generate_puzzle():
 	var puzzle = Puzzle.new()
