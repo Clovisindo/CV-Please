@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="DetailPanel" type="Panel"]
+margin_top = 63.0
+margin_right = 534.0
+margin_bottom = 63.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="DetailApplicantLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Company is very pleased with the applicant"

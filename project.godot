@@ -178,6 +178,11 @@ _global_script_classes=[ {
 "class": "StateMachineJobOffer",
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/state_machine.gd"
+}, {
+"base": "Control",
+"class": "resumeManager",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/resume_manager.gd"
 } ]
 _global_script_class_icons={
 "Applicant": "",
@@ -213,7 +218,8 @@ _global_script_class_icons={
 "StateMachine": "",
 "StateMachineApplicant": "",
 "StateMachineCV": "",
-"StateMachineJobOffer": ""
+"StateMachineJobOffer": "",
+"resumeManager": ""
 }
 
 [application]
