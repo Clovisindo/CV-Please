@@ -1,0 +1,154 @@
+[gd_scene format=2]
+
+[node name="PaymentPanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -124.0
+margin_bottom = -100.0
+
+[node name="NarrativeGamePanel" type="Panel" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_right = -100.0
+margin_bottom = -424.0
+
+[node name="NarrativeGameText" type="RichTextLabel" parent="NarrativeGamePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 105.0
+margin_top = 35.0
+margin_right = -104.0
+margin_bottom = -9.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "Company is pleased  with your work, a promotion may be coming your way."
+
+[node name="PaymentPanel" type="Panel" parent="."]
+self_modulate = Color( 0.326721, 0.497959, 0.789063, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -50.0
+
+[node name="MonthBillsRTextLabel" type="RichTextLabel" parent="PaymentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 8.0
+margin_right = -559.0
+margin_bottom = -319.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "Month bills :"
+
+[node name="MonthBillsVBoxContainer" type="VBoxContainer" parent="PaymentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 31.0
+margin_top = 23.0
+margin_right = -419.0
+margin_bottom = -187.0
+
+[node name="DetailMonthBillPanel" type="Panel" parent="PaymentPanel/MonthBillsVBoxContainer"]
+margin_right = 250.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailMonthBillTextLabel" type="RichTextLabel" parent="PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Rent home: 600€"
+
+[node name="DetailMonthBillPanel2" type="Panel" parent="PaymentPanel/MonthBillsVBoxContainer"]
+margin_top = 48.0
+margin_right = 250.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailMonthBillTextLabel" type="RichTextLabel" parent="PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Food: 300€"
+
+[node name="DetailMonthBillPanel3" type="Panel" parent="PaymentPanel/MonthBillsVBoxContainer"]
+margin_top = 96.0
+margin_right = 250.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailMonthBillTextLabel" type="RichTextLabel" parent="PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Transport: 200€"
+
+[node name="ExtraBillsRTextLabel" type="RichTextLabel" parent="PaymentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 29.0
+margin_top = 167.0
+margin_right = -563.0
+margin_bottom = -165.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "Month bills :"
+
+[node name="ExtraBillsVBoxContainer" type="VBoxContainer" parent="PaymentPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 190.0
+margin_right = -420.0
+margin_bottom = -20.0
+
+[node name="DetailExtraBillPanel" type="Panel" parent="PaymentPanel/ExtraBillsVBoxContainer"]
+margin_right = 250.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailExtraBillTextLabel" type="RichTextLabel" parent="PaymentPanel/ExtraBillsVBoxContainer/DetailExtraBillPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Clothes: 40€"
+
+[node name="DetailExtraBillPanel2" type="Panel" parent="PaymentPanel/ExtraBillsVBoxContainer"]
+margin_top = 48.0
+margin_right = 250.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailExtraBillTextLabel" type="RichTextLabel" parent="PaymentPanel/ExtraBillsVBoxContainer/DetailExtraBillPanel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Repair washing machine: 150€"
+
+[node name="DetailExtraBillPanel3" type="Panel" parent="PaymentPanel/ExtraBillsVBoxContainer"]
+margin_top = 96.0
+margin_right = 250.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DetailExtraBillTextLabel" type="RichTextLabel" parent="PaymentPanel/ExtraBillsVBoxContainer/DetailExtraBillPanel3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Medicines: 40€"

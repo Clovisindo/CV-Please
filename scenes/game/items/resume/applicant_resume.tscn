@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/game/items/resume/resume_manager.gd" type="Script" id=2]
+[ext_resource path="res://scenes/game/ui/resume_applicant/NextApplicantResumeButton.gd" type="Script" id=3]
 
 [node name="resume_applicant" type="Control"]
 anchor_right = 1.0
@@ -45,15 +46,6 @@ margin_top = 50.0
 margin_right = -19.0
 margin_bottom = -226.0
 text = "Junior programmer at Nunogal S.A"
-
-[node name="NextResumeButton" type="Button" parent="Panel/resumeContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 265.0
-margin_top = 253.0
-margin_right = -267.0
-margin_bottom = -18.0
-text = "Next"
 
 [node name="DetailHBoxContainer" type="VBoxContainer" parent="Panel/resumeContainer"]
 anchor_right = 1.0
@@ -101,6 +93,7 @@ margin_right = 227.0
 margin_bottom = 10.5
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_colors/default_color = Color( 0.317647, 0.792157, 0.160784, 1 )
 text = "The company has paid a bonus for meeting your special requirements. + 50"
 
 [node name="DetailApplicantPanel3" type="Panel" parent="Panel/resumeContainer/DetailHBoxContainer"]
@@ -121,4 +114,25 @@ margin_right = 227.0
 margin_bottom = 10.5
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_colors/default_color = Color( 0.317647, 0.792157, 0.160784, 1 )
 text = "Bonus for finishing the interview quickly. + 50€"
+
+[node name="NextResumeButton" type="Button" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 462.0
+margin_top = 500.0
+margin_right = -462.0
+margin_bottom = -60.0
+text = "Next"
+script = ExtResource( 3 )
+
+[node name="PaymentPanelButton" type="Button" parent="Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 584.0
+margin_top = 500.0
+margin_right = -340.0
+margin_bottom = -60.0
+text = "Payments"

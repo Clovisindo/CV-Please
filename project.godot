@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/job_requisite.gd"
 }, {
+"base": "Button",
+"class": "NextApplicantResume",
+"language": "GDScript",
+"path": "res://scenes/game/ui/resume_applicant/NextApplicantResumeButton.gd"
+}, {
 "base": "Resource",
 "class": "Puzzle",
 "language": "GDScript",
@@ -195,6 +200,7 @@ _global_script_class_icons={
 "InteractionLine": "",
 "JobOffer": "",
 "JobRequisite": "",
+"NextApplicantResume": "",
 "Puzzle": "",
 "QuestionAnswer": "",
 "ResourceDummyResponse": "",
