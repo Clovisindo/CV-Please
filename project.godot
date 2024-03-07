@@ -184,6 +184,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/state_machine.gd"
 }, {
+"base": "Node",
+"class": "payment_resume",
+"language": "GDScript",
+"path": "res://src/domain/payment_month_resume.gd"
+}, {
 "base": "Control",
 "class": "resumeManager",
 "language": "GDScript",
@@ -225,6 +230,7 @@ _global_script_class_icons={
 "StateMachineApplicant": "",
 "StateMachineCV": "",
 "StateMachineJobOffer": "",
+"payment_resume": "",
 "resumeManager": ""
 }
 

@@ -12,6 +12,7 @@ func _ready():
 	$Panel/NextResumeButton.connect("load_next", self, "_load_next_applicant")
 	$Panel/NextResumeButton.connect("enabled_next_resume_panel", self, "_enable_payment_panel_button")
 	_load_applicants()
+	_load_payment_resume()
 	_init_first_applicant_UI(applicant_result_list[current_applicant_index])
 
 func _load_applicants():#TODO carga dinamica
@@ -27,6 +28,9 @@ func _load_applicants():#TODO carga dinamica
 	applicant_result_list.append(applicant_result2)
 	applicant_result_list.append(applicant_result)
 
+
+func _load_payment_resume():
+	pass
 
 func _init_first_applicant_UI(applicant:ApplicantResult):
 #	$Panel/resumeContainer/applicantImage.texture = applicant.image_applicant #TODO load from path
