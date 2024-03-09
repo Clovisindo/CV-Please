@@ -11,9 +11,11 @@ signal end_applicants_resume()
 func _ready():
 	$Panel/NextResumeButton.connect("load_next", self, "_load_next_applicant")
 	$Panel/NextResumeButton.connect("enabled_next_resume_panel", self, "_enable_payment_panel_button")
+	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")
 	_load_applicants()
 	_load_payment_resume()
 	_init_first_applicant_UI(applicant_result_list[current_applicant_index])
+
 
 func _load_applicants():#TODO carga dinamica
 	var details_app = [	"The company is very pleased  with the applicant: +50€",
@@ -30,7 +32,8 @@ func _load_applicants():#TODO carga dinamica
 
 
 func _load_payment_resume():
-	pass
+	payment_resume.new()
+
 
 func _init_first_applicant_UI(applicant:ApplicantResult):
 #	$Panel/resumeContainer/applicantImage.texture = applicant.image_applicant #TODO load from path
@@ -40,11 +43,18 @@ func _init_first_applicant_UI(applicant:ApplicantResult):
 	$Panel/resumeContainer/DetailHBoxContainer/DetailApplicantPanel2/DetailApplicantLabel.text = applicant.details_applicant[1]
 	$Panel/resumeContainer/DetailHBoxContainer/DetailApplicantPanel3/DetailApplicantLabel.text = applicant.details_applicant[2]
 
+
 func _load_next_applicant():
 	current_applicant_index = current_applicant_index + 1
 	_init_first_applicant_UI(applicant_result_list[current_applicant_index])
 	if current_applicant_index + 1 == applicant_result_list.size():
 		emit_signal("end_applicants_resume")
 
+
 func _enable_payment_panel_button():
 	$Panel/PaymentPanelButton.visible = true
+
+
+func _change_to_payment_resume_panel():
+	$Panel/resumeContainer.visible = false
+	$Panel/PaymentPanel.visible = true

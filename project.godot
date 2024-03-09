@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/ui/decision_applicant/decision_button.gd"
 }, {
+"base": "Button",
+"class": "EndPaymentResume",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/EndPaymentResume.gd"
+}, {
 "base": "Object",
 "class": "EnumUtils",
 "language": "GDScript",
@@ -63,6 +68,11 @@ _global_script_classes=[ {
 "class": "NextApplicantResume",
 "language": "GDScript",
 "path": "res://scenes/game/ui/resume_applicant/NextApplicantResumeButton.gd"
+}, {
+"base": "Button",
+"class": "NextPaymentResume",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/NextPaymentResume.gd"
 }, {
 "base": "Resource",
 "class": "Puzzle",
@@ -199,6 +209,7 @@ _global_script_class_icons={
 "ApplicantResult": "",
 "Curriculum": "",
 "DecisionApplicant": "",
+"EndPaymentResume": "",
 "EnumUtils": "",
 "GameManager": "",
 "InteractionDialog": "",
@@ -206,6 +217,7 @@ _global_script_class_icons={
 "JobOffer": "",
 "JobRequisite": "",
 "NextApplicantResume": "",
+"NextPaymentResume": "",
 "Puzzle": "",
 "QuestionAnswer": "",
 "ResourceDummyResponse": "",
