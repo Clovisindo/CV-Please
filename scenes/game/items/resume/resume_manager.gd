@@ -13,7 +13,7 @@ func _ready():
 	$Panel/NextResumeButton.connect("enabled_next_resume_panel", self, "_enable_payment_panel_button")
 	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")
 	_load_applicants()
-	_load_payment_resume()
+#	_load_payment_resume()
 	_init_first_applicant_UI(applicant_result_list[current_applicant_index])
 
 
@@ -31,17 +31,20 @@ func _load_applicants():#TODO carga dinamica
 	applicant_result_list.append(applicant_result)
 
 
-func _load_payment_resume():
-	payment_resume.new()
-
-
 func _init_first_applicant_UI(applicant:ApplicantResult):
 #	$Panel/resumeContainer/applicantImage.texture = applicant.image_applicant #TODO load from path
 	$Panel/resumeContainer/FullNameLabel.text = applicant.full_name
 	$Panel/resumeContainer/CategoryCompanyLabel.text = applicant.category_job + applicant.company_name
-	$Panel/resumeContainer/DetailHBoxContainer/DetailApplicantPanel/DetailApplicantLabel.text = applicant.details_applicant[0]
-	$Panel/resumeContainer/DetailHBoxContainer/DetailApplicantPanel2/DetailApplicantLabel.text = applicant.details_applicant[1]
-	$Panel/resumeContainer/DetailHBoxContainer/DetailApplicantPanel3/DetailApplicantLabel.text = applicant.details_applicant[2]
+	
+	if $Panel/resumeContainer/DetailHBoxContainer.get_children().size() > 0:
+		for detail_child in $Panel/resumeContainer/DetailHBoxContainer.get_children():
+			$Panel/resumeContainer/DetailHBoxContainer.remove_child(detail_child)
+	
+	for detail in applicant.details_applicant:
+		var new_detail = detail_applicant.instance()
+		new_detail._set_value(detail)
+		$Panel/resumeContainer/DetailHBoxContainer.add_child(new_detail)
+
 
 
 func _load_next_applicant():
