@@ -46,7 +46,6 @@ func _init_first_applicant_UI(applicant:ApplicantResult):
 		$Panel/resumeContainer/DetailHBoxContainer.add_child(new_detail)
 
 
-
 func _load_next_applicant():
 	current_applicant_index = current_applicant_index + 1
 	_init_first_applicant_UI(applicant_result_list[current_applicant_index])

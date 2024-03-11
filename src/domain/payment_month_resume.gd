@@ -2,21 +2,31 @@ extends Node
 
 class_name payment_resume
 
+export(PackedScene) onready var detail_payment
+
 var narrative_message:String
 
-var rent:String
-var food:String
-var transport:String
+var rent_text:String
+var rent_value:int
+var food_text:String
+var food_value:int
+var transport_text:String
+var transport_value:int
 
-var clothes:String
-var repairs:String
-var medicine:String
+var clothes_text:String
+var clothes_value:int
+var repairs_text:String
+var repairs_value:int
+var medicine_text:String
+var medicine_value:int
 
 var month_salary:String
 var current_balance:String
 
-var rent_penalty:String
-var clothes_penalty:String
+var rent_penalty_text:String
+var rent_penalty_value:int
+var clothes_penalty_text:String
+var clothes_penalty_value:int
 
 
 func _ready():
@@ -29,20 +39,27 @@ func _ready():
 func _load_payments_UI():
 	$NarrativeGamePanel/NarrativeGameText.text = narrative_message
 	
-	$PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel/DetailMonthBillTextLabel.text = rent
-	$PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel2/DetailMonthBillTextLabel.text = food
-	$PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel3/DetailMonthBillTextLabel.text = transport
+#	$PaymentPanel/MonthBillsVBoxContainer/DetailMonthBillPanel/DetailMonthBillTextLabel.text = rent
 	
-	$PaymentPanel/ExtraBillsVBoxContainer/DetailExtraBillPanel/DetailExtraBillTextLabel.text = clothes
-	$PaymentPanel/ExtraBillsVBoxContainer/DetailExtraBillPanel2/DetailExtraBillTextLabel.text = repairs
-	$PaymentPanel/ExtraBillsVBoxContainer/DetailExtraBillPanel3/DetailExtraBillTextLabel.text = medicine
+	$PaymentPanel/MonthBillsVBoxContainer.add_child(_instantiate_new_detail(rent_text, rent_value,true))
+	$PaymentPanel/MonthBillsVBoxContainer.add_child(_instantiate_new_detail(food_text, food_value,true))
+	$PaymentPanel/MonthBillsVBoxContainer.add_child(_instantiate_new_detail(transport_text, transport_value,true))
+	
+	$PaymentPanel/ExtraBillsVBoxContainer.add_child(_instantiate_new_detail(clothes_text, clothes_value,true))
+	$PaymentPanel/ExtraBillsVBoxContainer.add_child(_instantiate_new_detail(repairs_text, repairs_value,true))
+	$PaymentPanel/ExtraBillsVBoxContainer.add_child(_instantiate_new_detail(medicine_text, medicine_value,true))
 	
 	$PaymentPanel/MonthSalaryNumber.text = month_salary
 	$PaymentPanel/CurrentBalanceNumber.text = current_balance
 	
-	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer/PenaltyPanel/DetailPenaltyTextLabel.text = rent_penalty
-	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer/PenaltyPanel2/DetailPenaltyTextLabel.text = clothes_penalty
+	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(rent_penalty_text, rent_penalty_value,true))
+	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(clothes_penalty_text, clothes_penalty_value,true))
 
+
+func _instantiate_new_detail(text, value ,balance) -> detailResumePanel:
+	var new_detail = detail_payment.instance()
+	new_detail._set_value(text, value,balance)
+	return new_detail
 
 func _calculate_payments():
 	pass # calcular los gastos a hacer en funcion de las variables globales 
@@ -52,16 +69,26 @@ func _calculate_payments():
 func _set_values_by_difficulty():
 	narrative_message = "Company is pleased  with your work, a promotion may be coming your way."
 	
-	rent = "Rent home: 600€"
-	food = "Food: 300€"
-	transport = "Transport costs: 200€"
+	rent_text = "Rent home: "
+	rent_value = 600
 	
-	clothes = "Clothes: 40€"
-	repairs = "Repair washing machine: 150€"
-	medicine = "Medicines: 40€"
+	food_text = "Food: "
+	food_value = 300
+	
+	transport_text = "Transport costs: "
+	transport_value = 200
+	
+	clothes_text = "Clothes: "
+	clothes_value = 40
+	repairs_text = "Repair washing machine: "
+	repairs_value = 150
+	medicine_text = "Medicines: "
+	medicine_value = 40
 	
 	month_salary = "1000€"
 	current_balance = "1000€"
 	
-	rent_penalty = "you owe one month's rent."
-	clothes_penalty = "you got sick for not buying winter clothes."
+	rent_penalty_text = "you owe one month's rent."
+	rent_penalty_value = 50
+	clothes_penalty_text = "you got sick for not buying winter clothes."
+	clothes_penalty_value = 60

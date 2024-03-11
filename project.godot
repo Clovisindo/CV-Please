@@ -195,6 +195,11 @@ _global_script_classes=[ {
 "path": "res://scenes/game/items/job_offer/state_machine.gd"
 }, {
 "base": "Panel",
+"class": "detailPaymentPanel",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/DetailPaymentPanel.gd"
+}, {
+"base": "Panel",
 "class": "detailResumePanel",
 "language": "GDScript",
 "path": "res://scenes/game/items/resume/DetailResumePanel.gd"
@@ -247,6 +252,7 @@ _global_script_class_icons={
 "StateMachineApplicant": "",
 "StateMachineCV": "",
 "StateMachineJobOffer": "",
+"detailPaymentPanel": "",
 "detailResumePanel": "",
 "payment_resume": "",
 "resumeManager": ""
