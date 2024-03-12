@@ -9,9 +9,6 @@ margin_bottom = 63.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="DetailApplicantLabel" type="RichTextLabel" parent="."]
 anchor_right = 1.0

@@ -57,9 +57,6 @@ margin_left = 30.0
 margin_top = 32.0
 margin_right = -444.0
 margin_bottom = -318.0
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ExtraBillsRTextLabel" type="RichTextLabel" parent="PaymentPanel"]
 anchor_right = 1.0
