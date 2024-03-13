@@ -1,6 +1,6 @@
 extends Node
 
-class_name payment_resume
+class_name PaymentResume
 
 export(PackedScene) onready var detail_payment
 
@@ -41,13 +41,12 @@ var clothes_penalty_value:int
 
 func _ready():
 	_set_values_by_difficulty()
-	calculate_selected_payments(0, false,null)
 	_load_payments_UI()
 
 
 func _load_payments_UI():
 	$NarrativeGamePanel/NarrativeGameText.text = narrative_message
-	
+	#TODO: cuando todo esto venga cargado de global, comprobarás primero que cosas no tienen datos, e instancias solo lo que el global te indica que toca para ese nivel
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(_instantiate_new_detail(rent_text, rent_value,EnumUtils.TypePayments.rent))
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(_instantiate_new_detail(food_text, food_value,EnumUtils.TypePayments.food))
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(_instantiate_new_detail(transport_text, transport_value,EnumUtils.TypePayments.transport))
@@ -64,7 +63,8 @@ func _load_payments_UI():
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(clothes_penalty_text, clothes_penalty_value,EnumUtils.TypePayments.penalty))
 	calculate_selected_payments(clothes_penalty_value, false,null)
 
-func _instantiate_new_detail(_text, _value, _type_payment ) -> detailResumePanel:
+
+func _instantiate_new_detail(_text, _value, _type_payment ) -> DetailResumePanel:
 	var new_detail = detail_payment.instance()
 	new_detail._set_value(_text, _value,_type_payment)
 	if _type_payment != EnumUtils.TypePayments.penalty:
@@ -72,20 +72,26 @@ func _instantiate_new_detail(_text, _value, _type_payment ) -> detailResumePanel
 	return new_detail
 
 
-func calculate_selected_payments(_value, _selected, _type_payment = null):
+func _set_current_balance(_value):
 	current_balance += _value
 	$PaymentPanel/CurrentBalanceNumber.text = String(current_balance)
-	print("Restamos el valor :" + String(_value) + " saldo actual: "+ String(current_balance))
+
+func _check_balance_account(current_balance):
 	if current_balance < 0:
 		print(" te quedas sin saldo, no puedes finalizar.")
 		$PaymentPanel/EndPaymentResume.disabled = true
 	elif current_balance >= 0 && $PaymentPanel/EndPaymentResume.disabled == true:
 		print(" Saldo apto de nuevo , habilitado boton.")
 		$PaymentPanel/EndPaymentResume.disabled = false
+
+
+func calculate_selected_payments(_value, _selected, _type_payment = null):
+	_set_current_balance(_value)
+	print("Restamos el valor :" + String(_value) + " saldo actual: "+ String(current_balance))
+	_check_balance_account(current_balance)
 	if _type_payment != null:
 		_apply_penaly_by_type(_type_payment,_selected)
-	# calcular los gastos a hacer en funcion de las variables globales 
-	#que miden las acciones en pantalla de juego y en resumen pagos
+	#TODO: calcular/deducir que gastos salen en funcion de las variables globales que miden las acciones en pantalla de juego y en resumen pagos
 
 
 func _apply_penaly_by_type(_type_payment, _selected):

@@ -1,6 +1,6 @@
 extends Panel
 
-class_name detailPaymentPanel
+class_name DetailPaymentPanel
 
 var value_text
 var value
@@ -10,8 +10,6 @@ export(EnumUtils.TypePayments) var type_payment
 
 signal update_payments(value, selected)
 
-func _ready() -> void:
-	pass
 
 func _set_value(_text, _value, _type_payment) -> void:
 	value_text = _text
