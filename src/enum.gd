@@ -21,3 +21,14 @@ enum levels {
 	level_2,
 	level_3
 }
+
+
+enum TypePayments{
+	rent,
+	food,
+	transport,
+	clothes,
+	medicine,
+	repairs,
+	penalty
+}

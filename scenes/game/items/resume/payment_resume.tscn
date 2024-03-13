@@ -141,6 +141,9 @@ margin_left = 459.0
 margin_top = 227.0
 margin_right = 709.0
 margin_bottom = 347.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="PenaltiesVBoxContainer" type="VBoxContainer" parent="PaymentPanel/PenaltiesPanel"]
 anchor_right = 1.0
