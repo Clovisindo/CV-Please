@@ -59,16 +59,16 @@ func _load_payments_UI():
 	$PaymentPanel/CurrentBalanceNumber.text = String(current_balance)
 	
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(rent_penalty_text, rent_penalty_value,EnumUtils.TypePayments.penalty))
-	calculate_selected_payments(rent_penalty_value, false,null)
+	_calculate_selected_payments(rent_penalty_value, false,null)
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(clothes_penalty_text, clothes_penalty_value,EnumUtils.TypePayments.penalty))
-	calculate_selected_payments(clothes_penalty_value, false,null)
+	_calculate_selected_payments(clothes_penalty_value, false,null)
 
 
 func _instantiate_new_detail(_text, _value, _type_payment ) -> DetailResumePanel:
 	var new_detail = detail_payment.instance()
 	new_detail._set_value(_text, _value,_type_payment)
 	if _type_payment != EnumUtils.TypePayments.penalty:
-		new_detail.connect("update_payments", self, "calculate_selected_payments")
+		new_detail.connect("update_payments", self, "_calculate_selected_payments")
 	return new_detail
 
 
@@ -85,7 +85,7 @@ func _check_balance_account(current_balance):
 		$PaymentPanel/EndPaymentResume.disabled = false
 
 
-func calculate_selected_payments(_value, _selected, _type_payment = null):
+func _calculate_selected_payments(_value, _selected, _type_payment = null):
 	_set_current_balance(_value)
 	print("Restamos el valor :" + String(_value) + " saldo actual: "+ String(current_balance))
 	_check_balance_account(current_balance)
