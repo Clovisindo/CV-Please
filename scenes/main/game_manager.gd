@@ -82,8 +82,8 @@ func _instantiate_panels():
 	# Dynamic Panels
 	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
-		new_applicant.add_data(puzzle.applicant_name, puzzle.skills_answers,
-			puzzle.requisites_answers, puzzle.validate_solution)
+		new_applicant.add_data(puzzle.applicant_name,
+			puzzle.skills_answers, puzzle.requisites_answers, puzzle.validate_solution)
 		applicant_list.append(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")

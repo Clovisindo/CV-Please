@@ -6,13 +6,12 @@ export(PackedScene) onready var requisite_scene
 
 signal job_requisite_selected(job_requisite)
 
-func add_requisites(requisites: Dictionary):
+func add_requisites(requisites: Array):
 	if requisites:
 		for requisite in requisites:
 			var requisite_panel = requisite_scene.instance()
 			requisite_panel.job_offer = self
-			var value = requisites[requisite].split('|')
-			requisite_panel.add_data(requisite, value[0], value[1])
+			requisite_panel.add_data(requisite.textUI, requisite.question, requisite.answer)
 			$JobOfferPanel/VBoxContainer.add_child(requisite_panel)
 
 

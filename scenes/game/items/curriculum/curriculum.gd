@@ -7,13 +7,12 @@ export(PackedScene) onready var skill_panel_scene
 signal skill_selected(skill)
 
 
-func add_skills(skills: Dictionary):
+func add_skills(skills: Array):
 	if skills:
 		for skill in skills:
 			var skill_panel = skill_panel_scene.instance()
 			skill_panel.cv = self
-			var value = skills[skill].split('|')
-			skill_panel.add_data(skill, value[0], value[1])
+			skill_panel.add_data(skill.textUI, skill.question, skill.answer)
 			$CVPanel/VBoxContainer.add_child(skill_panel)
 
 
