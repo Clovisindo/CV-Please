@@ -22,7 +22,7 @@ func _ready():
 	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
 
 
-func add_data(name: String, skills: Dictionary, requisites: Dictionary, valid: bool):
+func add_data(name: String, skills: Array, requisites: Array, valid: bool):
 	if name:
 		applicant_name = name
 		$Container/Name.bbcode_text = "[center]%s[/center]" % name

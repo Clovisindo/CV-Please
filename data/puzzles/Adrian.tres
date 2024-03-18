@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=14 format=2]
+[gd_resource type="Resource" load_steps=13 format=2]
 
 [ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
 [ext_resource path="res://src/levels/puzzle.gd" type="Script" id=2]
@@ -24,11 +24,6 @@ textUI = "test1"
 textUI_secondary = "test2"
 question = "q1"
 answer = "r1"
-
-[sub_resource type="Resource" id=4]
-script = ExtResource( 3 )
-response1 = "response1"
-response2 = "response2"
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 4 )
@@ -66,7 +61,7 @@ work_type = 1
 difficulty = 1
 level_day = 1
 time_limit = 5
-requisites_answers = [ SubResource( 3 ), SubResource( 4 ) ]
+requisites_answers = [ SubResource( 3 ) ]
 cross_questions = [ SubResource( 1 ) ]
 salary_offer = 20000
 special_condition = "test"

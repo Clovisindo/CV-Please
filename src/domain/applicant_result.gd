@@ -15,6 +15,7 @@ var current_status
 var details_applicant 
 var current_salary_applicant = 0
 
+
 func _init(_full_name, _image, _category, _company_name, _status, _details_app) -> void:
 	full_name = _full_name
 	image_applicant = _image
