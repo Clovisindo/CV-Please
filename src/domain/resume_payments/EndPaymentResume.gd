@@ -12,4 +12,4 @@ func _ready() -> void:
 func _on_button_ok_pressed():
 	emit_signal("load_next_day_scene")
 	print(" Load next day job.")
-	LoadManager.load_scene(self,"res://scenes/game/items/resume/applicant_resume.tscn")
+	LoadManager.load_scene(self,"res://scenes/main/main.tscn")

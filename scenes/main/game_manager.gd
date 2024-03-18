@@ -98,6 +98,7 @@ func _on_working_day_ended():
 			elif applicant.get_cv().get_status() is StateCVRejected:
 				print("Applicant %s is rejected, it was valid?: %s" 
 					%  [applicant.applicant_name, applicant.is_valid_applicant])
+	LoadManager.load_scene(self,"res://scenes/game/items/resume/applicant_resume.tscn")
 
 
 func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):
