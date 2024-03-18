@@ -273,6 +273,7 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 PuzzleManager="*res://src/levels/puzzle_manager.gd"
+LoadManager="*res://scenes/main/load_manager.gd"
 
 [gui]
 
