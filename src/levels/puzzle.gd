@@ -24,6 +24,8 @@ export (Array,Resource) var skills_answers
 export (Array,Resource) var timeline_jobs
 export var min_salary = 18000
 
+export (Array,Resource) var detail_validations
+
 
 func instantiate(_applicant_name, _appl_image, _validate_solution, _description, _dummy_comments, _work_type, _difficulty, _level_day, _time_limit, _requisites_answers, _cross_questions, _salary_offer, _special_condition, 
 _skills_answers, _timeline_jobs, _min_salary, _validation_response):

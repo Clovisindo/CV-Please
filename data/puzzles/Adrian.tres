@@ -68,3 +68,4 @@ special_condition = "test"
 skills_answers = [ SubResource( 5 ), SubResource( 6 ) ]
 timeline_jobs = [ SubResource( 7 ) ]
 min_salary = 22000
+detail_validations = [  ]

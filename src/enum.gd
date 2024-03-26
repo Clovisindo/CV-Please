@@ -32,3 +32,12 @@ enum TypePayments{
 	repairs,
 	penalty
 }
+
+
+enum typeSpecialCondition {
+	correct_applicant,
+	time_check,
+	applicant_no_experience,
+	no_woman,
+	no_old_people
+}

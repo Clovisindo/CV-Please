@@ -20,6 +20,11 @@ func _ready():
 
 
 func _load_applicants():#TODO carga dinamica
+	for applicant in Global.current_applicants_result:
+		
+		applicant_result_list.append(applicant)
+		
+		
 	var details_app:Array
 	var detail1 = DetailApplicantResume.new()
 	detail1._set_value("The company is very pleased  with the applicant: ", 50, true)

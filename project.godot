@@ -110,6 +110,11 @@ _global_script_classes=[ {
 "path": "res://src/domain/resources/resource_dummy_responses.gd"
 }, {
 "base": "Resource",
+"class": "ResourcePaymentPanel",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_detail_payment.gd"
+}, {
+"base": "Resource",
 "class": "ResourceQuestAnsw",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_question_answer.gd"
@@ -240,6 +245,7 @@ _global_script_class_icons={
 "Puzzle": "",
 "QuestionAnswer": "",
 "ResourceDummyResponse": "",
+"ResourcePaymentPanel": "",
 "ResourceQuestAnsw": "",
 "ResourceTimelineJob": "",
 "ResourceValidationResponse": "",
@@ -272,6 +278,7 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
+Global="*res://scenes/main/global.gd"
 PuzzleManager="*res://src/levels/puzzle_manager.gd"
 LoadManager="*res://scenes/main/load_manager.gd"
 

@@ -83,14 +83,16 @@ func _instantiate_panels():
 	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name,
-			puzzle.skills_answers, puzzle.requisites_answers, puzzle.validate_solution)
+			puzzle.skills_answers, puzzle.requisites_answers, puzzle.validate_solution, puzzle.detail_validations)
 		applicant_list.append(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
 
 
 func _on_working_day_ended():
+	var list_applicant_result = []
 	for applicant in applicant_list:
+		list_applicant_result.append(applicant.evaluation)
 		if applicant.get_status() is StateApplicantEvaluated:
 			if applicant.get_cv().get_status() is StateCVApproved:
 				print("Applicant %s is accepted, it was valid?: %s" 
@@ -98,15 +100,25 @@ func _on_working_day_ended():
 			elif applicant.get_cv().get_status() is StateCVRejected:
 				print("Applicant %s is rejected, it was valid?: %s" 
 					%  [applicant.applicant_name, applicant.is_valid_applicant])
+	Global.set_applicants_result_for_day(list_applicant_result)
 	LoadManager.load_scene(self,"res://scenes/game/items/resume/applicant_resume.tscn")
 
 
 func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):
 	applicant.process_applicant(evaluation)
+	process_validations_applicant(applicant)
 	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
 	_load_next_applicant()
 
+
+func process_validations_applicant(applicant: Applicant):
+	for detail in applicant.detail_validations:
+		if detail.type_special_condition == EnumUtils.typeSpecialCondition.correct_applicant:
+			if applicant.is_valid_applicant == true && applicant.evaluation.current_status == ApplicantResult.Status.VALID:
+				detail._set_value(detail.value_text_OK,detail.value_OK)
+			else:
+				detail._set_value(detail.value_text_NOK,detail.value_NOK)
 
 func _load_next_applicant():
 	if applicant_list.size() - 1 >= current_applicant_index:

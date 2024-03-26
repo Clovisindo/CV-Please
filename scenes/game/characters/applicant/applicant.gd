@@ -9,6 +9,7 @@ export(PackedScene) onready var job_offer_scene
 var cv: Curriculum
 var job_offer: JobOffer
 var evaluation: ApplicantResult
+var detail_validations:Array
 var applicant_name = "Default name"
 var is_valid_applicant = false
 
@@ -22,7 +23,7 @@ func _ready():
 	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
 
 
-func add_data(name: String, skills: Array, requisites: Array, valid: bool):
+func add_data(name: String, skills: Array, requisites: Array, valid: bool, validations:Array):
 	if name:
 		applicant_name = name
 		$Container/Name.bbcode_text = "[center]%s[/center]" % name
@@ -34,6 +35,8 @@ func add_data(name: String, skills: Array, requisites: Array, valid: bool):
 		job_offer.add_requisites(requisites)
 	if valid:
 		is_valid_applicant = valid
+	if validations:
+		detail_validations = validations
 
 
 func get_cv():
