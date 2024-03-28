@@ -119,6 +119,7 @@ func process_validations_applicant(applicant: Applicant):
 				detail._set_value(detail.value_text_OK,detail.value_OK)
 			else:
 				detail._set_value(detail.value_text_NOK,detail.value_NOK)
+		applicant.evaluation.details_applicant = applicant.detail_validations
 
 func _load_next_applicant():
 	if applicant_list.size() - 1 >= current_applicant_index:
