@@ -63,13 +63,13 @@ func _on_job_requisite_selected(job_requisite: JobRequisite):
 			, job_requisite)
 
 
-func _apply_applicant_decision(evaluation: ApplicantResult):
+func _apply_applicant_decision(evaluationStatus: String):
 	var current_applicant = applicant_list[current_applicant_index]
 	if (
 			current_applicant.get_status() is StateApplicantReviewing 
 			and current_applicant.get_cv().get_status() is StateCVActive
 		):
-			_process_applicant(current_applicant, evaluation)
+			_process_applicant(current_applicant, evaluationStatus)
 
 
 func _instantiate_panels():
@@ -83,7 +83,7 @@ func _instantiate_panels():
 	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name,
-			puzzle.skills_answers, puzzle.requisites_answers, puzzle.validate_solution, puzzle.detail_validations)
+			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.detail_validations)
 		applicant_list.append(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
@@ -104,8 +104,8 @@ func _on_working_day_ended():
 	LoadManager.load_scene(self,"res://scenes/game/items/resume/applicant_resume.tscn")
 
 
-func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):
-	applicant.process_applicant(evaluation)
+func _process_applicant(applicant: Applicant, evaluationStatus: String):
+	applicant.process_applicant(evaluationStatus)
 	process_validations_applicant(applicant)
 	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
@@ -115,7 +115,7 @@ func _process_applicant(applicant: Applicant, evaluation: ApplicantResult):
 func process_validations_applicant(applicant: Applicant):
 	for detail in applicant.detail_validations:
 		if detail.type_special_condition == EnumUtils.typeSpecialCondition.correct_applicant:
-			if applicant.is_valid_applicant == true && applicant.evaluation.current_status == ApplicantResult.Status.VALID:
+			if applicant.is_valid_applicant == true && applicant.evaluation.current_status == ApplicantResult.Status.keys()[ApplicantResult.Status.VALID]:
 				detail._set_value(detail.value_text_OK,detail.value_OK)
 			else:
 				detail._set_value(detail.value_text_NOK,detail.value_NOK)
