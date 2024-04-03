@@ -31,7 +31,7 @@ var medicine_value:int
 var medicine_days_npay:int = 0
 
 var month_salary:String
-var current_balance:int
+var current_balance:int = 0
 
 var rent_penalty_text:String
 var rent_penalty_value:int
@@ -55,13 +55,8 @@ func _load_payments_UI():
 	$PaymentPanel/ExtraBillsVBoxContainer.add_child(_instantiate_new_detail(repairs_text, repairs_value,EnumUtils.TypePayments.repairs))
 	$PaymentPanel/ExtraBillsVBoxContainer.add_child(_instantiate_new_detail(medicine_text, medicine_value,EnumUtils.TypePayments.medicine))
 	
-	$PaymentPanel/MonthSalaryNumber.text = month_salary
-	$PaymentPanel/CurrentBalanceNumber.text = String(current_balance)
-	
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(rent_penalty_text, rent_penalty_value,EnumUtils.TypePayments.penalty))
-	_calculate_selected_payments(rent_penalty_value, false,null)
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(_instantiate_new_detail(clothes_penalty_text, clothes_penalty_value,EnumUtils.TypePayments.penalty))
-	_calculate_selected_payments(clothes_penalty_value, false,null)
 
 
 func _instantiate_new_detail(_text, _value, _type_payment ) -> DetailResumePanel:
@@ -72,9 +67,28 @@ func _instantiate_new_detail(_text, _value, _type_payment ) -> DetailResumePanel
 	return new_detail
 
 
+func _update_balance_month(month_balance):
+	$PaymentPanel/MonthSalaryNumber.text = String(Global.current_month_salary_amount)
+	$PaymentPanel/CurrentBalanceNumber.text =  String(Global.current_salary_amount)
+	_set_current_balance(month_balance)
+	if rent_penalty_value < 0:#ToDO comprobacion dinamica de los penalizadores
+		_calculate_selected_payments(rent_penalty_value, false,null)
+	if clothes_penalty_value < 0:
+		_calculate_selected_payments(clothes_penalty_value, false,null)
+	_check_balance_account(month_balance)
+
+
+func _apply_payments_global():
+	Global.current_salary_amount = current_balance
+	print(" Se aplican los gastos, saldo restante del mes :" + String(current_balance) + "Saldo total acumulado en el banco: " + String(Global.current_salary_amount))
+
+
 func _set_current_balance(_value):
+	current_balance = int ($PaymentPanel/CurrentBalanceNumber.text)
+	print("Actualizando cantidad de sueldo actual:" + String(current_balance) + " sumando la cantidad : " + String(_value) + " total :" + String(current_balance + _value))
 	current_balance += _value
 	$PaymentPanel/CurrentBalanceNumber.text = String(current_balance)
+
 
 func _check_balance_account(current_balance):
 	if current_balance < 0:
@@ -140,10 +154,7 @@ func _set_values_by_difficulty():#TODO:carga global escena externa
 	repairs_value = -150
 	medicine_text = "Medicines: "
 	medicine_value = -40
-	
-	month_salary = "1000€"
-	current_balance = 1000
-	
+		
 	rent_penalty_text = "you owe one month's rent."
 	rent_penalty_value = -50
 	clothes_penalty_text = "you got sick for not buying winter clothes."

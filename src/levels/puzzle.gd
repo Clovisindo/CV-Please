@@ -10,8 +10,10 @@ export (Array,Resource)  var dummy_comments
 export var applicant_name = "Rival"
 export var appl_image = "rival.png"#TODO ruta recursos imagenes
 export var validate_solution = true
+# additional info
 export var company_name = "test company"
 export var category_job = "test category"
+export var payment_salary = 200
 #job offer
 export(EnumUtils.typeWork) var work_type = EnumUtils.typeWork.special_type1
 export(EnumUtils.dificulty) var difficulty = EnumUtils.dificulty.easy

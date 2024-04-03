@@ -80,6 +80,7 @@ appl_image = "testpng"
 validate_solution = true
 company_name = "test company2"
 category_job = "test category2"
+payment_salary = 200
 work_type = 0
 difficulty = 0
 level_day = 0

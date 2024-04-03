@@ -15,6 +15,7 @@ var is_valid_applicant = false
 
 var company_name 
 var category_job
+var salary_payment
 
 signal interaction_started()
 signal interaction_ended()
@@ -26,7 +27,7 @@ func _ready():
 	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
 
 
-func add_data(name: String, skills: Array, requisites: Array, company: String, category : String, valid: bool, validations:Array):
+func add_data(name: String, skills: Array, requisites: Array, company: String, category : String, valid: bool,payment : int, validations:Array):
 	if name:
 		applicant_name = name
 		$Container/Name.bbcode_text = "[center]%s[/center]" % name
@@ -42,6 +43,8 @@ func add_data(name: String, skills: Array, requisites: Array, company: String, c
 		category_job = category
 	if valid:
 		is_valid_applicant = valid
+	if payment:
+		salary_payment = payment
 	if validations:
 		detail_validations = validations
 
@@ -65,7 +68,7 @@ func _applicant_selected(show: bool):
 
 
 func process_applicant(resultStatus):
-	var result = ApplicantResult.new(applicant_name,"",category_job,company_name,resultStatus,null)
+	var result = ApplicantResult.new(applicant_name,"",category_job,company_name,resultStatus, salary_payment,null)
 	evaluation = result
 	$StateMachine.current_state.process_applicant()
 

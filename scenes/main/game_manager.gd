@@ -83,7 +83,7 @@ func _instantiate_panels():
 	for puzzle in PuzzleManager.get_all_puzzle():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name,
-			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.detail_validations)
+			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.payment_salary, puzzle.detail_validations)
 		applicant_list.append(new_applicant)
 		new_applicant.connect("interaction_started", self, "_on_interaction_started")
 		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
@@ -120,6 +120,7 @@ func process_validations_applicant(applicant: Applicant):
 			else:
 				detail._set_value(detail.value_text_NOK,detail.value_NOK)
 		applicant.evaluation.details_applicant = applicant.detail_validations
+
 
 func _load_next_applicant():
 	if applicant_list.size() - 1 >= current_applicant_index:
