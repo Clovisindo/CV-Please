@@ -13,6 +13,7 @@ signal update_month_balance(month_balance)
 
 
 func _ready():
+	$Panel/CurrentMonth.text = "Current month: " + String(Global.current_month)
 	$Panel/NextResumeButton.connect("load_next", self, "_load_next_applicant")
 	$Panel/NextResumeButton.connect("enabled_next_resume_panel", self, "_enable_payment_panel_button")
 	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")

@@ -17,6 +17,14 @@ detail_applicant = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="CurrentMonth" type="RichTextLabel" parent="Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -133.0
+margin_right = 133.0
+margin_bottom = 59.0
+text = "Current month : 1"
+
 [node name="resumeContainer" type="Panel" parent="Panel"]
 self_modulate = Color( 0.054902, 0.466667, 1, 1 )
 anchor_right = 1.0
