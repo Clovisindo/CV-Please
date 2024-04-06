@@ -4,31 +4,33 @@ class_name PaymentResume
 
 export(PackedScene) onready var detail_payment
 
+var current_month:int
+
 var narrative_message:String
 
 var rent_text:String
 var rent_value:int
-var rent_days_npay:int = 0
+var rent_days_npay:int = 1#se inicia en 1 por como se gestiona este valor la primera vez que llegamos a pantalla de resumen
 
 var food_text:String
 var food_value:int
-var food_days_npay:int = 0
+var food_days_npay:int = 1
 
 var transport_text:String
 var transport_value:int
-var transport_days_npay:int = 0
+var transport_days_npay:int = 1
 
 var clothes_text:String
 var clothes_value:int
-var clothes_days_npay:int = 0
+var clothes_days_npay:int = 1
 
 var repairs_text:String
 var repairs_value:int
-var repairs_days_npay:int = 0
+var repairs_days_npay:int = 1
 
 var medicine_text:String
 var medicine_value:int
-var medicine_days_npay:int = 0
+var medicine_days_npay:int = 1
 
 var month_salary:String
 var current_balance:int = 0
@@ -40,6 +42,8 @@ var clothes_penalty_value:int
 
 
 func _ready():
+	current_month = Global.current_month
+	_load_npay_from_global()
 	_set_values_by_difficulty()
 	_load_payments_UI()
 
@@ -80,8 +84,21 @@ func _update_balance_month(month_balance):
 
 func _apply_payments_global():
 	Global.current_salary_amount = current_balance
+	Global.current_month = current_month  + 1
 	print(" Se aplican los gastos, saldo restante del mes :" + String(current_balance) + "Saldo total acumulado en el banco: " + String(Global.current_salary_amount))
 
+
+func _load_npay_from_global():#sumamos un dia mas de no pagar
+	if current_month > 1:
+		rent_days_npay =  Global.rent_days_npay + 1
+		food_days_npay = Global.food_days_npay  + 1
+		transport_days_npay = Global.transport_days_npay + 1
+		clothes_days_npay = Global.clothes_days_npay + 1
+		repairs_days_npay = Global.repairs_days_npay + 1
+		medicine_days_npay = Global.medicine_days_npay + 1
+
+func _apply_npays_global():
+	Global.set_penalties_npay(rent_days_npay, food_days_npay, transport_days_npay, clothes_days_npay, repairs_days_npay, medicine_days_npay)
 
 func _set_current_balance(_value):
 	current_balance = int ($PaymentPanel/CurrentBalanceNumber.text)
@@ -104,35 +121,42 @@ func _calculate_selected_payments(_value, _selected, _type_payment = null):
 	print("Restamos el valor :" + String(_value) + " saldo actual: "+ String(current_balance))
 	_check_balance_account(current_balance)
 	if _type_payment != null:
-		_apply_penaly_by_type(_type_payment,_selected)
+		_apply_penalty_by_type(_type_payment,_selected)
 	#TODO: calcular/deducir que gastos salen en funcion de las variables globales que miden las acciones en pantalla de juego y en resumen pagos
 
 
-func _apply_penaly_by_type(_type_payment, _selected):
+func _apply_penalty_by_type(_type_payment, _selected):
 	var value_penalty:int
 	if _selected:
-		value_penalty = 1
+		value_penalty = 0
 	else:
-		value_penalty = -1
+		value_penalty = 1
 	
 	if _type_payment == EnumUtils.TypePayments.rent:
-		rent_days_npay += value_penalty
+		rent_days_npay = _apply_detail_npay(Global.rent_days_npay, value_penalty)
 		print("Dias de penalizacion para " + String(EnumUtils.TypePayments.keys()[_type_payment]) + " total : " + String(rent_days_npay))
 	if _type_payment == EnumUtils.TypePayments.food:
-		food_days_npay += value_penalty
+		food_days_npay = _apply_detail_npay(Global.food_days_npay, value_penalty)
 		print("Dias de penalizacion para " + String(EnumUtils.TypePayments.keys()[_type_payment]) + " total : " + String(food_days_npay))
 	if _type_payment == EnumUtils.TypePayments.transport:
-		transport_days_npay += value_penalty
+		transport_days_npay = _apply_detail_npay(Global.transport_days_npay, value_penalty)
 		print("Dias de penalizacion para " + String(EnumUtils.TypePayments.keys()[_type_payment]) + " total : " + String(transport_days_npay))
 	if _type_payment == EnumUtils.TypePayments.clothes:
-		clothes_days_npay += value_penalty
+		clothes_days_npay = _apply_detail_npay(Global.clothes_days_npay, value_penalty)
 		print("Dias de penalizacion para " + String(EnumUtils.TypePayments.keys()[_type_payment]) + " total : " + String(clothes_days_npay))
 	if _type_payment == EnumUtils.TypePayments.repairs:
-		repairs_days_npay += value_penalty
+		repairs_days_npay = _apply_detail_npay(Global.repairs_days_npay, value_penalty)
 		print("Dias de penalizacion para " + String(EnumUtils.TypePayments.keys()[_type_payment]) + " total : " + String(repairs_days_npay))
 	if _type_payment == EnumUtils.TypePayments.medicine:
-		medicine_days_npay += value_penalty
+		medicine_days_npay = _apply_detail_npay(Global.medicine_days_npay, value_penalty)
 		print("Dias de penalizacion para " + String(EnumUtils.TypePayments.keys()[_type_payment]) + " total : " + String(medicine_days_npay))
+
+
+func _apply_detail_npay( global_npay, value_penalty):
+	if value_penalty == 1:
+		return  global_npay + 1
+	elif value_penalty == 0:
+		return 0
 
 
 func _set_values_by_difficulty():#TODO:carga global escena externa
