@@ -71,7 +71,7 @@ func _instantiate_new_detail(_text, _value, _type_payment ) -> DetailResumePanel
 	return new_detail
 
 
-func _update_balance_month(month_balance):
+func _update_balance_month(month_balance):#calculo inicial desde resumeManager
 	$PaymentPanel/MonthSalaryNumber.text = String(Global.current_month_salary_amount)
 	$PaymentPanel/CurrentBalanceNumber.text =  String(Global.current_salary_amount)
 	_set_current_balance(month_balance)
@@ -97,8 +97,10 @@ func _load_npay_from_global():#sumamos un dia mas de no pagar
 		repairs_days_npay = Global.repairs_days_npay + 1
 		medicine_days_npay = Global.medicine_days_npay + 1
 
+
 func _apply_npays_global():
 	Global.set_penalties_npay(rent_days_npay, food_days_npay, transport_days_npay, clothes_days_npay, repairs_days_npay, medicine_days_npay)
+
 
 func _set_current_balance(_value):
 	current_balance = int ($PaymentPanel/CurrentBalanceNumber.text)
@@ -115,8 +117,8 @@ func _check_balance_account(current_balance):
 		print(" Saldo apto de nuevo , habilitado boton.")
 		$PaymentPanel/EndPaymentResume.disabled = false
 
-
-func _calculate_selected_payments(_value, _selected, _type_payment = null):
+#calculo desde los distintos elementos que modifican los pagos en pantalla resumen
+func _calculate_selected_payments(_value, _selected, _type_payment = null):#se usa type_payment en las llamadas con signal desde los botones del panel
 	_set_current_balance(_value)
 	print("Restamos el valor :" + String(_value) + " saldo actual: "+ String(current_balance))
 	_check_balance_account(current_balance)

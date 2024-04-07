@@ -7,9 +7,9 @@ signal apply_global()
 signal apply_global_npay()
 
 func _ready() -> void:
-	$".".connect("pressed", self, "_on_button_ok_pressed")
-	self.connect("apply_global", $"../..", "_apply_payments_global")
-	self.connect("apply_global_npay", $"../..", "_apply_npays_global")
+	$".".connect("pressed", self, "_on_button_ok_pressed")#decision_button fin escena de juego principal
+	self.connect("apply_global", $"../..", "_apply_payments_global")#Fin escena resumen candidatos, conectado gd panel
+	self.connect("apply_global_npay", $"../..", "_apply_npays_global")#Fin escena resumen candidatos, conectado gd panel
 
 func _on_button_ok_pressed():
 	emit_signal("apply_global")

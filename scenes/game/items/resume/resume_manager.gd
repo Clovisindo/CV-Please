@@ -17,7 +17,7 @@ func _ready():
 	$Panel/NextResumeButton.connect("load_next", self, "_load_next_applicant")
 	$Panel/NextResumeButton.connect("enabled_next_resume_panel", self, "_enable_payment_panel_button")
 	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")
-	self.connect("update_month_balance", $Panel/PaymentPanel, "_update_balance_month")
+	self.connect("update_month_balance", $Panel/PaymentPanel, "_update_balance_month")#actualizar parametros antes de cargar el panel de resumen pagos
 	_load_applicants()
 	_init_applicant_UI(applicant_result_list[current_applicant_index])
 
