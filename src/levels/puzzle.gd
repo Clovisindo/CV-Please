@@ -32,7 +32,7 @@ export (Array,Resource) var detail_validations
 
 
 func instantiate(_applicant_name, _appl_image, _validate_solution, _description, _dummy_comments, _work_type, _difficulty, _level_day, _time_limit, _requisites_answers, _cross_questions, _salary_offer, _special_condition, 
-_skills_answers, _timeline_jobs, _min_salary, _validation_response):
+_skills_answers, _timeline_jobs, _min_salary, _validation_response, _detail_validations, _company_name, _category_job, _payment_salary):
 	applicant_name = _applicant_name
 	appl_image = _appl_image
 	validate_solution = _validate_solution
@@ -48,10 +48,15 @@ _skills_answers, _timeline_jobs, _min_salary, _validation_response):
 	cross_questions = _cross_questions
 	salary_offer = _salary_offer
 	special_condition = _special_condition
+	company_name = _company_name
+	category_job = _category_job
+	payment_salary = _payment_salary
 	
 	skills_answers = _skills_answers
 	timeline_jobs = _timeline_jobs
 	min_salary = _min_salary
 	
 	validation_response = _validation_response
+	
+	detail_validations = _detail_validations
 

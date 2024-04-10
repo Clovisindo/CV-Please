@@ -15,7 +15,7 @@ func _init() -> void:
 	self.value_text = value_text
 	self.value = value
 
-func _set_data(_text_OK,_text_no_OK, _value_OK,_value_NOK,_typePayment,_type_special_condition) -> void:
+func _set_data(_text_OK,_text_no_OK, _value_OK,_value_NOK,_type_special_condition) -> void:
 	value_text_OK = _text_OK
 	value_text_NOK = _text_no_OK
 	value_OK = _value_OK

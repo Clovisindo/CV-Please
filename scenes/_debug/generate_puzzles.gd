@@ -7,15 +7,20 @@ var validate_solution:bool
 var validation_response:Array
 var description:String
 var dummy_comments:Array
+var payment_salary:int
 #job offer
 var work_type
 var difficulty
 var level_day
 var time_limit:int 
+var company_name:String
+var category_job:String
 var requisites_answers:Array
 var cross_questions:Array
 var salary_offer:int
 var special_condition:String
+var detail_validations:Array
+
 #Curriculum
 var skills_answers:Array
 var timeline_jobs:Array
@@ -36,6 +41,12 @@ func _ready():
 		$"../../JobOfferPanel/DifficultyOpMenu".get_popup().add_item(str(dificculty))
 	for level in EnumUtils.levels:
 		$"../../JobOfferPanel/LevelOpMenu".get_popup().add_item(str(level))
+	for specialCondition in EnumUtils.typeSpecialCondition:
+		$"../../PanelSecondaryInfo/detailValidationPanel1/TypeSpecialConditionOptionMenu".get_popup().add_item(str(specialCondition))
+		$"../../PanelSecondaryInfo/detailValidationPanel2/TypeSpecialConditionOptionMenu".get_popup().add_item(str(specialCondition))
+		$"../../PanelSecondaryInfo/detailValidationPanel3/TypeSpecialConditionOptionMenu".get_popup().add_item(str(specialCondition))
+		$"../../PanelSecondaryInfo/detailValidationPanel4/TypeSpecialConditionOptionMenu".get_popup().add_item(str(specialCondition))
+		$"../../PanelSecondaryInfo/detailValidationPanel5/TypeSpecialConditionOptionMenu".get_popup().add_item(str(specialCondition))
 #	# Carga de ficheros de recursos
 #	for level_tres in PuzzleManager.get_all_puzzle():
 #		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres.applicant_name))
@@ -56,6 +67,9 @@ func _load_data_form():
 	response.set_data(responseOK,responseNOK)
 	validation_response.append(response)
 	
+	if $"../../JobOfferPanel/PaymentSalaryLineEdit".text.length() != 0:
+		payment_salary = int($"../../JobOfferPanel/PaymentSalaryLineEdit".text)
+	
 	description = $"../../AdditionalInfoPanel/DescriptionLineEdit".text
 	
 	var dummy1:String
@@ -72,7 +86,8 @@ func _load_data_form():
 	difficulty = $"../../JobOfferPanel/DifficultyOpMenu".get_selected_id()
 	level_day = $"../../JobOfferPanel/LevelOpMenu".get_selected_id()
 	time_limit = int($"../../JobOfferPanel/TimeLimitLineEdit".text)
-	
+	company_name = $"../../JobOfferPanel/CompanyNameLineEdit".text
+	category_job = $"../../JobOfferPanel/CategoryJobLineEdit".text
 	#dictionary requisites
 	if $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit".text.length() != 0:
 		var req_ans_split = $"../../JobOfferPanel/linepanel1/ReqAnswerLineEdit".text
@@ -186,6 +201,78 @@ func _load_data_form():
 		timeline_job.set_data(timeline,timeline2)
 		timeline_jobs.append(timeline_job)
 	min_salary = int($"../../CurriculumPanel/MinSalaryLineEdit".text)
+	
+	#additional panels
+	var detail_payment = ResourcePaymentPanel.new()
+	var text_ok
+	var text_nok
+	var value_ok
+	var value_nok
+	var special_condition
+	if $"../../PanelSecondaryInfo/detailValidationPanel1/TextOKLineEdit".text.length() != 0:
+		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel1/TextOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel1/TextNOKLineEdit".text.length() != 0:
+		text_nok = $"../../PanelSecondaryInfo/detailValidationPanel1/TextNOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel1/TextOKLineEdit".text.length() != 0:
+		value_ok = $"../../PanelSecondaryInfo/detailValidationPanel1/ValueOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel1/ValueNOK".text.length() != 0:
+		value_nok = $"../../PanelSecondaryInfo/detailValidationPanel1/ValueNOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel1/TypeSpecialConditionOptionMenu".get_selected_id() != -1:
+		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel1/TypeSpecialConditionOptionMenu".get_selected_id()
+		detail_payment._set_data(text_ok,text_nok,int(value_ok),int(value_nok),special_condition)
+		detail_validations.append(detail_payment)
+	
+	if $"../../PanelSecondaryInfo/detailValidationPanel2/TextOKLineEdit".text.length() != 0:
+		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel2/TextOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel2/TextNOKLineEdit".text.length() != 0:
+		text_nok = $"../../PanelSecondaryInfo/detailValidationPanel2/TextNOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel2/TextOKLineEdit".text.length() != 0:
+		value_ok = $"../../PanelSecondaryInfo/detailValidationPanel2/ValueOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel2/ValueNOK".text.length() != 0:
+		value_nok = $"../../PanelSecondaryInfo/detailValidationPanel2/ValueNOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel2/TypeSpecialConditionOptionMenu".get_selected_id() != -1:
+		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel2/TypeSpecialConditionOptionMenu".get_selected_id()
+		detail_payment._set_data(text_ok,text_nok,int(value_ok),int(value_nok),special_condition)
+		detail_validations.append(detail_payment)
+	
+	if $"../../PanelSecondaryInfo/detailValidationPanel3/TextOKLineEdit".text.length() != 0:
+		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel3/TextOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel3/TextNOKLineEdit".text.length() != 0:
+		text_nok = $"../../PanelSecondaryInfo/detailValidationPanel3/TextNOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel3/TextOKLineEdit".text.length() != 0:
+		value_ok = $"../../PanelSecondaryInfo/detailValidationPanel3/ValueOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel3/ValueNOK".text.length() != 0:
+		value_nok = $"../../PanelSecondaryInfo/detailValidationPanel3/ValueNOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel3/TypeSpecialConditionOptionMenu".get_selected_id() != -1:
+		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel3/TypeSpecialConditionOptionMenu".get_selected_id()
+		detail_payment._set_data(text_ok,text_nok,int(value_ok),int(value_nok),special_condition)
+		detail_validations.append(detail_payment)
+	
+	if $"../../PanelSecondaryInfo/detailValidationPanel4/TextOKLineEdit".text.length() != 0:
+		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel4/TextOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel4/TextNOKLineEdit".text.length() != 0:
+		text_nok = $"../../PanelSecondaryInfo/detailValidationPanel4/TextNOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel4/TextOKLineEdit".text.length() != 0:
+		value_ok = $"../../PanelSecondaryInfo/detailValidationPanel4/ValueOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel4/ValueNOK".text.length() != 0:
+		value_nok = $"../../PanelSecondaryInfo/detailValidationPanel4/ValueNOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel4/TypeSpecialConditionOptionMenu".get_selected_id() != -1:
+		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel4/TypeSpecialConditionOptionMenu".get_selected_id()
+		detail_payment._set_data(text_ok,text_nok,int(value_ok),int(value_nok),special_condition)
+		detail_validations.append(detail_payment)
+	
+	if $"../../PanelSecondaryInfo/detailValidationPanel5/TextOKLineEdit".text.length() != 0:
+		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel5/TextOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel5/TextNOKLineEdit".text.length() != 0:
+		text_nok = $"../../PanelSecondaryInfo/detailValidationPanel5/TextNOKLineEdit".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel5/TextOKLineEdit".text.length() != 0:
+		value_ok = $"../../PanelSecondaryInfo/detailValidationPanel5/ValueOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel5/ValueNOK".text.length() != 0:
+		value_nok = $"../../PanelSecondaryInfo/detailValidationPanel5/ValueNOK".text
+	if $"../../PanelSecondaryInfo/detailValidationPanel5/TypeSpecialConditionOptionMenu".get_selected_id() != -1:
+		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel5/TypeSpecialConditionOptionMenu".get_selected_id()
+		detail_payment._set_data(text_ok,text_nok,int(value_ok),int(value_nok),special_condition)
+		detail_validations.append(detail_payment)
 
 func _generate_question_answer(dictionary, _key, _question, _answer):
 	dictionary[_key] = {
@@ -197,7 +284,7 @@ func _generate_question_answer(dictionary, _key, _question, _answer):
 func _generate_puzzle():
 	var puzzle = Puzzle.new()
 	puzzle.instantiate(applicant_name, applicant_image, validate_solution, description, dummy_comments, work_type, difficulty, level_day,time_limit, requisites_answers,
-	cross_questions,salary_offer,special_condition,skills_answers,timeline_jobs,min_salary, validation_response)
+	cross_questions,salary_offer,special_condition,skills_answers,timeline_jobs,min_salary, validation_response, detail_validations, company_name, category_job,payment_salary)
 	
 	PuzzleManager.save_puzzle(puzzle)
 
