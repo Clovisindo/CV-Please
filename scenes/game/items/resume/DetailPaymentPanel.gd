@@ -7,6 +7,7 @@ var value
 var money_balance#TODO: logica para pintar de color verde o rojo si saldo positivo o negativo
 var selected:bool = false
 export(EnumUtils.TypePayments) var type_payment
+export(EnumUtils.typeSpecialCondition) var type_special_condition
 
 signal update_payments(value, selected)
 

@@ -14,4 +14,4 @@ func _set_value(_text, _value) -> void:
 		money_balance = true
 	elif value < 0:
 		money_balance = false
-	$DetailApplicantLabel.text = _text + String(value)
+	$DetailApplicantLabel.text = _text + " " +  String(value)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/_debug/generate_puzzles.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_debug/DetailBackButton.gd" type="Script" id=2]
+[ext_resource path="res://scenes/_debug/DetailsPanelButton.gd" type="Script" id=3]
 
 [node name="GeneratePuzzles" type="Control"]
 anchor_right = 1.0
@@ -85,6 +87,14 @@ margin_top = 23.0
 margin_right = 1021.0
 margin_bottom = 47.0
 
+[node name="DetailsPanelButton" type="Button" parent="Panel"]
+margin_left = 371.0
+margin_top = 38.0
+margin_right = 470.0
+margin_bottom = 78.0
+text = "Details panel"
+script = ExtResource( 3 )
+
 [node name="JobOfferPanel" type="Panel" parent="."]
 margin_left = 21.0
 margin_top = 131.0
@@ -146,6 +156,48 @@ text = "Time Limit"
 margin_left = 83.0
 margin_top = 96.0
 margin_right = 239.0
+margin_bottom = 123.0
+
+[node name="CompanyNameLabel" type="Label" parent="JobOfferPanel"]
+margin_left = 254.0
+margin_top = 23.0
+margin_right = 321.0
+margin_bottom = 55.0
+text = "Company
+ Name"
+
+[node name="CompanyNameLineEdit" type="LineEdit" parent="JobOfferPanel"]
+margin_left = 322.0
+margin_top = 22.0
+margin_right = 478.0
+margin_bottom = 49.0
+
+[node name="CategoryJobLabel" type="Label" parent="JobOfferPanel"]
+margin_left = 254.0
+margin_top = 61.0
+margin_right = 321.0
+margin_bottom = 95.0
+text = "Category
+job"
+
+[node name="CategoryJobLineEdit" type="LineEdit" parent="JobOfferPanel"]
+margin_left = 322.0
+margin_top = 60.0
+margin_right = 478.0
+margin_bottom = 87.0
+
+[node name="PaymentSalaryLabel" type="Label" parent="JobOfferPanel"]
+margin_left = 254.0
+margin_top = 97.0
+margin_right = 321.0
+margin_bottom = 131.0
+text = "Payment
+Salary"
+
+[node name="PaymentSalaryLineEdit" type="LineEdit" parent="JobOfferPanel"]
+margin_left = 322.0
+margin_top = 96.0
+margin_right = 478.0
 margin_bottom = 123.0
 
 [node name="ReqAnswerLabel" type="Label" parent="JobOfferPanel"]
@@ -636,6 +688,221 @@ margin_top = 145.0
 margin_right = 459.0
 margin_bottom = 172.0
 
+[node name="PanelSecondaryInfo" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="textOKLabel" type="Label" parent="PanelSecondaryInfo"]
+margin_left = 47.0
+margin_top = 75.0
+margin_right = 97.0
+margin_bottom = 89.0
+text = "Text OK"
+
+[node name="textNOKLabel" type="Label" parent="PanelSecondaryInfo"]
+margin_left = 200.0
+margin_top = 73.0
+margin_right = 260.0
+margin_bottom = 87.0
+text = "Text NOK"
+
+[node name="textValueOKLabel" type="Label" parent="PanelSecondaryInfo"]
+margin_left = 373.0
+margin_top = 73.0
+margin_right = 430.0
+margin_bottom = 87.0
+text = "value OK"
+
+[node name="textValueNOKLabel" type="Label" parent="PanelSecondaryInfo"]
+margin_left = 529.0
+margin_top = 73.0
+margin_right = 596.0
+margin_bottom = 87.0
+text = "value NOK"
+
+[node name="SpecialTypeConditionLabel" type="Label" parent="PanelSecondaryInfo"]
+margin_left = 686.0
+margin_top = 75.0
+margin_right = 827.0
+margin_bottom = 89.0
+text = "Special condition type"
+
+[node name="detailValidationPanel1" type="Panel" parent="PanelSecondaryInfo"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = 46.0
+margin_top = 93.0
+margin_right = 71.59
+margin_bottom = 100.494
+
+[node name="TextOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel1"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="TextNOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel1"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ValueOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel1"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="ValueNOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel1"]
+margin_left = 481.0
+margin_right = 630.0
+margin_bottom = 27.0
+
+[node name="TypeSpecialConditionOptionMenu" type="OptionButton" parent="PanelSecondaryInfo/detailValidationPanel1"]
+margin_left = 640.0
+margin_right = 798.0
+margin_bottom = 20.0
+
+[node name="detailValidationPanel2" type="Panel" parent="PanelSecondaryInfo"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = 46.0
+margin_top = 126.0
+margin_right = 71.59
+margin_bottom = 133.494
+
+[node name="TextOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel2"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="TextNOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel2"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ValueOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel2"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="ValueNOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel2"]
+margin_left = 481.0
+margin_right = 630.0
+margin_bottom = 27.0
+
+[node name="TypeSpecialConditionOptionMenu" type="OptionButton" parent="PanelSecondaryInfo/detailValidationPanel2"]
+margin_left = 640.0
+margin_right = 798.0
+margin_bottom = 20.0
+
+[node name="detailValidationPanel3" type="Panel" parent="PanelSecondaryInfo"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = 46.0
+margin_top = 160.0
+margin_right = 71.59
+margin_bottom = 167.494
+
+[node name="TextOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel3"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="TextNOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel3"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ValueOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel3"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="ValueNOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel3"]
+margin_left = 481.0
+margin_right = 630.0
+margin_bottom = 27.0
+
+[node name="TypeSpecialConditionOptionMenu" type="OptionButton" parent="PanelSecondaryInfo/detailValidationPanel3"]
+margin_left = 640.0
+margin_right = 798.0
+margin_bottom = 20.0
+
+[node name="detailValidationPanel4" type="Panel" parent="PanelSecondaryInfo"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = 46.0
+margin_top = 195.0
+margin_right = 71.59
+margin_bottom = 202.494
+
+[node name="TextOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel4"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="TextNOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel4"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ValueOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel4"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="ValueNOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel4"]
+margin_left = 481.0
+margin_right = 630.0
+margin_bottom = 27.0
+
+[node name="TypeSpecialConditionOptionMenu" type="OptionButton" parent="PanelSecondaryInfo/detailValidationPanel4"]
+margin_left = 640.0
+margin_right = 798.0
+margin_bottom = 20.0
+
+[node name="detailValidationPanel5" type="Panel" parent="PanelSecondaryInfo"]
+anchor_right = 0.005
+anchor_bottom = 0.018
+margin_left = 46.0
+margin_top = 227.0
+margin_right = 71.59
+margin_bottom = 234.494
+
+[node name="TextOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel5"]
+margin_left = 1.0
+margin_right = 145.0
+margin_bottom = 27.0
+
+[node name="TextNOKLineEdit" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel5"]
+margin_left = 154.0
+margin_right = 315.0
+margin_bottom = 27.0
+
+[node name="ValueOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel5"]
+margin_left = 323.0
+margin_right = 472.0
+margin_bottom = 27.0
+
+[node name="ValueNOK" type="LineEdit" parent="PanelSecondaryInfo/detailValidationPanel5"]
+margin_left = 481.0
+margin_right = 630.0
+margin_bottom = 27.0
+
+[node name="TypeSpecialConditionOptionMenu" type="OptionButton" parent="PanelSecondaryInfo/detailValidationPanel5"]
+margin_left = 640.0
+margin_right = 798.0
+margin_bottom = 20.0
+
+[node name="MainPanelButton" type="Button" parent="PanelSecondaryInfo"]
+margin_left = 369.0
+margin_top = 337.0
+margin_right = 451.0
+margin_bottom = 368.0
+text = "Back"
+script = ExtResource( 2 )
+
 [connection signal="gui_input" from="Panel/GeneratePuzzle" to="Panel/GeneratePuzzle" method="_on_Button_gui_input"]
 [connection signal="mouse_entered" from="Panel/GeneratePuzzle" to="Panel/GeneratePuzzle" method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="Panel/GeneratePuzzle" to="Panel/GeneratePuzzle" method="_on_Button_mouse_exited"]
+[connection signal="button_down" from="Panel/DetailsPanelButton" to="Panel/DetailsPanelButton" method="_on_DetailsPanelButton_button_down"]
+[connection signal="button_down" from="PanelSecondaryInfo/MainPanelButton" to="PanelSecondaryInfo/MainPanelButton" method="_on_MainPanelButton_button_down"]
