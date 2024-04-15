@@ -111,3 +111,4 @@ text = "Payments"
 script = ExtResource( 5 )
 
 [node name="PaymentPanel" parent="Panel" instance=ExtResource( 4 )]
+visible = false
