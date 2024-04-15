@@ -92,10 +92,10 @@ alignment = 1
 [node name="NextResumeButton" type="Button" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 462.0
-margin_top = 500.0
-margin_right = -462.0
-margin_bottom = -60.0
+margin_left = 551.0
+margin_top = 749.0
+margin_right = -854.0
+margin_bottom = -75.0
 text = "Next"
 script = ExtResource( 3 )
 
@@ -103,10 +103,10 @@ script = ExtResource( 3 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 584.0
-margin_top = 500.0
-margin_right = -340.0
-margin_bottom = -60.0
+margin_left = 865.0
+margin_top = 746.0
+margin_right = -517.0
+margin_bottom = -65.0
 text = "Payments"
 script = ExtResource( 5 )
 

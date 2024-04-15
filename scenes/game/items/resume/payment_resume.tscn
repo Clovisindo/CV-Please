@@ -157,9 +157,9 @@ __meta__ = {
 [node name="EndPaymentResume" type="Button" parent="PaymentPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 366.0
-margin_top = 435.0
-margin_right = -358.0
-margin_bottom = -25.0
+margin_left = 603.0
+margin_top = 508.0
+margin_right = -639.0
+margin_bottom = -220.0
 text = "Next day"
 script = ExtResource( 2 )
