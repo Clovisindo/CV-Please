@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/sprites/UI/test fondo.PNG" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/UI/Main_scene_bg.PNG" type="Texture" id=2]
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4

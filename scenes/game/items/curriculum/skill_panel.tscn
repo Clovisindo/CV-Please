@@ -17,7 +17,8 @@ corner_radius_bottom_left = 4
 anchor_right = 0.277344
 anchor_bottom = 0.065
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
 custom_styles/panel = SubResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -33,9 +34,13 @@ anchor_bottom = 0.897436
 rect_clip_content = false
 mouse_filter = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
 tab_size = 11
-text = "Skill 1"
+text = "Skill 1
+
+"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": true
 }

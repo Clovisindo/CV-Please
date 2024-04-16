@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/ui/decision_applicant/decision_applicant.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/ui/interaction_dialog/interaction_dialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/UI/Main_scene_bg.PNG" type="Texture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 956, 548 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.00784314, 0, 0, 0 )
@@ -15,38 +20,37 @@ decision_applicant_scene = ExtResource( 3 )
 interaction_dialog_scene = ExtResource( 4 )
 
 [node name="MainScene" type="Panel" parent="."]
-margin_right = 1023.0
-margin_bottom = 598.0
+margin_right = 1600.0
+margin_bottom = 900.0
+custom_styles/panel = SubResource( 2 )
 
 [node name="InteractionDialogContainer" type="PanelContainer" parent="MainScene"]
-anchor_left = 0.0244379
-anchor_top = 0.605351
-anchor_right = 0.764418
-anchor_bottom = 0.971572
-__meta__ = {
-"_edit_use_anchors_": true
-}
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -378.45
+margin_top = 200.0
+margin_right = 378.549
+margin_bottom = 419.0
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 margin_left = 25.0
 margin_top = 19.0
-margin_right = -798.0
-margin_bottom = -279.0
+margin_right = 525.0
+margin_bottom = 619.0
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 347.0
+margin_left = 678.0
 margin_top = 19.0
-margin_right = -476.0
-margin_bottom = -279.0
+margin_right = 1178.0
+margin_bottom = 619.0
 
 [node name="ApplicantContainer" type="PanelContainer" parent="MainScene"]
-anchor_left = 0.780059
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.782609
+margin_left = -225.0
+margin_bottom = 468.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainScene/ApplicantContainer"]
 margin_left = 7.0
@@ -55,26 +59,32 @@ margin_right = 218.0
 margin_bottom = 461.0
 
 [node name="DecisionApplContainer" type="PanelContainer" parent="MainScene"]
-anchor_left = 0.77
-anchor_top = 0.153846
-anchor_right = 0.868
-anchor_bottom = 0.321
-margin_left = 10.29
-margin_top = 388.0
-margin_right = 12.036
-margin_bottom = 388.042
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -365.0
+margin_top = -221.0
+margin_right = -206.454
+margin_bottom = -70.5194
 custom_styles/panel = SubResource( 1 )
 
 [node name="EndWorkingDayButton" type="Button" parent="MainScene"]
-margin_left = 924.0
-margin_top = 480.0
-margin_right = 1018.0
-margin_bottom = 580.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -163.0
+margin_top = -157.0
+margin_right = -69.0
+margin_bottom = -57.0
 text = "Terminar Día"
 
 [node name="CurrentMonth" type="RichTextLabel" parent="MainScene"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -68.0
+margin_top = 7.0
 margin_right = 68.0
-margin_bottom = 36.0
+margin_bottom = 43.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
