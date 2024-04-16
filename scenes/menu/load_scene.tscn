@@ -5,23 +5,27 @@
 [node name="load" type="CanvasLayer"]
 
 [node name="bg" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1600.0
+margin_bottom = 900.0
 color = Color( 0.0261841, 0.0801435, 0.171875, 1 )
 
 [node name="icon" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 480.0
-margin_top = 200.0
-margin_right = -480.0
-margin_bottom = -336.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -27.0
+margin_top = -110.0
+margin_right = 40.0
+margin_bottom = -42.0
 texture = ExtResource( 1 )
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 212.0
-margin_top = 275.0
-margin_right = -212.0
-margin_bottom = -275.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -588.0
+margin_top = -35.0
+margin_right = 588.0
+margin_bottom = 35.0
