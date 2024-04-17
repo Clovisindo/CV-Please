@@ -72,5 +72,5 @@ func _process(delta):
 
 
 func _set_size_by_text():
-	get_node(".").rect_size.y = get_node("RequisiteText").rect_size.y + 16
+	get_node(".").rect_size.y = get_node("RequisiteText").rect_size.y + 8
 	get_node(".").rect_min_size.y = get_node(".").rect_size.y
