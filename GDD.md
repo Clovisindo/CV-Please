@@ -1,3 +1,9 @@
+# GDD CVs please
+GDD con todo el diseño de videojuego reunido.
+Algunos temas de diseño todavia no aplicados es necesario consultarlos en el GDD del notion, pero esto busca ser util para consultar dudas a la hora de trabajar en tareas de desarrollo.
+
+
+
 # Applicant (el candidato):
 - Waiting (esperando a ser entrevistado)
   - *Permite*: llamar al candidato. 
