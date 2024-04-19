@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/game/ui/interaction_dialog/interaction_dialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/UI/Main_scene_bg.PNG" type="Texture" id=5]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=6]
+[ext_resource path="res://scenes/game/items/computer/main_computer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
@@ -37,16 +38,16 @@ margin_bottom = 419.0
 theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
-margin_left = 25.0
-margin_top = 19.0
-margin_right = 525.0
-margin_bottom = 619.0
+margin_left = 80.0
+margin_top = 32.0
+margin_right = 580.0
+margin_bottom = 632.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
-margin_left = 678.0
+margin_left = 851.0
 margin_top = 19.0
-margin_right = 1178.0
+margin_right = 1351.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 
@@ -91,3 +92,5 @@ margin_top = 7.0
 margin_right = 68.0
 margin_bottom = 43.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+
+[node name="MainComputer" parent="MainScene" instance=ExtResource( 7 )]

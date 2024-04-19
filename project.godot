@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://scenes/game/items/job_offer/job_requisite.gd"
 }, {
 "base": "Button",
+"class": "MainComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/main_computer.gd"
+}, {
+"base": "Button",
 "class": "NextApplicantResume",
 "language": "GDScript",
 "path": "res://src/domain/resume_payments/NextApplicantResumeButton.gd"
@@ -190,6 +195,21 @@ _global_script_classes=[ {
 "path": "res://scenes/game/items/curriculum/states/state_cv_rejected.gd"
 }, {
 "base": "State",
+"class": "StateComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/states/state_computer.gd"
+}, {
+"base": "StateComputer",
+"class": "StateComputerActive",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/state_computer_active.gd"
+}, {
+"base": "StateComputer",
+"class": "StateComputerIdle",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/state_computer_idle.gd"
+}, {
+"base": "State",
 "class": "StateJobOffer",
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/states/state_job_offer.gd"
@@ -220,6 +240,11 @@ _global_script_classes=[ {
 "path": "res://scenes/game/items/curriculum/state_machine.gd"
 }, {
 "base": "StateMachine",
+"class": "StateMachineComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/state_machine.gd"
+}, {
+"base": "StateMachine",
 "class": "StateMachineJobOffer",
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/state_machine.gd"
@@ -239,6 +264,7 @@ _global_script_class_icons={
 "InteractionLine": "",
 "JobOffer": "",
 "JobRequisite": "",
+"MainComputer": "",
 "NextApplicantResume": "",
 "NextPaymentResume": "",
 "PaymentResume": "",
@@ -261,12 +287,16 @@ _global_script_class_icons={
 "StateCVApproved": "",
 "StateCVIdle": "",
 "StateCVRejected": "",
+"StateComputer": "",
+"StateComputerActive": "",
+"StateComputerIdle": "",
 "StateJobOffer": "",
 "StateJobOfferMatched": "",
 "StateJobOfferNotMatched": "",
 "StateMachine": "",
 "StateMachineApplicant": "",
 "StateMachineCV": "",
+"StateMachineComputer": "",
 "StateMachineJobOffer": ""
 }
 

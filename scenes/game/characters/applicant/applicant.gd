@@ -19,6 +19,7 @@ var salary_payment
 
 signal interaction_started()
 signal interaction_ended()
+signal new_computer_applicant()
 
 
 func _ready():
@@ -60,17 +61,21 @@ func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
 
 
-func _applicant_selected(show: bool):
-	if show:
-		emit_signal("interaction_started", self)
-	else:
-		emit_signal("interaction_ended", self)
+#func _applicant_selected(show: bool):
+#	if show:
+#		emit_signal("interaction_started", self)
+#	else:
+#		emit_signal("interaction_ended", self)
 
 
 func process_applicant(resultStatus):
 	var result = ApplicantResult.new(applicant_name,"",category_job,company_name,resultStatus, salary_payment,null)
 	evaluation = result
 	$StateMachine.current_state.process_applicant()
+
+
+func _on_new_applicant_computer():
+	emit_signal("new_computer_applicant", self)
 
 
 func get_status():

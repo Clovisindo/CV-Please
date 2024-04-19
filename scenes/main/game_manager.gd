@@ -23,7 +23,8 @@ func _wire_events():
 	current_decision_applicant.connect("decision_made", self, "_apply_applicant_decision")
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
 	current_interaction_dialog.connect("reference_used", self, "_on_reference_used")
-
+	$MainScene/MainComputer.connect("interaction_started", self, "_on_interaction_started")
+	$MainScene/MainComputer.connect("interaction_ended", self, "_on_interaction_ended")
 
 func _on_reference_used(reference):
 	if reference is SkillPanel:
@@ -31,6 +32,8 @@ func _on_reference_used(reference):
 	elif reference is JobRequisite:
 		reference.requisite_asked()
 
+func on_new_applicant_computer(applicant):
+	$MainScene/MainComputer._on_new_applicant(applicant)
 
 func _on_interaction_started(applicant):
 	$MainScene/CVContainer.visible = true
@@ -86,8 +89,8 @@ func _instantiate_panels():
 		new_applicant.add_data(puzzle.applicant_name,
 			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.payment_salary, puzzle.detail_validations)
 		applicant_list.append(new_applicant)
-		new_applicant.connect("interaction_started", self, "_on_interaction_started")
-		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
+		new_applicant.connect("new_computer_applicant", self, "on_new_applicant_computer")
+
 
 
 func _on_working_day_ended():
