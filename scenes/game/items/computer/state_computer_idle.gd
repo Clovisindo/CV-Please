@@ -3,11 +3,11 @@ extends StateComputer
 class_name StateComputerIdle
 
 
-func enter():
-	pass
+#func enter():
+#	get_parent().get_parent().disabled = true
 
 
-func _change_state():
+func _active_main_computer():
 	emit_signal("transitioned","active")
 
 

@@ -12,5 +12,5 @@ func enter():
 
 
 func exit():
-	pass
-	#emit signal al mainComputer para avanzar a estado inactivo
+	applicant._unload_applicant_computer()	#emit signal al mainComputer para avanzar a estado inactivo
+

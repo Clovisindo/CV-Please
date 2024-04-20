@@ -5,7 +5,10 @@ class_name StateComputerActive
 var show:bool = false
 
 
-func _change_state():
+#func enter():
+#	get_parent().get_parent().disabled = false
+
+func _disable_main_computer():
 	emit_signal("transitioned","idle")
 
 

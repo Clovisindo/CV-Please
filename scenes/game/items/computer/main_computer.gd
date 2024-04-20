@@ -22,4 +22,8 @@ func _applicant_selected(show: bool):
 
 func _load_applicant_computer(_applicant):
 	current_applicant = _applicant
-	$StateMachine.current_state._change_state()#TODO cambiar por ir directo al estado active
+	$StateMachine.current_state._active_main_computer()
+
+
+func _unload_applicant_computer():
+	$StateMachine.current_state._disable_main_computer()

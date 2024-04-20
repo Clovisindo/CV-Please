@@ -9,23 +9,19 @@ var initial_y_pos = 0
 
 
 func enter():
-#	applicant._applicant_selected(true)
 	initial_y_pos = portrait.position.y
-	#emit signal al mainComputer para avanzar a estado activo 
-	applicant._on_new_applicant_computer()
 
 
 func exit():
-#	applicant._applicant_selected(false)
 	var tween = create_tween().tween_property(portrait, "position:y", initial_y_pos, 1)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
-	
 
 
 func handle_input(event: InputEvent):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		emit_signal("transitioned","Waiting")
+		applicant._unload_applicant_computer()
 
 
 func update(delta):
@@ -37,3 +33,4 @@ func update(delta):
 
 func process_applicant():
 	emit_signal("transitioned","Evaluated")
+	
