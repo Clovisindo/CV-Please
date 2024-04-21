@@ -70,7 +70,7 @@ func _load_applicant_computer():
 
 
 func _unload_applicant_computer():
-	emit_signal("unload_computer_applicant")
+	emit_signal("unload_computer_applicant", self)
 
 func get_status():
 	return $StateMachine.current_state

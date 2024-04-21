@@ -37,8 +37,9 @@ func on_new_applicant_computer(applicant):#inicia mainComputer con el applicant 
 	$MainScene/MainComputer._load_applicant_computer(applicant)
 
 
-func on_unload_applicant_computer():#inicia mainComputer con el applicant actual
+func on_unload_applicant_computer(applicant):#inicia mainComputer con el applicant actual
 	$MainScene/MainComputer._unload_applicant_computer()
+	_on_interaction_ended(applicant)
 
 func _on_interaction_started(applicant):
 	$MainScene/CVContainer.visible = true

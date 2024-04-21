@@ -38,6 +38,7 @@ margin_bottom = 419.0
 theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
+visible = false
 margin_left = 80.0
 margin_top = 32.0
 margin_right = 580.0
@@ -45,6 +46,7 @@ margin_bottom = 632.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
+visible = false
 margin_left = 851.0
 margin_top = 19.0
 margin_right = 1351.0
@@ -94,3 +96,4 @@ margin_bottom = 43.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 
 [node name="MainComputer" parent="MainScene" instance=ExtResource( 7 )]
+disabled = false

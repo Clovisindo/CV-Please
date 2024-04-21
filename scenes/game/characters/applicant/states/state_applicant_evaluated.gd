@@ -9,8 +9,9 @@ func enter():
 	elif self.applicant.evaluation.current_status == ApplicantResult.Status.keys()[ApplicantResult.Status.NOT_VALID]:
 		portrait.flip_v = true
 	applicant.cv.process_cv(self.applicant.evaluation)
+	applicant._unload_applicant_computer()	#emit signal al mainComputer para avanzar a estado inactivo
 
 
 func exit():
-	applicant._unload_applicant_computer()	#emit signal al mainComputer para avanzar a estado inactivo
+	pass	
 
