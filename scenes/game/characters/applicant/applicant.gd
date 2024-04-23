@@ -19,6 +19,8 @@ var salary_payment
 
 signal load_computer_applicant()
 signal unload_computer_applicant()
+signal load_company_computer_applicant()
+signal unload_company_computer_applicant()
 
 
 func _ready():
@@ -71,6 +73,13 @@ func _load_applicant_computer():
 
 func _unload_applicant_computer():
 	emit_signal("unload_computer_applicant", self)
+
+func _load_company_computer():
+	emit_signal("load_company_computer_applicant")
+
+
+func _unload_company_computer():
+	emit_signal("unload_company_computer_applicant")
 
 func get_status():
 	return $StateMachine.current_state

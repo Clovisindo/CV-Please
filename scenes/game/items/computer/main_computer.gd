@@ -1,7 +1,6 @@
 extends Button
 
 
-
 class_name MainComputer
 
 var current_applicant:Applicant

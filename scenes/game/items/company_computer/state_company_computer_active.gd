@@ -1,15 +1,14 @@
-extends StateComputer
+extends StateCompanyComputer
 
-class_name StateComputerActive
+class_name StateCompanyComputerActive
 
 var show:bool = false
-
 
 func enter():
 	get_parent().get_parent().disabled = false
 	
 	
-func _disable_main_computer():
+func _disable_company_computer():
 	emit_signal("transitioned","idle")
 
 

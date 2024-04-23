@@ -8,7 +8,7 @@ export(PackedScene) onready var interaction_dialog_scene
 var applicant_list = []
 var current_applicant_index = 0
 
-var current_decision_applicant: DecisionApplicant
+var companyComputerDecision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
 
 
@@ -20,11 +20,14 @@ func _ready():
 
 
 func _wire_events():
-	current_decision_applicant.connect("decision_made", self, "_apply_applicant_decision")
+	companyComputerDecision.connect("decision_made", self, "_apply_applicant_decision")
+	companyComputerDecision.connect("decision_cancel", self, "on_unload_company_validation")
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
 	current_interaction_dialog.connect("reference_used", self, "_on_reference_used")
 	$MainScene/MainComputer.connect("interaction_started", self, "_on_interaction_started")
 	$MainScene/MainComputer.connect("interaction_ended", self, "_on_interaction_ended")
+	$MainScene/CompanyComputer.connect("show_computer_validation", self, "on_load_company_validation")# mostrar panel decision
+	$MainScene/CompanyComputer.connect("end_computer_validation", self, "on_unload_company_validation")#ocultar panel decision
 	
 
 func _on_reference_used(reference):
@@ -40,6 +43,24 @@ func on_new_applicant_computer(applicant):#inicia mainComputer con el applicant 
 func on_unload_applicant_computer(applicant):#inicia mainComputer con el applicant actual
 	$MainScene/MainComputer._unload_applicant_computer()
 	_on_interaction_ended(applicant)
+
+
+func on_load_company_validation():
+	companyComputerDecision.visible = true
+	var tween = create_tween()
+	tween.tween_property(companyComputerDecision, "modulate:a", 1, 3)
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+
+func on_unload_company_validation():
+	companyComputerDecision.visible = false
+
+
+func on_load_company_computer():#inicia mainComputer con el applicant actual
+	$MainScene/CompanyComputer._load_company_computer()
+
+
+func on_unload_company_computer():#inicia mainComputer con el applicant actual
+	$MainScene/CompanyComputer._unload_company_computer()
 
 func _on_interaction_started(applicant):
 	$MainScene/CVContainer.visible = true
@@ -84,8 +105,7 @@ func _apply_applicant_decision(evaluationStatus: String):
 
 func _instantiate_panels():
 	# Static Panels
-	current_decision_applicant = decision_applicant_scene.instance()
-	$MainScene/DecisionApplContainer.add_child(current_decision_applicant)
+	companyComputerDecision = get_node("MainScene/ValidationCompanyComputer")
 	current_interaction_dialog = interaction_dialog_scene.instance()
 	$MainScene/InteractionDialogContainer.add_child(current_interaction_dialog)
 
@@ -97,6 +117,8 @@ func _instantiate_panels():
 		applicant_list.append(new_applicant)
 		new_applicant.connect("load_computer_applicant", self, "on_new_applicant_computer")
 		new_applicant.connect("unload_computer_applicant", self, "on_unload_applicant_computer")
+		new_applicant.connect("load_company_computer_applicant", self, "on_load_company_computer")# esto donde esta conectando??
+		new_applicant.connect("unload_company_computer_applicant", self, "on_unload_company_computer")
 
 
 
@@ -120,6 +142,7 @@ func _process_applicant(applicant: Applicant, evaluationStatus: String):
 	process_validations_applicant(applicant)
 	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
+	on_unload_company_validation()
 	_load_next_applicant()
 
 

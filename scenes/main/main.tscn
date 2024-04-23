@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/sprites/UI/Main_scene_bg.PNG" type="Texture" id=5]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=6]
 [ext_resource path="res://scenes/game/items/computer/main_computer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/items/company_computer/company_computer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/items/company_computer/ValidationCompanyComputer.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
@@ -14,6 +16,8 @@ region_rect = Rect2( 0, 0, 956, 548 )
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.00784314, 0, 0, 0 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="GameMainScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -96,4 +100,14 @@ margin_bottom = 43.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 
 [node name="MainComputer" parent="MainScene" instance=ExtResource( 7 )]
-disabled = false
+hint_tooltip = "Start to work"
+custom_styles/disabled = SubResource( 3 )
+
+[node name="CompanyComputer" parent="MainScene" instance=ExtResource( 8 )]
+margin_left = 653.0
+margin_top = 410.0
+margin_right = 753.0
+margin_bottom = 510.0
+
+[node name="ValidationCompanyComputer" parent="MainScene" instance=ExtResource( 9 )]
+visible = false

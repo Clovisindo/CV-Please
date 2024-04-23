@@ -22,6 +22,7 @@ func handle_input(event: InputEvent):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		emit_signal("transitioned","Waiting")
 		applicant._unload_applicant_computer()
+		applicant._unload_company_computer()
 
 
 func update(delta):
