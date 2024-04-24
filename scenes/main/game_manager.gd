@@ -119,6 +119,7 @@ func _instantiate_panels():
 		new_applicant.connect("unload_computer_applicant", self, "on_unload_applicant_computer")
 		new_applicant.connect("load_company_computer_applicant", self, "on_load_company_computer")# esto donde esta conectando??
 		new_applicant.connect("unload_company_computer_applicant", self, "on_unload_company_computer")
+		new_applicant.set_positions_applicant($MainScene/ApplicantContainer/ApplicantEntrancePosition.position,$MainScene/ApplicantContainer/ApplicantInterviewPosition.position)
 
 
 
@@ -140,7 +141,7 @@ func _on_working_day_ended():
 func _process_applicant(applicant: Applicant, evaluationStatus: String):
 	applicant.process_applicant(evaluationStatus)
 	process_validations_applicant(applicant)
-	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
+	# $MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
 	on_unload_company_validation()
 	_load_next_applicant()

@@ -13,6 +13,9 @@ var detail_validations:Array
 var applicant_name = "Default name"
 var is_valid_applicant = false
 
+var entrance_position :Vector2
+var interview_position :Vector2
+
 var company_name 
 var category_job
 var salary_payment
@@ -66,6 +69,10 @@ func process_applicant(resultStatus):
 	evaluation = result
 	$StateMachine.current_state.process_applicant()
 
+
+func set_positions_applicant(_entrace_position, _interview_position):
+	entrance_position = _entrace_position
+	interview_position = _interview_position
 
 func _load_applicant_computer():
 	emit_signal("load_computer_applicant", self)

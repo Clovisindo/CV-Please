@@ -33,5 +33,5 @@ func update(delta):
 
 
 func process_applicant():
-	emit_signal("transitioned","Evaluated")
+	emit_signal("transitioned","Animating")
 	

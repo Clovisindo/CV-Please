@@ -11,6 +11,7 @@ func enter():
 	applicant.cv.process_cv(self.applicant.evaluation)
 	applicant._unload_applicant_computer()	#emit signal al mainComputer para avanzar a estado inactivo
 	applicant._unload_company_computer()
+	applicant.visible = false
 
 
 func exit():

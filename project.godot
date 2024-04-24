@@ -160,6 +160,11 @@ _global_script_classes=[ {
 "path": "res://scenes/game/characters/applicant/states/state_applicant.gd"
 }, {
 "base": "StateApplicant",
+"class": "StateApplicantAnimating",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_animating.gd"
+}, {
+"base": "StateApplicant",
 "class": "StateApplicantEvaluated",
 "language": "GDScript",
 "path": "res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd"
@@ -310,6 +315,7 @@ _global_script_class_icons={
 "SkillPanel": "",
 "State": "",
 "StateApplicant": "",
+"StateApplicantAnimating": "",
 "StateApplicantEvaluated": "",
 "StateApplicantReviewing": "",
 "StateApplicantWaiting": "",
