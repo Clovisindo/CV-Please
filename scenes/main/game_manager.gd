@@ -12,6 +12,7 @@ var current_applicant_index = 0
 var companyComputerDecision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
 
+signal company_alert_message
 
 func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
@@ -29,6 +30,7 @@ func _wire_events():
 	$MainScene/MainComputer.connect("interaction_ended", self, "_on_interaction_ended")
 	$MainScene/CompanyComputer.connect("show_computer_validation", self, "on_load_company_validation")# mostrar panel decision
 	$MainScene/CompanyComputer.connect("end_computer_validation", self, "on_unload_company_validation")#ocultar panel decision
+	self.connect("company_alert_message",$MainScene/CompanyAlertsPanel,"_show_panel_alert")
 	
 
 func _on_reference_used(reference):
@@ -102,6 +104,10 @@ func _apply_applicant_decision(evaluationStatus: String):
 			and current_applicant.get_cv().get_status() is StateCVActive
 		):
 			_process_applicant(current_applicant, evaluationStatus)
+	else:
+		emit_signal("company_alert_message", "Ask something about CV.")
+
+
 
 
 func _instantiate_panels():
