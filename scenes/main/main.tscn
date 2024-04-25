@@ -62,21 +62,19 @@ theme = ExtResource( 6 )
 [node name="ApplicantContainer" type="PanelContainer" parent="MainScene"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -622.0
-margin_top = 23.0
-margin_right = -410.0
-margin_bottom = 170.0
+margin_left = -557.0
+margin_top = -95.0
+margin_right = -557.0
+margin_bottom = -95.0
 custom_styles/panel = SubResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainScene/ApplicantContainer"]
-margin_right = 212.0
-margin_bottom = 147.0
-
 [node name="ApplicantEntrancePosition" type="Node2D" parent="MainScene/ApplicantContainer"]
-position = Vector2( 92, 65 )
+
+[node name="ApplicantMiddlePosition" type="Node2D" parent="MainScene/ApplicantContainer"]
+position = Vector2( 0, 400 )
 
 [node name="ApplicantInterviewPosition" type="Node2D" parent="MainScene/ApplicantContainer"]
-position = Vector2( -180, 472 )
+position = Vector2( -280, 400 )
 
 [node name="DecisionApplContainer" type="PanelContainer" parent="MainScene"]
 anchor_left = 1.0

@@ -5,6 +5,7 @@ export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
 export(PackedScene) onready var interaction_dialog_scene
 
+
 var applicant_list = []
 var current_applicant_index = 0
 
@@ -114,7 +115,7 @@ func _instantiate_panels():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name,
 			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.payment_salary, puzzle.detail_validations)
-		new_applicant.set_positions_applicant($MainScene/ApplicantContainer/ApplicantEntrancePosition.position,$MainScene/ApplicantContainer/ApplicantInterviewPosition.position)
+		new_applicant.set_positions_applicant($MainScene/ApplicantContainer/ApplicantEntrancePosition.position,$MainScene/ApplicantContainer/ApplicantMiddlePosition.position ,$MainScene/ApplicantContainer/ApplicantInterviewPosition.position)
 		applicant_list.append(new_applicant)
 		wired_events_applicant(new_applicant)
 
@@ -160,6 +161,6 @@ func process_validations_applicant(applicant: Applicant):
 
 func _load_next_applicant():
 	if applicant_list.size() - 1 >= current_applicant_index:
-		$MainScene/ApplicantContainer/VBoxContainer.add_child(applicant_list[current_applicant_index])
+		$MainScene/ApplicantContainer.add_child(applicant_list[current_applicant_index])
 	else:
 		$MainScene/EndWorkingDayButton.visible = true

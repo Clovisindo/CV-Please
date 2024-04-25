@@ -14,6 +14,7 @@ var applicant_name = "Default name"
 var is_valid_applicant = false
 
 var entrance_position :Vector2
+var middle_position :Vector2
 var interview_position :Vector2
 
 var company_name 
@@ -71,8 +72,9 @@ func process_applicant(resultStatus):
 	$StateMachine.current_state.process_applicant()# de reviewing a evaluated
 
 
-func set_positions_applicant(_entrace_position, _interview_position):
+func set_positions_applicant(_entrace_position, _middle_position, _interview_position):
 	entrance_position = _entrace_position
+	middle_position = _middle_position
 	interview_position = _interview_position
 
 func _load_applicant_computer():

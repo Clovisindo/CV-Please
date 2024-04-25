@@ -9,7 +9,9 @@ func enter():
 
 
 func move_applicant():
-    var tween = create_tween().tween_property(portrait, "position", self.applicant.interview_position, velocity)
+    var tween = create_tween().set_parallel(false)
+    tween.tween_property(portrait, "position", self.applicant.middle_position, velocity)
+    tween.chain().tween_property(portrait, "position", self.applicant.interview_position, velocity)
     yield(tween,"finished")
     applicant_to_review()
 
