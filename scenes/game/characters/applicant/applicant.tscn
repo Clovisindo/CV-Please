@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/game/characters/applicant/applicant.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_waiting.gd" type="Script" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://scenes/game/characters/applicant/state_machine.gd" type="Script" id=5]
 [ext_resource path="res://assets/icon.png" type="Texture" id=6]
 [ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_animating.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_exit.gd" type="Script" id=8]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_aplicant_entrance.gd" type="Script" id=10]
 
 [node name="Applicant" type="Panel"]
 anchor_right = 0.146484
@@ -60,5 +61,8 @@ script = ExtResource( 3 )
 [node name="Evaluated" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
-[node name="Animating" type="Node" parent="StateMachine"]
+[node name="Exit" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+
+[node name="Entrance" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )

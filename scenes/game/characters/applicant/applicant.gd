@@ -30,6 +30,7 @@ func _ready():
 	$StateMachine.init(self)
 	$Container/PortraitRect/Portrait.texture = portrait_texture
 	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
+	$StateMachine.current_state.entrance_applicant()# de waiting(inicio vacio) a entrance
 
 
 func add_data(name: String, skills: Array, requisites: Array, company: String, category : String, valid: bool,payment : int, validations:Array):
@@ -67,7 +68,7 @@ func _gui_input(event):
 func process_applicant(resultStatus):
 	var result = ApplicantResult.new(applicant_name,"",category_job,company_name,resultStatus, salary_payment,null)
 	evaluation = result
-	$StateMachine.current_state.process_applicant()
+	$StateMachine.current_state.process_applicant()# de reviewing a evaluated
 
 
 func set_positions_applicant(_entrace_position, _interview_position):

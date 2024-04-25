@@ -114,14 +114,16 @@ func _instantiate_panels():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name,
 			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.payment_salary, puzzle.detail_validations)
-		applicant_list.append(new_applicant)
-		new_applicant.connect("load_computer_applicant", self, "on_new_applicant_computer")
-		new_applicant.connect("unload_computer_applicant", self, "on_unload_applicant_computer")
-		new_applicant.connect("load_company_computer_applicant", self, "on_load_company_computer")# esto donde esta conectando??
-		new_applicant.connect("unload_company_computer_applicant", self, "on_unload_company_computer")
 		new_applicant.set_positions_applicant($MainScene/ApplicantContainer/ApplicantEntrancePosition.position,$MainScene/ApplicantContainer/ApplicantInterviewPosition.position)
+		applicant_list.append(new_applicant)
+		wired_events_applicant(new_applicant)
 
 
+func wired_events_applicant(new_applicant: Applicant):
+	new_applicant.connect("load_computer_applicant", self, "on_new_applicant_computer")
+	new_applicant.connect("unload_computer_applicant", self, "on_unload_applicant_computer")
+	new_applicant.connect("load_company_computer_applicant", self, "on_load_company_computer")
+	new_applicant.connect("unload_company_computer_applicant", self, "on_unload_company_computer")
 
 func _on_working_day_ended():
 	var list_applicant_result = []
@@ -141,7 +143,6 @@ func _on_working_day_ended():
 func _process_applicant(applicant: Applicant, evaluationStatus: String):
 	applicant.process_applicant(evaluationStatus)
 	process_validations_applicant(applicant)
-	# $MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
 	on_unload_company_validation()
 	_load_next_applicant()
