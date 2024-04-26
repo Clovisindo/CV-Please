@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/sprites/UI/Button06.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=4]
-[ext_resource path="res://scenes/game/items/company_computer/ValidationCompanyComputer.gd" type="Script" id=5]
+[ext_resource path="res://scenes/game/items/company_computer/validation_company_computer.gd" type="Script" id=5]
 [ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=5]
