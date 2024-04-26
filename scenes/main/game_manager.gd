@@ -49,13 +49,29 @@ func on_unload_applicant_computer(applicant):#inicia mainComputer con el applica
 
 
 func on_load_company_validation():
-	companyComputerDecision.visible = true
-	var tween = create_tween()
-	tween.tween_property(companyComputerDecision, "modulate:a", 1, 3)
-	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	open_panel_tween(companyComputerDecision)
+
 
 func on_unload_company_validation():
-	companyComputerDecision.visible = false
+	close_panel_tween(companyComputerDecision)
+
+
+func open_panel_tween(panel_node):
+	panel_node.rect_scale.x = 0
+	panel_node.rect_scale.y = 0
+	panel_node.visible = true
+	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel_node,"rect_scale", Vector2(1,1),1)
+
+
+func close_panel_tween(panel_node):
+	panel_node.rect_scale.x = 1
+	panel_node.rect_scale.y = 1
+	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel_node,"rect_scale", Vector2(0,0),1)
+	yield(tween,"finished")
+	panel_node.visible = false
+	
 
 
 func on_load_company_computer():#inicia mainComputer con el applicant actual
@@ -65,19 +81,20 @@ func on_load_company_computer():#inicia mainComputer con el applicant actual
 func on_unload_company_computer():#inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer._unload_company_computer()
 
+
 func _on_interaction_started(applicant):
-	$MainScene/CVContainer.visible = true
+	open_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.add_child(applicant.get_cv())
-	$MainScene/JobOfferContainer.visible = true
+	open_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
 
 
 func _on_interaction_ended(applicant):
-	$MainScene/CVContainer.visible = false
+	close_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
-	$MainScene/JobOfferContainer.visible = false
+	close_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
 
 

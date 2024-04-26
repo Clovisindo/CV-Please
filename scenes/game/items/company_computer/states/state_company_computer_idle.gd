@@ -3,7 +3,7 @@ extends StateCompanyComputer
 class_name StateCompanyComputerIdle
 
 func enter():
-	companyComputer.disabled = true
+	get_parent().get_parent().disabled = true
 
 
 func _active_company_computer():

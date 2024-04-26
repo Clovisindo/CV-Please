@@ -232,12 +232,12 @@ _global_script_classes=[ {
 "base": "StateComputer",
 "class": "StateComputerActive",
 "language": "GDScript",
-"path": "res://scenes/game/items/computer/state_computer_active.gd"
+"path": "res://scenes/game/items/computer/states/state_computer_active.gd"
 }, {
 "base": "StateComputer",
 "class": "StateComputerIdle",
 "language": "GDScript",
-"path": "res://scenes/game/items/computer/state_computer_idle.gd"
+"path": "res://scenes/game/items/computer/states/state_computer_idle.gd"
 }, {
 "base": "State",
 "class": "StateJobOffer",
