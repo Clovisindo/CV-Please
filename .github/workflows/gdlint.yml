@@ -13,4 +13,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: Scony/godot-gdscript-toolkit@master
-    - run: gdlint $(git ls-files '*.gd')
+    - run: gdformat --check src scenes
+    - run: gdlint src scenes
