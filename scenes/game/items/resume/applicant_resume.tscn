@@ -102,7 +102,3 @@ script = ExtResource( 5 )
 
 [node name="PaymentPanel" parent="Panel" instance=ExtResource( 4 )]
 visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1600.0
-margin_bottom = 900.0

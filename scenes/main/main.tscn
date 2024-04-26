@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -6,13 +6,31 @@
 [ext_resource path="res://scenes/game/ui/interaction_dialog/interaction_dialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/UI/Main_scene_bg.PNG" type="Texture" id=5]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=6]
+[ext_resource path="res://scenes/game/items/computer/main_computer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/items/company_computer/company_computer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/items/company_computer/ValidationCompanyComputer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/ui/company_alert_panel/CompanyAlertsPanel.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=11]
+[ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=12]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 956, 548 )
 
+[sub_resource type="StyleBoxEmpty" id=4]
+
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.00784314, 0, 0, 0 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxTexture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=6]
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 105, 21 )
 
 [node name="GameMainScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,29 +55,37 @@ margin_bottom = 419.0
 theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
-margin_left = 25.0
-margin_top = 19.0
-margin_right = 525.0
-margin_bottom = 619.0
+visible = false
+margin_left = 80.0
+margin_top = 32.0
+margin_right = 580.0
+margin_bottom = 632.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
-margin_left = 678.0
+visible = false
+margin_left = 851.0
 margin_top = 19.0
-margin_right = 1178.0
+margin_right = 1351.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 
 [node name="ApplicantContainer" type="PanelContainer" parent="MainScene"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -225.0
-margin_bottom = 468.0
-theme = ExtResource( 6 )
+margin_left = -557.0
+margin_top = -95.0
+margin_right = -557.0
+margin_bottom = -95.0
+custom_styles/panel = SubResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainScene/ApplicantContainer"]
-margin_right = 225.0
-margin_bottom = 468.0
+[node name="ApplicantEntrancePosition" type="Node2D" parent="MainScene/ApplicantContainer"]
+
+[node name="ApplicantMiddlePosition" type="Node2D" parent="MainScene/ApplicantContainer"]
+position = Vector2( 0, 400 )
+
+[node name="ApplicantInterviewPosition" type="Node2D" parent="MainScene/ApplicantContainer"]
+position = Vector2( -280, 400 )
 
 [node name="DecisionApplContainer" type="PanelContainer" parent="MainScene"]
 anchor_left = 1.0
@@ -91,3 +117,47 @@ margin_top = 7.0
 margin_right = 68.0
 margin_bottom = 43.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
+
+[node name="MainComputer" parent="MainScene" instance=ExtResource( 7 )]
+hint_tooltip = "Start to work"
+custom_styles/disabled = SubResource( 3 )
+
+[node name="CompanyComputer" parent="MainScene" instance=ExtResource( 8 )]
+margin_left = 653.0
+margin_top = 410.0
+margin_right = 753.0
+margin_bottom = 510.0
+
+[node name="ValidationCompanyComputer" parent="MainScene" instance=ExtResource( 9 )]
+visible = false
+
+[node name="CompanyAlertsPanel" type="Panel" parent="MainScene"]
+visible = false
+margin_left = 556.0
+margin_top = 156.0
+margin_right = 1093.0
+margin_bottom = 258.0
+theme = ExtResource( 6 )
+script = ExtResource( 10 )
+
+[node name="AlertLabel" type="RichTextLabel" parent="MainScene/CompanyAlertsPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -162.5
+margin_top = -26.5
+margin_right = 162.5
+margin_bottom = 26.5
+
+[node name="CloseButton" type="Button" parent="MainScene/CompanyAlertsPanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -77.0
+margin_bottom = 37.0
+theme = ExtResource( 6 )
+custom_fonts/font = ExtResource( 12 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+text = "Close"

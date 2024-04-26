@@ -5,12 +5,14 @@ export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
 export(PackedScene) onready var interaction_dialog_scene
 
+
 var applicant_list = []
 var current_applicant_index = 0
 
-var current_decision_applicant: DecisionApplicant
+var companyComputerDecision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
 
+signal company_alert_message
 
 func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
@@ -20,10 +22,16 @@ func _ready():
 
 
 func _wire_events():
-	current_decision_applicant.connect("decision_made", self, "_apply_applicant_decision")
+	companyComputerDecision.connect("decision_made", self, "_apply_applicant_decision")
+	companyComputerDecision.connect("decision_cancel", self, "on_unload_company_validation")
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
 	current_interaction_dialog.connect("reference_used", self, "_on_reference_used")
-
+	$MainScene/MainComputer.connect("interaction_started", self, "_on_interaction_started")
+	$MainScene/MainComputer.connect("interaction_ended", self, "_on_interaction_ended")
+	$MainScene/CompanyComputer.connect("show_computer_validation", self, "on_load_company_validation")# mostrar panel decision
+	$MainScene/CompanyComputer.connect("end_computer_validation", self, "on_unload_company_validation")#ocultar panel decision
+	self.connect("company_alert_message",$MainScene/CompanyAlertsPanel,"_show_panel_alert")
+	
 
 func _on_reference_used(reference):
 	if reference is SkillPanel:
@@ -31,20 +39,62 @@ func _on_reference_used(reference):
 	elif reference is JobRequisite:
 		reference.requisite_asked()
 
+func on_new_applicant_computer(applicant):#inicia mainComputer con el applicant actual
+	$MainScene/MainComputer._load_applicant_computer(applicant)
+
+
+func on_unload_applicant_computer(applicant):#inicia mainComputer con el applicant actual
+	$MainScene/MainComputer._unload_applicant_computer()
+	_on_interaction_ended(applicant)
+
+
+func on_load_company_validation():
+	open_panel_tween(companyComputerDecision)
+
+
+func on_unload_company_validation():
+	close_panel_tween(companyComputerDecision)
+
+
+func open_panel_tween(panel_node):
+	panel_node.rect_scale.x = 0
+	panel_node.rect_scale.y = 0
+	panel_node.visible = true
+	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel_node,"rect_scale", Vector2(1,1),1)
+
+
+func close_panel_tween(panel_node):
+	panel_node.rect_scale.x = 1
+	panel_node.rect_scale.y = 1
+	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel_node,"rect_scale", Vector2(0,0),1)
+	yield(tween,"finished")
+	panel_node.visible = false
+	
+
+
+func on_load_company_computer():#inicia mainComputer con el applicant actual
+	$MainScene/CompanyComputer._load_company_computer()
+
+
+func on_unload_company_computer():#inicia mainComputer con el applicant actual
+	$MainScene/CompanyComputer._unload_company_computer()
+
 
 func _on_interaction_started(applicant):
-	$MainScene/CVContainer.visible = true
+	open_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.add_child(applicant.get_cv())
-	$MainScene/JobOfferContainer.visible = true
+	open_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
 
 
 func _on_interaction_ended(applicant):
-	$MainScene/CVContainer.visible = false
+	close_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
-	$MainScene/JobOfferContainer.visible = false
+	close_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
 
 
@@ -71,12 +121,15 @@ func _apply_applicant_decision(evaluationStatus: String):
 			and current_applicant.get_cv().get_status() is StateCVActive
 		):
 			_process_applicant(current_applicant, evaluationStatus)
+	else:
+		emit_signal("company_alert_message", "Ask something about CV.")
+
+
 
 
 func _instantiate_panels():
 	# Static Panels
-	current_decision_applicant = decision_applicant_scene.instance()
-	$MainScene/DecisionApplContainer.add_child(current_decision_applicant)
+	companyComputerDecision = get_node("MainScene/ValidationCompanyComputer")
 	current_interaction_dialog = interaction_dialog_scene.instance()
 	$MainScene/InteractionDialogContainer.add_child(current_interaction_dialog)
 
@@ -85,10 +138,16 @@ func _instantiate_panels():
 		var new_applicant = applicant_scene.instance()
 		new_applicant.add_data(puzzle.applicant_name,
 			puzzle.skills_answers, puzzle.requisites_answers, puzzle.company_name, puzzle.category_job, puzzle.validate_solution, puzzle.payment_salary, puzzle.detail_validations)
+		new_applicant.set_positions_applicant($MainScene/ApplicantContainer/ApplicantEntrancePosition.position,$MainScene/ApplicantContainer/ApplicantMiddlePosition.position ,$MainScene/ApplicantContainer/ApplicantInterviewPosition.position)
 		applicant_list.append(new_applicant)
-		new_applicant.connect("interaction_started", self, "_on_interaction_started")
-		new_applicant.connect("interaction_ended", self, "_on_interaction_ended")
+		wired_events_applicant(new_applicant)
 
+
+func wired_events_applicant(new_applicant: Applicant):
+	new_applicant.connect("load_computer_applicant", self, "on_new_applicant_computer")
+	new_applicant.connect("unload_computer_applicant", self, "on_unload_applicant_computer")
+	new_applicant.connect("load_company_computer_applicant", self, "on_load_company_computer")
+	new_applicant.connect("unload_company_computer_applicant", self, "on_unload_company_computer")
 
 func _on_working_day_ended():
 	var list_applicant_result = []
@@ -108,8 +167,8 @@ func _on_working_day_ended():
 func _process_applicant(applicant: Applicant, evaluationStatus: String):
 	applicant.process_applicant(evaluationStatus)
 	process_validations_applicant(applicant)
-	$MainScene/ApplicantContainer/VBoxContainer.remove_child(applicant)
 	current_applicant_index += 1
+	on_unload_company_validation()
 	_load_next_applicant()
 
 
@@ -125,6 +184,6 @@ func process_validations_applicant(applicant: Applicant):
 
 func _load_next_applicant():
 	if applicant_list.size() - 1 >= current_applicant_index:
-		$MainScene/ApplicantContainer/VBoxContainer.add_child(applicant_list[current_applicant_index])
+		$MainScene/ApplicantContainer.add_child(applicant_list[current_applicant_index])
 	else:
 		$MainScene/EndWorkingDayButton.visible = true

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/game/items/computer/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/items/computer/main_computer.gd" type="Script" id=2]
+[ext_resource path="res://scenes/game/items/computer/states/state_computer_idle.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/items/computer/states/state_computer_active.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.32549, 0.498039, 0.788235, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.905882, 0.054902, 0.054902, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[node name="MainComputerButton" type="Button"]
+margin_left = 760.0
+margin_top = 406.0
+margin_right = 840.0
+margin_bottom = 461.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+disabled = true
+script = ExtResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="active" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="MainComputer" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
