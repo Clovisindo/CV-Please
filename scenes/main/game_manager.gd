@@ -13,7 +13,7 @@ var current_interaction_dialog: InteractionDialog
 
 
 func _ready():
-	$MainScene/CurrentMonth.text = "Current month: "  + String(Global.current_month)
+	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
