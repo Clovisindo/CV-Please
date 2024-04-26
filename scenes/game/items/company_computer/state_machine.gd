@@ -2,6 +2,12 @@ extends StateMachine
 
 class_name StateMachineCompanyComputer
 
+
+func init(companyComputer: CompanyComputer):
+	for child in get_children():
+		child.companyComputer = companyComputer
+
+
 func _ready():
 	current_state = get_node(initial_state)
 	for child in get_children():

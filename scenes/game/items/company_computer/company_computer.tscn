@@ -2,8 +2,8 @@
 
 [ext_resource path="res://scenes/game/items/company_computer/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/items/company_computer/company_computer.gd" type="Script" id=5]
-[ext_resource path="res://scenes/game/items/company_computer/state_company_computer_idle.gd" type="Script" id=7]
-[ext_resource path="res://scenes/game/items/company_computer/state_company_computer_active.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/items/company_computer/states/state_company_computer_idle.gd" type="Script" id=7]
+[ext_resource path="res://scenes/game/items/company_computer/states/state_company_computer_active.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )

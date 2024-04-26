@@ -217,12 +217,12 @@ _global_script_classes=[ {
 "base": "StateCompanyComputer",
 "class": "StateCompanyComputerActive",
 "language": "GDScript",
-"path": "res://scenes/game/items/company_computer/state_company_computer_active.gd"
+"path": "res://scenes/game/items/company_computer/states/state_company_computer_active.gd"
 }, {
 "base": "StateCompanyComputer",
 "class": "StateCompanyComputerIdle",
 "language": "GDScript",
-"path": "res://scenes/game/items/company_computer/state_company_computer_idle.gd"
+"path": "res://scenes/game/items/company_computer/states/state_company_computer_idle.gd"
 }, {
 "base": "State",
 "class": "StateComputer",

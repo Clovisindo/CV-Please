@@ -6,6 +6,8 @@ signal show_computer_validation
 signal end_computer_validation
 
 
+func _ready() -> void:
+	$StateMachine.init(self)
 
 func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
