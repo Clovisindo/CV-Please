@@ -29,6 +29,7 @@ func requisite_idle():
 		current_status = JobOfferStatus.IDLE
 		rect_position.x = 0
 
+
 func add_data(text: String, question: String, answer: String):
 	requisite_answer = answer
 	requisite_question = question

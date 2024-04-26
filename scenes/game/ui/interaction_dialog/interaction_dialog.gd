@@ -10,6 +10,7 @@ var item_reference
 
 signal reference_used(item)
 
+
 func _ready():
 	$VBoxContainer/Button.connect("pressed", self, "_on_button_pressed")
 

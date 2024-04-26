@@ -2,15 +2,15 @@ extends StateComputer
 
 class_name StateComputerActive
 
-var show:bool = false
+var show: bool = false
 
 
 func enter():
 	get_parent().get_parent().disabled = false
-	
-	
+
+
 func _disable_main_computer():
-	emit_signal("transitioned","idle")
+	emit_signal("transitioned", "idle")
 
 
 func handle_input(event: InputEvent):

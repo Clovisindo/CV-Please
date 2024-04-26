@@ -19,7 +19,7 @@ var velocity = 25
 var x_limit = 10
 
 
-func add_data(text: String, question:String, answer: String):
+func add_data(text: String, question: String, answer: String):
 	skill_answer = answer
 	skill_question = question
 	skill_name = text
@@ -65,7 +65,7 @@ func _process_as_matched(event):
 
 
 func _process(delta):
-	_set_size_by_text();
+	_set_size_by_text()
 	if current_status == SkillStatus.SELECTED:
 		if rect_position.x >= x_limit || rect_position.x <= -1:
 			velocity *= -1

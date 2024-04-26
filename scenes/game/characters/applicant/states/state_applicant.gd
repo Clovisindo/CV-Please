@@ -8,4 +8,3 @@ var applicant: Applicant
 
 func process_applicant():
 	pass
-

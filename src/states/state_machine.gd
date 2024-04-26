@@ -14,7 +14,7 @@ func on_child_transitioned(new_state_name):
 		new_state.enter()
 		print("cambiando de estado: " + str(current_state) + " a " + str(new_state_name))
 		current_state = new_state
-		
+
 	else:
 		push_warning("Called transition on a state that does not exist")
 
@@ -22,6 +22,6 @@ func on_child_transitioned(new_state_name):
 func _process(delta):
 	current_state.update(delta)
 
-	
+
 func _physics_process(delta):
 	current_state.physics_update(delta)

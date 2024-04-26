@@ -4,7 +4,7 @@ class_name DetailResumePanel
 
 var value_text
 var value
-var money_balance#TODO: logica para pintar de color verde o rojo si saldo positivo o negativo
+var money_balance  #TODO: logica para pintar de color verde o rojo si saldo positivo o negativo
 
 
 func _set_value(_text, _value) -> void:
@@ -14,4 +14,4 @@ func _set_value(_text, _value) -> void:
 		money_balance = true
 	elif value < 0:
 		money_balance = false
-	$DetailApplicantLabel.text = _text + " " +  String(value)
+	$DetailApplicantLabel.text = _text + " " + String(value)

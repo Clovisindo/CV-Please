@@ -2,14 +2,15 @@ extends StateCompanyComputer
 
 class_name StateCompanyComputerActive
 
-var show:bool = false
+var show: bool = false
+
 
 func enter():
 	get_parent().get_parent().disabled = false
-	
-	
+
+
 func _disable_company_computer():
-	emit_signal("transitioned","idle")
+	emit_signal("transitioned", "idle")
 
 
 func handle_input(event: InputEvent):

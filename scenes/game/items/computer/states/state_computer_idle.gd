@@ -8,6 +8,4 @@ func enter():
 
 
 func _active_main_computer():
-	emit_signal("transitioned","active")
-
-
+	emit_signal("transitioned", "active")

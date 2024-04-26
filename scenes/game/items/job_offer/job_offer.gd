@@ -6,6 +6,7 @@ export(PackedScene) onready var requisite_scene
 
 signal job_requisite_selected(job_requisite)
 
+
 func add_requisites(requisites: Array):
 	if requisites:
 		for requisite in requisites:
@@ -19,6 +20,7 @@ func idle_other_requisites(selected_requisite):
 	for requisite in $JobOfferPanel/VBoxContainer.get_children():
 		if requisite != selected_requisite:
 			requisite.requisite_idle()
+
 
 func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)

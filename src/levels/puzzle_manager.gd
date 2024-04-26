@@ -1,8 +1,8 @@
 extends Node
 
-
 const LEVELS_DIR = "res://data/puzzles/"
 const TRES_SUFIX = ".tres"
+
 
 func save_puzzle(_puzzle):
 	var result = ResourceSaver.save(LEVELS_DIR + _puzzle.applicant_name + TRES_SUFIX, _puzzle)
@@ -20,7 +20,7 @@ func get_all_puzzle():
 		while file_name != "":
 			if regex.search(file_name):
 				if not dir.current_is_dir():
-					var puzzle = ResourceLoader.load(LEVELS_DIR+file_name)
+					var puzzle = ResourceLoader.load(LEVELS_DIR + file_name)
 					if puzzle is Puzzle:
 						puzzles.append(puzzle)
 			file_name = dir.get_next()
