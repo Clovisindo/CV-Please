@@ -2,18 +2,18 @@ extends Object
 
 class_name EnumUtils
 
-enum typeWork { special_type1, special_type2 }
+enum TypeWork { SPECIAL_TYPE1, SPECIAL_TYPE2 }
 
-enum dificulty { easy, medium, hard }
+enum Dificulty { EASY, MEDIUM, HARD }
 
-enum levels { level_1, level_2, level_3 }
+enum Levels { LEVEL_1, LEVEL_2, LEVEL_3 }
 
-enum TypePayments { rent, food, transport, clothes, medicine, repairs, penalty }
+enum TypePayments { RENT, FOOD, TRANSPORT, CLOTHES, MEDICINE, REPAIRS, PENALTY }
 
-enum typeSpecialCondition {
-	correct_applicant,
-	time_check,
-	applicant_no_experience,
-	no_woman,
-	no_old_people
+enum TypeSpecialCondition {
+	CORRECT_APPLICANT,
+	TIME_CHECK,
+	APPLICANT_NO_EXPERIENCE,
+	NO_WOMAN,
+	NO_OLD_PEOPLE
 }

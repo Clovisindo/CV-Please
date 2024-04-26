@@ -1,17 +1,16 @@
 extends Node2D
 class_name GameManager
 
+signal company_alert_message
+
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
 export(PackedScene) onready var interaction_dialog_scene
 
 var applicant_list = []
 var current_applicant_index = 0
-
-var companyComputerDecision: ValidationCompanyComputer
+var company_computer_decision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
-
-signal company_alert_message
 
 
 func _ready():
@@ -22,8 +21,8 @@ func _ready():
 
 
 func _wire_events():
-	companyComputerDecision.connect("decision_made", self, "_apply_applicant_decision")
-	companyComputerDecision.connect("decision_cancel", self, "on_unload_company_validation")
+	company_computer_decision.connect("decision_made", self, "_apply_applicant_decision")
+	company_computer_decision.connect("decision_cancel", self, "on_unload_company_validation")
 	$MainScene/EndWorkingDayButton.connect("pressed", self, "_on_working_day_ended")
 	current_interaction_dialog.connect("reference_used", self, "_on_reference_used")
 	$MainScene/MainComputer.connect("interaction_started", self, "_on_interaction_started")
@@ -45,20 +44,20 @@ func _on_reference_used(reference):
 
 
 func on_new_applicant_computer(applicant):  #inicia mainComputer con el applicant actual
-	$MainScene/MainComputer._load_applicant_computer(applicant)
+	$MainScene/MainComputer.load_applicant_computer(applicant)
 
 
 func on_unload_applicant_computer(applicant):  #inicia mainComputer con el applicant actual
-	$MainScene/MainComputer._unload_applicant_computer()
+	$MainScene/MainComputer.unload_applicant_computer()
 	_on_interaction_ended(applicant)
 
 
 func on_load_company_validation():
-	open_panel_tween(companyComputerDecision)
+	open_panel_tween(company_computer_decision)
 
 
 func on_unload_company_validation():
-	close_panel_tween(companyComputerDecision)
+	close_panel_tween(company_computer_decision)
 
 
 func open_panel_tween(panel_node):
@@ -79,11 +78,11 @@ func close_panel_tween(panel_node):
 
 
 func on_load_company_computer():  #inicia mainComputer con el applicant actual
-	$MainScene/CompanyComputer._load_company_computer()
+	$MainScene/CompanyComputer.load_company_computer()
 
 
 func on_unload_company_computer():  #inicia mainComputer con el applicant actual
-	$MainScene/CompanyComputer._unload_company_computer()
+	$MainScene/CompanyComputer.unload_company_computer()
 
 
 func _on_interaction_started(applicant):
@@ -119,20 +118,20 @@ func _on_job_requisite_selected(job_requisite: JobRequisite):
 	)
 
 
-func _apply_applicant_decision(evaluationStatus: String):
+func _apply_applicant_decision(evaluation_status: String):
 	var current_applicant = applicant_list[current_applicant_index]
 	if (
 		current_applicant.get_status() is StateApplicantReviewing
 		and current_applicant.get_cv().get_status() is StateCVActive
 	):
-		_process_applicant(current_applicant, evaluationStatus)
+		_process_applicant(current_applicant, evaluation_status)
 	else:
 		emit_signal("company_alert_message", "Ask something about CV.")
 
 
 func _instantiate_panels():
 	# Static Panels
-	companyComputerDecision = get_node("MainScene/ValidationCompanyComputer")
+	company_computer_decision = get_node("MainScene/ValidationCompanyComputer")
 	current_interaction_dialog = interaction_dialog_scene.instance()
 	$MainScene/InteractionDialogContainer.add_child(current_interaction_dialog)
 
@@ -188,8 +187,8 @@ func _on_working_day_ended():
 	LoadManager.load_scene(self, "res://scenes/game/items/resume/applicant_resume.tscn")
 
 
-func _process_applicant(applicant: Applicant, evaluationStatus: String):
-	applicant.process_applicant(evaluationStatus)
+func _process_applicant(applicant: Applicant, evaluation_status: String):
+	applicant.process_applicant(evaluation_status)
 	process_validations_applicant(applicant)
 	current_applicant_index += 1
 	on_unload_company_validation()
@@ -198,7 +197,7 @@ func _process_applicant(applicant: Applicant, evaluationStatus: String):
 
 func process_validations_applicant(applicant: Applicant):
 	for detail in applicant.detail_validations:
-		if detail.type_special_condition == EnumUtils.typeSpecialCondition.correct_applicant:
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.CORRECT_APPLICANT:
 			if (
 				applicant.is_valid_applicant == true
 				&& (
@@ -206,9 +205,9 @@ func process_validations_applicant(applicant: Applicant):
 					== ApplicantResult.Status.keys()[ApplicantResult.Status.VALID]
 				)
 			):
-				detail._set_value(detail.value_text_OK, detail.value_OK)
+				detail.set_value(detail.value_text_ok, detail.value_ok)
 			else:
-				detail._set_value(detail.value_text_NOK, detail.value_NOK)
+				detail.set_value(detail.value_text_nok, detail.value_nok)
 		applicant.evaluation.details_applicant = applicant.detail_validations
 
 

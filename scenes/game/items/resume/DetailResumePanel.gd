@@ -7,7 +7,7 @@ var value
 var money_balance  #TODO: logica para pintar de color verde o rojo si saldo positivo o negativo
 
 
-func _set_value(_text, _value) -> void:
+func set_value(_text, _value) -> void:
 	value_text = _text
 	value = _value
 	if value >= 0:

@@ -2,11 +2,6 @@ extends Panel
 
 class_name SkillPanel
 
-var skill_answer: String
-var skill_question: String
-var skill_name: String
-var cv: Curriculum
-
 enum SkillStatus {
 	IDLE,
 	SELECTED,
@@ -15,6 +10,10 @@ enum SkillStatus {
 
 export(SkillStatus) var current_status
 
+var skill_answer: String
+var skill_question: String
+var skill_name: String
+var cv: Curriculum
 var velocity = 25
 var x_limit = 10
 
@@ -50,7 +49,7 @@ func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		current_status = SkillStatus.SELECTED
 		if cv:
-			cv._skill_checked(self)
+			cv.skill_checked(self)
 
 
 func _process_as_selected(event):

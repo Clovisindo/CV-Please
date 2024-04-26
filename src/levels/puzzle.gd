@@ -15,9 +15,9 @@ export var company_name = "test company"
 export var category_job = "test category"
 export var payment_salary = 200
 #job offer
-export(EnumUtils.typeWork) var work_type = EnumUtils.typeWork.special_type1
-export(EnumUtils.dificulty) var difficulty = EnumUtils.dificulty.easy
-export(EnumUtils.levels) var level_day = EnumUtils.levels.level_1
+export(EnumUtils.TypeWork) var work_type = EnumUtils.TypeWork.SPECIAL_TYPE1
+export(EnumUtils.Dificulty) var difficulty = EnumUtils.Dificulty.EASY
+export(EnumUtils.Levels) var level_day = EnumUtils.Levels.LEVEL_1
 export var time_limit = 5  #se mide en acciones, no en tiempo real
 export(Array, Resource) var requisites_answers
 export(Array, Resource) var cross_questions

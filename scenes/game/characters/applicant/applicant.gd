@@ -2,6 +2,11 @@ extends Panel
 
 class_name Applicant
 
+signal load_computer_applicant
+signal unload_computer_applicant
+signal load_company_computer_applicant
+signal unload_company_computer_applicant
+
 export(Texture) onready var portrait_texture
 export(PackedScene) onready var curriculum_scene
 export(PackedScene) onready var job_offer_scene
@@ -12,19 +17,12 @@ var evaluation: ApplicantResult
 var detail_validations: Array
 var applicant_name = "Default name"
 var is_valid_applicant = false
-
 var entrance_position: Vector2
 var middle_position: Vector2
 var interview_position: Vector2
-
 var company_name
 var category_job
 var salary_payment
-
-signal load_computer_applicant
-signal unload_computer_applicant
-signal load_company_computer_applicant
-signal unload_company_computer_applicant
 
 
 func _ready():
@@ -77,9 +75,9 @@ func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
 
 
-func process_applicant(resultStatus):
+func process_applicant(result_status):
 	var result = ApplicantResult.new(
-		applicant_name, "", category_job, company_name, resultStatus, salary_payment, null
+		applicant_name, "", category_job, company_name, result_status, salary_payment, null
 	)
 	evaluation = result
 	$StateMachine.current_state.process_applicant()  # de reviewing a evaluated
@@ -91,19 +89,19 @@ func set_positions_applicant(_entrace_position, _middle_position, _interview_pos
 	interview_position = _interview_position
 
 
-func _load_applicant_computer():
+func load_applicant_computer():
 	emit_signal("load_computer_applicant", self)
 
 
-func _unload_applicant_computer():
+func unload_applicant_computer():
 	emit_signal("unload_computer_applicant", self)
 
 
-func _load_company_computer():
+func load_company_computer():
 	emit_signal("load_company_computer_applicant")
 
 
-func _unload_company_computer():
+func unload_company_computer():
 	emit_signal("unload_company_computer_applicant")
 
 

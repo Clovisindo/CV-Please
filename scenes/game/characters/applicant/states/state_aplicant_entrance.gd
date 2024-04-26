@@ -19,5 +19,5 @@ func move_applicant():
 
 func applicant_to_review():
 	emit_signal("transitioned", "Reviewing")
-	applicant._load_applicant_computer()  #emit signal al mainComputer para avanzar a estado activo
-	applicant._load_company_computer()  #emit signal al companyComputer para avanzar a estado activo
+	applicant.load_applicant_computer()  #emit signal al mainComputer para avanzar a estado activo
+	applicant.load_company_computer()  #emit signal al companyComputer para avanzar a estado activo

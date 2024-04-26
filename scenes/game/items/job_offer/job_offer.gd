@@ -2,9 +2,9 @@ extends Control
 
 class_name JobOffer
 
-export(PackedScene) onready var requisite_scene
-
 signal job_requisite_selected(job_requisite)
+
+export(PackedScene) onready var requisite_scene
 
 
 func add_requisites(requisites: Array):
@@ -26,5 +26,5 @@ func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
 
 
-func _requisite_checked(requisite):
+func requisite_checked(requisite):
 	emit_signal("job_requisite_selected", requisite)

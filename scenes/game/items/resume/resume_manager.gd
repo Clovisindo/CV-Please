@@ -2,14 +2,14 @@ extends Control
 
 class_name ResumeManager
 
+signal end_applicants_resume
+signal update_month_balance(month_balance)
+
 export(PackedScene) onready var detail_applicant
 
 var applicant_result_list: Array
 var current_applicant_index = 0
 var current_salary_amount = 0
-
-signal end_applicants_resume
-signal update_month_balance(month_balance)
 
 
 func _ready():
@@ -21,7 +21,7 @@ func _ready():
 	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")
 	self.connect("update_month_balance", $Panel/PaymentPanel, "_update_balance_month")  #actualizar parametros antes de cargar el panel de resumen pagos
 	_load_applicants()
-	_init_applicant_UI(applicant_result_list[current_applicant_index])
+	_init_applicant_ui(applicant_result_list[current_applicant_index])
 
 
 func _load_applicants():  #TODO carga dinamica
@@ -29,7 +29,7 @@ func _load_applicants():  #TODO carga dinamica
 		applicant_result_list.append(applicant)
 
 
-func _init_applicant_UI(applicant: ApplicantResult):
+func _init_applicant_ui(applicant: ApplicantResult):
 #	$Panel/resumeContainer/applicantImage.texture = applicant.image_applicant #TODO load from path
 	$Panel/resumeContainer/FullNameLabel.text = applicant.full_name
 	$Panel/resumeContainer/CategoryCompanyLabel.text = (
@@ -45,7 +45,7 @@ func _init_applicant_UI(applicant: ApplicantResult):
 
 	for detail in applicant.details_applicant:
 		var new_detail: DetailResumePanel = detail_applicant.instance()
-		new_detail._set_value(detail.value_text, detail.value)
+		new_detail.set_value(detail.value_text, detail.value)
 		$Panel/resumeContainer/DetailHBoxContainer.add_child(new_detail)
 	applicant.update_current_salary_by_details()
 
@@ -53,7 +53,7 @@ func _init_applicant_UI(applicant: ApplicantResult):
 func _load_next_applicant():
 	_calculate_amount_by_applicant()
 	current_applicant_index = current_applicant_index + 1
-	_init_applicant_UI(applicant_result_list[current_applicant_index])
+	_init_applicant_ui(applicant_result_list[current_applicant_index])
 	if current_applicant_index + 1 == applicant_result_list.size():
 		emit_signal("end_applicants_resume")
 

@@ -2,13 +2,13 @@ extends Control
 
 class_name InteractionDialog
 
+signal reference_used(item)
+
 export(PackedScene) onready var interaction_line_scene
 
 var current_question_answer: QuestionAnswer
 var current_line: InteractionLine
 var item_reference
-
-signal reference_used(item)
 
 
 func _ready():

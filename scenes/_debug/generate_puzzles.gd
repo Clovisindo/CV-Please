@@ -35,27 +35,27 @@ func _ready():
 	$"../Panel/ValSolOptionButton".get_popup().add_item("True")
 	$"../Panel/ValSolOptionButton".get_popup().add_item("False")
 
-	for typeWork in EnumUtils.typeWork:
-		$"../../JobOfferPanel/WorkTypeOptionMenu".get_popup().add_item(str(typeWork))
-	for dificculty in EnumUtils.dificulty:
+	for type_work in EnumUtils.TypeWork:
+		$"../../JobOfferPanel/WorkTypeOptionMenu".get_popup().add_item(str(type_work))
+	for dificculty in EnumUtils.Dificulty:
 		$"../../JobOfferPanel/DifficultyOpMenu".get_popup().add_item(str(dificculty))
-	for level in EnumUtils.levels:
+	for level in EnumUtils.Levels:
 		$"../../JobOfferPanel/LevelOpMenu".get_popup().add_item(str(level))
-	for specialCondition in EnumUtils.typeSpecialCondition:
+	for special_condition in EnumUtils.TypeSpecialCondition:
 		$"../../PanelSecondaryInfo/detailValidationPanel1/TypeSpecialConditionOptionMenu".get_popup().add_item(
-			str(specialCondition)
+			str(special_condition)
 		)
 		$"../../PanelSecondaryInfo/detailValidationPanel2/TypeSpecialConditionOptionMenu".get_popup().add_item(
-			str(specialCondition)
+			str(special_condition)
 		)
 		$"../../PanelSecondaryInfo/detailValidationPanel3/TypeSpecialConditionOptionMenu".get_popup().add_item(
-			str(specialCondition)
+			str(special_condition)
 		)
 		$"../../PanelSecondaryInfo/detailValidationPanel4/TypeSpecialConditionOptionMenu".get_popup().add_item(
-			str(specialCondition)
+			str(special_condition)
 		)
 		$"../../PanelSecondaryInfo/detailValidationPanel5/TypeSpecialConditionOptionMenu".get_popup().add_item(
-			str(specialCondition)
+			str(special_condition)
 		)
 
 
@@ -75,14 +75,14 @@ func _load_data_form():
 		== "True"
 	)
 	#additional info
-	var responseOK: String
-	var responseNOK: String
+	var response_ok: String
+	var response_nok: String
 	if $"../../AdditionalInfoPanel/ValidationResponseLineEdit".text.length() != 0:
-		responseOK = $"../../AdditionalInfoPanel/ValidationResponseLineEdit".text
+		response_ok = $"../../AdditionalInfoPanel/ValidationResponseLineEdit".text
 	if $"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text.length() != 0:
-		responseNOK = $"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text
+		response_nok = $"../../AdditionalInfoPanel/ValidationResponseLineEdit2".text
 	var response = ResourceValidationResponse.new()
-	response.set_data(responseOK, responseNOK)
+	response.set_data(response_ok, response_nok)
 	validation_response.append(response)
 
 	if $"../../JobOfferPanel/PaymentSalaryLineEdit".text.length() != 0:
@@ -242,9 +242,7 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel1/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment._set_data(
-			text_ok, text_nok, int(value_ok), int(value_nok), special_condition
-		)
+		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
 		detail_validations.append(detail_payment)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel2/TextOKLineEdit".text.length() != 0:
@@ -260,9 +258,7 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel2/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment._set_data(
-			text_ok, text_nok, int(value_ok), int(value_nok), special_condition
-		)
+		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
 		detail_validations.append(detail_payment)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel3/TextOKLineEdit".text.length() != 0:
@@ -278,9 +274,7 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel3/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment._set_data(
-			text_ok, text_nok, int(value_ok), int(value_nok), special_condition
-		)
+		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
 		detail_validations.append(detail_payment)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel4/TextOKLineEdit".text.length() != 0:
@@ -296,9 +290,7 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel4/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment._set_data(
-			text_ok, text_nok, int(value_ok), int(value_nok), special_condition
-		)
+		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
 		detail_validations.append(detail_payment)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel5/TextOKLineEdit".text.length() != 0:
@@ -314,9 +306,7 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel5/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment._set_data(
-			text_ok, text_nok, int(value_ok), int(value_nok), special_condition
-		)
+		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
 		detail_validations.append(detail_payment)
 
 

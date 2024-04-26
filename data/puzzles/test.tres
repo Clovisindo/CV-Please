@@ -16,8 +16,8 @@ answer = "a1"
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 6 )
-value_text_OK = "test ok 1"
-value_text_NOK = "test nok 1"
+value_text_ok = "test ok 1"
+value_text_nok = "test nok 1"
 value_OK = 2
 value_NOK = -2
 type_special_condition = 0

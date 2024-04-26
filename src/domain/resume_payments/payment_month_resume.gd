@@ -45,48 +45,49 @@ func _ready():
 	current_month = Global.current_month
 	_load_npay_from_global()
 	_set_values_by_difficulty()
-	_load_payments_UI()
+	_load_payments_ui()
 
 
-func _load_payments_UI():
+func _load_payments_ui():
 	$NarrativeGamePanel/NarrativeGameText.text = narrative_message
-	#TODO: cuando todo esto venga cargado de global, comprobarás primero que cosas no tienen datos, e instancias solo lo que el global te indica que toca para ese nivel
+	# TODO: cuando todo esto venga cargado de global, comprobarás primero que cosas no tienen datos,
+	# e instancias solo lo que el global te indica que toca para ese nivel
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(
-		_instantiate_new_detail(rent_text, rent_value, EnumUtils.TypePayments.rent)
+		_instantiate_new_detail(rent_text, rent_value, EnumUtils.TypePayments.RENT)
 	)
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(
-		_instantiate_new_detail(food_text, food_value, EnumUtils.TypePayments.food)
+		_instantiate_new_detail(food_text, food_value, EnumUtils.TypePayments.FOOD)
 	)
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(
-		_instantiate_new_detail(transport_text, transport_value, EnumUtils.TypePayments.transport)
+		_instantiate_new_detail(transport_text, transport_value, EnumUtils.TypePayments.TRANSPORT)
 	)
 
 	$PaymentPanel/ExtraBillsVBoxContainer.add_child(
-		_instantiate_new_detail(clothes_text, clothes_value, EnumUtils.TypePayments.clothes)
+		_instantiate_new_detail(clothes_text, clothes_value, EnumUtils.TypePayments.CLOTHES)
 	)
 	$PaymentPanel/ExtraBillsVBoxContainer.add_child(
-		_instantiate_new_detail(repairs_text, repairs_value, EnumUtils.TypePayments.repairs)
+		_instantiate_new_detail(repairs_text, repairs_value, EnumUtils.TypePayments.REPAIRS)
 	)
 	$PaymentPanel/ExtraBillsVBoxContainer.add_child(
-		_instantiate_new_detail(medicine_text, medicine_value, EnumUtils.TypePayments.medicine)
+		_instantiate_new_detail(medicine_text, medicine_value, EnumUtils.TypePayments.MEDICINE)
 	)
 
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(
 		_instantiate_new_detail(
-			rent_penalty_text, rent_penalty_value, EnumUtils.TypePayments.penalty
+			rent_penalty_text, rent_penalty_value, EnumUtils.TypePayments.PENALTY
 		)
 	)
 	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(
 		_instantiate_new_detail(
-			clothes_penalty_text, clothes_penalty_value, EnumUtils.TypePayments.penalty
+			clothes_penalty_text, clothes_penalty_value, EnumUtils.TypePayments.PENALTY
 		)
 	)
 
 
 func _instantiate_new_detail(_text, _value, _type_payment) -> DetailResumePanel:
 	var new_detail = detail_payment.instance()
-	new_detail._set_value(_text, _value, _type_payment)
-	if _type_payment != EnumUtils.TypePayments.penalty:
+	new_detail.set_value(_text, _value, _type_payment)
+	if _type_payment != EnumUtils.TypePayments.PENALTY:
 		new_detail.connect("update_payments", self, "_calculate_selected_payments")
 	return new_detail
 
@@ -161,8 +162,9 @@ func _check_balance_account(current_balance):
 		$PaymentPanel/EndPaymentResume.disabled = false
 
 
-#calculo desde los distintos elementos que modifican los pagos en pantalla resumen
-func _calculate_selected_payments(_value, _selected, _type_payment = null):  #se usa type_payment en las llamadas con signal desde los botones del panel
+# calculo desde los distintos elementos que modifican los pagos en pantalla resumen
+# se usa type_payment en las llamadas con signal desde los botones del panel
+func _calculate_selected_payments(_value, _selected, _type_payment = null):
 	_set_current_balance(_value)
 	print("Restamos el valor :" + String(_value) + " saldo actual: " + String(current_balance))
 	_check_balance_account(current_balance)
@@ -178,7 +180,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 	else:
 		value_penalty = 1
 
-	if _type_payment == EnumUtils.TypePayments.rent:
+	if _type_payment == EnumUtils.TypePayments.RENT:
 		rent_days_npay = _apply_detail_npay(Global.rent_days_npay, value_penalty)
 		print(
 			(
@@ -188,7 +190,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 				+ String(rent_days_npay)
 			)
 		)
-	if _type_payment == EnumUtils.TypePayments.food:
+	if _type_payment == EnumUtils.TypePayments.FOOD:
 		food_days_npay = _apply_detail_npay(Global.food_days_npay, value_penalty)
 		print(
 			(
@@ -198,7 +200,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 				+ String(food_days_npay)
 			)
 		)
-	if _type_payment == EnumUtils.TypePayments.transport:
+	if _type_payment == EnumUtils.TypePayments.TRANSPORT:
 		transport_days_npay = _apply_detail_npay(Global.transport_days_npay, value_penalty)
 		print(
 			(
@@ -208,7 +210,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 				+ String(transport_days_npay)
 			)
 		)
-	if _type_payment == EnumUtils.TypePayments.clothes:
+	if _type_payment == EnumUtils.TypePayments.CLOTHES:
 		clothes_days_npay = _apply_detail_npay(Global.clothes_days_npay, value_penalty)
 		print(
 			(
@@ -218,7 +220,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 				+ String(clothes_days_npay)
 			)
 		)
-	if _type_payment == EnumUtils.TypePayments.repairs:
+	if _type_payment == EnumUtils.TypePayments.REPAIRS:
 		repairs_days_npay = _apply_detail_npay(Global.repairs_days_npay, value_penalty)
 		print(
 			(
@@ -228,7 +230,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 				+ String(repairs_days_npay)
 			)
 		)
-	if _type_payment == EnumUtils.TypePayments.medicine:
+	if _type_payment == EnumUtils.TypePayments.MEDICINE:
 		medicine_days_npay = _apply_detail_npay(Global.medicine_days_npay, value_penalty)
 		print(
 			(
@@ -243,8 +245,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 func _apply_detail_npay(global_npay, value_penalty):
 	if value_penalty == 1:
 		return global_npay + 1
-	elif value_penalty == 0:
-		return 0
+	return value_penalty
 
 
 func _set_values_by_difficulty():  #TODO:carga global escena externa

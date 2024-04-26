@@ -7,5 +7,5 @@ func enter():
 	get_parent().get_parent().disabled = true
 
 
-func _active_company_computer():
+func active_company_computer():
 	emit_signal("transitioned", "active")
