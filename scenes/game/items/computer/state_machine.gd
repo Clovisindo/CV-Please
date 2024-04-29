@@ -2,6 +2,7 @@ extends StateMachine
 
 class_name StateMachineComputer
 
+
 func _ready():
 	current_state = get_node(initial_state)
 	for child in get_children():
@@ -11,4 +12,3 @@ func _ready():
 		else:
 			push_warning("State machine contains child which is not 'State'")
 	current_state.enter()
-

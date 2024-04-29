@@ -2,8 +2,8 @@ extends Button
 
 class_name NextApplicantResume
 
-signal load_next()
-signal enabled_next_resume_panel()
+signal load_next
+signal enabled_next_resume_panel
 
 
 func _ready() -> void:

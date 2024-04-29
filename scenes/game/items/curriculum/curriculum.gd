@@ -2,9 +2,9 @@ extends Control
 
 class_name Curriculum
 
-export(PackedScene) onready var skill_panel_scene
-
 signal skill_selected(skill)
+
+export(PackedScene) onready var skill_panel_scene
 
 
 func add_skills(skills: Array):
@@ -22,7 +22,7 @@ func idle_other_skills(selected_skill):
 			skill.skill_idle()
 
 
-func _skill_checked(skill):
+func skill_checked(skill):
 	emit_signal("skill_selected", skill)
 	$StateMachine.current_state.process_skill_selected(skill)
 

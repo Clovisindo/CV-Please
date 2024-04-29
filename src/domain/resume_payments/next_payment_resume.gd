@@ -2,7 +2,7 @@ extends Button
 
 class_name NextPaymentResume
 
-signal load_payment_panel()
+signal load_payment_panel
 
 
 func _ready() -> void:

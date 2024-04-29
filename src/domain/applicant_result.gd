@@ -12,7 +12,7 @@ var image_applicant
 var category_job
 var company_name
 var current_status
-var details_applicant 
+var details_applicant
 var current_salary_applicant = 0
 
 

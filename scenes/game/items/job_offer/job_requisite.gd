@@ -2,11 +2,6 @@ extends Panel
 
 class_name JobRequisite
 
-var requisite_answer: String
-var requisite_question: String
-var requisite_name: String
-var job_offer: JobOffer
-
 enum JobOfferStatus {
 	IDLE,
 	SELECTED,
@@ -14,6 +9,11 @@ enum JobOfferStatus {
 }
 
 export(JobOfferStatus) var current_status
+
+var requisite_answer: String
+var requisite_question: String
+var requisite_name: String
+var job_offer: JobOffer
 
 var velocity = -25
 var x_limit = -10
@@ -28,6 +28,7 @@ func requisite_idle():
 	if current_status == JobOfferStatus.SELECTED:
 		current_status = JobOfferStatus.IDLE
 		rect_position.x = 0
+
 
 func add_data(text: String, question: String, answer: String):
 	requisite_answer = answer
@@ -48,7 +49,7 @@ func _gui_input(event):
 func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if job_offer:
-			job_offer._requisite_checked(self)
+			job_offer.requisite_checked(self)
 		current_status = JobOfferStatus.SELECTED
 
 
