@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/game/ui/company_alert_panel/CompanyAlertsPanel.gd" type="Script" id=10]
 [ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=11]
 [ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/game/ui/dialog_box/dialog_box.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
@@ -42,6 +43,12 @@ interaction_dialog_scene = ExtResource( 4 )
 margin_right = 1600.0
 margin_bottom = 900.0
 custom_styles/panel = SubResource( 2 )
+
+[node name="DialogBox" parent="MainScene" instance=ExtResource( 13 )]
+margin_left = 672.0
+margin_top = 560.0
+margin_right = 875.0
+margin_bottom = 649.0
 
 [node name="InteractionDialogContainer" type="PanelContainer" parent="MainScene"]
 anchor_left = 0.5

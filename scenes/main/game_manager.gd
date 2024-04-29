@@ -11,11 +11,14 @@ var current_applicant_index = 0
 
 var companyComputerDecision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
+var main_dialog_box: DialogBox
 
 signal company_alert_message
+signal emit_message_to_dialog_box
 
 func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
+	main_dialog_box =  $MainScene/DialogBox
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -31,6 +34,7 @@ func _wire_events():
 	$MainScene/CompanyComputer.connect("show_computer_validation", self, "on_load_company_validation")# mostrar panel decision
 	$MainScene/CompanyComputer.connect("end_computer_validation", self, "on_unload_company_validation")#ocultar panel decision
 	self.connect("company_alert_message",$MainScene/CompanyAlertsPanel,"_show_panel_alert")
+	self.connect("emit_message_to_dialog_box",main_dialog_box,"_show_current_message")
 	
 
 func _on_reference_used(reference):
@@ -104,6 +108,7 @@ func _on_skill_selected(skill: SkillPanel):
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
 			, skill)
+	emit_signal("emit_message_to_dialog_box", skill.skill_answer)
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
@@ -112,6 +117,7 @@ func _on_job_requisite_selected(job_requisite: JobRequisite):
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
 			, job_requisite)
+	emit_signal("emit_message_to_dialog_box", job_requisite.requisite_question)
 
 
 func _apply_applicant_decision(evaluationStatus: String):
