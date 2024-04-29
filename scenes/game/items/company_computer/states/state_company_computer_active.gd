@@ -2,20 +2,21 @@ extends StateCompanyComputer
 
 class_name StateCompanyComputerActive
 
-var show:bool = false
+var show: bool = false
+
 
 func enter():
 	get_parent().get_parent().disabled = false
-	
-	
-func _disable_company_computer():
-	emit_signal("transitioned","idle")
+
+
+func disable_company_computer():
+	emit_signal("transitioned", "idle")
 
 
 func handle_input(event: InputEvent):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && !show:
 		show = true
-		$"../.."._applicant_selected(true)
+		$"../..".applicant_selected(true)
 	elif event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && show:
 		show = false
-		$"../.."._applicant_selected(false)
+		$"../..".applicant_selected(false)

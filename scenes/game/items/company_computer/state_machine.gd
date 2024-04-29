@@ -3,9 +3,9 @@ extends StateMachine
 class_name StateMachineCompanyComputer
 
 
-func init(companyComputer: CompanyComputer):
+func init(company_computer: CompanyComputer):
 	for child in get_children():
-		child.companyComputer = companyComputer
+		child.company_computer = company_computer
 
 
 func _ready():
