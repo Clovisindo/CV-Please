@@ -2,6 +2,8 @@ extends Node2D
 class_name GameManager
 
 signal company_alert_message
+signal emit_message_to_player_dialog_box
+signal emit_message_to_applicant_dialog_box
 
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
@@ -11,14 +13,15 @@ var applicant_list = []
 var current_applicant_index = 0
 var company_computer_decision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
-var main_dialog_box: DialogBox
+var player_dialog_box: DialogBox
+var applicant_dialog_box: DialogBox
 
-signal company_alert_message
-signal emit_message_to_dialog_box
+
 
 func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
-	main_dialog_box =  $MainScene/DialogBox
+	player_dialog_box =  $MainScene/PlayerDialogBox
+	applicant_dialog_box =  $MainScene/ApplicantDialogBox
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -38,7 +41,9 @@ func _wire_events():
 		"end_computer_validation", self, "on_unload_company_validation"
 	)  #ocultar panel decision
 	self.connect("company_alert_message", $MainScene/CompanyAlertsPanel, "_show_panel_alert")
-	self.connect("emit_message_to_dialog_box",main_dialog_box,"_show_current_message")
+	self.connect("emit_message_to_player_dialog_box",player_dialog_box,"_show_current_message")
+	self.connect("emit_message_to_applicant_dialog_box",applicant_dialog_box,"_show_current_message")
+	player_dialog_box.connect("finished_displaying", self,"_on_player_dialog_finished")
 
 
 func _on_reference_used(reference):
@@ -90,6 +95,11 @@ func on_unload_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.unload_company_computer()
 
 
+func _on_player_dialog_finished(applicant_name, applicant_message, typeDialogBox):
+	if  typeDialogBox == EnumUtils.TypeDialogBox.APPLICANT:
+		emit_signal("emit_message_to_applicant_dialog_box", applicant_name, applicant_message, "", typeDialogBox)
+
+
 func _on_interaction_started(applicant):
 	open_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.add_child(applicant.get_cv())
@@ -112,7 +122,8 @@ func _on_skill_selected(skill: SkillPanel):
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
 			, skill)
-	emit_signal("emit_message_to_dialog_box", skill.skill_answer)
+	emit_signal("emit_message_to_player_dialog_box",applicant_list[current_applicant_index].applicant_name,
+	 skill.skill_question, skill.skill_answer, EnumUtils.TypeDialogBox.PLAYER)
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
@@ -121,7 +132,8 @@ func _on_job_requisite_selected(job_requisite: JobRequisite):
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
 			, job_requisite)
-	emit_signal("emit_message_to_dialog_box", job_requisite.requisite_question)
+	emit_signal("emit_message_to_player_dialog_box",applicant_list[current_applicant_index].applicant_name ,
+	 job_requisite.requisite_question, job_requisite.requisite_answer, EnumUtils.TypeDialogBox.PLAYER)
 
 
 func _apply_applicant_decision(evaluation_status: String):

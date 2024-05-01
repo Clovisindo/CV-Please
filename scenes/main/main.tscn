@@ -44,36 +44,44 @@ margin_right = 1600.0
 margin_bottom = 900.0
 custom_styles/panel = SubResource( 2 )
 
-[node name="DialogBox" parent="MainScene" instance=ExtResource( 13 )]
-margin_left = 672.0
-margin_top = 560.0
-margin_right = 875.0
-margin_bottom = 649.0
+[node name="PlayerDialogBox" parent="MainScene" instance=ExtResource( 13 )]
+visible = false
+margin_left = 189.0
+margin_top = 636.0
+margin_right = 289.0
+margin_bottom = 691.0
+
+[node name="ApplicantDialogBox" parent="MainScene" instance=ExtResource( 13 )]
+visible = false
+margin_left = 908.0
+margin_top = 636.0
+margin_right = 998.0
+margin_bottom = 686.0
 
 [node name="InteractionDialogContainer" type="PanelContainer" parent="MainScene"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -378.45
-margin_top = 200.0
-margin_right = 378.549
-margin_bottom = 419.0
+margin_left = 635.0
+margin_top = -384.0
+margin_right = 789.0
+margin_bottom = -215.0
 theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 80.0
-margin_top = 32.0
-margin_right = 580.0
-margin_bottom = 632.0
+margin_left = 189.0
+margin_top = 19.0
+margin_right = 689.0
+margin_bottom = 619.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 851.0
+margin_left = 908.0
 margin_top = 19.0
-margin_right = 1351.0
+margin_right = 1408.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 

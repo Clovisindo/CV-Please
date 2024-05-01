@@ -10,6 +10,8 @@ enum Levels { LEVEL_1, LEVEL_2, LEVEL_3 }
 
 enum TypePayments { RENT, FOOD, TRANSPORT, CLOTHES, MEDICINE, REPAIRS, PENALTY }
 
+enum TypeDialogBox { PLAYER, APPLICANT }
+
 enum TypeSpecialCondition {
 	CORRECT_APPLICANT,
 	TIME_CHECK,

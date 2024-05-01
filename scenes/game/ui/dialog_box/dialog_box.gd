@@ -5,36 +5,52 @@ class_name DialogBox
 
 
 onready var label = $MarginContainer/Label
+onready var label_name:Label = $CharacterNameLabel
 onready var timer = $LetterDisplayTimer
+onready var timer_release = $ReleaseTimer
 
 const MAX_WIDTH = 256
 
 var text = ""
 var letter_index = 0
+var typeDialogBox
+
+var player_name = "Clovis"
+var applicant_name = ""
+var next_message = ""
+
+
+var rect_size_x = 80
+var rect_size_y = 55
 
 var letter_time = 0.03
 var space_time = 0.06
 var punctuation_time = 0.2
 
-signal finished_displaying()
+signal finished_displaying
+
+
+func initialize(text_to_display) -> void:
+    self.visible = true
+    rect_size.x = rect_size_x
+    rect_size.y = rect_size_y
+    label.autowrap = false
+    text = text_to_display
+    label.text = text_to_display
+    # yield(self,"resized")
 
 
 func display_text(text_to_display:String):
-    text = text_to_display
-    label.text = text_to_display
+    initialize(text_to_display)
 
-    # yield(self,"finished")
     rect_min_size.x = min(rect_size.x, MAX_WIDTH)
 
     if rect_size.x > MAX_WIDTH:
         label.autowrap  = true
-        # yield(self,"finished")
-        # yield(self,"finished")
+        # yield(self,"resized")
+        # yield(self,"resized")
         rect_min_size.x = rect_scale.y
     
-    # rect_global_position.x = rect_scale.x /2
-    # rect_global_position.y = rect_scale.y  + 24
-
     label.text = ""
     _display_letter()
 
@@ -44,7 +60,9 @@ func _display_letter():
 
     letter_index += 1
     if letter_index >= text.length():
-        emit_signal("finished_displaying")# signal para gameManager cuando se acabe de escribir el texto
+        emit_signal("finished_displaying",applicant_name, next_message, EnumUtils.TypeDialogBox.APPLICANT)
+        timer_release.start()
+        # signal para gameManager cuando se acabe de escribir el texto
         letter_index = 0
         return
     
@@ -61,5 +79,20 @@ func _display_letter():
 func _on_LetterDisplayTimer_timeout() -> void:
 	_display_letter()
 
-func _show_current_message(message):
-    display_text(message)
+func _show_current_message(_applicant_name, current_message, _next_message, _typeDialogBox):
+    timer_release.stop()
+    typeDialogBox = _typeDialogBox
+    if typeDialogBox == EnumUtils.TypeDialogBox.PLAYER:
+        label_name.text = player_name
+        label_name.add_color_override("font_color", Color( 0, 0, 1, 1 ))
+        applicant_name = _applicant_name
+    else:
+        label_name.add_color_override("font_color", Color( 0, 1, 0, 1 ))
+        label_name.text = _applicant_name
+    applicant_name = _applicant_name
+    next_message = _next_message
+    display_text(current_message)
+
+
+func _on_ReleaseTimer_timeout() -> void:
+	self.visible = false

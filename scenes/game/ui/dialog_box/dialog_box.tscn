@@ -5,36 +5,49 @@
 [ext_resource path="res://scenes/game/ui/dialog_box/dialog_box.gd" type="Script" id=3]
 
 [node name="DialogBox" type="MarginContainer"]
-margin_right = 39.0
-margin_bottom = 32.0
+margin_right = 55.0
+margin_bottom = 42.0
 script = ExtResource( 3 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_right = 39.0
-margin_bottom = 34.0
+margin_right = 55.0
+margin_bottom = 42.0
 texture = ExtResource( 1 )
 patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
+[node name="CharacterNameLabel" type="Label" parent="."]
+margin_right = 55.0
+margin_bottom = 18.0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+uppercase = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 39.0
-margin_bottom = 34.0
+margin_right = 55.0
+margin_bottom = 42.0
 custom_constants/margin_right = 8
-custom_constants/margin_top = 8
+custom_constants/margin_top = 16
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
 [node name="Label" type="Label" parent="MarginContainer"]
 margin_left = 8.0
-margin_top = 8.0
-margin_right = 31.0
-margin_bottom = 26.0
+margin_top = 16.0
+margin_right = 47.0
+margin_bottom = 34.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
 
 [node name="LetterDisplayTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ReleaseTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_LetterDisplayTimer_timeout"]
+[connection signal="timeout" from="ReleaseTimer" to="." method="_on_ReleaseTimer_timeout"]
