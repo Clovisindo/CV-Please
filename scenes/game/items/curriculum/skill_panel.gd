@@ -6,6 +6,7 @@ enum SkillStatus {
 	IDLE,
 	SELECTED,
 	MATCHED,
+	DISABLED,
 }
 
 export(SkillStatus) var current_status
@@ -35,6 +36,17 @@ func skill_idle():
 		current_status = SkillStatus.IDLE
 		rect_position.x = 0
 
+func skill_disable():
+	if current_status == SkillStatus.IDLE:
+		current_status = SkillStatus.DISABLED
+		rect_position.x = 0
+
+
+func skill_enable():
+	if current_status == SkillStatus.DISABLED:
+		current_status = SkillStatus.IDLE
+		rect_position.x = 0
+
 
 func _gui_input(event):
 	if current_status == SkillStatus.IDLE:
@@ -43,22 +55,29 @@ func _gui_input(event):
 		_process_as_selected(event)
 	elif current_status == SkillStatus.MATCHED:
 		_process_as_matched(event)
+	elif current_status == SkillStatus.DISABLED:
+		_process_as_disabled(event)
 
 
 func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		current_status = SkillStatus.SELECTED
+		$SkillText.add_color_override("default_color", Color( 0, 0.392157, 0, 1 ))
 		if cv:
 			cv.skill_checked(self)
 
 
 func _process_as_selected(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
-		current_status = SkillStatus.IDLE
-		rect_position.x = 0
+		pass
 
 
 func _process_as_matched(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		pass
+
+
+func _process_as_disabled(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		pass
 

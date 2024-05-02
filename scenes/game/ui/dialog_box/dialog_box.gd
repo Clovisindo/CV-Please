@@ -14,6 +14,7 @@ const MAX_WIDTH = 256
 var text = ""
 var letter_index = 0
 var typeDialogBox
+var skill
 
 var player_name = "Clovis"
 var applicant_name = ""
@@ -27,6 +28,8 @@ var letter_time = 0.03
 var space_time = 0.06
 var punctuation_time = 0.2
 
+var processing = false
+
 signal finished_displaying
 
 
@@ -37,7 +40,6 @@ func initialize(text_to_display) -> void:
     label.autowrap = false
     text = text_to_display
     label.text = text_to_display
-    # yield(self,"resized")
 
 
 func display_text(text_to_display:String):
@@ -47,8 +49,6 @@ func display_text(text_to_display:String):
 
     if rect_size.x > MAX_WIDTH:
         label.autowrap  = true
-        # yield(self,"resized")
-        # yield(self,"resized")
         rect_min_size.x = rect_scale.y
     
     label.text = ""
@@ -60,7 +60,12 @@ func _display_letter():
 
     letter_index += 1
     if letter_index >= text.length():
-        emit_signal("finished_displaying",applicant_name, next_message, EnumUtils.TypeDialogBox.APPLICANT)
+        if typeDialogBox == EnumUtils.TypeDialogBox.PLAYER:
+            typeDialogBox = EnumUtils.TypeDialogBox.APPLICANT
+        else:
+            typeDialogBox = EnumUtils.TypeDialogBox.PLAYER
+        emit_signal("finished_displaying",applicant_name, next_message, typeDialogBox, skill)
+        processing = false
         timer_release.start()
         # signal para gameManager cuando se acabe de escribir el texto
         letter_index = 0
@@ -79,19 +84,22 @@ func _display_letter():
 func _on_LetterDisplayTimer_timeout() -> void:
 	_display_letter()
 
-func _show_current_message(_applicant_name, current_message, _next_message, _typeDialogBox):
-    timer_release.stop()
-    typeDialogBox = _typeDialogBox
-    if typeDialogBox == EnumUtils.TypeDialogBox.PLAYER:
-        label_name.text = player_name
-        label_name.add_color_override("font_color", Color( 0, 0, 1, 1 ))
+func _show_current_message(_applicant_name, current_message, _next_message, _typeDialogBox, _skill):
+    if !processing:
+        skill = _skill
+        processing = true
+        timer_release.stop()
+        typeDialogBox = _typeDialogBox
+        if typeDialogBox == EnumUtils.TypeDialogBox.PLAYER:
+            label_name.text = player_name
+            label_name.add_color_override("font_color", Color( 0, 0, 1, 1 ))
+            applicant_name = _applicant_name
+        else:
+            label_name.add_color_override("font_color", Color( 0, 1, 0, 1 ))
+            label_name.text = _applicant_name
         applicant_name = _applicant_name
-    else:
-        label_name.add_color_override("font_color", Color( 0, 1, 0, 1 ))
-        label_name.text = _applicant_name
-    applicant_name = _applicant_name
-    next_message = _next_message
-    display_text(current_message)
+        next_message = _next_message
+        display_text(current_message)
 
 
 func _on_ReleaseTimer_timeout() -> void:

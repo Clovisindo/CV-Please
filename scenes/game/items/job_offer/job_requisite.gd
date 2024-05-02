@@ -6,6 +6,7 @@ enum JobOfferStatus {
 	IDLE,
 	SELECTED,
 	MATCHED,
+	DISABLED,
 }
 
 export(JobOfferStatus) var current_status
@@ -30,6 +31,18 @@ func requisite_idle():
 		rect_position.x = 0
 
 
+func requisite_disable():
+	if current_status == JobOfferStatus.IDLE:
+		current_status = JobOfferStatus.DISABLED
+		rect_position.x = 0
+
+
+func requisite_enable():
+	if current_status == JobOfferStatus.DISABLED:
+		current_status = JobOfferStatus.IDLE
+		rect_position.x = 0
+
+
 func add_data(text: String, question: String, answer: String):
 	requisite_answer = answer
 	requisite_question = question
@@ -44,6 +57,8 @@ func _gui_input(event):
 		_process_as_selected(event)
 	elif current_status == JobOfferStatus.MATCHED:
 		_process_as_matched(event)
+	elif current_status == JobOfferStatus.DISABLED:
+		_process_as_disabled(event)
 
 
 func _process_as_idle(event):
@@ -51,15 +66,20 @@ func _process_as_idle(event):
 		if job_offer:
 			job_offer.requisite_checked(self)
 		current_status = JobOfferStatus.SELECTED
+		$RequisiteText.add_color_override("default_color",  Color( 0, 0.392157, 0, 1 ))
 
 
 func _process_as_selected(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
-		current_status = JobOfferStatus.IDLE
-		rect_position.x = 0
+		pass
 
 
 func _process_as_matched(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		pass
+
+
+func _process_as_disabled(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		pass
 
