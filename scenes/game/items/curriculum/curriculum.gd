@@ -22,15 +22,13 @@ func idle_other_skills(selected_skill):
 			skill.skill_idle()
 
 
-func disable_other_skills(selected_skill):
+func disable_other_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
-		if skill != selected_skill:
 			skill.skill_disable()
 
 
-func enable_other_skills(selected_skill):
+func enable_other_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
-		if skill != selected_skill:
 			skill.skill_enable()
 
 

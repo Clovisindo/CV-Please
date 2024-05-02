@@ -14,7 +14,6 @@ const MAX_WIDTH = 256
 var text = ""
 var letter_index = 0
 var typeDialogBox
-var skill
 
 var player_name = "Clovis"
 var applicant_name = ""
@@ -64,10 +63,9 @@ func _display_letter():
             typeDialogBox = EnumUtils.TypeDialogBox.APPLICANT
         else:
             typeDialogBox = EnumUtils.TypeDialogBox.PLAYER
-        emit_signal("finished_displaying",applicant_name, next_message, typeDialogBox, skill)
+        emit_signal("finished_displaying",applicant_name, next_message, typeDialogBox)# signal para gameManager cuando se acabe de escribir el texto
         processing = false
         timer_release.start()
-        # signal para gameManager cuando se acabe de escribir el texto
         letter_index = 0
         return
     
@@ -84,9 +82,8 @@ func _display_letter():
 func _on_LetterDisplayTimer_timeout() -> void:
 	_display_letter()
 
-func _show_current_message(_applicant_name, current_message, _next_message, _typeDialogBox, _skill):
+func _show_current_message(_applicant_name, current_message, _next_message, _typeDialogBox):
     if !processing:
-        skill = _skill
         processing = true
         timer_release.stop()
         typeDialogBox = _typeDialogBox

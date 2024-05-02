@@ -22,15 +22,13 @@ func idle_other_requisites(selected_requisite):
 			requisite.requisite_idle()
 
 
-func disable_other_requisites(selected_requisite):
+func disable_other_requisites():
 	for requisite in $JobOfferPanel/VBoxContainer.get_children():
-		if requisite != selected_requisite:
 			requisite.requisite_disable()
 
 
-func enable_other_requisites(selected_requisite):
+func enable_other_requisites():
 	for requisite in $JobOfferPanel/VBoxContainer.get_children():
-		if requisite != selected_requisite:
 			requisite.requisite_enable()
 
 

@@ -96,13 +96,12 @@ func on_unload_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.unload_company_computer()
 
 
-func _on_player_dialog_finished(applicant_name, applicant_message, typeDialogBox, _skill):
+func _on_player_dialog_finished(applicant_name, applicant_message, typeDialogBox):
 	if  typeDialogBox == EnumUtils.TypeDialogBox.APPLICANT:
-		applicant_list[current_applicant_index].get_cv().disable_other_skills(_skill)
-		emit_signal("emit_message_to_applicant_dialog_box", applicant_name, applicant_message, "", typeDialogBox, _skill)
+		emit_signal("emit_message_to_applicant_dialog_box", applicant_name, applicant_message, "", typeDialogBox)
 	else:
-		applicant_list[current_applicant_index].get_cv().enable_other_skills(_skill)
-		applicant_list[current_applicant_index].get_job_offer().enable_other_requisites(null)
+		applicant_list[current_applicant_index].get_cv().enable_other_skills()
+		applicant_list[current_applicant_index].get_job_offer().enable_other_requisites()
 
 
 func _on_interaction_started(applicant):
@@ -122,23 +121,23 @@ func _on_interaction_ended(applicant):
 
 
 func _on_skill_selected(skill: SkillPanel):
-	applicant_list[current_applicant_index].get_cv().disable_other_skills(skill)
-	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites(null)
+	applicant_list[current_applicant_index].get_cv().disable_other_skills()#no pasamos parametro por que la actual se va a otro estando distinto por el input
+	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
 			, skill)
 	emit_signal("emit_message_to_player_dialog_box",applicant_list[current_applicant_index].applicant_name,
-	 skill.skill_question, skill.skill_answer, EnumUtils.TypeDialogBox.PLAYER,skill)
+	 skill.skill_question, skill.skill_answer, EnumUtils.TypeDialogBox.PLAYER)
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
-	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites(job_requisite)
-	applicant_list[current_applicant_index].get_cv().disable_other_skills(null)
+	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
+	applicant_list[current_applicant_index].get_cv().disable_other_skills()
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
 			, job_requisite)
 	emit_signal("emit_message_to_player_dialog_box",applicant_list[current_applicant_index].applicant_name ,
-	 job_requisite.requisite_question, job_requisite.requisite_answer, EnumUtils.TypeDialogBox.PLAYER,null)
+	 job_requisite.requisite_question, job_requisite.requisite_answer, EnumUtils.TypeDialogBox.PLAYER)
 
 
 func _apply_applicant_decision(evaluation_status: String):
