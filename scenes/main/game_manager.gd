@@ -11,6 +11,7 @@ export(PackedScene) onready var interaction_dialog_scene
 
 var applicant_list = []
 var current_applicant_index = 0
+var company_computer
 var company_computer_decision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
 var computer_interaction_dialog
@@ -24,6 +25,7 @@ func _ready():
 	player_dialog_box =  $MainScene/PlayerDialogBox
 	applicant_dialog_box =  $MainScene/ApplicantDialogBox
 	computer_interaction_dialog = $MainScene/ChatLogKeyboard
+	company_computer = $MainScene/MainComputer
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -81,6 +83,8 @@ func open_panel_tween(panel_node):
 	panel_node.visible = true
 	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(panel_node, "rect_scale", Vector2(1, 1), 1)
+	yield(tween, "finished")
+	company_computer.event_fired = false
 
 
 func close_panel_tween(panel_node):
@@ -90,6 +94,7 @@ func close_panel_tween(panel_node):
 	tween.tween_property(panel_node, "rect_scale", Vector2(0, 0), 1)
 	yield(tween, "finished")
 	panel_node.visible = false
+	company_computer.event_fired = false
 
 
 func on_load_company_computer():  #inicia mainComputer con el applicant actual
@@ -109,12 +114,14 @@ func _on_player_dialog_finished(applicant_name, applicant_message, typeDialogBox
 
 
 func _on_interaction_started(applicant):
+	
 	open_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.add_child(applicant.get_cv())
 	open_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
+	set_process_unhandled_input(true)
 
 
 func _on_interaction_ended(applicant):
@@ -122,6 +129,7 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	close_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
+	set_process_unhandled_input(true)
 
 
 func _on_skill_selected(skill: SkillPanel):

@@ -41,6 +41,7 @@ script = ExtResource( 3 )
 
 [node name="active" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
+current_status = 1
 
 [node name="MainComputer" type="Control" parent="."]
 margin_right = 40.0
