@@ -13,6 +13,7 @@ var applicant_list = []
 var current_applicant_index = 0
 var company_computer_decision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
+var computer_interaction_dialog
 var player_dialog_box: DialogBox
 var applicant_dialog_box: DialogBox
 
@@ -22,6 +23,7 @@ func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
 	player_dialog_box =  $MainScene/PlayerDialogBox
 	applicant_dialog_box =  $MainScene/ApplicantDialogBox
+	computer_interaction_dialog = $MainScene/ChatLogKeyboard
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -45,6 +47,8 @@ func _wire_events():
 	self.connect("emit_message_to_applicant_dialog_box",applicant_dialog_box,"_show_current_message")
 	player_dialog_box.connect("finished_displaying", self,"_on_player_dialog_finished")
 	applicant_dialog_box.connect("finished_displaying", self,"_on_player_dialog_finished")
+	computer_interaction_dialog.connect("show_chat_log",current_interaction_dialog,"_show_window_chat")
+	computer_interaction_dialog.connect("hide_chat_log",current_interaction_dialog,"_hide_window_chat")
 
 
 func _on_reference_used(reference):

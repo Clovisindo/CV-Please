@@ -293,6 +293,11 @@ _global_script_classes=[ {
 "class": "ValidationCompanyComputer",
 "language": "GDScript",
 "path": "res://scenes/game/items/company_computer/validation_company_computer.gd"
+}, {
+"base": "Button",
+"class": "button_interaction_dialog",
+"language": "GDScript",
+"path": "res://scenes/game/ui/interaction_dialog/button_interaction_dialog.gd"
 } ]
 _global_script_class_icons={
 "Applicant": "",
@@ -351,7 +356,8 @@ _global_script_class_icons={
 "StateMachineCompanyComputer": "",
 "StateMachineComputer": "",
 "StateMachineJobOffer": "",
-"ValidationCompanyComputer": ""
+"ValidationCompanyComputer": "",
+"button_interaction_dialog": ""
 }
 
 [application]

@@ -8,5 +8,11 @@ func enable_text(text: String):
 	$Label.text = text
 
 
-func disable_text():
-	$Label.set_modulate(Color("000000"))
+func set_player_text(text: String):
+	$Label.set_modulate(Color( 1, 1, 1, 1 ))
+	$Label.text = text
+
+
+func set_applicant_text(text: String):
+	$Label.set_modulate(Color( 0, 0.392157, 0, 1 ))
+	$Label.text = text
