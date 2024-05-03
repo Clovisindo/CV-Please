@@ -36,3 +36,6 @@ scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[connection signal="mouse_entered" from="." to="." method="_on_SkillPanel_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_SkillPanel_mouse_exited"]

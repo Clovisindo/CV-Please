@@ -17,6 +17,7 @@ var skill_name: String
 var cv: Curriculum
 var velocity = 25
 var x_limit = 10
+var isHovered = false
 
 
 func add_data(text: String, question: String, answer: String):
@@ -84,7 +85,7 @@ func _process_as_disabled(event):
 
 func _process(delta):
 	_set_size_by_text()
-	if current_status == SkillStatus.SELECTED:
+	if current_status == SkillStatus.IDLE && isHovered:
 		if rect_position.x >= x_limit || rect_position.x <= -1:
 			velocity *= -1
 		rect_position.x += velocity * delta
@@ -93,3 +94,11 @@ func _process(delta):
 func _set_size_by_text():
 	get_node(".").rect_size.y = get_node("SkillText").rect_size.y + 8
 	get_node(".").rect_min_size.y = get_node(".").rect_size.y
+
+
+func _on_SkillPanel_mouse_exited() -> void:
+		isHovered = false
+
+
+func _on_SkillPanel_mouse_entered() -> void:
+		isHovered = true
