@@ -22,6 +22,16 @@ func idle_other_skills(selected_skill):
 			skill.skill_idle()
 
 
+func disable_other_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_disable()
+
+
+func enable_other_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_enable()
+
+
 func skill_checked(skill):
 	emit_signal("skill_selected", skill)
 	$StateMachine.current_state.process_skill_selected(skill)

@@ -2,6 +2,8 @@ extends Node2D
 class_name GameManager
 
 signal company_alert_message
+signal emit_message_to_player_dialog_box
+signal emit_message_to_applicant_dialog_box
 
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
@@ -9,12 +11,20 @@ export(PackedScene) onready var interaction_dialog_scene
 
 var applicant_list = []
 var current_applicant_index = 0
+var company_computer
 var company_computer_decision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
+var computer_interaction_dialog
+var player_dialog_box: DialogBox
+var applicant_dialog_box: DialogBox
 
 
 func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
+	player_dialog_box = $MainScene/PlayerDialogBox
+	applicant_dialog_box = $MainScene/ApplicantDialogBox
+	computer_interaction_dialog = $MainScene/ChatLogKeyboard
+	company_computer = $MainScene/MainComputer
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -34,6 +44,18 @@ func _wire_events():
 		"end_computer_validation", self, "on_unload_company_validation"
 	)  #ocultar panel decision
 	self.connect("company_alert_message", $MainScene/CompanyAlertsPanel, "_show_panel_alert")
+	self.connect("emit_message_to_player_dialog_box", player_dialog_box, "_show_current_message")
+	self.connect(
+		"emit_message_to_applicant_dialog_box", applicant_dialog_box, "_show_current_message"
+	)
+	player_dialog_box.connect("finished_displaying", self, "_on_player_dialog_finished")
+	applicant_dialog_box.connect("finished_displaying", self, "_on_player_dialog_finished")
+	computer_interaction_dialog.connect(
+		"show_chat_log", current_interaction_dialog, "_show_window_chat"
+	)
+	computer_interaction_dialog.connect(
+		"hide_chat_log", current_interaction_dialog, "_hide_window_chat"
+	)
 
 
 func _on_reference_used(reference):
@@ -66,6 +88,8 @@ func open_panel_tween(panel_node):
 	panel_node.visible = true
 	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(panel_node, "rect_scale", Vector2(1, 1), 1)
+	yield(tween, "finished")
+	company_computer.event_fired = false
 
 
 func close_panel_tween(panel_node):
@@ -75,6 +99,7 @@ func close_panel_tween(panel_node):
 	tween.tween_property(panel_node, "rect_scale", Vector2(0, 0), 1)
 	yield(tween, "finished")
 	panel_node.visible = false
+	company_computer.event_fired = false
 
 
 func on_load_company_computer():  #inicia mainComputer con el applicant actual
@@ -85,6 +110,20 @@ func on_unload_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.unload_company_computer()
 
 
+func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_box):
+	if type_dialog_box == EnumUtils.TypeDialogBox.APPLICANT:
+		emit_signal(
+			"emit_message_to_applicant_dialog_box",
+			applicant_name,
+			applicant_message,
+			"",
+			type_dialog_box
+		)
+	else:
+		applicant_list[current_applicant_index].get_cv().enable_other_skills()
+		applicant_list[current_applicant_index].get_job_offer().enable_other_requisites()
+
+
 func _on_interaction_started(applicant):
 	open_panel_tween($MainScene/CVContainer)
 	$MainScene/CVContainer.add_child(applicant.get_cv())
@@ -92,6 +131,7 @@ func _on_interaction_started(applicant):
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
+	set_process_unhandled_input(true)
 
 
 func _on_interaction_ended(applicant):
@@ -99,22 +139,38 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	close_panel_tween($MainScene/JobOfferContainer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
+	set_process_unhandled_input(true)
 
 
 func _on_skill_selected(skill: SkillPanel):
-	applicant_list[current_applicant_index].get_cv().idle_other_skills(skill)
-	applicant_list[current_applicant_index].get_job_offer().idle_other_requisites(null)
+	# No pasamos parametro por que la actual se va a otro estando distinto por el input
+	applicant_list[current_applicant_index].get_cv().disable_other_skills()
+	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer), skill
+	)
+	emit_signal(
+		"emit_message_to_player_dialog_box",
+		applicant_list[current_applicant_index].applicant_name,
+		skill.skill_question,
+		skill.skill_answer,
+		EnumUtils.TypeDialogBox.PLAYER
 	)
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
-	applicant_list[current_applicant_index].get_job_offer().idle_other_requisites(job_requisite)
-	applicant_list[current_applicant_index].get_cv().idle_other_skills(null)
+	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
+	applicant_list[current_applicant_index].get_cv().disable_other_skills()
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer),
 		job_requisite
+	)
+	emit_signal(
+		"emit_message_to_player_dialog_box",
+		applicant_list[current_applicant_index].applicant_name,
+		job_requisite.requisite_question,
+		job_requisite.requisite_answer,
+		EnumUtils.TypeDialogBox.PLAYER
 	)
 
 

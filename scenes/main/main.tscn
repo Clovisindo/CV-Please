@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scenes/game/ui/company_alert_panel/CompanyAlertsPanel.gd" type="Script" id=10]
 [ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=11]
 [ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/game/ui/dialog_box/dialog_box.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/game/ui/interaction_dialog/button_interaction_dialog.gd" type="Script" id=14]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
@@ -23,6 +25,22 @@ region_rect = Rect2( 0, 0, 956, 548 )
 bg_color = Color( 0.00784314, 0, 0, 0 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.905882, 0.054902, 0.054902, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.905882, 0.054902, 0.054902, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
 
 [sub_resource type="StyleBoxTexture" id=5]
 
@@ -43,30 +61,44 @@ margin_right = 1600.0
 margin_bottom = 900.0
 custom_styles/panel = SubResource( 2 )
 
+[node name="PlayerDialogBox" parent="MainScene" instance=ExtResource( 13 )]
+visible = false
+margin_left = 189.0
+margin_top = 636.0
+margin_right = 289.0
+margin_bottom = 691.0
+
+[node name="ApplicantDialogBox" parent="MainScene" instance=ExtResource( 13 )]
+visible = false
+margin_left = 908.0
+margin_top = 636.0
+margin_right = 998.0
+margin_bottom = 686.0
+
 [node name="InteractionDialogContainer" type="PanelContainer" parent="MainScene"]
+visible = false
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -378.45
-margin_top = 200.0
-margin_right = 378.549
-margin_bottom = 419.0
+anchor_bottom = 1.0
+margin_left = -427.5
+margin_top = -163.0
+margin_right = 427.5
 theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 80.0
-margin_top = 32.0
-margin_right = 580.0
-margin_bottom = 632.0
+margin_left = 189.0
+margin_top = 19.0
+margin_right = 689.0
+margin_bottom = 619.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 851.0
+margin_left = 908.0
 margin_top = 19.0
-margin_right = 1351.0
+margin_right = 1408.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 
@@ -127,6 +159,16 @@ margin_left = 653.0
 margin_top = 410.0
 margin_right = 753.0
 margin_bottom = 510.0
+
+[node name="ChatLogKeyboard" type="Button" parent="MainScene"]
+margin_left = 759.0
+margin_top = 481.0
+margin_right = 840.0
+margin_bottom = 516.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+script = ExtResource( 14 )
 
 [node name="ValidationCompanyComputer" parent="MainScene" instance=ExtResource( 9 )]
 visible = false
