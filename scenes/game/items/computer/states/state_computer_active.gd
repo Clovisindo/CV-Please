@@ -35,15 +35,6 @@ func handle_input(event: InputEvent):
 	elif current_status == PanelStatus.CLOSED:
 		_process_as_closed(event)
 
-	# if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && !show:
-	# 	show = true
-	# 	$"../..".applicant_selected(true)
-	# 	return
-	# elif event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && show:
-	# 	show = false
-	# 	$"../..".applicant_selected(false)
-	# 	return
-
 
 func _process_as_open(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && show:
