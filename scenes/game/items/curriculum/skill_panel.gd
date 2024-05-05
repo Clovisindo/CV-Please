@@ -17,7 +17,7 @@ var skill_name: String
 var cv: Curriculum
 var velocity = 25
 var x_limit = 10
-var isHovered = false
+var is_hovered = false
 
 
 func add_data(text: String, question: String, answer: String):
@@ -36,6 +36,7 @@ func skill_idle():
 	if current_status == SkillStatus.SELECTED:
 		current_status = SkillStatus.IDLE
 		rect_position.x = 0
+
 
 func skill_disable():
 	if current_status == SkillStatus.IDLE:
@@ -63,7 +64,7 @@ func _gui_input(event):
 func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		current_status = SkillStatus.SELECTED
-		$SkillText.add_color_override("default_color", Color( 0, 0.392157, 0, 1 ))
+		$SkillText.add_color_override("default_color", Color(0, 0.392157, 0, 1))
 		if cv:
 			cv.skill_checked(self)
 
@@ -85,7 +86,7 @@ func _process_as_disabled(event):
 
 func _process(delta):
 	_set_size_by_text()
-	if current_status == SkillStatus.IDLE && isHovered:
+	if current_status == SkillStatus.IDLE && is_hovered:
 		if rect_position.x >= x_limit || rect_position.x <= -1:
 			velocity *= -1
 		rect_position.x += velocity * delta
@@ -97,8 +98,8 @@ func _set_size_by_text():
 
 
 func _on_SkillPanel_mouse_exited() -> void:
-		isHovered = false
+	is_hovered = false
 
 
 func _on_SkillPanel_mouse_entered() -> void:
-		isHovered = true
+	is_hovered = true

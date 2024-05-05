@@ -1,7 +1,6 @@
 extends Button
 
-class_name button_interaction_dialog
-
+class_name ButtonInteractionDialog
 
 signal show_chat_log
 signal hide_chat_log

@@ -2,13 +2,12 @@ extends StateComputer
 
 class_name StateComputerActive
 
-
-enum panelStatus {
+enum PanelStatus {
 	OPEN,
 	CLOSED,
 }
 
-export(panelStatus) var current_status
+export(PanelStatus) var current_status
 var show: bool = false
 
 
@@ -17,22 +16,23 @@ func enter():
 
 
 func panel_open():
-	if current_status == panelStatus.CLOSED:
-		current_status = panelStatus.OPEN
+	if current_status == PanelStatus.CLOSED:
+		current_status = PanelStatus.OPEN
 
 
 func panel_closed():
-	if current_status == panelStatus.OPEN:
-		current_status = panelStatus.CLOSED
+	if current_status == PanelStatus.OPEN:
+		current_status = PanelStatus.CLOSED
+
 
 func disable_main_computer():
 	emit_signal("transitioned", "idle")
 
 
 func handle_input(event: InputEvent):
-	if current_status == panelStatus.OPEN:
+	if current_status == PanelStatus.OPEN:
 		_process_as_open(event)
-	elif current_status == panelStatus.CLOSED:
+	elif current_status == PanelStatus.CLOSED:
 		_process_as_closed(event)
 
 	# if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && !show:
@@ -48,7 +48,7 @@ func handle_input(event: InputEvent):
 func _process_as_open(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && show:
 		show = false
-		current_status = panelStatus.CLOSED
+		current_status = PanelStatus.CLOSED
 		$"../..".applicant_selected(false)
 		return
 
@@ -56,6 +56,6 @@ func _process_as_open(event):
 func _process_as_closed(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && !show:
 		show = true
-		current_status = panelStatus.OPEN
+		current_status = PanelStatus.OPEN
 		$"../..".applicant_selected(true)
 		return

@@ -24,12 +24,12 @@ func idle_other_skills(selected_skill):
 
 func disable_other_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
-			skill.skill_disable()
+		skill.skill_disable()
 
 
 func enable_other_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
-			skill.skill_enable()
+		skill.skill_enable()
 
 
 func skill_checked(skill):
