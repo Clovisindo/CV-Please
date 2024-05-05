@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/game/items/resume/resume_manager.gd" type="Script" id=2]
@@ -6,19 +6,56 @@
 [ext_resource path="res://scenes/game/items/resume/payment_resume.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/domain/resume_payments/next_payment_resume.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/items/resume/detail_resume_panel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=8]
+[ext_resource path="res://assets/sprites/UI/MainPanel02.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/UI/Button06.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/UI/Background.jpg" type="Texture" id=12]
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 1700, 1080 )
 
-[node name="resume_applicant" type="Control"]
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 302, 403 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 56, 58 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 56, 58 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 10 )
+region_rect = Rect2( 0, 0, 56, 58 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 105, 21 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 105, 21 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 105, 21 )
+
+[node name="resume_applicant" type="Panel"]
 margin_right = 1600.0
 margin_bottom = 900.0
+theme = ExtResource( 8 )
+custom_styles/panel = SubResource( 10 )
 script = ExtResource( 2 )
 detail_applicant = ExtResource( 6 )
 
 [node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_right = 1600.0
 margin_bottom = 900.0
-theme = SubResource( 1 )
 
 [node name="CurrentMonth" type="RichTextLabel" parent="Panel"]
 anchor_left = 0.5
@@ -29,11 +66,12 @@ margin_bottom = 59.0
 text = "Current month : 1"
 
 [node name="resumeContainer" type="Panel" parent="Panel"]
-self_modulate = Color( 0.054902, 0.466667, 1, 1 )
 margin_left = 212.0
 margin_top = 150.0
 margin_right = 1388.0
 margin_bottom = 750.0
+theme = ExtResource( 8 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="applicantImage" type="Sprite" parent="Panel/resumeContainer"]
 position = Vector2( 47, 46 )
@@ -50,22 +88,22 @@ text = "Damian Mendez Gonzalez"
 [node name="CategoryCompanyLabel" type="RichTextLabel" parent="Panel/resumeContainer"]
 margin_left = 87.0
 margin_top = 50.0
-margin_right = 324.0
-margin_bottom = 68.0
+margin_right = 537.0
+margin_bottom = 69.0
 text = "Junior programmer at Nunogal S.A"
 
 [node name="PaymentLabel" type="RichTextLabel" parent="Panel/resumeContainer"]
 margin_left = 87.0
 margin_top = 63.0
-margin_right = 249.0
-margin_bottom = 80.0
+margin_right = 280.0
+margin_bottom = 86.0
 text = "Company payment : "
 
 [node name="PaymentAmountLabel" type="RichTextLabel" parent="Panel/resumeContainer"]
-margin_left = 219.0
+margin_left = 236.0
 margin_top = 63.0
-margin_right = 249.0
-margin_bottom = 80.0
+margin_right = 372.0
+margin_bottom = 90.0
 text = "0"
 
 [node name="DetailHBoxContainer" type="VBoxContainer" parent="Panel/resumeContainer"]
@@ -84,6 +122,10 @@ margin_left = -100.0
 margin_top = -125.0
 margin_right = 100.0
 margin_bottom = -50.0
+theme = ExtResource( 8 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
 text = "Next"
 script = ExtResource( 3 )
 
@@ -97,6 +139,10 @@ margin_left = 120.0
 margin_top = -125.0
 margin_right = 320.0
 margin_bottom = -50.0
+theme = ExtResource( 8 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
 text = "Payments"
 script = ExtResource( 5 )
 

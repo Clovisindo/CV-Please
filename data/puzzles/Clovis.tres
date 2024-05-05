@@ -16,11 +16,11 @@ answer = " answer 1 applicant"
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 6 )
+type_special_condition = 0
 value_text_ok = "The company is very pleased  with the applicant: "
 value_text_nok = "The company is very upset  with the you, that applicant was perfect: "
-value_OK = 50
-value_NOK = -50
-type_special_condition = 0
+value_ok = 0
+value_nok = 0
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 3 )
