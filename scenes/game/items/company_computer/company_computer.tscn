@@ -41,3 +41,4 @@ script = ExtResource( 7 )
 
 [node name="active" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+current_status = 1

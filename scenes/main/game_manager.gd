@@ -11,6 +11,7 @@ export(PackedScene) onready var interaction_dialog_scene
 
 var applicant_list = []
 var current_applicant_index = 0
+var main_computer
 var company_computer
 var company_computer_decision: ValidationCompanyComputer
 var current_interaction_dialog: InteractionDialog
@@ -24,7 +25,8 @@ func _ready():
 	player_dialog_box = $MainScene/PlayerDialogBox
 	applicant_dialog_box = $MainScene/ApplicantDialogBox
 	computer_interaction_dialog = $MainScene/ChatLogKeyboard
-	company_computer = $MainScene/MainComputer
+	main_computer = $MainScene/MainComputer
+	company_computer = $MainScene/CompanyComputer
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -75,32 +77,34 @@ func on_unload_applicant_computer(applicant):  #inicia mainComputer con el appli
 
 
 func on_load_company_validation():
-	open_panel_tween(company_computer_decision)
+	open_panel_tween(company_computer_decision, company_computer)
+	set_process_unhandled_input(true)
 
 
 func on_unload_company_validation():
-	close_panel_tween(company_computer_decision)
+	close_panel_tween(company_computer_decision, company_computer)
+	set_process_unhandled_input(true)
 
 
-func open_panel_tween(panel_node):
+func open_panel_tween(panel_node, target_event_fired):
 	panel_node.rect_scale.x = 0
 	panel_node.rect_scale.y = 0
 	panel_node.visible = true
 	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(panel_node, "rect_scale", Vector2(1, 1), 1)
 	yield(tween, "finished")
-	company_computer.event_fired = false
+	target_event_fired.event_fired = false
+	
 
-
-func close_panel_tween(panel_node):
+func close_panel_tween(panel_node, target_event_fired):
 	panel_node.rect_scale.x = 1
 	panel_node.rect_scale.y = 1
 	var tween := create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(panel_node, "rect_scale", Vector2(0, 0), 1)
 	yield(tween, "finished")
 	panel_node.visible = false
-	company_computer.event_fired = false
-
+	target_event_fired.event_fired = false
+	
 
 func on_load_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.load_company_computer()
@@ -125,9 +129,9 @@ func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_b
 
 
 func _on_interaction_started(applicant):
-	open_panel_tween($MainScene/CVContainer)
+	open_panel_tween($MainScene/CVContainer, main_computer)
 	$MainScene/CVContainer.add_child(applicant.get_cv())
-	open_panel_tween($MainScene/JobOfferContainer)
+	open_panel_tween($MainScene/JobOfferContainer, main_computer)
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
@@ -135,9 +139,9 @@ func _on_interaction_started(applicant):
 
 
 func _on_interaction_ended(applicant):
-	close_panel_tween($MainScene/CVContainer)
+	close_panel_tween($MainScene/CVContainer, main_computer)
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
-	close_panel_tween($MainScene/JobOfferContainer)
+	close_panel_tween($MainScene/JobOfferContainer, main_computer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
 	set_process_unhandled_input(true)
 
