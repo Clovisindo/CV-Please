@@ -24,6 +24,7 @@ func panel_closed():
 	if current_status == PanelStatus.OPEN:
 		current_status = PanelStatus.CLOSED
 
+
 func disable_company_computer():
 	emit_signal("transitioned", "idle")
 

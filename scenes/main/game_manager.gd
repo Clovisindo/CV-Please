@@ -94,7 +94,7 @@ func open_panel_tween(panel_node, target_event_fired):
 	tween.tween_property(panel_node, "rect_scale", Vector2(1, 1), 1)
 	yield(tween, "finished")
 	target_event_fired.event_fired = false
-	
+
 
 func close_panel_tween(panel_node, target_event_fired):
 	panel_node.rect_scale.x = 1
@@ -104,7 +104,7 @@ func close_panel_tween(panel_node, target_event_fired):
 	yield(tween, "finished")
 	panel_node.visible = false
 	target_event_fired.event_fired = false
-	
+
 
 func on_load_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.load_company_computer()
