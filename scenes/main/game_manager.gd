@@ -5,6 +5,10 @@ signal company_alert_message
 signal emit_message_to_player_dialog_box
 signal emit_message_to_applicant_dialog_box
 
+const TURN_VALUE_REQUISITE = 1
+const TURN_VALUE_SKILL = 1
+const TURN_VALUE_CROSS = 2
+
 export(PackedScene) onready var applicant_scene
 export(PackedScene) onready var decision_applicant_scene
 export(PackedScene) onready var interaction_dialog_scene
@@ -18,11 +22,7 @@ var current_interaction_dialog: InteractionDialog
 var computer_interaction_dialog
 var player_dialog_box: DialogBox
 var applicant_dialog_box: DialogBox
-var datetime_panel :DateTimePanel
-
-const turn_value_requisite = 1
-const turn_value_skill = 1
-const turn_value_cross = 2
+var datetime_panel: DateTimePanel
 
 
 func _ready():
@@ -33,7 +33,7 @@ func _ready():
 	main_computer = $MainScene/MainComputer
 	company_computer = $MainScene/CompanyComputer
 	datetime_panel = $MainScene/DateTimePanel
-	datetime_panel._set_current_month(Global.current_month)
+	datetime_panel.set_current_month(Global.current_month)
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
@@ -157,7 +157,7 @@ func _on_skill_selected(skill: SkillPanel):
 	# No pasamos parametro por que la actual se va a otro estando distinto por el input
 	applicant_list[current_applicant_index].get_cv().disable_other_skills()
 	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
-	applicant_list[current_applicant_index].add_turn_count(turn_value_skill)
+	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer), skill
 	)
@@ -173,7 +173,7 @@ func _on_skill_selected(skill: SkillPanel):
 func _on_job_requisite_selected(job_requisite: JobRequisite):
 	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
 	applicant_list[current_applicant_index].get_cv().disable_other_skills()
-	applicant_list[current_applicant_index].add_turn_count(turn_value_requisite)
+	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_REQUISITE)
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer),
 		job_requisite
@@ -281,10 +281,10 @@ func process_validations_applicant(applicant: Applicant):
 		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.TIME_CHECK:
 			if applicant.turns_count <= applicant.validation_turns:
 				detail.set_value(detail.value_text_ok, detail.value_ok)
-				datetime_panel._set_datetime_by_turns(1)
+				datetime_panel.set_datetime_by_validation(true)
 			else:
 				detail.set_value(detail.value_text_nok, detail.value_nok)
-				datetime_panel._set_datetime_by_turns(2)
+				datetime_panel.set_datetime_by_validation(false)
 		applicant.evaluation.details_applicant = applicant.detail_validations
 
 
