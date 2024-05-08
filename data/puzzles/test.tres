@@ -16,11 +16,11 @@ answer = "a1"
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 6 )
+type_special_condition = 0
 value_text_ok = "test ok 1"
 value_text_nok = "test nok 1"
-value_OK = 2
-value_NOK = -2
-type_special_condition = 0
+value_ok = 0
+value_nok = 0
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )

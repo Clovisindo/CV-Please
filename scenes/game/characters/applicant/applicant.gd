@@ -23,6 +23,9 @@ var interview_position: Vector2
 var company_name
 var category_job
 var salary_payment
+var validation_turns
+
+var turns_count = 0
 
 
 func _ready():
@@ -40,7 +43,8 @@ func add_data(
 	category: String,
 	valid: bool,
 	payment: int,
-	validations: Array
+	validations: Array,
+	turns_validate: int
 ):
 	if name:
 		applicant_name = name
@@ -61,6 +65,8 @@ func add_data(
 		salary_payment = payment
 	if validations:
 		detail_validations = validations
+	if turns_validate:
+		validation_turns = turns_validate
 
 
 func get_cv():
@@ -69,6 +75,11 @@ func get_cv():
 
 func get_job_offer():
 	return self.job_offer
+
+
+func add_turn_count(value):
+	turns_count += value
+	print(" valor actual de turno :" + String(turns_count))
 
 
 func _gui_input(event):
