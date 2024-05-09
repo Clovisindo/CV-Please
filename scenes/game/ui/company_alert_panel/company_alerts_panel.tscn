@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/game/ui/company_alert_panel/CompanyAlertsPanel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/ui/company_alert_panel/company_alerts_panel.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=4]
