@@ -9,12 +9,12 @@
 [ext_resource path="res://scenes/game/items/computer/main_computer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/items/company_computer/company_computer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/game/items/company_computer/validation_company_computer.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/game/ui/company_alert_panel/CompanyAlertsPanel.gd" type="Script" id=10]
+[ext_resource path="res://scenes/game/ui/company_alert_panel/company_alerts_panel.gd" type="Script" id=10]
 [ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=11]
 [ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=12]
 [ext_resource path="res://scenes/game/ui/dialog_box/dialog_box.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/game/ui/interaction_dialog/button_interaction_dialog.gd" type="Script" id=14]
-[ext_resource path="res://scenes/game/ui/date_time_panel/DateTimePanel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/game/ui/date_time_panel/date_time_panel.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )

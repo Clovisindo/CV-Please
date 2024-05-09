@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Panel",
 "class": "DateTimePanel",
 "language": "GDScript",
-"path": "res://scenes/game/ui/date_time_panel/DateTimePanel.gd"
+"path": "res://scenes/game/ui/date_time_panel/date_time_panel.gd"
 }, {
 "base": "Control",
 "class": "DecisionApplicant",
