@@ -19,5 +19,3 @@ enum TypeSpecialCondition {
 	NO_WOMAN,
 	NO_OLD_PEOPLE
 }
-
-enum DateMonths { JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE }

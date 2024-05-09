@@ -51,16 +51,16 @@ func set_datetime_by_validation(turns_value_validate):
 
 
 func _get_month_value(enum_month):
-	match enum_month - 1:
-		EnumUtils.DateMonths.JANUARY:
+	match enum_month:
+		Time.MONTH_JANUARY:
 			return "January"
-		EnumUtils.DateMonths.FEBRUARY:
+		Time.MONTH_FEBRUARY:
 			return "February"
-		EnumUtils.DateMonths.MARCH:
+		Time.MONTH_MARCH:
 			return "March"
-		EnumUtils.DateMonths.APRIL:
+		Time.MONTH_APRIL:
 			return "April"
-		EnumUtils.DateMonths.MAY:
+		Time.MONTH_MAY:
 			return "May"
-		EnumUtils.DateMonths.JUNE:
+		Time.MONTH_JUNE:
 			return "June"
