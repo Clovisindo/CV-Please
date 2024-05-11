@@ -2,11 +2,15 @@ extends Panel
 
 class_name JobRequisite
 
+signal send_cross_question
+
 enum JobOfferStatus {
 	IDLE,
 	SELECTED,
 	MATCHED,
 	DISABLED,
+	CROSS_IDLE,
+	CROSS_IN_PROGRESS,
 }
 
 export(JobOfferStatus) var current_status
@@ -21,19 +25,31 @@ var x_limit = -10
 var is_hovered = false
 
 
+func add_data(text: String, question: String, answer: String):
+	requisite_answer = answer
+	requisite_question = question
+	requisite_name = text
+	$RequisiteText.text = text
+
+
 func requisite_asked():
 	current_status = JobOfferStatus.MATCHED
 	rect_position.x = 10
 
 
 func requisite_idle():
-	if current_status == JobOfferStatus.SELECTED:
+	if (
+		current_status == JobOfferStatus.SELECTED
+		|| current_status == JobOfferStatus.CROSS_IDLE
+		|| current_status == JobOfferStatus.CROSS_IN_PROGRESS
+	):
 		current_status = JobOfferStatus.IDLE
 		rect_position.x = 0
+		$RequisiteText.add_color_override("default_color", Color(1, 1, 1, 1))
 
 
 func requisite_disable():
-	if current_status == JobOfferStatus.IDLE:
+	if current_status == JobOfferStatus.IDLE || current_status == JobOfferStatus.CROSS_IDLE:
 		current_status = JobOfferStatus.DISABLED
 		rect_position.x = 0
 
@@ -42,13 +58,31 @@ func requisite_enable():
 	if current_status == JobOfferStatus.DISABLED:
 		current_status = JobOfferStatus.IDLE
 		rect_position.x = 0
+		$RequisiteText.add_color_override("default_color", Color(1, 1, 1, 1))
 
 
-func add_data(text: String, question: String, answer: String):
-	requisite_answer = answer
-	requisite_question = question
-	requisite_name = text
-	$RequisiteText.text = text
+func requisite_cross_idle():
+	if (
+		current_status == JobOfferStatus.IDLE
+		|| current_status == JobOfferStatus.SELECTED
+		|| current_status == JobOfferStatus.MATCHED
+	):
+		current_status = JobOfferStatus.CROSS_IDLE
+		rect_position.x = 0
+		$RequisiteText.add_color_override("default_color", Color(1, 0, 0, 1))
+
+
+func requisite_cross_progress():
+	if current_status == JobOfferStatus.CROSS_IDLE:
+		current_status = JobOfferStatus.CROSS_IN_PROGRESS
+		rect_position.x = 0
+		$RequisiteText.add_color_override("default_color", Color(1, 1, 0, 1))
+
+
+func check_is_status_cross_progress(requisite_status):
+	if requisite_status == JobOfferStatus.CROSS_IN_PROGRESS:
+		return true
+	return false
 
 
 func _gui_input(event):
@@ -60,6 +94,10 @@ func _gui_input(event):
 		_process_as_matched(event)
 	elif current_status == JobOfferStatus.DISABLED:
 		_process_as_disabled(event)
+	elif current_status == JobOfferStatus.CROSS_IDLE:
+		_process_as_cross_idle(event)
+	elif current_status == JobOfferStatus.CROSS_IN_PROGRESS:
+		_process_as_cross_processing(event)
 
 
 func _process_as_idle(event):
@@ -81,6 +119,17 @@ func _process_as_matched(event):
 
 
 func _process_as_disabled(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		pass
+
+
+func _process_as_cross_idle(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		current_status = JobOfferStatus.CROSS_IN_PROGRESS
+		emit_signal("send_cross_question")
+
+
+func _process_as_cross_processing(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		pass
 

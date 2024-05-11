@@ -14,6 +14,7 @@ export(PackedScene) onready var job_offer_scene
 var cv: Curriculum
 var job_offer: JobOffer
 var evaluation: ApplicantResult
+var cross_questions: Array
 var detail_validations: Array
 var applicant_name = "Default name"
 var is_valid_applicant = false
@@ -39,6 +40,7 @@ func add_data(
 	name: String,
 	skills: Array,
 	requisites: Array,
+	cross_data: Array,
 	company: String,
 	category: String,
 	valid: bool,
@@ -55,6 +57,8 @@ func add_data(
 	if requisites:
 		job_offer = job_offer_scene.instance()
 		job_offer.add_requisites(requisites)
+	if cross_data:
+		cross_questions = cross_data
 	if company:
 		company_name = company
 	if category:
@@ -75,6 +79,13 @@ func get_cv():
 
 func get_job_offer():
 	return self.job_offer
+
+
+func get_cross_question(requisite_text, skill_text):
+	for cross_data in cross_questions:
+		if cross_data.textUI == requisite_text && cross_data.textUI_secondary == skill_text:
+			return cross_data
+	return null
 
 
 func add_turn_count(value):

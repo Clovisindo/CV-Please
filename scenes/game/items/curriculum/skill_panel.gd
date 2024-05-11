@@ -2,11 +2,15 @@ extends Panel
 
 class_name SkillPanel
 
+signal send_cross_question
+
 enum SkillStatus {
 	IDLE,
 	SELECTED,
 	MATCHED,
 	DISABLED,
+	CROSS_IDLE,
+	CROSS_IN_PROGRESS,
 }
 
 export(SkillStatus) var current_status
@@ -15,6 +19,7 @@ var skill_answer: String
 var skill_question: String
 var skill_name: String
 var cv: Curriculum
+
 var velocity = 25
 var x_limit = 10
 var is_hovered = false
@@ -33,13 +38,18 @@ func skill_asked():
 
 
 func skill_idle():
-	if current_status == SkillStatus.SELECTED:
+	if (
+		current_status == SkillStatus.SELECTED
+		|| current_status == SkillStatus.CROSS_IDLE
+		|| current_status == SkillStatus.CROSS_IN_PROGRESS
+	):
 		current_status = SkillStatus.IDLE
 		rect_position.x = 0
+		$SkillText.add_color_override("default_color", Color(1, 1, 1, 1))
 
 
 func skill_disable():
-	if current_status == SkillStatus.IDLE:
+	if current_status == SkillStatus.IDLE || current_status == SkillStatus.CROSS_IDLE:
 		current_status = SkillStatus.DISABLED
 		rect_position.x = 0
 
@@ -48,6 +58,31 @@ func skill_enable():
 	if current_status == SkillStatus.DISABLED:
 		current_status = SkillStatus.IDLE
 		rect_position.x = 0
+		$SkillText.add_color_override("default_color", Color(1, 1, 1, 1))
+
+
+func skill_cross_idle():
+	if (
+		current_status == SkillStatus.IDLE
+		|| current_status == SkillStatus.SELECTED
+		|| current_status == SkillStatus.MATCHED
+	):
+		current_status = SkillStatus.CROSS_IDLE
+		rect_position.x = 0
+		$SkillText.add_color_override("default_color", Color(1, 0, 0, 1))
+
+
+func skill_cross_progress():
+	if current_status == SkillStatus.CROSS_IDLE:
+		current_status = SkillStatus.CROSS_IN_PROGRESS
+		rect_position.x = 0
+		$SkillText.add_color_override("default_color", Color(1, 1, 0, 1))
+
+
+func check_is_status_cross_progress(skill_status):
+	if skill_status == SkillStatus.CROSS_IN_PROGRESS:
+		return true
+	return false
 
 
 func _gui_input(event):
@@ -59,6 +94,10 @@ func _gui_input(event):
 		_process_as_matched(event)
 	elif current_status == SkillStatus.DISABLED:
 		_process_as_disabled(event)
+	elif current_status == SkillStatus.CROSS_IDLE:
+		_process_as_cross_idle(event)
+	elif current_status == SkillStatus.CROSS_IN_PROGRESS:
+		_process_as_cross_processing(event)
 
 
 func _process_as_idle(event):
@@ -80,6 +119,17 @@ func _process_as_matched(event):
 
 
 func _process_as_disabled(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		pass
+
+
+func _process_as_cross_idle(event):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		current_status = SkillStatus.CROSS_IN_PROGRESS
+		emit_signal("send_cross_question")
+
+
+func _process_as_cross_processing(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		pass
 
