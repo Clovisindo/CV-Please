@@ -20,6 +20,8 @@ var requisite_question: String
 var requisite_name: String
 var job_offer: JobOffer
 
+var previous_state
+
 var velocity = -25
 var x_limit = -10
 var is_hovered = false
@@ -32,9 +34,12 @@ func add_data(text: String, question: String, answer: String):
 	$RequisiteText.text = text
 
 
-func requisite_asked():
-	current_status = JobOfferStatus.MATCHED
-	rect_position.x = 10
+func requisite_as_previous_state():
+	match previous_state:
+		JobOfferStatus.IDLE:
+			_process_idle()
+		JobOfferStatus.SELECTED:
+			_process_selected()
 
 
 func requisite_idle():
@@ -43,9 +48,24 @@ func requisite_idle():
 		|| current_status == JobOfferStatus.CROSS_IDLE
 		|| current_status == JobOfferStatus.CROSS_IN_PROGRESS
 	):
-		current_status = JobOfferStatus.IDLE
-		rect_position.x = 0
-		$RequisiteText.add_color_override("default_color", Color(1, 1, 1, 1))
+		_process_idle()
+
+
+func _process_idle():
+	current_status = JobOfferStatus.IDLE
+	rect_position.x = 0
+	$RequisiteText.add_color_override("default_color", Color(1, 1, 1, 1))
+
+
+func requisite_selected():
+	if current_status == JobOfferStatus.IDLE:
+		_process_selected()
+
+
+func _process_selected():
+	current_status = JobOfferStatus.SELECTED
+	$RequisiteText.add_color_override("default_color", Color(0, 0.392157, 0, 1))
+	rect_position.x = 10
 
 
 func requisite_disable():
@@ -85,13 +105,15 @@ func check_is_status_cross_progress(requisite_status):
 	return false
 
 
+func save_previous_state():
+	previous_state = current_status
+
+
 func _gui_input(event):
 	if current_status == JobOfferStatus.IDLE:
 		_process_as_idle(event)
 	elif current_status == JobOfferStatus.SELECTED:
 		_process_as_selected(event)
-	elif current_status == JobOfferStatus.MATCHED:
-		_process_as_matched(event)
 	elif current_status == JobOfferStatus.DISABLED:
 		_process_as_disabled(event)
 	elif current_status == JobOfferStatus.CROSS_IDLE:
@@ -109,11 +131,6 @@ func _process_as_idle(event):
 
 
 func _process_as_selected(event):
-	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
-		pass
-
-
-func _process_as_matched(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		pass
 

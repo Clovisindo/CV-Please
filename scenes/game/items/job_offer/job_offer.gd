@@ -42,6 +42,11 @@ func enable_requisites():
 		requisite.requisite_enable()
 
 
+func previous_state_skills():
+	for requisite in $JobOfferPanel/VBoxContainer.get_children():
+		requisite.requisite_as_previous_state()
+
+
 func enable_cross_requisites():
 	for requisite in $JobOfferPanel/VBoxContainer.get_children():
 		requisite.requisite_cross_idle()
@@ -56,6 +61,11 @@ func disable_other_cross_requisites(selected_requisite):
 func disable_cross_requisites():
 	for requisite in $JobOfferPanel/VBoxContainer.get_children():
 		requisite.requisite_idle()
+
+
+func save_previous_state():
+	for requisite in $JobOfferPanel/VBoxContainer.get_children():
+		requisite.save_previous_state()
 
 
 func _gui_input(event):

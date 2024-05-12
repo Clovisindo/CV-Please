@@ -33,4 +33,3 @@ func add_interaction_line(qa: QuestionAnswer, reference):
 		current_line.set_applicant_text("> %s" % current_question_answer.answer)
 		$VScrollBar/VBoxContainer.add_child(current_line)
 		current_question_answer = null
-		emit_signal("reference_used", item_reference)

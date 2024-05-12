@@ -69,13 +69,6 @@ func _wire_events():
 	$MainScene/ApplicantCrossMode.connect("disable_cross_mode", self, "on_disabled_cross_mode")
 
 
-func _on_reference_used(reference):
-	if reference is SkillPanel:
-		reference.skill_asked()
-	elif reference is JobRequisite:
-		reference.requisite_asked()
-
-
 func on_new_applicant_computer(applicant):  #inicia mainComputer con el applicant actual
 	$MainScene/MainComputer.load_applicant_computer(applicant)
 
@@ -119,12 +112,22 @@ func on_load_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.load_company_computer()
 
 
-func on_unload_company_computer():  #inicia mainComputer con el applicant actual
+func on_unload_company_computer():  #quita mainComputer con el applicant actual
 	$MainScene/CompanyComputer.unload_company_computer()
 
 
+func on_load_cross_mode():  #inicia mainComputer con el applicant actual
+	$MainScene/ApplicantCrossMode.on_enable_button_cross_mode()
+
+
+func on_unload_cross_mode():  #quita mainComputer con el applicant actual
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
+
+
 func on_enabled_cross_mode():
+	applicant_list[current_applicant_index].get_cv().save_previous_state()
 	applicant_list[current_applicant_index].get_cv().enable_cross_skills()
+	applicant_list[current_applicant_index].get_job_offer().save_previous_state()
 	applicant_list[current_applicant_index].get_job_offer().enable_cross_requisites()
 
 
@@ -155,9 +158,9 @@ func execute_cross_question():
 				result_cross.answer,
 				EnumUtils.TypeDialogBox.PLAYER
 			)
-			#mandamos al acabar todas las skills y requisites a idle
-			applicant_list[current_applicant_index].get_job_offer().idle_requisites()
-			applicant_list[current_applicant_index].get_cv().idle_skills()
+			#mandamos al acabar todas las skills y requisites al estado previo
+			applicant_list[current_applicant_index].get_job_offer().previous_state_skills()
+			applicant_list[current_applicant_index].get_cv().previous_state_skills()
 
 
 func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_box):
@@ -181,6 +184,7 @@ func _on_interaction_started(applicant):
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
+	on_load_cross_mode()
 	set_process_unhandled_input(true)
 
 
@@ -189,6 +193,7 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	close_panel_tween($MainScene/JobOfferContainer, main_computer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
+	on_unload_cross_mode()
 	set_process_unhandled_input(true)
 
 

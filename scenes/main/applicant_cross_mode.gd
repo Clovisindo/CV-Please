@@ -44,6 +44,16 @@ func _process_as_disable(event):
 		emit_signal("enable_cross_mode")
 
 
+func on_enable_button_cross_mode():
+	self.visible = true
+	self.disabled = false
+
+
+func on_disable_button_cross_mode():
+	self.visible = false
+	self.disabled = true
+
+
 func _on_ApplicantCrossMode_mouse_exited() -> void:
 	is_hovered = false
 

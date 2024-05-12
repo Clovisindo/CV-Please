@@ -42,6 +42,11 @@ func enable_skills():
 		skill.skill_enable()
 
 
+func previous_state_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_as_previous_state()
+
+
 func enable_cross_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
 		skill.skill_cross_idle()
@@ -56,6 +61,11 @@ func disable_other_cross_skills(selected_skill):
 func disable_cross_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
 		skill.skill_idle()
+
+
+func save_previous_state():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.save_previous_state()
 
 
 func skill_checked(skill):
