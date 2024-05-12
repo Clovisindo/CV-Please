@@ -148,9 +148,14 @@ func execute_cross_question():
 		var result_cross = applicant_list[current_applicant_index].get_cross_question(
 			cross_requisite.requisite_name, cross_skill.skill_name
 		)
-
+		current_interaction_dialog.add_interaction_line(
+			QuestionAnswer.new(cross_requisite.requisite_name, cross_skill.skill_name)
+		)
 		if result_cross != null:
-			# ejecutamos el mensaje
+			current_interaction_dialog.add_interaction_line(
+				QuestionAnswer.new(result_cross.question, result_cross.answer)
+			)
+			applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_CROSS)
 			emit_signal(
 				"emit_message_to_player_dialog_box",
 				applicant_list[current_applicant_index].applicant_name,
@@ -158,9 +163,21 @@ func execute_cross_question():
 				result_cross.answer,
 				EnumUtils.TypeDialogBox.PLAYER
 			)
-			#mandamos al acabar todas las skills y requisites al estado previo
-			applicant_list[current_applicant_index].get_job_offer().previous_state_skills()
-			applicant_list[current_applicant_index].get_cv().previous_state_skills()
+		#mandamos al acabar todas las skills y requisites al estado previo
+		else:
+			current_interaction_dialog.add_interaction_line(
+				QuestionAnswer.new("dummy", "dummy response")
+			)
+			emit_signal(
+				"emit_message_to_player_dialog_box",
+				applicant_list[current_applicant_index].applicant_name,
+				"dummy",
+				"dummy response",
+				EnumUtils.TypeDialogBox.PLAYER
+			)
+			applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)  #castigamos solo con un turno
+		applicant_list[current_applicant_index].get_job_offer().previous_state_skills()
+		applicant_list[current_applicant_index].get_cv().previous_state_skills()
 
 
 func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_box):
@@ -203,7 +220,7 @@ func _on_skill_selected(skill: SkillPanel):
 	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
 	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)
 	current_interaction_dialog.add_interaction_line(
-		QuestionAnswer.new(skill.skill_question, skill.skill_answer), skill
+		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
 	)
 	emit_signal(
 		"emit_message_to_player_dialog_box",
@@ -219,8 +236,7 @@ func _on_job_requisite_selected(job_requisite: JobRequisite):
 	applicant_list[current_applicant_index].get_cv().disable_skills()
 	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_REQUISITE)
 	current_interaction_dialog.add_interaction_line(
-		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer),
-		job_requisite
+		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
 	)
 	emit_signal(
 		"emit_message_to_player_dialog_box",

@@ -95,7 +95,7 @@ func skill_cross_idle():
 func skill_cross_progress():
 	if current_status == SkillStatus.CROSS_IDLE:
 		current_status = SkillStatus.CROSS_IN_PROGRESS
-		rect_position.x = 0
+		rect_position.x = 10
 		$SkillText.add_color_override("default_color", Color(1, 1, 0, 1))
 
 
@@ -142,7 +142,7 @@ func _process_as_disabled(event):
 
 func _process_as_cross_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
-		current_status = SkillStatus.CROSS_IN_PROGRESS
+		skill_cross_progress()
 		emit_signal("send_cross_question")
 
 
@@ -153,7 +153,10 @@ func _process_as_cross_processing(event):
 
 func _process(delta):
 	_set_size_by_text()
-	if current_status == SkillStatus.IDLE && is_hovered:
+	if (
+		(current_status == SkillStatus.IDLE || current_status == SkillStatus.CROSS_IDLE)
+		&& is_hovered
+	):
 		if rect_position.x >= x_limit || rect_position.x <= -1:
 			velocity *= -1
 		rect_position.x += velocity * delta
