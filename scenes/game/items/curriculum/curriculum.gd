@@ -16,20 +16,56 @@ func add_skills(skills: Array):
 			$CVPanel/VBoxContainer.add_child(skill_panel)
 
 
+func wired_events(target_manager):
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.connect("send_cross_question", target_manager, "execute_cross_question")
+
+
 func idle_other_skills(selected_skill):
 	for skill in $CVPanel/VBoxContainer.get_children():
 		if skill != selected_skill:
 			skill.skill_idle()
 
 
-func disable_other_skills():
+func idle_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_idle()
+
+
+func disable_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
 		skill.skill_disable()
 
 
-func enable_other_skills():
+func enable_skills():
 	for skill in $CVPanel/VBoxContainer.get_children():
 		skill.skill_enable()
+
+
+func previous_state_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_as_previous_state()
+
+
+func enable_cross_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_cross_idle()
+
+
+func disable_other_cross_skills(selected_skill):
+	for skill in $CVPanel/VBoxContainer.get_children():
+		if skill != selected_skill:
+			skill.skill_disable()
+
+
+func disable_cross_skills():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.skill_idle()
+
+
+func save_previous_state():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		skill.save_previous_state()
 
 
 func skill_checked(skill):
@@ -39,6 +75,13 @@ func skill_checked(skill):
 
 func _gui_input(event):
 	$StateMachine.current_state.handle_input(event)
+
+
+func get_cross_skill():
+	for skill in $CVPanel/VBoxContainer.get_children():
+		if skill.check_is_status_cross_progress(skill.current_status):
+			disable_other_cross_skills(skill)
+			return skill
 
 
 func process_cv(result):

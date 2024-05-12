@@ -8,7 +8,6 @@ export(PackedScene) onready var interaction_line_scene
 
 var current_question_answer: QuestionAnswer
 var current_line: InteractionLine
-var item_reference
 
 
 func _show_window_chat():
@@ -19,8 +18,7 @@ func _hide_window_chat():
 	get_parent().visible = false
 
 
-func add_interaction_line(qa: QuestionAnswer, reference):
-	item_reference = reference
+func add_interaction_line(qa: QuestionAnswer):
 	if current_line:
 		current_question_answer = null
 		current_line = null
@@ -33,4 +31,3 @@ func add_interaction_line(qa: QuestionAnswer, reference):
 		current_line.set_applicant_text("> %s" % current_question_answer.answer)
 		$VScrollBar/VBoxContainer.add_child(current_line)
 		current_question_answer = null
-		emit_signal("reference_used", item_reference)

@@ -65,13 +65,8 @@ func _wire_events():
 	computer_interaction_dialog.connect(
 		"hide_chat_log", current_interaction_dialog, "_hide_window_chat"
 	)
-
-
-func _on_reference_used(reference):
-	if reference is SkillPanel:
-		reference.skill_asked()
-	elif reference is JobRequisite:
-		reference.requisite_asked()
+	$MainScene/ApplicantCrossMode.connect("enable_cross_mode", self, "on_enabled_cross_mode")
+	$MainScene/ApplicantCrossMode.connect("disable_cross_mode", self, "on_disabled_cross_mode")
 
 
 func on_new_applicant_computer(applicant):  #inicia mainComputer con el applicant actual
@@ -117,8 +112,74 @@ func on_load_company_computer():  #inicia mainComputer con el applicant actual
 	$MainScene/CompanyComputer.load_company_computer()
 
 
-func on_unload_company_computer():  #inicia mainComputer con el applicant actual
+func on_unload_company_computer():  #quita mainComputer con el applicant actual
 	$MainScene/CompanyComputer.unload_company_computer()
+
+
+func on_load_cross_mode():  #inicia mainComputer con el applicant actual
+	$MainScene/ApplicantCrossMode.on_enable_button_cross_mode()
+
+
+func on_unload_cross_mode():  #quita mainComputer con el applicant actual
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
+
+
+func on_enabled_cross_mode():
+	applicant_list[current_applicant_index].get_cv().save_previous_state()
+	applicant_list[current_applicant_index].get_cv().enable_cross_skills()
+	applicant_list[current_applicant_index].get_job_offer().save_previous_state()
+	applicant_list[current_applicant_index].get_job_offer().enable_cross_requisites()
+
+
+func on_disabled_cross_mode():
+	applicant_list[current_applicant_index].get_cv().disable_cross_skills()
+	applicant_list[current_applicant_index].get_job_offer().disable_cross_requisites()
+
+
+func execute_cross_question():
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
+	# mirar si tenemos una de requisitos y otra de skills en cross_in_progress , arrancamos la pregunta
+	#deshabilitamos todos los demas de ese grupo, solo se puede elegir en modo cross una
+	var cross_requisite = applicant_list[current_applicant_index].get_job_offer().get_cross_requisite()
+	var cross_skill = applicant_list[current_applicant_index].get_cv().get_cross_skill()
+
+	if cross_requisite != null && cross_skill != null:
+		#buscamos si existe la cross question
+		#vamos a ver si esta cargado en el applicant y como matcheamos
+		var result_cross = applicant_list[current_applicant_index].get_cross_question(
+			cross_requisite.requisite_name, cross_skill.skill_name
+		)
+		current_interaction_dialog.add_interaction_line(
+			QuestionAnswer.new(cross_requisite.requisite_name, cross_skill.skill_name)
+		)
+		if result_cross != null:
+			current_interaction_dialog.add_interaction_line(
+				QuestionAnswer.new(result_cross.question, result_cross.answer)
+			)
+			applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_CROSS)
+			emit_signal(
+				"emit_message_to_player_dialog_box",
+				applicant_list[current_applicant_index].applicant_name,
+				result_cross.question,
+				result_cross.answer,
+				EnumUtils.TypeDialogBox.PLAYER
+			)
+		#mandamos al acabar todas las skills y requisites al estado previo
+		else:
+			current_interaction_dialog.add_interaction_line(
+				QuestionAnswer.new("dummy", "dummy response")
+			)
+			emit_signal(
+				"emit_message_to_player_dialog_box",
+				applicant_list[current_applicant_index].applicant_name,
+				"dummy",
+				"dummy response",
+				EnumUtils.TypeDialogBox.PLAYER
+			)
+			applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)  #castigamos solo con un turno
+		applicant_list[current_applicant_index].get_job_offer().previous_state_skills()
+		applicant_list[current_applicant_index].get_cv().previous_state_skills()
+		$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 
 
 func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_box):
@@ -131,8 +192,9 @@ func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_b
 			type_dialog_box
 		)
 	else:
-		applicant_list[current_applicant_index].get_cv().enable_other_skills()
-		applicant_list[current_applicant_index].get_job_offer().enable_other_requisites()
+		applicant_list[current_applicant_index].get_cv().enable_skills()
+		applicant_list[current_applicant_index].get_job_offer().enable_requisites()
+		$MainScene/ApplicantCrossMode.on_enable_button_cross_mode()
 
 
 func _on_interaction_started(applicant):
@@ -142,6 +204,7 @@ func _on_interaction_started(applicant):
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
+	on_load_cross_mode()
 	set_process_unhandled_input(true)
 
 
@@ -150,16 +213,18 @@ func _on_interaction_ended(applicant):
 	$MainScene/CVContainer.remove_child(applicant.get_cv())
 	close_panel_tween($MainScene/JobOfferContainer, main_computer)
 	$MainScene/JobOfferContainer.remove_child(applicant.get_job_offer())
+	on_unload_cross_mode()
 	set_process_unhandled_input(true)
 
 
 func _on_skill_selected(skill: SkillPanel):
 	# No pasamos parametro por que la actual se va a otro estando distinto por el input
-	applicant_list[current_applicant_index].get_cv().disable_other_skills()
-	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
+	applicant_list[current_applicant_index].get_cv().disable_skills()
+	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)
 	current_interaction_dialog.add_interaction_line(
-		QuestionAnswer.new(skill.skill_question, skill.skill_answer), skill
+		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
 	)
 	emit_signal(
 		"emit_message_to_player_dialog_box",
@@ -171,12 +236,12 @@ func _on_skill_selected(skill: SkillPanel):
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
-	applicant_list[current_applicant_index].get_job_offer().disable_other_requisites()
-	applicant_list[current_applicant_index].get_cv().disable_other_skills()
+	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
+	applicant_list[current_applicant_index].get_cv().disable_skills()
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_REQUISITE)
 	current_interaction_dialog.add_interaction_line(
-		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer),
-		job_requisite
+		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
 	)
 	emit_signal(
 		"emit_message_to_player_dialog_box",
@@ -211,6 +276,7 @@ func _instantiate_panels():
 			puzzle.applicant_name,
 			puzzle.skills_answers,
 			puzzle.requisites_answers,
+			puzzle.cross_questions,
 			puzzle.company_name,
 			puzzle.category_job,
 			puzzle.validate_solution,
@@ -225,6 +291,8 @@ func _instantiate_panels():
 		)
 		applicant_list.append(new_applicant)
 		wired_events_applicant(new_applicant)
+		new_applicant.get_cv().wired_events(self)
+		new_applicant.get_job_offer().wired_events(self)
 
 
 func wired_events_applicant(new_applicant: Applicant):
