@@ -12,6 +12,7 @@ var show: bool = false
 
 
 func enter():
+	get_parent().get_parent().visible = true
 	get_parent().get_parent().disabled = false
 
 

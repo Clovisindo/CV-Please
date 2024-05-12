@@ -154,7 +154,7 @@ func _process_as_cross_processing(event):
 func _process(delta):
 	_set_size_by_text()
 	if (
-		(current_status == JobOfferStatus.IDLE && current_status == JobOfferStatus.CROSS_IDLE)
+		(current_status == JobOfferStatus.IDLE || current_status == JobOfferStatus.CROSS_IDLE)
 		&& is_hovered
 	):
 		if rect_position.x <= x_limit || rect_position.x >= 1:

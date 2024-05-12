@@ -137,6 +137,7 @@ func on_disabled_cross_mode():
 
 
 func execute_cross_question():
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 	# mirar si tenemos una de requisitos y otra de skills en cross_in_progress , arrancamos la pregunta
 	#deshabilitamos todos los demas de ese grupo, solo se puede elegir en modo cross una
 	var cross_requisite = applicant_list[current_applicant_index].get_job_offer().get_cross_requisite()
@@ -178,6 +179,7 @@ func execute_cross_question():
 			applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)  #castigamos solo con un turno
 		applicant_list[current_applicant_index].get_job_offer().previous_state_skills()
 		applicant_list[current_applicant_index].get_cv().previous_state_skills()
+		$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 
 
 func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_box):
@@ -192,6 +194,7 @@ func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_b
 	else:
 		applicant_list[current_applicant_index].get_cv().enable_skills()
 		applicant_list[current_applicant_index].get_job_offer().enable_requisites()
+		$MainScene/ApplicantCrossMode.on_enable_button_cross_mode()
 
 
 func _on_interaction_started(applicant):
@@ -218,6 +221,7 @@ func _on_skill_selected(skill: SkillPanel):
 	# No pasamos parametro por que la actual se va a otro estando distinto por el input
 	applicant_list[current_applicant_index].get_cv().disable_skills()
 	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(skill.skill_question, skill.skill_answer)
@@ -234,6 +238,7 @@ func _on_skill_selected(skill: SkillPanel):
 func _on_job_requisite_selected(job_requisite: JobRequisite):
 	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
 	applicant_list[current_applicant_index].get_cv().disable_skills()
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_REQUISITE)
 	current_interaction_dialog.add_interaction_line(
 		QuestionAnswer.new(job_requisite.requisite_question, job_requisite.requisite_answer)
