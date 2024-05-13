@@ -34,7 +34,7 @@ value_nok = -50
 [sub_resource type="Resource" id=17]
 script = ExtResource( 6 )
 type_special_condition = 2
-value_text_ok = "Excellent, great job for meeting our needs."
+value_text_ok = "Great job, thanks prioritize our needs."
 value_text_nok = "It's a good worker, but stay tuned with our needs in the future."
 value_ok = 20
 value_nok = -20

@@ -70,22 +70,6 @@ func requisite_enable():
 		$SpecialConditionRText.add_color_override("default_color", Color(1, 1, 1, 1))
 
 
-func save_previous_state():
-	pass
-
-
-func requisite_cross_idle():
-	pass
-
-
-func requisite_as_previous_state():
-	pass
-
-
-func check_is_status_cross_progress(value):
-	return false
-
-
 func _gui_input(event):
 	if current_status == JobSpecialConditionStatus.IDLE:
 		_process_as_idle(event)
