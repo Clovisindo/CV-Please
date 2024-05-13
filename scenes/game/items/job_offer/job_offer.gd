@@ -2,9 +2,12 @@ extends Control
 
 class_name JobOffer
 
+
 signal job_requisite_selected(job_requisite)
+signal job_condition_selected(job_condition)
 
 export(PackedScene) onready var requisite_scene
+export(PackedScene) onready var condition_scene
 
 
 func add_requisites(requisites: Array):
@@ -14,6 +17,19 @@ func add_requisites(requisites: Array):
 			requisite_panel.job_offer = self
 			requisite_panel.add_data(requisite.textUI, requisite.question, requisite.answer)
 			$JobOfferPanel/VBoxContainer.add_child(requisite_panel)
+
+
+func add_condition(condition):
+	if condition:
+		var condition_panel = condition_scene.instance()
+		condition_panel.job_offer = self
+		condition_panel.add_data(
+			condition.special_condition,
+			condition.condition_name,
+			condition.question_player,
+			condition.response_applicant
+		)
+		$JobOfferPanel/VBoxContainer.add_child(condition_panel)
 
 
 func wired_events(target_manager):
@@ -81,3 +97,7 @@ func get_cross_requisite():
 
 func requisite_checked(requisite):
 	emit_signal("job_requisite_selected", requisite)
+
+
+func condition_checked(condition):
+	emit_signal("job_condition_selected", condition)

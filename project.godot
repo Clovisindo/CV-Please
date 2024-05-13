@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/items/job_offer/job_requisite.gd"
 }, {
+"base": "Panel",
+"class": "JobSpecialCondition",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_special_condition.gd"
+}, {
 "base": "Button",
 "class": "MainComputer",
 "language": "GDScript",
@@ -148,6 +153,11 @@ _global_script_classes=[ {
 "class": "ResourceQuestAnsw",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_question_answer.gd"
+}, {
+"base": "Resource",
+"class": "ResourceSpecialCondition",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_special_condition.gd"
 }, {
 "base": "Resource",
 "class": "ResourceTimelineJob",
@@ -329,6 +339,7 @@ _global_script_class_icons={
 "InteractionLine": "",
 "JobOffer": "",
 "JobRequisite": "",
+"JobSpecialCondition": "",
 "MainComputer": "",
 "NextApplicantResume": "",
 "NextPaymentResume": "",
@@ -338,6 +349,7 @@ _global_script_class_icons={
 "ResourceDummyResponse": "",
 "ResourcePaymentPanel": "",
 "ResourceQuestAnsw": "",
+"ResourceSpecialCondition": "",
 "ResourceTimelineJob": "",
 "ResourceValidationResponse": "",
 "ResumeManager": "",

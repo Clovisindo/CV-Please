@@ -22,7 +22,7 @@ export var time_limit = 5  #se mide en acciones, no en tiempo real
 export(Array, Resource) var requisites_answers
 export(Array, Resource) var cross_questions
 export var salary_offer = 15000
-export var special_condition = "first job for applicant"  #no invalida al candidato, es un plus si se cumple
+export(Resource) var special_condition  #no invalida al candidato, es un plus si se cumple
 #Curriculum
 export(Array, Resource) var skills_answers
 export(Array, Resource) var timeline_jobs
