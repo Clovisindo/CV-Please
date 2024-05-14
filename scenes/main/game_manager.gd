@@ -294,6 +294,7 @@ func _instantiate_panels():
 			puzzle.applicant_name,
 			puzzle.skills_answers,
 			puzzle.requisites_answers,
+			EnumUtils.TypeWork.keys()[puzzle.work_type],
 			puzzle.timeline_jobs,
 			puzzle.special_condition,
 			puzzle.cross_questions,

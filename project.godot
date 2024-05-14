@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "Panel",
 "class": "JobTimelineWork",
 "language": "GDScript",
-"path": "res://scenes/game/items/job_offer/job_timeline_work.gd"
+"path": "res://scenes/game/items/curriculum/job_timeline_work.gd"
 }, {
 "base": "Button",
 "class": "MainComputer",
