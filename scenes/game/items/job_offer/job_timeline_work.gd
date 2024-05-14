@@ -24,40 +24,11 @@ func add_data(_job_descp: String, _time_job: String):
 	time_job = _time_job
 	$JobTimeLineWorkRtext.text = _job_descp + ": " + _time_job
 
-# func timejob_idle():
-# 	if current_status == JobTimelineWorkStatus.SELECTED:
-# 		_process_idle()
 
-# func _process_idle():
-# 	current_status = JobTimelineWorkStatus.IDLE
-# 	rect_position.x = 0
-# 	$JobTimeLineWorkRtext.add_color_override("default_color", Color(1, 1, 1, 1))
+func _process(_delta):
+	_set_size_by_text()
 
-# func requisite_selected():
-# 	if current_status == JobTimelineWorkStatus.IDLE:
-# 		_process_selected()
 
-# func _process_selected():
-# 	current_status = JobTimelineWorkStatus.SELECTED
-# 	$JobTimeLineWorkRtext.add_color_override("default_color", Color(0, 0.392157, 0, 1))
-# 	rect_position.x = 10
-
-# func requisite_disable():
-# 	if current_status == JobTimelineWorkStatus.IDLE:
-# 		current_status = JobTimelineWorkStatus.DISABLED
-# 		rect_position.x = 0
-
-# func requisite_enable():
-# 	if current_status == JobTimelineWorkStatus.DISABLED:
-# 		current_status = JobTimelineWorkStatus.IDLE
-# 		rect_position.x = 0
-# 		$JobTimeLineWorkRtext.add_color_override("default_color", Color(1, 1, 1, 1))
-
-# func save_previous_state():
-# 	pass
-
-# func requisite_cross_idle():
-# 	pass
-
-# func requisite_as_previous_state():
-# 	pass
+func _set_size_by_text():
+	get_node(".").rect_size.y = get_node("JobTimeLineWorkRtext").rect_size.y + 8
+	get_node(".").rect_min_size.y = get_node(".").rect_size.y

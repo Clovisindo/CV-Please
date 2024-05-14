@@ -6,6 +6,7 @@ signal job_requisite_selected(job_requisite)
 signal job_condition_selected(job_condition)
 
 export(PackedScene) onready var requisite_scene
+export(PackedScene) onready var timeline_work_scene
 export(PackedScene) onready var condition_scene
 
 var job_requisite_class = load("res://scenes/game/items/job_offer/job_requisite.gd")
@@ -19,6 +20,14 @@ func add_requisites(requisites: Array):
 			requisite_panel.job_offer = self
 			requisite_panel.add_data(requisite.textUI, requisite.question, requisite.answer)
 			$JobOfferPanel/VBoxContainer.add_child(requisite_panel)
+
+
+func add_timeline_works(timeline_works: Array):
+	if timeline_works:
+		for timeline_work in timeline_works:
+			var timeline_panel = timeline_work_scene.instance()
+			timeline_panel.add_data(timeline_work.jobDescription, timeline_work.timejob)
+			$JobOfferPanel/VBoxContainer.add_child(timeline_panel)
 
 
 func add_condition(condition):

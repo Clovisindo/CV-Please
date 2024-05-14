@@ -294,6 +294,7 @@ func _instantiate_panels():
 			puzzle.applicant_name,
 			puzzle.skills_answers,
 			puzzle.requisites_answers,
+			puzzle.timeline_jobs,
 			puzzle.special_condition,
 			puzzle.cross_questions,
 			puzzle.company_name,

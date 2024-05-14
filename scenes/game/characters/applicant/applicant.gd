@@ -40,6 +40,7 @@ func add_data(
 	name: String,
 	skills: Array,
 	requisites: Array,
+	timeline_jobs: Array,
 	condition: Resource,
 	cross_data: Array,
 	company: String,
@@ -58,6 +59,8 @@ func add_data(
 	if requisites:
 		job_offer = job_offer_scene.instance()
 		job_offer.add_requisites(requisites)
+	if timeline_jobs:
+		job_offer.add_timeline_works(timeline_jobs)
 	if condition:
 		job_offer.add_condition(condition)
 	if cross_data:

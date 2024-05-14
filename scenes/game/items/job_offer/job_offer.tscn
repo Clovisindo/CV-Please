@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/game/items/job_offer/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/game/items/job_offer/states/state_job_offer_matched.gd" type="Script" id=4]
 [ext_resource path="res://scenes/game/items/job_offer/states/state_job_offer_not_matched.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/items/job_offer/job_special_condition.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/game/items/job_offer/job_timeline_work.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -20,6 +21,7 @@ margin_right = 175.5
 margin_bottom = 209.5
 script = ExtResource( 2 )
 requisite_scene = ExtResource( 3 )
+timeline_work_scene = ExtResource( 7 )
 condition_scene = ExtResource( 6 )
 
 [node name="JobOfferPanel" type="Panel" parent="."]
