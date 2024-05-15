@@ -110,9 +110,9 @@ func _set_size_by_text():
 	get_node(".").rect_min_size.y = get_node(".").rect_size.y
 
 
-func _on_RequisitePanel_mouse_exited() -> void:
+func _on_SpecialConditionPanel_mouse_exited() -> void:
 	is_hovered = false
 
 
-func _on_RequisitePanel_mouse_entered() -> void:
+func _on_SpecialConditionPanel_mouse_entered() -> void:
 	is_hovered = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/game/items/job_offer/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.gd" type="Script" id=2]
@@ -10,6 +10,10 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
 [node name="JobOffer" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -19,6 +23,7 @@ margin_left = -175.5
 margin_top = -209.5
 margin_right = 175.5
 margin_bottom = 209.5
+theme = ExtResource( 8 )
 script = ExtResource( 2 )
 requisite_scene = ExtResource( 3 )
 condition_scene = ExtResource( 6 )
@@ -42,6 +47,7 @@ margin_right = 352.0
 margin_bottom = 56.0
 rect_min_size = Vector2( 0, 56 )
 theme = ExtResource( 8 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="HeaderJobTypeTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/JobTypePanel"]
 anchor_left = 0.034
@@ -78,6 +84,7 @@ alignment = 1
 margin_right = 352.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
+custom_styles/panel = SubResource( 4 )
 
 [node name="HeaderRequisitesTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer/RequisitesPanel"]
 anchor_left = 0.034
@@ -92,12 +99,13 @@ text = "Job requisites:"
 [node name="SpecialConditionPanelContainer" type="PanelContainer" parent="JobOfferPanel/JobOfferVBoxContainer"]
 margin_top = 84.0
 margin_right = 352.0
-margin_bottom = 98.0
+margin_bottom = 84.0
+theme = ExtResource( 8 )
 
 [node name="SalaryAmountJobPanel" type="Panel" parent="JobOfferPanel/JobOfferVBoxContainer"]
-margin_top = 98.0
+margin_top = 84.0
 margin_right = 352.0
-margin_bottom = 154.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 0, 56 )
 theme = ExtResource( 8 )
 
