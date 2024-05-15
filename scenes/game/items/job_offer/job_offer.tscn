@@ -89,10 +89,15 @@ margin_right = 341.032
 margin_bottom = 23.508
 text = "Job requisites:"
 
-[node name="SalaryAmountJobPanel" type="Panel" parent="JobOfferPanel/JobOfferVBoxContainer"]
+[node name="SpecialConditionPanelContainer" type="PanelContainer" parent="JobOfferPanel/JobOfferVBoxContainer"]
 margin_top = 84.0
 margin_right = 352.0
-margin_bottom = 140.0
+margin_bottom = 98.0
+
+[node name="SalaryAmountJobPanel" type="Panel" parent="JobOfferPanel/JobOfferVBoxContainer"]
+margin_top = 98.0
+margin_right = 352.0
+margin_bottom = 154.0
 rect_min_size = Vector2( 0, 56 )
 theme = ExtResource( 8 )
 

@@ -23,9 +23,16 @@ func add_requisites(requisites: Array):
 			)
 
 
-func set_type_job_label(type_job: String):
-	if type_job:
-		$JobOfferPanel/JobOfferVBoxContainer/JobTypePanel/JobTypeTextLabel.text = type_job
+func set_type_job_label(company_name: String, type_job: String):
+	if company_name && type_job:
+		$JobOfferPanel/JobOfferVBoxContainer/JobTypePanel/HeaderJobTypeTextLabel.text = (
+			"Company :"
+			+ company_name
+		)
+		$JobOfferPanel/JobOfferVBoxContainer/JobTypePanel/JobTypeTextLabel.text = (
+			"Type job : "
+			+ type_job
+		)
 
 
 func add_condition(condition):
@@ -38,7 +45,9 @@ func add_condition(condition):
 			condition.question_player,
 			condition.response_applicant
 		)
-		$JobOfferPanel/JobOfferVBoxContainer.add_child(condition_panel)
+		$JobOfferPanel/JobOfferVBoxContainer/SpecialConditionPanelContainer.add_child(
+			condition_panel
+		)
 
 
 func wired_events(target_manager):
