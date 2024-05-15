@@ -1,12 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/game/items/job_offer/state_machine.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/game/items/job_offer/job_requisite.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/items/job_offer/states/state_job_offer_matched.gd" type="Script" id=4]
 [ext_resource path="res://scenes/game/items/job_offer/states/state_job_offer_not_matched.gd" type="Script" id=5]
+[ext_resource path="res://scenes/game/items/job_offer/job_special_condition.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="JobOffer" type="Control"]
 anchor_left = 0.5
@@ -17,8 +23,10 @@ margin_left = -175.5
 margin_top = -209.5
 margin_right = 175.5
 margin_bottom = 209.5
+theme = ExtResource( 8 )
 script = ExtResource( 2 )
 requisite_scene = ExtResource( 3 )
+condition_scene = ExtResource( 6 )
 
 [node name="JobOfferPanel" type="Panel" parent="."]
 anchor_left = -0.002849
@@ -29,9 +37,96 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="JobOfferPanel"]
+[node name="JobOfferVBoxContainer" type="VBoxContainer" parent="JobOfferPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
+
+[node name="JobTypePanel" type="Panel" parent="JobOfferPanel/JobOfferVBoxContainer"]
+margin_right = 352.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 0, 56 )
+theme = ExtResource( 8 )
+custom_styles/panel = SubResource( 2 )
+
+[node name="HeaderJobTypeTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/JobTypePanel"]
+anchor_left = 0.034
+anchor_right = 0.034
+anchor_bottom = 0.089
+margin_left = -1.968
+margin_top = 3.0
+margin_right = 341.032
+margin_bottom = 23.508
+text = "Job type:"
+
+[node name="JobTypeTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/JobTypePanel"]
+anchor_left = 0.034
+anchor_right = 0.034
+margin_left = 11.032
+margin_top = 29.0
+margin_right = 334.032
+margin_bottom = 54.0
+text = "example job type"
+
+[node name="RequisitesPanel" type="PanelContainer" parent="JobOfferPanel/JobOfferVBoxContainer"]
+margin_top = 56.0
+margin_right = 352.0
+margin_bottom = 84.0
+theme = ExtResource( 8 )
+
+[node name="RequisiteVBoxContainer" type="VBoxContainer" parent="JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel"]
+margin_right = 352.0
+margin_bottom = 28.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="RequisitesPanel" type="Panel" parent="JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer"]
+margin_right = 352.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 28 )
+custom_styles/panel = SubResource( 4 )
+
+[node name="HeaderRequisitesTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer/RequisitesPanel"]
+anchor_left = 0.034
+anchor_right = 0.034
+anchor_bottom = 0.089
+margin_left = -1.968
+margin_top = 3.0
+margin_right = 341.032
+margin_bottom = 23.508
+text = "Job requisites:"
+
+[node name="SpecialConditionPanelContainer" type="PanelContainer" parent="JobOfferPanel/JobOfferVBoxContainer"]
+margin_top = 84.0
+margin_right = 352.0
+margin_bottom = 84.0
+theme = ExtResource( 8 )
+
+[node name="SalaryAmountJobPanel" type="Panel" parent="JobOfferPanel/JobOfferVBoxContainer"]
+margin_top = 84.0
+margin_right = 352.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 56 )
+theme = ExtResource( 8 )
+
+[node name="HeaderSalaryTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/SalaryAmountJobPanel"]
+anchor_left = 0.034
+anchor_right = 0.034
+anchor_bottom = 0.089
+margin_left = -1.968
+margin_top = 3.0
+margin_right = 341.032
+margin_bottom = 23.508
+text = "Salary offer:"
+
+[node name="SalaryTextLabel" type="RichTextLabel" parent="JobOfferPanel/JobOfferVBoxContainer/SalaryAmountJobPanel"]
+anchor_left = 0.034
+anchor_right = 0.034
+margin_left = 11.032
+margin_top = 29.0
+margin_right = 334.032
+margin_bottom = 54.0
+text = "20.000K "
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )

@@ -6,6 +6,9 @@ var current_applicants_result = []
 var current_salary_amount = 0
 var current_month_salary_amount = 0
 
+var moral_compass_company = 0
+var moral_compass_applicants = 0
+
 var current_month: int = 1
 
 var rent_days_npay: int = 1  #empieza en 1 por como se gestiona el inicio de este valor en pantalla de resumen

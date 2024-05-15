@@ -32,7 +32,6 @@ var turns_count = 0
 func _ready():
 	$StateMachine.init(self)
 	$Container/PortraitRect/Portrait.texture = portrait_texture
-	$Container/Name.bbcode_text = "[center]%s[/center]" % applicant_name
 	$StateMachine.current_state.entrance_applicant()  # de waiting(inicio vacio) a entrance
 
 
@@ -40,8 +39,10 @@ func add_data(
 	name: String,
 	skills: Array,
 	requisites: Array,
-	cross_data: Array,
 	company: String,
+	timeline_jobs: Array,
+	condition: Resource,
+	cross_data: Array,
 	category: String,
 	valid: bool,
 	payment: int,
@@ -50,19 +51,24 @@ func add_data(
 ):
 	if name:
 		applicant_name = name
-		$Container/Name.bbcode_text = "[center]%s[/center]" % name
 	if skills:
 		cv = curriculum_scene.instance()
+		cv.set_name_applicant(applicant_name)
 		cv.add_skills(skills)
+	if timeline_jobs:
+		cv.add_timeline_works(timeline_jobs)
 	if requisites:
 		job_offer = job_offer_scene.instance()
 		job_offer.add_requisites(requisites)
-	if cross_data:
-		cross_questions = cross_data
 	if company:
 		company_name = company
+	if condition:
+		job_offer.add_condition(condition)
+	if cross_data:
+		cross_questions = cross_data
 	if category:
 		category_job = category
+		job_offer.set_type_job_label(company_name, category_job)
 	if valid:
 		is_valid_applicant = valid
 	if payment:

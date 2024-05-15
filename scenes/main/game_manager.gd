@@ -204,6 +204,7 @@ func _on_interaction_started(applicant):
 	$MainScene/JobOfferContainer.add_child(applicant.get_job_offer())
 	applicant.get_cv().connect("skill_selected", self, "_on_skill_selected")
 	applicant.get_job_offer().connect("job_requisite_selected", self, "_on_job_requisite_selected")
+	applicant.get_job_offer().connect("job_condition_selected", self, "_on_job_condition_selected")
 	on_load_cross_mode()
 	set_process_unhandled_input(true)
 
@@ -252,6 +253,23 @@ func _on_job_requisite_selected(job_requisite: JobRequisite):
 	)
 
 
+func _on_job_condition_selected(job_condition: JobSpecialCondition):
+	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
+	applicant_list[current_applicant_index].get_cv().disable_skills()
+	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
+	applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_REQUISITE)
+	current_interaction_dialog.add_interaction_line(
+		QuestionAnswer.new(job_condition.question_player, job_condition.response_applicant)
+	)
+	emit_signal(
+		"emit_message_to_player_dialog_box",
+		applicant_list[current_applicant_index].applicant_name,
+		job_condition.question_player,
+		job_condition.response_applicant,
+		EnumUtils.TypeDialogBox.PLAYER
+	)
+
+
 func _apply_applicant_decision(evaluation_status: String):
 	var current_applicant = applicant_list[current_applicant_index]
 	if (
@@ -276,8 +294,10 @@ func _instantiate_panels():
 			puzzle.applicant_name,
 			puzzle.skills_answers,
 			puzzle.requisites_answers,
-			puzzle.cross_questions,
 			puzzle.company_name,
+			puzzle.timeline_jobs,
+			puzzle.special_condition,
+			puzzle.cross_questions,
 			puzzle.category_job,
 			puzzle.validate_solution,
 			puzzle.payment_salary,
@@ -353,6 +373,23 @@ func process_validations_applicant(applicant: Applicant):
 			else:
 				detail.set_value(detail.value_text_nok, detail.value_nok)
 				datetime_panel.set_datetime_by_validation(false)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.APPLICANT_NO_EXPERIENCE:
+			# hay que tener en cuenta si lo acepta o no
+			if (
+				applicant.is_valid_applicant == true
+				&& (
+					applicant.evaluation.current_status
+					== ApplicantResult.Status.keys()[ApplicantResult.Status.VALID]
+				)
+			):
+				detail.set_value(detail.value_text_nok, detail.value_nok)
+				Global.moral_compass_applicants = 1
+				Global.moral_compass_company = -1
+			else:
+				detail.set_value(detail.value_text_ok, detail.value_ok)
+				Global.moral_compass_applicants = -1
+				Global.moral_compass_company = 1
+
 		applicant.evaluation.details_applicant = applicant.detail_validations
 
 
