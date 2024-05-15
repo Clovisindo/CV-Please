@@ -51,63 +51,72 @@ func add_condition(condition):
 
 
 func wired_events(target_manager):
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			requisite.connect("send_cross_question", target_manager, "execute_cross_question")
 
 
 func idle_other_requisites(selected_requisite):
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
-		if requisite is job_requisite_class || requisite is job_condition_class:
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
+		if requisite is job_requisite_class:
 			if requisite != selected_requisite:
 				requisite.requisite_idle()
+	for job_condition in $JobOfferPanel/JobOfferVBoxContainer/SpecialConditionPanelContainer.get_children():
+		if job_condition != selected_requisite:
+			job_condition.requisite_idle()
 
 
 func idle_requisites():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
-		if requisite is job_requisite_class || requisite is job_condition_class:
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
+		if requisite is job_requisite_class:
 			requisite.requisite_idle()
+	for job_condition in $JobOfferPanel/JobOfferVBoxContainer/SpecialConditionPanelContainer.get_children():
+		job_condition.requisite_idle()
 
 
 func disable_requisites():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
-		if requisite is job_requisite_class || requisite is job_condition_class:
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
+		if requisite is job_requisite_class:
 			requisite.requisite_disable()
+	for job_condition in $JobOfferPanel/JobOfferVBoxContainer/SpecialConditionPanelContainer.get_children():
+		job_condition.requisite_disable()
 
 
 func enable_requisites():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
-		if requisite is job_requisite_class || requisite is job_condition_class:
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
+		if requisite is job_requisite_class:
 			requisite.requisite_enable()
+	for job_condition in $JobOfferPanel/JobOfferVBoxContainer/SpecialConditionPanelContainer.get_children():
+		job_condition.requisite_enable()
 
 
 func previous_state_skills():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			requisite.requisite_as_previous_state()
 
 
 func enable_cross_requisites():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			requisite.requisite_cross_idle()
 
 
 func disable_other_cross_requisites(selected_requisite):
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			if requisite != selected_requisite:
 				requisite.requisite_disable()
 
 
 func disable_cross_requisites():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			requisite.requisite_idle()
 
 
 func save_previous_state():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			requisite.save_previous_state()
 
@@ -117,7 +126,7 @@ func _gui_input(event):
 
 
 func get_cross_requisite():
-	for requisite in $JobOfferPanel/JobOfferVBoxContainer.get_children():
+	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
 			if requisite.check_is_status_cross_progress(requisite.current_status):
 				disable_other_cross_requisites(requisite)

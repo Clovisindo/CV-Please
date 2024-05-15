@@ -35,63 +35,63 @@ func add_timeline_works(timeline_works: Array):
 
 
 func wired_events(target_manager):
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.connect("send_cross_question", target_manager, "execute_cross_question")
 
 
 func idle_other_skills(selected_skill):
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			if skill != selected_skill:
 				skill.skill_idle()
 
 
 func idle_skills():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.skill_idle()
 
 
 func disable_skills():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.skill_disable()
 
 
 func enable_skills():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.skill_enable()
 
 
 func previous_state_skills():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.skill_as_previous_state()
 
 
 func enable_cross_skills():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.skill_cross_idle()
 
 
 func disable_other_cross_skills(selected_skill):
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			if skill != selected_skill:
 				skill.skill_disable()
 
 
 func disable_cross_skills():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.skill_idle()
 
 
 func save_previous_state():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			skill.save_previous_state()
 
@@ -106,7 +106,7 @@ func _gui_input(event):
 
 
 func get_cross_skill():
-	for skill in $CVPanel/CVVBoxContainer.get_children():
+	for skill in $CVPanel/CVVBoxContainer/SkillPanelContainer/SkillsVBoxContainer.get_children():
 		if skill is cv_skill_class:
 			if skill.check_is_status_cross_progress(skill.current_status):
 				disable_other_cross_skills(skill)
