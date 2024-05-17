@@ -3,7 +3,9 @@ extends Node
 const LEVELS_DIR = "res://data/events"
 const LEVELS_DIR_MAIN = "/main/"
 const LEVELS_DIR_RESUME = "/resume/"
+const LEVELS_DIR_EXTRA = "/extra/"
 const TRES_SUFIX = ".tres"
+const LEVELS_DIR_PENALTY = "res://data/events/penalty_payments/"
 
 #var current_applicants_result:ApplicantResult
 var current_applicants_result = []
@@ -36,7 +38,25 @@ func get_events_by_month(type_resource):
 			if regex.search(file_name):
 				if not dir.current_is_dir():
 					var event = ResourceLoader.load(current_dir + file_name)
-					if event is MonthEvents:
+					if event is MonthEvents || event is EventsExtra:
+						return event
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+
+
+func get_penalty_payments():
+	var dir = Directory.new()
+	if dir.open(LEVELS_DIR_PENALTY) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		var regex = RegEx.new()
+		regex.compile(".*\\.tres")
+		while file_name != "":
+			if regex.search(file_name):
+				if not dir.current_is_dir():
+					var event = ResourceLoader.load(LEVELS_DIR_PENALTY + file_name)
+					if event is EventsExtra:
 						return event
 			file_name = dir.get_next()
 	else:
@@ -46,7 +66,10 @@ func get_events_by_month(type_resource):
 func _get_directory_by_month(_current_month, _type_resource):
 	if _type_resource == EnumUtils.TypeFolder.MAIN:
 		return LEVELS_DIR + _get_month_value(_current_month) + LEVELS_DIR_MAIN
-	return LEVELS_DIR + _get_month_value(_current_month) + LEVELS_DIR_RESUME
+	if _type_resource == EnumUtils.TypeFolder.RESUME:
+		return LEVELS_DIR + _get_month_value(_current_month) + LEVELS_DIR_RESUME
+	if _type_resource == EnumUtils.TypeFolder.EXTRA:
+		return LEVELS_DIR + _get_month_value(_current_month) + LEVELS_DIR_EXTRA
 
 
 func get_type_event_by_globals():

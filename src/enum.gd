@@ -12,7 +12,7 @@ enum TypePayments { RENT, FOOD, TRANSPORT, CLOTHES, MEDICINE, REPAIRS, PENALTY }
 
 enum TypeEvent { NEUTRAL, FOR_COMPANY, FOR_APPLICANTS }
 
-enum TypeFolder { MAIN, RESUME }
+enum TypeFolder { MAIN, RESUME, EXTRA }
 
 enum TypeDialogBox { PLAYER, APPLICANT }
 

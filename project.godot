@@ -79,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/enum.gd"
 }, {
+"base": "Resource",
+"class": "EventsExtra",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_events_extra.gd"
+}, {
 "base": "Node2D",
 "class": "GameManager",
 "language": "GDScript",
@@ -158,6 +163,11 @@ _global_script_classes=[ {
 "class": "ResourceEvents",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_events.gd"
+}, {
+"base": "Resource",
+"class": "ResourceExtraPayments",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_event_extra_payment.gd"
 }, {
 "base": "Resource",
 "class": "ResourcePaymentPanel",
@@ -349,6 +359,7 @@ _global_script_class_icons={
 "DialogBox": "",
 "EndPaymentResume": "",
 "EnumUtils": "",
+"EventsExtra": "",
 "GameManager": "",
 "InteractionDialog": "",
 "InteractionLine": "",
@@ -365,6 +376,7 @@ _global_script_class_icons={
 "QuestionAnswer": "",
 "ResourceDummyResponse": "",
 "ResourceEvents": "",
+"ResourceExtraPayments": "",
 "ResourcePaymentPanel": "",
 "ResourceQuestAnsw": "",
 "ResourceSpecialCondition": "",

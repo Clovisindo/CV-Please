@@ -5,11 +5,15 @@ class_name ResumeManager
 signal end_applicants_resume
 signal update_month_balance(month_balance)
 signal set_event_message(event_message)
+signal send_extra_payment_events(payment_events)
+signal send_penalty_payment_events(penalty_events)
 
 export(PackedScene) onready var detail_applicant
 
 var applicant_result_list: Array
 var events_file: MonthEvents
+var extra_events_file: EventsExtra
+var events_penalty: EventsExtra
 var current_applicant_index = 0
 var current_salary_amount = 0
 
@@ -23,6 +27,8 @@ func _ready():
 	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")
 	self.connect("update_month_balance", $Panel/PaymentPanel, "_update_balance_month")  #actualizar parametros antes de cargar el panel de resumen pagos
 	self.connect("set_event_message", $Panel/PaymentPanel, "_set_narrative_message")
+	self.connect("send_extra_payment_events", $Panel/PaymentPanel, "set_payment_extra_bills")
+	self.connect("send_penalty_payment_events", $Panel/PaymentPanel, "set_penalty_bills")
 	_load_applicants()
 	_init_applicant_ui(applicant_result_list[current_applicant_index])
 
@@ -73,6 +79,11 @@ func _change_to_payment_resume_panel():
 	events_file = Global.get_events_by_month(EnumUtils.TypeFolder.RESUME)
 	var current_event = _get_message_from_event(events_file.get_event_list())
 	_apply_message_event(current_event)
+
+	extra_events_file = Global.get_events_by_month(EnumUtils.TypeFolder.EXTRA)
+	if extra_events_file:
+		_send_extra_events(extra_events_file.events_list)
+
 	_calculate_amount_by_applicant()
 	Global.current_month_salary_amount = current_salary_amount
 	emit_signal("update_month_balance", current_salary_amount)
@@ -84,12 +95,25 @@ func _change_to_payment_resume_panel():
 			+ String(Global.current_salary_amount)
 		)
 	)
+
+	events_penalty = Global.get_penalty_payments()  # se pasan aqui por que tienen que aplicarse sobre el saldo actual
+	if events_penalty:
+		_send_penalty_events(events_penalty.events_list)
+
 	$Panel/resumeContainer.visible = false
 	$Panel/PaymentPanel.visible = true
 
 
 func _apply_message_event(current_event):
 	emit_signal("set_event_message", current_event.event_message)
+
+
+func _send_extra_events(extra_events):
+	emit_signal("send_extra_payment_events", extra_events)
+
+
+func _send_penalty_events(penalty_events):
+	emit_signal("send_penalty_payment_events", penalty_events)
 
 
 func _get_message_from_event(events):
