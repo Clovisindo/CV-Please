@@ -49,7 +49,6 @@ func _ready():
 
 
 func _load_payments_ui():
-	$NarrativeGamePanel/NarrativeGameText.text = narrative_message
 	# TODO: cuando todo esto venga cargado de global, comprobarás primero que cosas no tienen datos,
 	# e instancias solo lo que el global te indica que toca para ese nivel
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(
@@ -82,6 +81,10 @@ func _load_payments_ui():
 			clothes_penalty_text, clothes_penalty_value, EnumUtils.TypePayments.PENALTY
 		)
 	)
+
+
+func _set_narrative_message(_narrative_message):
+	$NarrativeGamePanel/NarrativeGameText.text = _narrative_message
 
 
 func _instantiate_new_detail(_text, _value, _type_payment) -> DetailResumePanel:

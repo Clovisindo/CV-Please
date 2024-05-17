@@ -4,10 +4,12 @@ class_name ResumeManager
 
 signal end_applicants_resume
 signal update_month_balance(month_balance)
+signal set_event_message(event_message)
 
 export(PackedScene) onready var detail_applicant
 
 var applicant_result_list: Array
+var events_file: MonthEvents
 var current_applicant_index = 0
 var current_salary_amount = 0
 
@@ -20,6 +22,7 @@ func _ready():
 	)
 	$Panel/PaymentPanelButton.connect("load_payment_panel", self, "_change_to_payment_resume_panel")
 	self.connect("update_month_balance", $Panel/PaymentPanel, "_update_balance_month")  #actualizar parametros antes de cargar el panel de resumen pagos
+	self.connect("set_event_message", $Panel/PaymentPanel, "_set_narrative_message")
 	_load_applicants()
 	_init_applicant_ui(applicant_result_list[current_applicant_index])
 
@@ -67,6 +70,9 @@ func _enable_payment_panel_button():
 
 
 func _change_to_payment_resume_panel():
+	events_file = Global.get_events_by_month(EnumUtils.TypeFolder.RESUME)
+	var current_event = _get_message_from_event(events_file.get_event_list())
+	_apply_message_event(current_event)
 	_calculate_amount_by_applicant()
 	Global.current_month_salary_amount = current_salary_amount
 	emit_signal("update_month_balance", current_salary_amount)
@@ -80,3 +86,15 @@ func _change_to_payment_resume_panel():
 	)
 	$Panel/resumeContainer.visible = false
 	$Panel/PaymentPanel.visible = true
+
+
+func _apply_message_event(current_event):
+	emit_signal("set_event_message", current_event.event_message)
+
+
+func _get_message_from_event(events):
+	# que tipo de eventos buscamos
+	var type_event = Global.get_type_event_by_globals()
+	for event in events:
+		if event.type_event == type_event:
+			return event
