@@ -5,21 +5,21 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-type_payment = 6
+type_payment = 0
 date_month = 0
 payment_message = "You owe one month's rent."
 payment_value = -50
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
-type_payment = 6
+type_payment = 1
 date_month = 0
 payment_message = "You got sick for not buying winter clothes."
 payment_value = -60
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
-type_payment = 6
+type_payment = 2
 date_month = 0
 payment_message = "You need to renew the transport voucher"
 payment_value = -30

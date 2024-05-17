@@ -84,13 +84,13 @@ func set_penalty_bills(penalty_bills):
 
 func check_apply_penalty(type_payment):
 	if type_payment == EnumUtils.TypePayments.RENT:
-		if rent_days_npay >= 1:
+		if rent_days_npay -1 >= 1:
 			return true
 	if type_payment == EnumUtils.TypePayments.FOOD:
-		if food_days_npay >= 1:
+		if food_days_npay - 1 >= 1:
 			return true
 	if type_payment == EnumUtils.TypePayments.TRANSPORT:
-		if transport_days_npay >= 1:
+		if transport_days_npay - 1 >= 1:
 			return true
 	return false
 
