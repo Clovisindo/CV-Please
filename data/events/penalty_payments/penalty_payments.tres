@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_events_extra.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_event_extra_payment.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+type_payment = 0
+date_month = 0
+payment_message = "You owe one month's rent."
+payment_value = -50
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+type_payment = 1
+date_month = 0
+payment_message = "You got sick for not buying winter clothes."
+payment_value = -60
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+type_payment = 2
+date_month = 0
+payment_message = "You need to renew the transport voucher"
+payment_value = -30
+
+[resource]
+script = ExtResource( 1 )
+events_list = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]

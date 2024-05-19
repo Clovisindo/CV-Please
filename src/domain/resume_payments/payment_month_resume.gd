@@ -10,14 +10,17 @@ var narrative_message: String
 
 var rent_text: String
 var rent_value: int
+var rent_value_modifier: int
 var rent_days_npay: int = 1  #se inicia en 1 por como se gestiona este valor la primera vez que llegamos a pantalla de resumen
 
 var food_text: String
 var food_value: int
+var food_value_modifier: int
 var food_days_npay: int = 1
 
 var transport_text: String
 var transport_value: int
+var transport_value_modifier: int
 var transport_days_npay: int = 1
 
 var clothes_text: String
@@ -49,39 +52,56 @@ func _ready():
 
 
 func _load_payments_ui():
-	$NarrativeGamePanel/NarrativeGameText.text = narrative_message
-	# TODO: cuando todo esto venga cargado de global, comprobarás primero que cosas no tienen datos,
-	# e instancias solo lo que el global te indica que toca para ese nivel
 	$PaymentPanel/MonthBillsVBoxContainer.add_child(
-		_instantiate_new_detail(rent_text, rent_value, EnumUtils.TypePayments.RENT)
-	)
-	$PaymentPanel/MonthBillsVBoxContainer.add_child(
-		_instantiate_new_detail(food_text, food_value, EnumUtils.TypePayments.FOOD)
-	)
-	$PaymentPanel/MonthBillsVBoxContainer.add_child(
-		_instantiate_new_detail(transport_text, transport_value, EnumUtils.TypePayments.TRANSPORT)
-	)
-
-	$PaymentPanel/ExtraBillsVBoxContainer.add_child(
-		_instantiate_new_detail(clothes_text, clothes_value, EnumUtils.TypePayments.CLOTHES)
-	)
-	$PaymentPanel/ExtraBillsVBoxContainer.add_child(
-		_instantiate_new_detail(repairs_text, repairs_value, EnumUtils.TypePayments.REPAIRS)
-	)
-	$PaymentPanel/ExtraBillsVBoxContainer.add_child(
-		_instantiate_new_detail(medicine_text, medicine_value, EnumUtils.TypePayments.MEDICINE)
-	)
-
-	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(
 		_instantiate_new_detail(
-			rent_penalty_text, rent_penalty_value, EnumUtils.TypePayments.PENALTY
+			rent_text, rent_value - rent_value_modifier, EnumUtils.TypePayments.RENT
 		)
 	)
-	$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(
+	$PaymentPanel/MonthBillsVBoxContainer.add_child(
 		_instantiate_new_detail(
-			clothes_penalty_text, clothes_penalty_value, EnumUtils.TypePayments.PENALTY
+			food_text, food_value - food_value_modifier, EnumUtils.TypePayments.FOOD
 		)
 	)
+	$PaymentPanel/MonthBillsVBoxContainer.add_child(
+		_instantiate_new_detail(
+			transport_text,
+			transport_value - transport_value_modifier,
+			EnumUtils.TypePayments.TRANSPORT
+		)
+	)
+
+
+func _set_narrative_message(_narrative_message):
+	$NarrativeGamePanel/NarrativeGameText.text = _narrative_message
+
+
+func set_payment_extra_bills(extra_bills):
+	for bill in extra_bills:
+		$PaymentPanel/ExtraBillsVBoxContainer.add_child(
+			_instantiate_new_detail(bill.payment_message, bill.payment_value, bill.type_payment)
+		)
+
+
+func set_penalty_bills(penalty_bills):
+	for bill in penalty_bills:
+		if check_apply_penalty(bill.type_payment):
+			$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(
+				_instantiate_new_detail(bill.payment_message, bill.payment_value, bill.type_payment)
+			)
+			_calculate_selected_payments(bill.payment_value, false, null)
+
+
+func check_apply_penalty(type_payment):
+	if type_payment == EnumUtils.TypePayments.RENT:
+		if rent_days_npay - 1 >= 1:
+			return true
+	if type_payment == EnumUtils.TypePayments.FOOD:
+		if food_days_npay - 1 >= 1:
+			return true
+	if type_payment == EnumUtils.TypePayments.TRANSPORT:
+		if transport_days_npay - 1 >= 1:
+			return true
+	return false
 
 
 func _instantiate_new_detail(_text, _value, _type_payment) -> DetailResumePanel:
@@ -96,10 +116,6 @@ func _update_balance_month(month_balance):  #calculo inicial desde resumeManager
 	$PaymentPanel/MonthSalaryNumber.text = String(Global.current_month_salary_amount)
 	$PaymentPanel/CurrentBalanceNumber.text = String(Global.current_salary_amount)
 	_set_current_balance(month_balance)
-	if rent_penalty_value < 0:  #ToDO comprobacion dinamica de los penalizadores
-		_calculate_selected_payments(rent_penalty_value, false, null)
-	if clothes_penalty_value < 0:
-		_calculate_selected_payments(clothes_penalty_value, false, null)
 	_check_balance_account(month_balance)
 
 
@@ -248,27 +264,17 @@ func _apply_detail_npay(global_npay, value_penalty):
 	return value_penalty
 
 
-func _set_values_by_difficulty():  #TODO:carga global escena externa
-	#TODO: control de si en global ya hay valores, inicializar manager con esos valores( los dias sin pagar)
-	narrative_message = "Company is pleased  with your work, a promotion may be coming your way."
-
+func _set_values_by_difficulty():
+	# cargamos los gastos fijos
 	rent_text = "Rent home: "
 	rent_value = -600
-
 	food_text = "Food: "
 	food_value = -300
-
 	transport_text = "Transport costs: "
-	transport_value = -200
+	transport_value = -100
 
-	clothes_text = "Clothes: "
-	clothes_value = -40
-	repairs_text = "Repair washing machine: "
-	repairs_value = -150
-	medicine_text = "Medicines: "
-	medicine_value = -40
-
-	rent_penalty_text = "you owe one month's rent."
-	rent_penalty_value = -50
-	clothes_penalty_text = "you got sick for not buying winter clothes."
-	clothes_penalty_value = -60
+	#aplicamos ajuste avanzando los meses
+	if current_month > 1:
+		rent_value_modifier += 100
+		food_value_modifier += 50
+		transport_value_modifier += 50

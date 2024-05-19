@@ -10,6 +10,10 @@ enum Levels { LEVEL_1, LEVEL_2, LEVEL_3 }
 
 enum TypePayments { RENT, FOOD, TRANSPORT, CLOTHES, MEDICINE, REPAIRS, PENALTY }
 
+enum TypeEvent { NEUTRAL, FOR_COMPANY, FOR_APPLICANTS }
+
+enum TypeFolder { MAIN, RESUME, EXTRA }
+
 enum TypeDialogBox { PLAYER, APPLICANT }
 
 enum TypeSpecialCondition {

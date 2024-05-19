@@ -78,7 +78,7 @@ text = "Month bills :"
 margin_left = 333.0
 margin_top = 309.0
 margin_right = 716.0
-margin_bottom = 441.0
+margin_bottom = 479.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -125,15 +125,15 @@ text = "Penalties :"
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 763.0
 margin_top = 323.0
-margin_right = 1013.0
-margin_bottom = 443.0
+margin_right = 1118.0
+margin_bottom = 488.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="PenaltiesVBoxContainer" type="VBoxContainer" parent="PaymentPanel/PenaltiesPanel"]
-margin_right = 250.0
-margin_bottom = 120.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
