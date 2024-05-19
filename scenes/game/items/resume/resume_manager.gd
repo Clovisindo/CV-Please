@@ -85,6 +85,16 @@ func _change_to_payment_resume_panel():
 		_send_extra_events(extra_events_file.events_list)
 
 	_calculate_amount_by_applicant()
+
+	print(
+		(
+			"Tu sueldo de este mes es : "
+			+ String(current_salary_amount)
+			+ "en el banco tienes: "
+			+ String(Global.current_salary_amount)
+		)
+	)
+	_set_values_by_difficulty()
 	Global.current_month_salary_amount = current_salary_amount
 	emit_signal("update_month_balance", current_salary_amount)
 	print(
@@ -102,6 +112,46 @@ func _change_to_payment_resume_panel():
 
 	$Panel/resumeContainer.visible = false
 	$Panel/PaymentPanel.visible = true
+
+
+func _set_values_by_difficulty():
+	#control brujula para dar dinero adicional o quitarlo
+	if Global.moral_compass_applicants == Global.moral_compass_company:
+		pass
+	if Global.moral_compass_applicants > Global.moral_compass_company:
+		current_salary_amount -= _get_modifier_salary_by_difficulty()
+		print(
+			(
+				" se le resta a tu sueldo "
+				+ String(_get_modifier_salary_by_difficulty())
+				+ "por ayudar a los candidatos. "
+			)
+		)
+	if Global.moral_compass_applicants < Global.moral_compass_company:
+		current_salary_amount += _get_modifier_salary_by_difficulty()
+		print(
+			(
+				" se le suma a tu sueldo "
+				+ String(_get_modifier_salary_by_difficulty())
+				+ "por ayudar a las empresas. "
+			)
+		)
+
+
+func _get_modifier_salary_by_difficulty():
+	match Global.current_month:
+		Time.MONTH_JANUARY:
+			return 0
+		Time.MONTH_FEBRUARY:
+			return 150
+		Time.MONTH_MARCH:
+			return 300
+		Time.MONTH_APRIL:
+			return 450
+		Time.MONTH_MAY:
+			return 600
+		Time.MONTH_JUNE:
+			return 850
 
 
 func _apply_message_event(current_event):
