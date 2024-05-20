@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://src/levels/month_events.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_events.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+type_event = 0
+date_month = 1
+event_message = "Motivacion  Que al inicio de cada fase, aparezca un pop up con instrucciones o historias que te cuenta la empresaLa mayoria de la logica ya está integrada de funciones como los mensajes narrativos en pantalla de resumen( cargados de resources) y otras ventanas de popup como la que salta cuando no has preguntado nada al candidato.Criterios de aceptación    Que al inicio de cada nivel se abra esta ventana con mensaje .    Que se cargue de los resources definidos."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+type_event = 1
+date_month = 0
+event_message = "\"Tutorial inicio for company\""
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+type_event = 2
+date_month = 0
+event_message = "\"Tutorial inicio for applicants\""
+
+[resource]
+script = ExtResource( 1 )
+events_list = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]

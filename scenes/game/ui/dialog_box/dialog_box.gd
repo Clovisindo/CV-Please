@@ -9,7 +9,7 @@ var text = ""
 var letter_index = 0
 var type_dialog_box
 
-var player_name = "Clovis"
+var player_name = "Recruiter"
 var applicant_name = ""
 var next_message = ""
 

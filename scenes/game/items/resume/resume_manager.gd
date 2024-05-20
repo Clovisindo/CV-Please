@@ -77,7 +77,7 @@ func _enable_payment_panel_button():
 
 func _change_to_payment_resume_panel():
 	events_file = Global.get_events_by_month(EnumUtils.TypeFolder.RESUME)
-	var current_event = _get_message_from_event(events_file.get_event_list())
+	var current_event = Global.get_message_from_event(events_file.get_event_list())
 	_apply_message_event(current_event)
 
 	extra_events_file = Global.get_events_by_month(EnumUtils.TypeFolder.EXTRA)
@@ -164,11 +164,3 @@ func _send_extra_events(extra_events):
 
 func _send_penalty_events(penalty_events):
 	emit_signal("send_penalty_payment_events", penalty_events)
-
-
-func _get_message_from_event(events):
-	# que tipo de eventos buscamos
-	var type_event = Global.get_type_event_by_globals()
-	for event in events:
-		if event.type_event == type_event:
-			return event

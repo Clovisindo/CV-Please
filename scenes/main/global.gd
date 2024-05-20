@@ -81,6 +81,14 @@ func get_type_event_by_globals():
 		return EnumUtils.TypeEvent.FOR_COMPANY
 
 
+func get_message_from_event(events):
+	# que tipo de eventos buscamos
+	var type_event = Global.get_type_event_by_globals()
+	for event in events:
+		if event.type_event == type_event:
+			return event
+
+
 func _get_month_value(enum_month):
 	match enum_month:
 		Time.MONTH_JANUARY:

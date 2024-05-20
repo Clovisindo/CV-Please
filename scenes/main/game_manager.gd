@@ -24,6 +24,8 @@ var player_dialog_box: DialogBox
 var applicant_dialog_box: DialogBox
 var datetime_panel: DateTimePanel
 
+var events_file: MonthEvents
+
 
 func _ready():
 	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
@@ -37,6 +39,13 @@ func _ready():
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()
+	_load_initial_event_message()
+
+
+func _load_initial_event_message():
+	events_file = Global.get_events_by_month(EnumUtils.TypeFolder.MAIN)
+	var current_event = Global.get_message_from_event(events_file.get_event_list())
+	emit_signal("company_alert_message", current_event.event_message)  # mandar mensaje a popup
 
 
 func _wire_events():
