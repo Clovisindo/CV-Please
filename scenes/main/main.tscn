@@ -112,17 +112,17 @@ theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 189.0
+margin_left = 916.0
 margin_top = 19.0
-margin_right = 689.0
+margin_right = 1416.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 908.0
+margin_left = 197.0
 margin_top = 19.0
-margin_right = 1408.0
+margin_right = 697.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 

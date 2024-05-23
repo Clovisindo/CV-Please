@@ -310,6 +310,8 @@ func _instantiate_panels():
 			puzzle.category_job,
 			puzzle.validate_solution,
 			puzzle.payment_salary,
+			puzzle.min_salary,
+			puzzle.salary_offer,
 			puzzle.detail_validations,
 			puzzle.time_limit
 		)
