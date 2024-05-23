@@ -7,7 +7,7 @@
 script = ExtResource( 2 )
 type_event = 0
 date_month = 1
-event_message = "Motivacion  Que al inicio de cada fase, aparezca un pop up con instrucciones o historias que te cuenta la empresaLa mayoria de la logica ya está integrada de funciones como los mensajes narrativos en pantalla de resumen( cargados de resources) y otras ventanas de popup como la que salta cuando no has preguntado nada al candidato.Criterios de aceptación    Que al inicio de cada nivel se abra esta ventana con mensaje .    Que se cargue de los resources definidos."
+event_message = "Take a moment to read the instructions each new day.On the computer you'll have access to the job offer and the applicant's CV information.Evaluate each offer and the applicant, to make the best decision for the companies.You can ask the candidate about the requirements of the offer and their skills.You can also ask by comparing their skills with the requirements, It's usually effective in getting them to tell the truth.Although salary information is shown, today's requests will nott discuss those topics.Every question you ask takes time, and we will evaluate you based on your performance, both in time and results.Go ahead and proceed with today's candidates."
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )

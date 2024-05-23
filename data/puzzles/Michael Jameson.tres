@@ -1,0 +1,97 @@
+[gd_resource type="Resource" load_steps=17 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+type_special_condition = 1
+value_text_ok = "You did well, this applicant don't meet our needs."
+value_text_nok = "That was a big mistake."
+value_ok = 50
+value_nok = -50
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 2 )
+type_special_condition = 2
+value_text_ok = "Real quick interview!nice job."
+value_text_nok = "Need to be more quick with this interviews."
+value_ok = 50
+value_nok = -50
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+textUI = "Operating and monitoring baking equipment."
+textUI_secondary = ""
+question = "Do you have this knowledge?"
+answer = "Yes, I have operated all types of equipment at school."
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+textUI = "Excellent time management and organizational skills."
+textUI_secondary = ""
+question = "The schedule is entry at 6 am from Tuesday to Sunday."
+answer = "Eeehh...I don't like getting up early and I want to take off the weekends."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+textUI = "Preparing fillings and icings, strong attention to detail."
+textUI_secondary = ""
+question = "How would You do this?"
+answer = "It's just kneading and nothing more..."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+textUI = "Knowledge of baking techniques and ingredients."
+textUI_secondary = ""
+question = "How did You acquire these skills?"
+answer = "Studying at cooking school."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 1 )
+textUI = "Food Safety and Sanitation Certification."
+textUI_secondary = ""
+question = "Is it an official certificate?"
+answer = "Yes, of course, I received training in a very long course."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 3 )
+jobDescription = "No jobs"
+timejob = ""
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 4 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 6 )
+validation_response = [ SubResource( 9 ) ]
+description = ""
+dummy_comments = [ SubResource( 2 ) ]
+applicant_name = "Michael Jameson"
+appl_image = ""
+validate_solution = false
+company_name = "First Parties "
+category_job = "Baker"
+payment_salary = 200
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ]
+cross_questions = [  ]
+salary_offer = 12000
+skills_answers = [ SubResource( 6 ), SubResource( 7 ) ]
+timeline_jobs = [ SubResource( 8 ) ]
+min_salary = 12000
+detail_validations = [ SubResource( 1 ), SubResource( 10 ) ]

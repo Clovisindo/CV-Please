@@ -224,6 +224,10 @@ func _load_data_form():
 
 	#additional panels
 	var detail_payment = ResourcePaymentPanel.new()
+	var detail_payment2 = ResourcePaymentPanel.new()
+	var detail_payment3 = ResourcePaymentPanel.new()
+	var detail_payment4 = ResourcePaymentPanel.new()
+	var detail_payment5 = ResourcePaymentPanel.new()
 	var text_ok
 	var text_nok
 	var value_ok
@@ -258,8 +262,8 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel2/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
-		detail_validations.append(detail_payment)
+		detail_payment2.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
+		detail_validations.append(detail_payment2)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel3/TextOKLineEdit".text.length() != 0:
 		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel3/TextOKLineEdit".text
@@ -274,8 +278,8 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel3/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
-		detail_validations.append(detail_payment)
+		detail_payment3.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
+		detail_validations.append(detail_payment3)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel4/TextOKLineEdit".text.length() != 0:
 		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel4/TextOKLineEdit".text
@@ -290,8 +294,8 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel4/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
-		detail_validations.append(detail_payment)
+		detail_payment4.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
+		detail_validations.append(detail_payment4)
 
 	if $"../../PanelSecondaryInfo/detailValidationPanel5/TextOKLineEdit".text.length() != 0:
 		text_ok = $"../../PanelSecondaryInfo/detailValidationPanel5/TextOKLineEdit".text
@@ -306,8 +310,8 @@ func _load_data_form():
 		!= -1
 	):
 		special_condition = $"../../PanelSecondaryInfo/detailValidationPanel5/TypeSpecialConditionOptionMenu".get_selected_id()
-		detail_payment.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
-		detail_validations.append(detail_payment)
+		detail_payment5.set_data(text_ok, text_nok, int(value_ok), int(value_nok), special_condition)
+		detail_validations.append(detail_payment5)
 
 
 func _generate_question_answer(dictionary, _key, _question, _answer):

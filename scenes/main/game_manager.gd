@@ -375,6 +375,17 @@ func process_validations_applicant(applicant: Applicant):
 				detail.set_value(detail.value_text_ok, detail.value_ok)
 			else:
 				detail.set_value(detail.value_text_nok, detail.value_nok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.INCORRECT_APPLICANT:
+			if (
+				applicant.is_valid_applicant == false
+				&& (
+					applicant.evaluation.current_status
+					== ApplicantResult.Status.keys()[ApplicantResult.Status.NOT_VALID]
+				)
+			):
+				detail.set_value(detail.value_text_ok, detail.value_ok)
+			else:
+				detail.set_value(detail.value_text_nok, detail.value_nok)
 		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.TIME_CHECK:
 			if applicant.turns_count <= applicant.validation_turns:
 				detail.set_value(detail.value_text_ok, detail.value_ok)

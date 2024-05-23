@@ -1,0 +1,90 @@
+[gd_resource type="Resource" load_steps=16 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+type_special_condition = 2
+value_text_ok = "Nice work on time."
+value_text_nok = "We think the interview has taken too long for a no technical job."
+value_ok = 50
+value_nok = -50
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 2 )
+type_special_condition = 0
+value_text_ok = "The applicant works wll, she has increased sales."
+value_text_nok = "You didn't evaluate the applicant well, we wanted her working with us."
+value_ok = 50
+value_nok = -50
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+response1 = "I dont have what to say."
+response2 = "We already talk about that."
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+textUI = "Assist customers with product selection and process payments."
+textUI_secondary = ""
+question = "Do you have experience with this?"
+answer = "Yes, I have practice managing a store by myself for 2 years."
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+textUI = "Maintain knowledge of current sales and promotions, policies regarding payment and exchanges, and security practices."
+textUI_secondary = ""
+question = "What can you contribute about?"
+answer = "No problem, although security issues, shouldn't the company facilitate that?"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+textUI = "Assist in setting up displays, stocking shelves, and making necessary changes to displays."
+textUI_secondary = ""
+question = "The company wants you to take care of this too."
+answer = "Well, it's normal shop work, right?"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+textUI = "I'm highly organized, detail-oriented and has excellent communication skills."
+textUI_secondary = ""
+question = "How did you achieve these skills?"
+answer = "Too much free time at my previous job, and I managed to improve sales,but in the end they fired me anyway."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+jobDescription = "Sales Representative at BCA retailers"
+timejob = " (July 2023 - May 2024)"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 6 )
+validation_response = [ SubResource( 8 ) ]
+description = ""
+dummy_comments = [ SubResource( 2 ) ]
+applicant_name = "Ricky Richard"
+appl_image = ""
+validate_solution = true
+company_name = "Talkers S.A"
+category_job = "store sales"
+payment_salary = 200
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 3 ), SubResource( 4 ) ]
+cross_questions = [  ]
+salary_offer = 12000
+skills_answers = [ SubResource( 5 ), SubResource( 6 ) ]
+timeline_jobs = [ SubResource( 7 ) ]
+min_salary = 12000
+detail_validations = [ SubResource( 1 ), SubResource( 9 ) ]

@@ -1,0 +1,109 @@
+[gd_resource type="Resource" load_steps=19 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+textUI = "Analyze clients' hair condition and recommend treatments and products to improve it."
+textUI_secondary = "Hair color and highlights"
+question = "Can you apply this knowledge to the care and treatments you recommend?"
+answer = "Yes, all my clients are satisfied and come back to continue taking care of themselves with me."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+type_special_condition = 2
+value_text_ok = "Nice work on time."
+value_text_nok = "We think the interview has taken too long for a no technical job."
+value_ok = 50
+value_nok = -50
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 2 )
+type_special_condition = 0
+value_text_ok = "we are very pleased with the applicant."
+value_text_nok = "You didn't evaluate the applicant well, we wanted her working with us."
+value_ok = 50
+value_nok = -50
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+response1 = "dummy1"
+response2 = "dummy2"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+textUI = "Maintain the cleanliness of equipment and work area"
+textUI_secondary = ""
+question = "Can you manage this in your workplace?"
+answer = "I can't live if I don't keep everything clean and tidy."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+textUI = "Analyze clients' hair condition and recommend treatments and products to improve it."
+textUI_secondary = ""
+question = "How do you see yourself doing this?"
+answer = "I have no problem talking about it and making recommendations."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+textUI = "Hair color and highlights"
+textUI_secondary = ""
+question = "How much experience do you have?"
+answer = "I have more than 4 years of experience."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 1 )
+textUI = "Advise clients on what hairstyle to choose based on their facial features, age, lifestyle and desired results."
+textUI_secondary = ""
+question = "Why do you think you're good at this?"
+answer = "Because I have style and I try hard to improve."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 1 )
+textUI = "Cut, trim, wash, and style hair according to clients' instructions."
+textUI_secondary = ""
+question = "Why do you highlight this among your skills?"
+answer = "Because it is my priority to make the client feel listened to and comfortable."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+jobDescription = "Hairdresser at Hair by John"
+timejob = "2023-present"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+jobDescription = "Hair Stylist at Salon Wail"
+timejob = "2020-2023"
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 4 )
+validationOKResp = "OK"
+validationNOKResp = "NOK"
+
+[resource]
+script = ExtResource( 6 )
+validation_response = [ SubResource( 11 ) ]
+description = ""
+dummy_comments = [ SubResource( 3 ) ]
+applicant_name = "Leena Ray"
+appl_image = ""
+validate_solution = true
+company_name = "Anytime Jobs"
+category_job = "Hairdresser"
+payment_salary = 200
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 4
+requisites_answers = [ SubResource( 4 ), SubResource( 5 ) ]
+cross_questions = [ SubResource( 1 ) ]
+salary_offer = 12000
+skills_answers = [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+timeline_jobs = [ SubResource( 9 ), SubResource( 10 ) ]
+min_salary = 12000
+detail_validations = [ SubResource( 2 ), SubResource( 12 ) ]

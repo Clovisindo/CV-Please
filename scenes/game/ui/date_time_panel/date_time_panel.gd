@@ -20,7 +20,7 @@ func _set_text_hour(hour_value, minutes_value):
 	var text_hour
 	var text_minutes
 
-	if minutes_value + current_minutes > 60:
+	if minutes_value + current_minutes >= 60:
 		current_minutes = (minutes_value + current_minutes) - 60
 	if current_minutes < 10:
 		text_minutes = "0" + String(current_minutes)
@@ -42,10 +42,10 @@ func set_current_month(_ecurrent_month):
 
 func set_datetime_by_validation(turns_value_validate):
 	if turns_value_validate:
-		current_hours += 1
+		current_hours += 2
 		_set_text_hour(current_hours, current_minutes)
 	else:
-		current_hours += 1
+		current_hours += 2
 		current_minutes += 40
 		_set_text_hour(current_hours, current_minutes)
 
