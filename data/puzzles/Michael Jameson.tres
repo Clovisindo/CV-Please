@@ -12,16 +12,16 @@ script = ExtResource( 2 )
 type_special_condition = 1
 value_text_ok = "You did well, this applicant don't meet our needs."
 value_text_nok = "That was a big mistake."
-value_ok = 50
-value_nok = -50
+value_ok = 20
+value_nok = -20
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 2 )
 type_special_condition = 2
 value_text_ok = "Real quick interview!nice job."
 value_text_nok = "Need to be more quick with this interviews."
-value_ok = 50
-value_nok = -50
+value_ok = 10
+value_nok = -10
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
@@ -83,7 +83,7 @@ appl_image = ""
 validate_solution = false
 company_name = "First Parties "
 category_job = "Baker"
-payment_salary = 200
+payment_salary = 150
 work_type = 0
 difficulty = 0
 level_day = 0

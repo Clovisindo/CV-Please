@@ -20,16 +20,16 @@ script = ExtResource( 3 )
 type_special_condition = 0
 value_text_ok = "The company is very pleased  with the applicant: "
 value_text_nok = "The company is very upset  with the you, that applicant was perfect: "
-value_ok = 50
-value_nok = -50
+value_ok = 20
+value_nok = -20
 
 [sub_resource type="Resource" id=15]
 script = ExtResource( 3 )
 type_special_condition = 2
 value_text_ok = "Real quick interview!nice job."
 value_text_nok = "Need to be more quick"
-value_ok = 50
-value_nok = -50
+value_ok = 10
+value_nok = -10
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 3 )
@@ -99,7 +99,7 @@ appl_image = "Clovis.png"
 validate_solution = true
 company_name = "Nunogal S.A"
 category_job = "Junior programmer"
-payment_salary = 200
+payment_salary = 150
 work_type = 0
 difficulty = 0
 level_day = 0
