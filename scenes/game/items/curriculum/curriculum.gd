@@ -36,7 +36,10 @@ func add_timeline_works(timeline_works: Array):
 
 func set_min_salary(salary):
 	if salary:
-		$CVPanel/CVVBoxContainer/MinSalaryAmountJobPanel/MinSalaryTextLabel.text = String(salary) + "K"
+		$CVPanel/CVVBoxContainer/MinSalaryAmountJobPanel/MinSalaryTextLabel.text = (
+			String(salary)
+			+ "K"
+		)
 
 
 func wired_events(target_manager):

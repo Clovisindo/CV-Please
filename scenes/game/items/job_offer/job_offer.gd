@@ -52,8 +52,10 @@ func add_condition(condition):
 
 func set_salary_value(salary):
 	if salary:
-		$JobOfferPanel/JobOfferVBoxContainer/SalaryAmountJobPanel/SalaryTextLabel.text = String(salary) + "K"
-
+		$JobOfferPanel/JobOfferVBoxContainer/SalaryAmountJobPanel/SalaryTextLabel.text = (
+			String(salary)
+			+ "K"
+		)
 
 
 func wired_events(target_manager):

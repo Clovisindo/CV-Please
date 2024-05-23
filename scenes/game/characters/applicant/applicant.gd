@@ -48,8 +48,8 @@ func add_data(
 	category: String,
 	valid: bool,
 	payment: int,
-	cv_salary:int,
-	offer_salary:int,
+	cv_salary: int,
+	offer_salary: int,
 	validations: Array,
 	turns_validate: int
 ):
