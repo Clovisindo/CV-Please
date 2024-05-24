@@ -310,6 +310,8 @@ func _instantiate_panels():
 			puzzle.category_job,
 			puzzle.validate_solution,
 			puzzle.payment_salary,
+			puzzle.min_salary,
+			puzzle.salary_offer,
 			puzzle.detail_validations,
 			puzzle.time_limit
 		)
@@ -370,6 +372,17 @@ func process_validations_applicant(applicant: Applicant):
 				&& (
 					applicant.evaluation.current_status
 					== ApplicantResult.Status.keys()[ApplicantResult.Status.VALID]
+				)
+			):
+				detail.set_value(detail.value_text_ok, detail.value_ok)
+			else:
+				detail.set_value(detail.value_text_nok, detail.value_nok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.INCORRECT_APPLICANT:
+			if (
+				applicant.is_valid_applicant == false
+				&& (
+					applicant.evaluation.current_status
+					== ApplicantResult.Status.keys()[ApplicantResult.Status.NOT_VALID]
 				)
 			):
 				detail.set_value(detail.value_text_ok, detail.value_ok)

@@ -24,6 +24,8 @@ var interview_position: Vector2
 var company_name
 var category_job
 var salary_payment
+var salary_cv
+var salary_offer
 var validation_turns
 
 var turns_count = 0
@@ -46,6 +48,8 @@ func add_data(
 	category: String,
 	valid: bool,
 	payment: int,
+	cv_salary: int,
+	offer_salary: int,
 	validations: Array,
 	turns_validate: int
 ):
@@ -73,6 +77,10 @@ func add_data(
 		is_valid_applicant = valid
 	if payment:
 		salary_payment = payment
+	if cv_salary:
+		cv.set_min_salary(cv_salary)
+	if offer_salary:
+		job_offer.set_salary_value(offer_salary)
 	if validations:
 		detail_validations = validations
 	if turns_validate:

@@ -1,0 +1,104 @@
+[gd_resource type="Resource" load_steps=18 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+type_special_condition = 0
+value_text_ok = "The applicant did a great job within budget."
+value_text_nok = "The applicant worked for another company and we wanted that result for ourselves."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 2 )
+type_special_condition = 2
+value_text_ok = "Real quick interview!nice job."
+value_text_nok = "Need to be more quick"
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+textUI = "Applies paint, stains, lacquers, and other finishes to interior and exterior surfaces of buildings and other structures."
+textUI_secondary = ""
+question = "Does this fit your skills?"
+answer = "Yes, I also have experience in street art."
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 1 )
+textUI = "Prepare surfaces for painting by scraping, sanding, filling, and priming."
+textUI_secondary = ""
+question = "Do you know techniques for working with materials outdoors before painting?"
+answer = "Yes, all kind of materials."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+textUI = "The work consists of a mural about Jack Rost, a historical figure of the town."
+textUI_secondary = ""
+question = "Do you know his story?"
+answer = "Yes, I have a sketch prepared already."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 1 )
+textUI = "Have a flair for color and design, and enjoys problem-solving on the job."
+textUI_secondary = ""
+question = "What do you mean by that?"
+answer = "I really enjoy improvising and street style."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 1 )
+textUI = "Use and knowledge of a large number of specialized tools."
+textUI_secondary = ""
+question = "List some of these tools."
+answer = "All kind of brushes, masks, spraycans, rollers, stencils, compressors."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 1 )
+textUI = "Calculate the amount of material needed for each job and order supplies."
+textUI_secondary = ""
+question = "The company wants you to provide a project budget with your application."
+answer = "I can give you a that tomorrow."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+jobDescription = "Painter, Freelance"
+timejob = "(4/2023 - Present)"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 6 )
+validation_response = [ SubResource( 10 ) ]
+description = ""
+dummy_comments = [ SubResource( 2 ) ]
+applicant_name = "Chris Redfall"
+appl_image = ""
+validate_solution = true
+company_name = "Bank cultural project"
+category_job = "Street painter"
+payment_salary = 150
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ]
+cross_questions = [  ]
+salary_offer = 12000
+skills_answers = [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+timeline_jobs = [ SubResource( 9 ) ]
+min_salary = 12000
+detail_validations = [ SubResource( 1 ), SubResource( 11 ) ]

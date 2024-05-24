@@ -50,6 +50,14 @@ func add_condition(condition):
 		)
 
 
+func set_salary_value(salary):
+	if salary:
+		$JobOfferPanel/JobOfferVBoxContainer/SalaryAmountJobPanel/SalaryTextLabel.text = (
+			String(salary)
+			+ "K"
+		)
+
+
 func wired_events(target_manager):
 	for requisite in $JobOfferPanel/JobOfferVBoxContainer/RequisitesPanel/RequisiteVBoxContainer.get_children():
 		if requisite is job_requisite_class:
