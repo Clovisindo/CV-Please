@@ -97,7 +97,10 @@ func get_job_offer():
 
 func get_cross_question(requisite_text, skill_text):
 	for cross_data in cross_questions:
-		if cross_data.textUI == requisite_text && cross_data.textUI_secondary == skill_text:
+		if (
+			(cross_data.textUI == requisite_text && cross_data.textUI_secondary == skill_text)
+			|| (cross_data.textUI == skill_text && cross_data.textUI_secondary == requisite_text)
+		):
 			return cross_data
 	return null
 

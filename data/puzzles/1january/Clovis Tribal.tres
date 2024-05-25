@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=20 format=2]
 
 [ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=1]
-[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
 [ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
-[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=4]
-[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=5]
-[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=6]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=6]
 [ext_resource path="res://src/levels/puzzle.gd" type="Script" id=7]
 
 [sub_resource type="Resource" id=6]
@@ -40,7 +40,7 @@ value_ok = 20
 value_nok = -20
 
 [sub_resource type="Resource" id=7]
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 response1 = "Already talk about that"
 response2 = "Don't know what to say"
 
@@ -73,19 +73,19 @@ question = "What do you mean with this? "
 answer = " I work step by step trying to find the better solution with independence."
 
 [sub_resource type="Resource" id=16]
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 special_condition = 3
 condition_name = "Not first job or no experience."
 question_player = "have any experience? Its a requisite."
 response_applicant = "No... but I have all the qualities."
 
 [sub_resource type="Resource" id=12]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 jobDescription = "Infrastructure technician at University of Vigo"
 timejob = "from April 2014 to date June 2014"
 
 [sub_resource type="Resource" id=13]
-script = ExtResource( 5 )
+script = ExtResource( 2 )
 validationOKResp = "Thanks for the job!"
 validationNOKResp = "Guess better luck next time..."
 
