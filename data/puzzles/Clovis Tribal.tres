@@ -74,7 +74,7 @@ answer = " I work step by step trying to find the better solution with independe
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 2 )
-special_condition = 2
+special_condition = 3
 condition_name = "Not first job or no experience."
 question_player = "have any experience? Its a requisite."
 response_applicant = "No... but I have all the qualities."

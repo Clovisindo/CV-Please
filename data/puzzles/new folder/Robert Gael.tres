@@ -1,0 +1,128 @@
+[gd_resource type="Resource" load_steps=22 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=6]
+[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+textUI = "Develop and implement nursing care plans."
+textUI_secondary = "Managing and administering patient care plans."
+question = "But do you have experience in emergencies like this position?"
+answer = "Not really...just palliative care."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 1
+value_text_ok = "Good work, We need a more experienced applicant."
+value_text_nok = "Very bad job, it was clear that he needed more experience."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Nice work on time."
+value_text_nok = "You are wasting time and our resources in these cases."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+type_special_condition = 5
+value_text_ok = "He meets the requirement, but he was not the right candidate."
+value_text_nok = "He meets the requirement, but he was not the right candidate."
+value_ok = 0
+value_nok = 0
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+textUI = "Administer medications and treatments."
+textUI_secondary = ""
+question = "How much experience do you have in this?"
+answer = "Yes, I have one year of experience in a adult daycare center."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 4 )
+textUI = "Develop and implement nursing care plans."
+textUI_secondary = ""
+question = "Have you done this at your job?"
+answer = "I have applied standard NCP, but not developed any individualized ones."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+textUI = "Monitoring vital signs including blood pressure, temperature, and pulse."
+textUI_secondary = ""
+question = "Do you have experience with medical equipment?"
+answer = "Yes, I do it pretty well."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 4 )
+textUI = "Performing wound care and other forms of patient care."
+textUI_secondary = ""
+question = "Why do you highlight this?"
+answer = "It's main work I've been doing all year."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+textUI = "Managing and administering patient care plans."
+textUI_secondary = ""
+question = "Tell me something about this."
+answer = "I focus on better organizing work to make things easier for everyone."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 4 )
+textUI = "Documenting patient health information and progress."
+textUI_secondary = ""
+question = "Do you know how to do it?"
+answer = "Yes, all the nursing forms daily work."
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 7 )
+special_condition = 5
+condition_name = "Not older than fifty-two years."
+question_player = "I see that you meet the requirement."
+response_applicant = "A little strange that they ask for that, right?"
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 5 )
+jobDescription = "Bachelor of Science in Nursing – Brighttown University "
+timejob = "(2019 -– 2023)"
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 6 )
+validation_response = [ SubResource( 13 ) ]
+description = ""
+dummy_comments = [ SubResource( 5 ) ]
+applicant_name = "Robert Gael"
+appl_image = ""
+validate_solution = false
+company_name = "Macro private hospital"
+category_job = "Nurse 3+ years experience Hospital"
+payment_salary = 150
+work_type = 0
+difficulty = 1
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+cross_questions = [ SubResource( 1 ) ]
+salary_offer = 15000
+special_condition = SubResource( 14 )
+skills_answers = [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ]
+timeline_jobs = [ SubResource( 12 ) ]
+min_salary = 15000
+detail_validations = [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
