@@ -38,7 +38,7 @@ func set_min_salary(salary):
 	if salary:
 		$CVPanel/CVVBoxContainer/MinSalaryAmountJobPanel/MinSalaryTextLabel.text = (
 			String(salary)
-			+ "K"
+			+ "€"
 		)
 
 

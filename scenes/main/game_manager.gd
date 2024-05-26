@@ -125,11 +125,11 @@ func on_unload_company_computer():  #quita mainComputer con el applicant actual
 	$MainScene/CompanyComputer.unload_company_computer()
 
 
-func on_load_cross_mode():  #inicia mainComputer con el applicant actual
+func on_load_cross_mode():
 	$MainScene/ApplicantCrossMode.on_enable_button_cross_mode()
 
 
-func on_unload_cross_mode():  #quita mainComputer con el applicant actual
+func on_unload_cross_mode():
 	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 
 
@@ -146,6 +146,7 @@ func on_disabled_cross_mode():
 
 
 func execute_cross_question():
+	$MainScene/CompanyComputer.disabled = true
 	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
 	# mirar si tenemos una de requisitos y otra de skills en cross_in_progress , arrancamos la pregunta
 	#deshabilitamos todos los demas de ese grupo, solo se puede elegir en modo cross una
@@ -189,6 +190,7 @@ func execute_cross_question():
 		applicant_list[current_applicant_index].get_job_offer().previous_state_skills()
 		applicant_list[current_applicant_index].get_cv().previous_state_skills()
 		$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
+		$MainScene/CompanyComputer.disabled = false
 
 
 func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_box):
@@ -204,6 +206,7 @@ func _on_player_dialog_finished(applicant_name, applicant_message, type_dialog_b
 		applicant_list[current_applicant_index].get_cv().enable_skills()
 		applicant_list[current_applicant_index].get_job_offer().enable_requisites()
 		$MainScene/ApplicantCrossMode.on_enable_button_cross_mode()
+		$MainScene/CompanyComputer.disabled = false
 
 
 func _on_interaction_started(applicant):
@@ -228,6 +231,7 @@ func _on_interaction_ended(applicant):
 
 
 func _on_skill_selected(skill: SkillPanel):
+	$MainScene/CompanyComputer.disabled = true
 	# No pasamos parametro por que la actual se va a otro estando distinto por el input
 	applicant_list[current_applicant_index].get_cv().disable_skills()
 	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
@@ -246,6 +250,7 @@ func _on_skill_selected(skill: SkillPanel):
 
 
 func _on_job_requisite_selected(job_requisite: JobRequisite):
+	$MainScene/CompanyComputer.disabled = true
 	applicant_list[current_applicant_index].get_job_offer().disable_requisites()
 	applicant_list[current_applicant_index].get_cv().disable_skills()
 	$MainScene/ApplicantCrossMode.on_disable_button_cross_mode()
@@ -411,7 +416,16 @@ func process_validations_applicant(applicant: Applicant):
 				detail.set_value(detail.value_text_ok, detail.value_ok)
 				Global.moral_compass_applicants = -1
 				Global.moral_compass_company = 1
-
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.NO_OLD_PEOPLE:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.PERSONAL_DEFENSE:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.HIGH_EVENTS:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.MUST_CONTRACT:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.HIGH_AVAILABILITY:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
 		applicant.evaluation.details_applicant = applicant.detail_validations
 
 

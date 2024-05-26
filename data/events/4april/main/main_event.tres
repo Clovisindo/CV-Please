@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_events.gd" type="Script" id=1]
+[ext_resource path="res://src/levels/month_events.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+type_event = 0
+date_month = 1
+event_message = "Finally, the new tasks discussed yesterday are discarded.They would take up time that we need you to dedicate to seeing more Applicants.Applicants must accept the salary offered in the offer or they will be rejected."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+type_event = 1
+date_month = 0
+event_message = "Finally, the new tasks discussed yesterday are discarded.They would take up time that we need you to dedicate to seeing more Applicants.Applicants must accept the salary offered in the offer or they will be rejected."
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+type_event = 2
+date_month = 0
+event_message = "Finally, the new tasks discussed yesterday are discarded.They would take up time that we need you to dedicate to seeing more Applicants.Applicants must accept the salary offered in the offer or they will be rejected."
+
+[resource]
+script = ExtResource( 2 )
+events_list = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]

@@ -1,0 +1,104 @@
+[gd_resource type="Resource" load_steps=18 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+type_special_condition = 0
+value_text_ok = "The applicant did a great job within budget."
+value_text_nok = "The applicant worked for another company and we wanted that result for ourselves."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+textUI = "Work in a motivating environment and have creative freedom, we take into account the opinions of all our employees."
+textUI_secondary = ""
+question = "What do you think about this?..."
+answer = "It doesn't seem like any kind of requirement..."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Help design mechanics in our gatcha systems, help players get the character they want most."
+textUI_secondary = ""
+question = "What is a gatcha?"
+answer = "A predatory mechanic to make your players spend money non-stop..."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Published video games."
+textUI_secondary = ""
+question = "Do you have any published video games?"
+answer = "Yes, I work on \"Lo Fi Bytes\" but despite selling well, the company that bought us closed my studio.(FUCK ALL CEOs)."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Game designer on \"Lo Fi Bytes\", an action and rhythm game when everything syncs with music."
+textUI_secondary = ""
+question = "What work did you do here?"
+answer = "Work with artists and programmers to design the gameplay loop according to the original idea."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Created and implemented game design documents."
+textUI_secondary = ""
+question = "What is this for?"
+answer = "We define the entire game design before starting work, so as not to lose track."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "Highly organized with excellent problem solving and communication skills."
+textUI_secondary = ""
+question = "Is this important in your role?"
+answer = "It is essential in this job, communicate and keep the entire team with the same idea."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 6 )
+jobDescription = "Game Designer at Lo Fi Games"
+timejob = "(2021-2024)"
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 3 )
+validation_response = [ SubResource( 11 ) ]
+description = ""
+dummy_comments = [ SubResource( 3 ) ]
+applicant_name = "Nina Movic"
+appl_image = ""
+validate_solution = true
+company_name = "Friendly gatcha games Co."
+category_job = "Game Designer"
+payment_salary = 300
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ]
+cross_questions = [  ]
+salary_offer = 35000
+skills_answers = [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ]
+timeline_jobs = [ SubResource( 10 ) ]
+min_salary = 35000
+detail_validations = [ SubResource( 1 ), SubResource( 2 ) ]
