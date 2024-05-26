@@ -1,0 +1,125 @@
+[gd_resource type="Resource" load_steps=22 format=2]
+
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=6]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+textUI = "Developing recipes and menus and creating and managing budgets."
+textUI_secondary = "Excellent cooking and culinary skills.These issues seem complicated to manage."
+question = "What would you say to convince me of your abilities?"
+answer = "I'm pretty good at creating menus with different themes and affordable options."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 0
+value_text_ok = "The applicant did a great job within budget."
+value_text_nok = "The applicant worked for another company and we wanted that result for ourselves."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 4 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Oversee the kitchen staff and ensure that the kitchen runs smoothly, while adhering to health and safety regulations."
+textUI_secondary = ""
+question = "Can you control this?"
+answer = "Yes, I have a lot of experience and work effectively."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Developing recipes and menus and creating and managing budgets."
+textUI_secondary = ""
+question = "Do you have experience managing menus and budgets?"
+answer = "I'm effective with budgets, using good quality ingredients."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Maintaining inventory of supplies and ingredients, Ordering supplies and ingredients as needed."
+textUI_secondary = ""
+question = "Do you also manage these issues?"
+answer = "Yes, I organize myself very well and my kitchen has no unexpected problems."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Creative culinary dishes and is highly experienced in working in fast-paced, high-pressure environments."
+textUI_secondary = ""
+question = "You seem very confident on these topics."
+answer = "The hardness of kitchen work is nothing for me, I am a very methodical person."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "Excellent cooking and culinary skills."
+textUI_secondary = ""
+question = "Where have you learned?"
+answer = "I have learned a lot in the best kitchens, with the best colleagues."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+textUI = "Highly organised and efficient."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "As we already talked about, I am quite efficient."
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 6 )
+special_condition = 7
+condition_name = "Experience in high-level events (politicians, diplomats, businessmen)"
+question_player = "The company requires that you have experience in events of this type."
+response_applicant = "I don't have that experience, but I'm certainly your candidate if you want perfect events."
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 7 )
+jobDescription = " Head Chef at The Big Hotel"
+timejob = "(2021-Present)"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 7 )
+jobDescription = "Sous Chef at Old Tavern "
+timejob = "(2018-2021)"
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 2 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 1 )
+validation_response = [ SubResource( 11 ) ]
+description = ""
+dummy_comments = [ SubResource( 4 ) ]
+applicant_name = "Diego Regal "
+appl_image = ""
+validate_solution = true
+company_name = "High Realm restaurant"
+category_job = "Restaurant chef"
+payment_salary = 150
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
+cross_questions = [ SubResource( 1 ) ]
+salary_offer = 32000
+special_condition = SubResource( 12 )
+skills_answers = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ]
+timeline_jobs = [ SubResource( 13 ), SubResource( 14 ) ]
+min_salary = 32000
+detail_validations = [ SubResource( 2 ), SubResource( 3 ) ]

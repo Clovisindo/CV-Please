@@ -1,0 +1,142 @@
+[gd_resource type="Resource" load_steps=24 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+textUI = "Assigning tasks to team members, and ensuring that project deliverables are met on time and on budget."
+textUI_secondary = "Development of digital content strategies."
+question = "Explain to me how you will resolve this need."
+answer = "Management of development teams, manage and create value with each sprint."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 0
+value_text_ok = "The applicant did a great job."
+value_text_nok = "The applicant worked for another company and we wanted that result for ourselves."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 3 )
+type_special_condition = 9
+value_text_ok = "Good job with this process."
+value_text_nok = "We expected more from this work."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Developing the project scope and objectives, setting timelines, coordinating resources and budgets."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "It is very important to focus on these aspects, define a project from the beginning and be clear about the available resources."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Assigning tasks to team members, and ensuring that project deliverables are met on time and on budget."
+textUI_secondary = ""
+question = "What can you contribute with this?"
+answer = "Take the organizational workload off my colleagues and manage that they reach the deliveries."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Analysis of customer needs and product evaluation."
+textUI_secondary = ""
+question = "What does this job consist of?"
+answer = "The client never knows what they want, my job is to redirect these needs into real functionalities to develop."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Keep informed of the status of each worker with their work."
+textUI_secondary = ""
+question = "How would you do this?"
+answer = "Having a common task board, where you can report their status daily in meetings."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "Development of digital content strategies."
+textUI_secondary = ""
+question = "What do you mean by this?"
+answer = "Analyze the market and its needs to see opportunities to create new products."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+textUI = "Coordination with web design and development teams."
+textUI_secondary = ""
+question = "Tell me about this."
+answer = "My work experience is based on helping to coordinate web projects."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+textUI = "Collaborate with stakeholders to ensure project objectives are met."
+textUI_secondary = ""
+question = "How would I do this?"
+answer = "Respond to customer needs and resolve doubts."
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 5 )
+textUI = "Conduct research and analyze data to inform content and project decisions."
+textUI_secondary = ""
+question = "Can you explain this?"
+answer = "Prepare reports on work and processed data, to analyze future decisions."
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 7 )
+special_condition = 0
+condition_name = "High availability guards."
+question_player = "The service requires attention to global incidents."
+response_applicant = "That's fine, it's what's necessary to provide a quality product."
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 6 )
+jobDescription = "Software producer in High Tech Company"
+timejob = "(2020-present)"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 4 )
+validation_response = [ SubResource( 14 ) ]
+description = ""
+dummy_comments = [ SubResource( 4 ) ]
+applicant_name = "Robert Kris"
+appl_image = ""
+validate_solution = true
+company_name = "Spanish Textil S.A"
+category_job = "Software producer"
+payment_salary = 150
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+cross_questions = [ SubResource( 1 ) ]
+salary_offer = 60000
+special_condition = SubResource( 15 )
+skills_answers = [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ]
+timeline_jobs = [ SubResource( 13 ) ]
+min_salary = 60000
+detail_validations = [ SubResource( 2 ), SubResource( 3 ), SubResource( 16 ) ]

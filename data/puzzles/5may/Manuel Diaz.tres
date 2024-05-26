@@ -1,0 +1,123 @@
+[gd_resource type="Resource" load_steps=21 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=4]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+textUI = "Curriculum development."
+textUI_secondary = "Evaluating student performance and progress oriented to the labor market."
+question = "How can you help the students?"
+answer = "Teaching them to defend themselves against companies and look out for their own rights."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 0
+value_text_ok = "The applicant did a great job."
+value_text_nok = "The applicant worked for another company and we wanted that result for ourselves."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 4 )
+textUI = "Plan, develop, and execute lessons for their students."
+textUI_secondary = ""
+question = "How do you see yourself doing this job?"
+answer = "No problem, it's what motivates me to help students."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+textUI = "Intensive courses, without vacations for students."
+textUI_secondary = ""
+question = "This means not for teachers either."
+answer = "And when will I be able to prepare and update the study programs?"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 4 )
+textUI = "Evaluating student performance and progress oriented to the labor market."
+textUI_secondary = ""
+question = "They want you to be aware of labor market trends to guide them."
+answer = "I don't think even the most expert capitalists are capable of this..."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+textUI = "Maintaining student records and preparing reports."
+textUI_secondary = ""
+question = "They want me to keep student performance reports."
+answer = "I think they really want indirect reports of my performance."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 4 )
+textUI = "Excellent communication skills."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "Communicating with them is key to teaching them what they need."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+textUI = "Problem solving."
+textUI_secondary = ""
+question = "What do you mean by this?"
+answer = "I try to help students with any topic that arises, even if it is not academic."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 4 )
+textUI = "Curriculum development."
+textUI_secondary = ""
+question = "How do you help students with this?"
+answer = "I teach them how to deal with the disgusting world of interviews and job searching."
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 6 )
+jobDescription = "Student orientation in public school"
+timejob = "(2024 - present)"
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 6 )
+jobDescription = "Math teacher in public school"
+timejob = "(2020-2024)"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 5 )
+validation_response = [ SubResource( 14 ) ]
+description = ""
+dummy_comments = [ SubResource( 4 ) ]
+applicant_name = "Manuel Diaz"
+appl_image = ""
+validate_solution = true
+company_name = "High Standards Academy"
+category_job = "Teacher public academy"
+payment_salary = 150
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+cross_questions = [ SubResource( 1 ) ]
+salary_offer = 20000
+skills_answers = [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ]
+timeline_jobs = [ SubResource( 12 ), SubResource( 13 ) ]
+min_salary = 20000
+detail_validations = [ SubResource( 2 ), SubResource( 3 ) ]

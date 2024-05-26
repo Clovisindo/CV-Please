@@ -1,0 +1,133 @@
+[gd_resource type="Resource" load_steps=21 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+textUI = "Combine traditional news gathering techniques with digital media tools, such as cameras, editing software, and social media platforms."
+textUI_secondary = "Produce content for websites, including writing text, shooting video and audio, taking photographs, and editing."
+question = "What workflow would you follow for this?"
+answer = "I usually work with generative AI to create quick content for social networks"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 5 )
+textUI = "Work hand in hand with the requested editorial line."
+textUI_secondary = "Ensure content meets quality standards and is suitable for the audience."
+question = "How would the editorial line work?"
+answer = "I can create fake news if requested."
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 5 )
+textUI = "Engage with audiences through social media."
+textUI_secondary = "Ensure content meets quality standards and is suitable for the audience."
+question = "What kind of content do you make for social networks?"
+answer = "I'm good at creating viral and controversial content, I like doing it."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+type_special_condition = 0
+value_text_ok = "Good job, you are the perfect candidate we needed."
+value_text_nok = "Serious mistake, he was the best candidate we have seen."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 4 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+response1 = ""
+response2 = ""
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Writing stories for print publications, producing radio and television segments, creating video and audio podcasts, and publishing content on the web."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "Perfect, I handle the creation of content on different platforms well."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Combine traditional news gathering techniques with digital media tools, such as cameras, editing software, and social media platforms."
+textUI_secondary = ""
+question = "Have you worked with these tools?"
+answer = "I have experience working and editing digital content."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Work hand in hand with the requested editorial line."
+textUI_secondary = ""
+question = "It seems that he is a very demanding client  in this task."
+answer = "It's not a problem, I stick to working on the topics They indicate."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Engage with audiences through social media."
+textUI_secondary = ""
+question = "Do you have experience with social networks?"
+answer = "Yes, I work a lot with them."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "Conduct interviews and attend press conferences."
+textUI_secondary = ""
+question = "Can you do this job?"
+answer = "Yes, it's OK."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+textUI = "Research and write stories for print, television, radio and digital media."
+textUI_secondary = ""
+question = "Have you worked with all these media?"
+answer = "Yes, I have experience in all those media."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+textUI = "Produce content for websites, including writing text, shooting video and audio, taking photographs, and editing."
+textUI_secondary = ""
+question = "What skills have you gained with this work?"
+answer = "I know how to work well with digital tools."
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 5 )
+textUI = "Ensure content meets quality standards and is suitable for the audience."
+textUI_secondary = ""
+question = "What are you looking for with this?"
+answer = "My main goal is always to hook the audience."
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 2 )
+validation_response = [ SubResource( 13 ) ]
+description = ""
+dummy_comments = [ SubResource( 4 ) ]
+applicant_name = "Quirk Austin"
+appl_image = ""
+validate_solution = true
+company_name = "Digital Sons of Liberty"
+category_job = "Digital newspaper editor"
+payment_salary = 150
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ]
+cross_questions = [ SubResource( 1 ), SubResource( 14 ), SubResource( 15 ) ]
+salary_offer = 40000
+skills_answers = [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ]
+timeline_jobs = [  ]
+min_salary = 40000
+detail_validations = [ SubResource( 2 ), SubResource( 3 ) ]
