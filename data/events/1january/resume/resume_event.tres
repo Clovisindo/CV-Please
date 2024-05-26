@@ -6,20 +6,20 @@
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
 type_event = 0
-date_month = 2
-event_message = "test, has hecho un buen trabajo."
+date_month = 1
+event_message = "You have done a good job, the salary charged by each candidate will be increased."
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
 type_event = 2
-date_month = 2
-event_message = "test, seras penalizado, por no mirar por nuestros intereses."
+date_month = 1
+event_message = "You will be penalized for not looking out for the companies' interests."
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
 type_event = 1
-date_month = 2
-event_message = "Test, serás recompensado por mirar por nuestros intereses."
+date_month = 1
+event_message = "You will be rewarded for helping the company."
 
 [resource]
 script = ExtResource( 2 )

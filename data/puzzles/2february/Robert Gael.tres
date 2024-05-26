@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=22 format=2]
+[gd_resource type="Resource" load_steps=21 format=2]
 
 [ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=1]
 [ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
@@ -30,14 +30,6 @@ value_text_ok = "Nice work on time."
 value_text_nok = "You are wasting time and our resources in these cases."
 value_ok = 10
 value_nok = -10
-
-[sub_resource type="Resource" id=4]
-script = ExtResource( 3 )
-type_special_condition = 5
-value_text_ok = "He meets the requirement, but he was not the right candidate."
-value_text_nok = "He meets the requirement, but he was not the right candidate."
-value_ok = 0
-value_nok = 0
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 4 )
@@ -113,7 +105,7 @@ appl_image = ""
 validate_solution = false
 company_name = "Macro private hospital"
 category_job = "Nurse 3+ years experience Hospital"
-payment_salary = 150
+payment_salary = 200
 work_type = 0
 difficulty = 1
 level_day = 0
@@ -125,4 +117,4 @@ special_condition = SubResource( 14 )
 skills_answers = [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ]
 timeline_jobs = [ SubResource( 12 ) ]
 min_salary = 15000
-detail_validations = [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
+detail_validations = [ SubResource( 2 ), SubResource( 3 ) ]

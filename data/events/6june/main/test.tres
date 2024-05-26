@@ -7,19 +7,19 @@
 script = ExtResource( 2 )
 type_event = 0
 date_month = 1
-event_message = "Starting today, special conditions requested by companies will be included.We recommend prioritizing meeting these requirements."
+event_message = "MotivacionQue al inicio de cada fase, aparezca un pop up con instrucciones o historias que te cuenta la empresaLa mayoria de la logica ya está integrada de funciones como los mensajes narrativos en pantalla de resumen( cargados de resources) y otras ventanas de popup como la que salta cuando no has preguntado nada al candidato.Criterios de aceptación    Que al inicio de cada nivel se abra esta ventana con mensaje .    Que se cargue de los resources definidos."
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 type_event = 1
 date_month = 0
-event_message = "Starting today, special conditions requested by companies will be included.We recommend prioritizing meeting these requirements."
+event_message = "\"Tutorial inicio for company\""
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 type_event = 2
 date_month = 0
-event_message = "Starting today, special conditions requested by companies will be included.We recommend prioritizing meeting these requirements."
+event_message = "\"Tutorial inicio for applicants\""
 
 [resource]
 script = ExtResource( 1 )
