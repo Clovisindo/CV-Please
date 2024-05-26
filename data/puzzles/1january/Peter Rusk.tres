@@ -1,14 +1,14 @@
 [gd_resource type="Resource" load_steps=18 format=2]
 
-[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
-[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
-[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=3]
-[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=4]
-[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
-[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=6]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=6]
 
 [sub_resource type="Resource" id=1]
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 type_special_condition = 2
 value_text_ok = "Good job on time."
 value_text_nok = "Need to be more quick."
@@ -16,7 +16,7 @@ value_ok = 10
 value_nok = -10
 
 [sub_resource type="Resource" id=11]
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 type_special_condition = 8
 value_text_ok = "Good job, the company has paid us a good commission."
 value_text_nok = "With mistakes like that you could lose your job."
@@ -24,66 +24,66 @@ value_ok = 20
 value_nok = -20
 
 [sub_resource type="Resource" id=2]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 response1 = ""
 response2 = ""
 
 [sub_resource type="Resource" id=3]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 textUI = "Developing individualized employment plans and goals for clients."
 textUI_secondary = ""
 question = "What can you contribute?"
 answer = "I help bring out the best in people."
 
 [sub_resource type="Resource" id=4]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 textUI = "Monitoring client progress and providing ongoing support and coaching."
 textUI_secondary = ""
 question = "How do you help in this?"
 answer = "I remain alert to be able to help colleagues who are dissatisfied."
 
 [sub_resource type="Resource" id=5]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 textUI = "Salary is based on bonuses for recruiting people for the project."
 textUI_secondary = ""
 question = "The salary seems to be set by objectives."
 answer = "It sounds quite strange...I don't like this job at all."
 
 [sub_resource type="Resource" id=6]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 textUI = "Strong communication and interpersonal skills."
 textUI_secondary = ""
 question = "What is your strength in this?"
 answer = "It is important to be able to communicate well between colleagues to function better."
 
 [sub_resource type="Resource" id=7]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 textUI = "Ability to develop individualized job search strategies."
 textUI_secondary = ""
 question = "How do You do this?"
 answer = "I design plans to better achieve the goals of colleagues."
 
 [sub_resource type="Resource" id=8]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 textUI = "Understanding of vocational assessment tools."
 textUI_secondary = ""
 question = "What are you working on with this objective?"
 answer = "It helps me create profiles to improve and personalize my analysis."
 
 [sub_resource type="Resource" id=10]
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 special_condition = 8
 condition_name = "Hiring is required for this position"
 question_player = "Hm...nothing."
 response_applicant = "What?"
 
 [sub_resource type="Resource" id=9]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 validationOKResp = ""
 validationNOKResp = ""
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource( 6 )
 validation_response = [ SubResource( 9 ) ]
 description = ""
 dummy_comments = [ SubResource( 2 ) ]

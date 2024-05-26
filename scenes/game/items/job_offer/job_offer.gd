@@ -54,7 +54,7 @@ func set_salary_value(salary):
 	if salary:
 		$JobOfferPanel/JobOfferVBoxContainer/SalaryAmountJobPanel/SalaryTextLabel.text = (
 			String(salary)
-			+ "K"
+			+ "€"
 		)
 
 

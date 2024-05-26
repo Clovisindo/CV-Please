@@ -416,7 +416,16 @@ func process_validations_applicant(applicant: Applicant):
 				detail.set_value(detail.value_text_ok, detail.value_ok)
 				Global.moral_compass_applicants = -1
 				Global.moral_compass_company = 1
-
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.NO_OLD_PEOPLE:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.PERSONAL_DEFENSE:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.HIGH_EVENTS:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.MUST_CONTRACT:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
+		if detail.type_special_condition == EnumUtils.TypeSpecialCondition.HIGH_AVAILABILITY:
+			detail.set_value(detail.value_text_ok, detail.value_ok)
 		applicant.evaluation.details_applicant = applicant.detail_validations
 
 

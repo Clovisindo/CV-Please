@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_events.gd" type="Script" id=1]
+[ext_resource path="res://src/levels/month_events.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+type_event = 0
+date_month = 1
+event_message = "Prepare yourself throughout the day today, for the new work starting tomorrow.It will be requested to negotiate lower salaries with each candidate, due to the companies' demands.Additionally, specific technical tests will be included for various jobs.A manual will be sent to you late in the afternoon to study the procedures."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+type_event = 1
+date_month = 0
+event_message = "Prepare yourself throughout the day today, for the new work starting tomorrow.It will be requested to negotiate lower salaries with each candidate, due to the companies' demands.Additionally, specific technical tests will be included for various jobs.A manual will be sent to you late in the afternoon to study the procedures."
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+type_event = 2
+date_month = 0
+event_message = "Prepare yourself throughout the day today, for the new work starting tomorrow.It will be requested to negotiate lower salaries with each candidate, due to the companies' demands.Additionally, specific technical tests will be included for various jobs.A manual will be sent to you late in the afternoon to study the procedures."
+
+[resource]
+script = ExtResource( 2 )
+events_list = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]
