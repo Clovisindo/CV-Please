@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_end_game.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+true_ending_text = "Trying to help others within our possibilities is the only way we can support ourselves in the face of a system that oppresses us every day.
+
+Looking for a job is one of the things We hate the most about this system, both from our own experiences and from close friends.
+
+If we look around us, we are surrounded by bosses and people who, regardless of their functions or the quality of their work, make decisions about others, condemning them despite any effort they make.
+
+All the people who are waiting for an opportunity, seeking only to survive, could do the work of these people a thousand times better, but they take everything for themselves, no one new should threaten their position.
+
+Our Sisyphus stone is to be aware of this reality, and support ourselves in fighting it with everything we can.
+
+This game is dedicated to all our friends, who suffer from this situation every day, You have been the inspiration for this game, and it is our way of encouraging you, that it isn't your fault, and giving you hope to move forward.
+
+
+Thank you also for play this game, remember that the most important thing is to take care of and help the people you love."
+bad_ending_text = "No matter how hard you try to satisfy the companies with their orders, their rewards aren't enough.
+
+The rent doesn't stop going up, the food too, all the expenses go up more than the salary They pay you.
+
+You have nothing left despite all the effort you have made.
+
+You were just a useful and disposable pawn, they kept the benefits of your work for themselves and They only gave you the remains.
+
+As soon as it was cheaper for them to replace you with an AI that could analyze the candidates much faster than you and without complaints, they fired you without hesitation.
+
+You'll have to look for another job as soon as possible, but you don't have much hope."

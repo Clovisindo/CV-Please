@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/ui/dialog_box/dialog_box.gd"
 }, {
+"base": "Panel",
+"class": "EndGameManager",
+"language": "GDScript",
+"path": "res://scenes/main/end_game_manager.gd"
+}, {
 "base": "Button",
 "class": "EndPaymentResume",
 "language": "GDScript",
@@ -163,6 +168,11 @@ _global_script_classes=[ {
 "class": "ResourceDummyResponse",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_dummy_responses.gd"
+}, {
+"base": "Resource",
+"class": "ResourceEndgame",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_end_game.gd"
 }, {
 "base": "Resource",
 "class": "ResourceEvents",
@@ -362,6 +372,7 @@ _global_script_class_icons={
 "DetailPaymentPanel": "",
 "DetailResumePanel": "",
 "DialogBox": "",
+"EndGameManager": "",
 "EndPaymentResume": "",
 "EnumUtils": "",
 "EventsExtra": "",
@@ -381,6 +392,7 @@ _global_script_class_icons={
 "Puzzle": "",
 "QuestionAnswer": "",
 "ResourceDummyResponse": "",
+"ResourceEndgame": "",
 "ResourceEvents": "",
 "ResourceExtraPayments": "",
 "ResourcePaymentPanel": "",
@@ -423,8 +435,9 @@ _global_script_class_icons={
 [application]
 
 config/name="CV-Please!"
-run/main_scene="res://scenes/main/main.tscn"
+run/main_scene="res://scenes/main/main_menu.tscn"
 config/icon="res://assets/icon.png"
+res://scenes/main/main.tscnconfig/icon="res://assets/icon.png"
 
 [autoload]
 

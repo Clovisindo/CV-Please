@@ -11,6 +11,6 @@ func _ready():
 func _on_start_button_ok_pressed():
 	LoadManager.load_scene(self, "res://scenes/main/main.tscn")
 
+
 func _on_close_button_ok_pressed():
 	get_tree().quit()
-

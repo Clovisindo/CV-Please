@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/main/end_game_manager.gd" type="Script" id=1]
+
+[node name="EndGamePanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="EndGameRichTextLavel" type="RichTextLabel" parent="."]
+margin_left = 293.5
+margin_top = 92.0
+margin_right = 1306.5
+margin_bottom = 808.0
+
+[node name="NewGameButton" type="Button" parent="."]
+margin_left = 723.0
+margin_top = 808.0
+margin_right = 873.0
+margin_bottom = 858.0
+text = "Main Menu"

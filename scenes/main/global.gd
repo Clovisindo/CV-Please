@@ -17,6 +17,7 @@ var moral_compass_company = 0
 var moral_compass_applicants = 0
 
 var current_month: int = 1
+var true_ending: bool = false
 
 var rent_days_npay: int = 1  #empieza en 1 por como se gestiona el inicio de este valor en pantalla de resumen
 var food_days_npay: int = 1
@@ -107,6 +108,11 @@ func _get_month_value(enum_month):
 
 func set_applicants_result_for_day(app_list):
 	current_applicants_result = app_list
+
+
+func set_is_true_ending():
+	if moral_compass_applicants > moral_compass_company:
+		true_ending = true
 
 
 func set_penalties_npay(
