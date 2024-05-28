@@ -7,7 +7,10 @@ signal unload_computer_applicant
 signal load_company_computer_applicant
 signal unload_company_computer_applicant
 
+const LEVEL_DIR_APPLICANTS = "res://assets/sprites/characters/"
+
 export(Texture) onready var portrait_texture
+export onready var applicant_anim: AnimatedSprite
 export(PackedScene) onready var curriculum_scene
 export(PackedScene) onready var job_offer_scene
 
@@ -17,6 +20,7 @@ var evaluation: ApplicantResult
 var cross_questions: Array
 var detail_validations: Array
 var applicant_name = "Default name"
+var image_path
 var is_valid_applicant = false
 var entrance_position: Vector2
 var middle_position: Vector2
@@ -33,8 +37,16 @@ var turns_count = 0
 
 func _ready():
 	$StateMachine.init(self)
-	$Container/PortraitRect/Portrait.texture = portrait_texture
 	$StateMachine.current_state.entrance_applicant()  # de waiting(inicio vacio) a entrance
+
+
+func load_anim_portrait():
+	image_path = LEVEL_DIR_APPLICANTS + applicant_name + "/texture.png"
+	var texture = load(image_path)
+	$Container/PortraitRect/Portrait.texture = texture
+	var anim = load(LEVEL_DIR_APPLICANTS + applicant_name + "/frames_anim.tres")
+	$Container/PortraitRect/Anim.frames = anim
+	$Container/PortraitRect/Anim.play("walk_down")
 
 
 func add_data(
@@ -86,6 +98,8 @@ func add_data(
 	if turns_validate:
 		validation_turns = turns_validate
 
+	load_anim_portrait()
+
 
 func get_cv():
 	return self.cv
@@ -116,7 +130,7 @@ func _gui_input(event):
 
 func process_applicant(result_status):
 	var result = ApplicantResult.new(
-		applicant_name, "", category_job, company_name, result_status, salary_payment, null
+		applicant_name, image_path, category_job, company_name, result_status, salary_payment, null
 	)
 	evaluation = result
 	$StateMachine.current_state.process_applicant()  # de reviewing a evaluated

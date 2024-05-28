@@ -2,7 +2,7 @@ extends State
 
 class_name StateApplicant
 
-var portrait: Sprite
+var portrait: AnimatedSprite
 var applicant: Applicant
 
 
