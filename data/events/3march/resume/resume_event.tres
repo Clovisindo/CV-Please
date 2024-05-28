@@ -19,7 +19,7 @@ event_message = "You will be penalized for not looking out for the companies' in
 script = ExtResource( 1 )
 type_event = 1
 date_month = 1
-event_message = "You will be rewarded for helping the company."
+event_message = "You will be rewarded for helping the company.+150€"
 
 [resource]
 script = ExtResource( 2 )

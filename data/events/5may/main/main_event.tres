@@ -7,19 +7,25 @@
 script = ExtResource( 1 )
 type_event = 0
 date_month = 1
-event_message = "Take a moment to read the instructions each new day.On the computer you'll have access to the job offer and the applicant's CV information.Evaluate each offer and the applicant, to make the best decision for the companies.You can ask the candidate about the requirements of the offer and their skills.You can also ask by comparing their skills with the requirements, It's usually effective in getting them to tell the truth.Although salary information is shown, today's requests will nott discuss those topics.Every question you ask takes time, and we will evaluate you based on your performance, both in time and results.Go ahead and proceed with today's candidates."
+event_message = "Keep working hard as usual, we are analyzing salary increases for the best workers.
+
+You will have news soon about a possible promotion."
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
 type_event = 1
 date_month = 0
-event_message = "\"Tutorial inicio for company\""
+event_message = "Keep working hard as usual, we are analyzing salary increases for the best workers.
+
+You will have news soon about a possible promotion."
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
 type_event = 2
 date_month = 0
-event_message = "\"Tutorial inicio for applicants\""
+event_message = "Keep working hard as usual, we are analyzing salary increases for the best workers.
+
+You will have news soon about a possible promotion."
 
 [resource]
 script = ExtResource( 2 )

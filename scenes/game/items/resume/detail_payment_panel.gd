@@ -21,9 +21,10 @@ var selected: bool = false
 var velocity = 25
 var x_limit = 10
 var is_hovered = false
+var is_active = true
 
 
-func set_value(_text, _value, _type_payment) -> void:
+func set_value(_text, _value, _type_payment, _is_active = null) -> void:
 	value_text = _text
 	value = _value
 	if value >= 0:
@@ -32,6 +33,8 @@ func set_value(_text, _value, _type_payment) -> void:
 		money_balance = false
 	$TextLabel.text = _text + String(value)
 	type_payment = _type_payment
+	if _is_active != null:
+		is_active = _is_active
 
 
 func payment_idle():
@@ -64,11 +67,7 @@ func _gui_input(event):
 
 
 func _process(delta):
-	if (
-		current_status == PaymentStatus.IDLE
-		&& type_payment != EnumUtils.TypePayments.PENALTY
-		&& is_hovered
-	):
+	if current_status == PaymentStatus.IDLE && is_active && is_hovered:
 		if rect_position.x >= x_limit || rect_position.x <= -1:
 			velocity *= -1
 		rect_position.x += velocity * delta
@@ -79,7 +78,7 @@ func _process_as_idle(event):
 		event is InputEventMouseButton
 		&& Input.is_mouse_button_pressed(BUTTON_LEFT)
 		&& selected == false
-		&& type_payment != EnumUtils.TypePayments.PENALTY
+		&& is_active
 	):
 		payment_select()
 
@@ -89,7 +88,7 @@ func _process_as_selected(event):
 		event is InputEventMouseButton
 		&& Input.is_mouse_button_pressed(BUTTON_LEFT)
 		&& selected == true
-		&& type_payment != EnumUtils.TypePayments.PENALTY
+		&& is_active
 	):
 		payment_idle()
 

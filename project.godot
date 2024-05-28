@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/ui/dialog_box/dialog_box.gd"
 }, {
+"base": "Panel",
+"class": "EndGameManager",
+"language": "GDScript",
+"path": "res://scenes/main/end_game_manager.gd"
+}, {
 "base": "Button",
 "class": "EndPaymentResume",
 "language": "GDScript",
@@ -88,6 +93,11 @@ _global_script_classes=[ {
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://scenes/main/game_manager.gd"
+}, {
+"base": "Panel",
+"class": "GameOverManager",
+"language": "GDScript",
+"path": "res://scenes/main/gameover_manager.gd"
 }, {
 "base": "Control",
 "class": "InteractionDialog",
@@ -123,6 +133,11 @@ _global_script_classes=[ {
 "class": "MainComputer",
 "language": "GDScript",
 "path": "res://scenes/game/items/computer/main_computer.gd"
+}, {
+"base": "Panel",
+"class": "MainMenuManager",
+"language": "GDScript",
+"path": "res://scenes/main/main_menu.gd"
 }, {
 "base": "Resource",
 "class": "MonthEvents",
@@ -160,6 +175,11 @@ _global_script_classes=[ {
 "path": "res://src/domain/resources/resource_dummy_responses.gd"
 }, {
 "base": "Resource",
+"class": "ResourceEndgame",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_end_game.gd"
+}, {
+"base": "Resource",
 "class": "ResourceEvents",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_events.gd"
@@ -168,6 +188,11 @@ _global_script_classes=[ {
 "class": "ResourceExtraPayments",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_event_extra_payment.gd"
+}, {
+"base": "Resource",
+"class": "ResourceGameOver",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_gameover_events.gd"
 }, {
 "base": "Resource",
 "class": "ResourcePaymentPanel",
@@ -357,10 +382,12 @@ _global_script_class_icons={
 "DetailPaymentPanel": "",
 "DetailResumePanel": "",
 "DialogBox": "",
+"EndGameManager": "",
 "EndPaymentResume": "",
 "EnumUtils": "",
 "EventsExtra": "",
 "GameManager": "",
+"GameOverManager": "",
 "InteractionDialog": "",
 "InteractionLine": "",
 "JobOffer": "",
@@ -368,6 +395,7 @@ _global_script_class_icons={
 "JobSpecialCondition": "",
 "JobTimelineWork": "",
 "MainComputer": "",
+"MainMenuManager": "",
 "MonthEvents": "",
 "NextApplicantResume": "",
 "NextPaymentResume": "",
@@ -375,8 +403,10 @@ _global_script_class_icons={
 "Puzzle": "",
 "QuestionAnswer": "",
 "ResourceDummyResponse": "",
+"ResourceEndgame": "",
 "ResourceEvents": "",
 "ResourceExtraPayments": "",
+"ResourceGameOver": "",
 "ResourcePaymentPanel": "",
 "ResourceQuestAnsw": "",
 "ResourceSpecialCondition": "",
@@ -417,8 +447,9 @@ _global_script_class_icons={
 [application]
 
 config/name="CV-Please!"
-run/main_scene="res://scenes/main/main.tscn"
+run/main_scene="res://scenes/main/main_menu.tscn"
 config/icon="res://assets/icon.png"
+res://scenes/main/main.tscnconfig/icon="res://assets/icon.png"
 
 [autoload]
 

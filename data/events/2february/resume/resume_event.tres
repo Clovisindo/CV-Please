@@ -13,7 +13,7 @@ event_message = "You have done a good job, the salary charged by each candidate 
 script = ExtResource( 1 )
 type_event = 2
 date_month = 1
-event_message = "You will be penalized for not looking out for the companies' interests."
+event_message = "You will be penalized for not looking out for the companies' interests.- -150€"
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
