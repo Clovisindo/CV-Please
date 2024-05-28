@@ -19,8 +19,11 @@ func _on_button_ok_pressed():
 	emit_signal("load_next_day_scene")
 	print(" Load next day job.")
 	#aqui ira tambien el comprobar si gameover
-	if Global.current_month >= 6:
-		Global.set_is_true_ending()
-		LoadManager.load_scene(self, "res://scenes/main/end_game.tscn")
+	if Global.check_is_gameover():
+		LoadManager.load_scene(self, "res://scenes/main/gameover_scene.tscn")
 	else:
-		LoadManager.load_scene(self, "res://scenes/main/main.tscn")
+		if Global.current_month >= 6:
+			Global.set_is_true_ending()
+			LoadManager.load_scene(self, "res://scenes/main/end_game.tscn")
+		else:
+			LoadManager.load_scene(self, "res://scenes/main/main.tscn")

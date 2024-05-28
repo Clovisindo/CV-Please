@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/main/game_manager.gd"
 }, {
+"base": "Panel",
+"class": "GameOverManager",
+"language": "GDScript",
+"path": "res://scenes/main/gameover_manager.gd"
+}, {
 "base": "Control",
 "class": "InteractionDialog",
 "language": "GDScript",
@@ -183,6 +188,11 @@ _global_script_classes=[ {
 "class": "ResourceExtraPayments",
 "language": "GDScript",
 "path": "res://src/domain/resources/resource_event_extra_payment.gd"
+}, {
+"base": "Resource",
+"class": "ResourceGameOver",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_gameover_events.gd"
 }, {
 "base": "Resource",
 "class": "ResourcePaymentPanel",
@@ -377,6 +387,7 @@ _global_script_class_icons={
 "EnumUtils": "",
 "EventsExtra": "",
 "GameManager": "",
+"GameOverManager": "",
 "InteractionDialog": "",
 "InteractionLine": "",
 "JobOffer": "",
@@ -395,6 +406,7 @@ _global_script_class_icons={
 "ResourceEndgame": "",
 "ResourceEvents": "",
 "ResourceExtraPayments": "",
+"ResourceGameOver": "",
 "ResourcePaymentPanel": "",
 "ResourceQuestAnsw": "",
 "ResourceSpecialCondition": "",

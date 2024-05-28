@@ -9,6 +9,7 @@ func _ready():
 
 
 func _on_start_button_ok_pressed():
+	Global.set_initial_global()
 	LoadManager.load_scene(self, "res://scenes/main/main.tscn")
 
 

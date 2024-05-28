@@ -7,7 +7,6 @@ const LEVELS_DIR_EXTRA = "/extra/"
 const TRES_SUFIX = ".tres"
 const LEVELS_DIR_PENALTY = "res://data/events/penalty_payments/"
 
-#var current_applicants_result:ApplicantResult
 var current_applicants_result = []
 
 var current_salary_amount = 0
@@ -18,13 +17,14 @@ var moral_compass_applicants = 0
 
 var current_month: int = 1
 var true_ending: bool = false
+var bank_negative_days_npay: int = 0
 
-var rent_days_npay: int = 1  #empieza en 1 por como se gestiona el inicio de este valor en pantalla de resumen
-var food_days_npay: int = 1
-var transport_days_npay: int = 1
-var clothes_days_npay: int = 1
-var repairs_days_npay: int = 1
-var medicine_days_npay: int = 1
+var rent_days_npay: int = 0
+var food_days_npay: int = 0
+var transport_days_npay: int = 0
+var clothes_days_npay: int = 0
+var repairs_days_npay: int = 0
+var medicine_days_npay: int = 0
 
 
 func get_events_by_month(type_resource):
@@ -115,8 +115,30 @@ func set_is_true_ending():
 		true_ending = true
 
 
+func set_initial_global():
+	current_month = 1
+	true_ending = false
+	current_salary_amount = 0
+	current_month_salary_amount = 0
+
+	moral_compass_company = 0
+	moral_compass_applicants = 0
+	rent_days_npay = 0
+	food_days_npay = 0
+	transport_days_npay = 0
+	clothes_days_npay = 0
+	repairs_days_npay = 0
+	medicine_days_npay = 0
+
+
 func set_penalties_npay(
-	rent_npay, food_npay, transport_npay, clothes_npay, repairs_npay, medicine_npay
+	rent_npay,
+	food_npay,
+	transport_npay,
+	clothes_npay,
+	repairs_npay,
+	medicine_npay,
+	bank_negative_npay
 ):
 	rent_days_npay = rent_npay
 	food_days_npay = food_npay
@@ -124,3 +146,15 @@ func set_penalties_npay(
 	clothes_days_npay = clothes_npay
 	repairs_days_npay = repairs_npay
 	medicine_days_npay = medicine_npay
+	bank_negative_days_npay = bank_negative_npay
+
+
+func check_is_gameover():
+	if (
+		rent_days_npay >= 2
+		|| food_days_npay >= 2
+		|| transport_days_npay >= 2
+		|| bank_negative_days_npay >= 2
+	):
+		return true
+	return false

@@ -5,35 +5,36 @@ class_name PaymentResume
 export(PackedScene) onready var detail_payment
 
 var current_month: int
+var bank_negative_days_npay: int = 0
 
 var narrative_message: String
 
 var rent_text: String
 var rent_value: int
 var rent_value_modifier: int
-var rent_days_npay: int = 1  #se inicia en 1 por como se gestiona este valor la primera vez que llegamos a pantalla de resumen
+var rent_days_npay: int = 0  #se inicia en 1 por como se gestiona este valor la primera vez que llegamos a pantalla de resumen
 
 var food_text: String
 var food_value: int
 var food_value_modifier: int
-var food_days_npay: int = 1
+var food_days_npay: int = 0
 
 var transport_text: String
 var transport_value: int
 var transport_value_modifier: int
-var transport_days_npay: int = 1
+var transport_days_npay: int = 0
 
 var clothes_text: String
 var clothes_value: int
-var clothes_days_npay: int = 1
+var clothes_days_npay: int = 0
 
 var repairs_text: String
 var repairs_value: int
-var repairs_days_npay: int = 1
+var repairs_days_npay: int = 0
 
 var medicine_text: String
 var medicine_value: int
-var medicine_days_npay: int = 1
+var medicine_days_npay: int = 0
 
 var month_salary: String
 var current_balance: int = 0
@@ -86,7 +87,9 @@ func set_penalty_bills(penalty_bills):
 	for bill in penalty_bills:
 		if check_apply_penalty(bill.type_payment):
 			$PaymentPanel/PenaltiesPanel/PenaltiesVBoxContainer.add_child(
-				_instantiate_new_detail(bill.payment_message, bill.payment_value, bill.type_payment)
+				_instantiate_new_detail(
+					bill.payment_message, bill.payment_value, bill.type_payment, false
+				)
 			)
 			_calculate_selected_payments(bill.payment_value, false, null)
 
@@ -104,9 +107,9 @@ func check_apply_penalty(type_payment):
 	return false
 
 
-func _instantiate_new_detail(_text, _value, _type_payment) -> DetailResumePanel:
+func _instantiate_new_detail(_text, _value, _type_payment, is_active = null) -> DetailResumePanel:
 	var new_detail = detail_payment.instance()
-	new_detail.set_value(_text, _value, _type_payment)
+	new_detail.set_value(_text, _value, _type_payment, is_active)
 	if _type_payment != EnumUtils.TypePayments.PENALTY:
 		new_detail.connect("update_payments", self, "_calculate_selected_payments")
 	return new_detail
@@ -140,6 +143,7 @@ func _load_npay_from_global():  #sumamos un dia mas de no pagar
 		clothes_days_npay = Global.clothes_days_npay + 1
 		repairs_days_npay = Global.repairs_days_npay + 1
 		medicine_days_npay = Global.medicine_days_npay + 1
+		bank_negative_days_npay = Global.bank_negative_days_npay + 1
 
 
 func _apply_npays_global():
@@ -149,7 +153,8 @@ func _apply_npays_global():
 		transport_days_npay,
 		clothes_days_npay,
 		repairs_days_npay,
-		medicine_days_npay
+		medicine_days_npay,
+		bank_negative_days_npay
 	)
 
 
@@ -172,10 +177,12 @@ func _set_current_balance(_value):
 func _check_balance_account(current_balance):
 	if current_balance < 0:
 		print(" te quedas sin saldo, no puedes finalizar.")
-		$PaymentPanel/EndPaymentResume.disabled = true
-	elif current_balance >= 0 && $PaymentPanel/EndPaymentResume.disabled == true:
+		# $PaymentPanel/EndPaymentResume.disabled = true
+		_apply_penalty_by_type(EnumUtils.TypePayments.BANK_NEGATIVE, 0)
+	elif current_balance >= 0:
 		print(" Saldo apto de nuevo , habilitado boton.")
-		$PaymentPanel/EndPaymentResume.disabled = false
+		# $PaymentPanel/EndPaymentResume.disabled = false
+		_apply_penalty_by_type(EnumUtils.TypePayments.BANK_NEGATIVE, 1)
 
 
 # calculo desde los distintos elementos que modifican los pagos en pantalla resumen
@@ -256,12 +263,22 @@ func _apply_penalty_by_type(_type_payment, _selected):
 				+ String(medicine_days_npay)
 			)
 		)
+	if _type_payment == EnumUtils.TypePayments.BANK_NEGATIVE:
+		bank_negative_days_npay = _apply_detail_npay(Global.bank_negative_days_npay, value_penalty)
+		print(
+			(
+				"Dias de penalizacion para "
+				+ String(EnumUtils.TypePayments.keys()[_type_payment])
+				+ " total : "
+				+ String(bank_negative_days_npay)
+			)
+		)
 
 
 func _apply_detail_npay(global_npay, value_penalty):
 	if value_penalty == 1:
 		return global_npay + 1
-	return value_penalty
+	return value_penalty  # se podria arreglar haciendo global_npay -1 si es el otro valor
 
 
 func _set_values_by_difficulty():
