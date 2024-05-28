@@ -12,7 +12,7 @@ var narrative_message: String
 var rent_text: String
 var rent_value: int
 var rent_value_modifier: int
-var rent_days_npay: int = 0  #se inicia en 1 por como se gestiona este valor la primera vez que llegamos a pantalla de resumen
+var rent_days_npay: int = 0  
 
 var food_text: String
 var food_value: int
@@ -135,7 +135,7 @@ func _apply_payments_global():
 	)
 
 
-func _load_npay_from_global():  #sumamos un dia mas de no pagar
+func _load_npay_from_global():  #sumamos un dia mas de no pagar al inicio
 	if current_month > 1:
 		rent_days_npay = Global.rent_days_npay + 1
 		food_days_npay = Global.food_days_npay + 1
@@ -179,7 +179,7 @@ func _check_balance_account(current_balance):
 		print(" te quedas sin saldo, no puedes finalizar.")
 		# $PaymentPanel/EndPaymentResume.disabled = true
 		_apply_penalty_by_type(EnumUtils.TypePayments.BANK_NEGATIVE, 0)
-	elif current_balance >= 0:
+	elif current_balance >= 0 :
 		print(" Saldo apto de nuevo , habilitado boton.")
 		# $PaymentPanel/EndPaymentResume.disabled = false
 		_apply_penalty_by_type(EnumUtils.TypePayments.BANK_NEGATIVE, 1)
@@ -278,7 +278,7 @@ func _apply_penalty_by_type(_type_payment, _selected):
 func _apply_detail_npay(global_npay, value_penalty):
 	if value_penalty == 1:
 		return global_npay + 1
-	return value_penalty  # se podria arreglar haciendo global_npay -1 si es el otro valor
+	return value_penalty # se podria arreglar haciendo global_npay -1 si es el otro valor
 
 
 func _set_values_by_difficulty():
