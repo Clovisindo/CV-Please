@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://assets/sprites/UI/UI_characters/player_frames.tres" type="SpriteFrames" id=18]
 [ext_resource path="res://assets/sprites/UI/UI_characters/companion2_frames.tres" type="SpriteFrames" id=19]
 [ext_resource path="res://assets/sprites/UI/UI_characters/companion_frames.tres" type="SpriteFrames" id=20]
+[ext_resource path="res://assets/sprites/items/computer_frames.tres" type="SpriteFrames" id=21]
+[ext_resource path="res://assets/sprites/items/computer2_frames.tres" type="SpriteFrames" id=22]
 
 [sub_resource type="StyleBoxEmpty" id=15]
 
@@ -292,7 +294,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 20 )
 animation = "idle"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Companion2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -301,6 +303,23 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 19 )
 animation = "idle"
+frame = 5
+playing = true
+
+[node name="Computer1AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
+position = Vector2( 800, 444.75 )
+scale = Vector2( 1.75, 1.67857 )
+z_index = -2
+frames = ExtResource( 21 )
+frame = 5
+playing = true
+
+[node name="Computer2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
+position = Vector2( 715, 460 )
+scale = Vector2( 1.75, 1.67857 )
+z_index = -2
+frames = ExtResource( 22 )
+frame = 4
 playing = true
 
 [connection signal="mouse_entered" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_mouse_entered"]
