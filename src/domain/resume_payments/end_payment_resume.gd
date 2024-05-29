@@ -20,10 +20,18 @@ func _on_button_ok_pressed():
 	print(" Load next day job.")
 	#aqui ira tambien el comprobar si gameover
 	if Global.check_is_gameover():
-		LoadManager.load_scene(get_tree().get_root().get_node("resume_applicant"), "res://scenes/main/gameover_scene.tscn")
+		LoadManager.load_scene(
+			get_tree().get_root().get_node("resume_applicant"),
+			"res://scenes/main/gameover_scene.tscn"
+		)
 	else:
 		if Global.current_month >= 6:
 			Global.set_is_true_ending()
-			LoadManager.load_scene(get_tree().get_root().get_node("resume_applicant"), "res://scenes/main/end_game.tscn")
+			LoadManager.load_scene(
+				get_tree().get_root().get_node("resume_applicant"),
+				"res://scenes/main/end_game.tscn"
+			)
 		else:
-			LoadManager.load_scene(get_tree().get_root().get_node("resume_applicant"), "res://scenes/main/main.tscn")
+			LoadManager.load_scene(
+				get_tree().get_root().get_node("resume_applicant"), "res://scenes/main/main.tscn"
+			)
