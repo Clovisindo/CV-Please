@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/game/characters/applicant/applicant.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_waiting.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_exit.gd" type="Script" id=8]
 [ext_resource path="res://scenes/game/items/job_offer/job_offer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/game/characters/applicant/states/state_aplicant_entrance.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/characters/Chris Redfall/frames_anim.tres" type="SpriteFrames" id=11]
+[ext_resource path="res://assets/sprites/characters/Chris Redfall/texture.png" type="Texture" id=12]
 
 [node name="Applicant" type="Panel"]
 anchor_right = 0.146484
@@ -35,6 +37,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Portrait" type="Sprite" parent="Container/PortraitRect"]
+visible = false
+texture = ExtResource( 12 )
+centered = false
+
+[node name="Anim" type="AnimatedSprite" parent="Container/PortraitRect"]
+scale = Vector2( 1.5, 1.5 )
+z_index = -4
+frames = ExtResource( 11 )
+animation = "idle_front"
+frame = 2
+playing = true
 centered = false
 
 [node name="Name" type="RichTextLabel" parent="Container"]

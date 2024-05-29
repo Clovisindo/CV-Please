@@ -39,7 +39,7 @@ func _load_applicants():  #TODO carga dinamica
 
 
 func _init_applicant_ui(applicant: ApplicantResult):
-#	$Panel/resumeContainer/applicantImage.texture = applicant.image_applicant #TODO load from path
+	$Panel/resumeContainer/applicantImage.texture = load(applicant.image_applicant)
 	$Panel/resumeContainer/FullNameLabel.text = applicant.full_name
 	$Panel/resumeContainer/CategoryCompanyLabel.text = (
 		applicant.category_job

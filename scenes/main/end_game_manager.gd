@@ -11,9 +11,9 @@ func _ready():
 	$NewGameButton.connect("pressed", self, "_on_start_button_ok_pressed")
 	end_game_text = load_resource_end_game()
 	if Global.true_ending:
-		$EndGameRichTextLavel.text = String(end_game_text.true_ending_text)
+		$PanelContainer/EndGameRichTextLavel.text = String(end_game_text.true_ending_text)
 	else:
-		$EndGameRichTextLavel.text = String(end_game_text.bad_ending_text)
+		$PanelContainer/EndGameRichTextLavel.text = String(end_game_text.bad_ending_text)
 
 
 func load_resource_end_game():

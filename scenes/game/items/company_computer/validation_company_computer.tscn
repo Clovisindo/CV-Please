@@ -8,8 +8,8 @@
 [ext_resource path="res://assets/sprites/UI/Button12.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 56, 58 )
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 105, 21 )
 
 [sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 2 )
