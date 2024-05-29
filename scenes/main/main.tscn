@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/ui/decision_applicant/decision_applicant.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/ui/interaction_dialog/interaction_dialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://TileMapFornitureFront.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/main/TileMapFornitureFront.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=6]
 [ext_resource path="res://scenes/game/items/computer/main_computer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/items/company_computer/company_computer.tscn" type="PackedScene" id=8]
@@ -171,6 +171,7 @@ margin_bottom = -57.0
 text = "Terminar Día"
 
 [node name="CurrentMonth" type="RichTextLabel" parent="MainScene"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -68.0
@@ -285,7 +286,6 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 18 )
 animation = "idle"
-frame = 3
 playing = true
 
 [node name="CompanionAnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -294,7 +294,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 20 )
 animation = "idle"
-frame = 2
+frame = 5
 playing = true
 
 [node name="Companion2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -303,7 +303,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 19 )
 animation = "idle"
-frame = 5
+frame = 2
 playing = true
 
 [node name="Computer1AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -311,7 +311,7 @@ position = Vector2( 800, 444.75 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 21 )
-frame = 5
+frame = 8
 playing = true
 
 [node name="Computer2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -319,7 +319,7 @@ position = Vector2( 715, 460 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 22 )
-frame = 4
+frame = 7
 playing = true
 
 [connection signal="mouse_entered" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_mouse_entered"]

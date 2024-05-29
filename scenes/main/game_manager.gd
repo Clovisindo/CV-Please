@@ -28,7 +28,6 @@ var events_file: MonthEvents
 
 
 func _ready():
-	$MainScene/CurrentMonth.text = "Current month: " + String(Global.current_month)
 	player_dialog_box = $MainScene/PlayerDialogBox
 	applicant_dialog_box = $MainScene/ApplicantDialogBox
 	computer_interaction_dialog = $MainScene/ChatLogKeyboard

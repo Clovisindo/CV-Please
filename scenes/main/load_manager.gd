@@ -19,7 +19,7 @@ func load_scene(current_scene, next_scene):
 	while true:
 		var error = loader.poll()
 		if error == OK:
-			var progress_bar = loading_scene_instance.get_node("ProgressBar")
+			var progress_bar = loading_scene_instance.get_node("Panel/ProgressBar")
 			progress_bar.value = float(loader.get_stage()) / loader.get_stage_count() * 100
 
 		elif error == ERR_FILE_EOF:
