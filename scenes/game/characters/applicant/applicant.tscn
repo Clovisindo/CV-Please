@@ -43,10 +43,10 @@ centered = false
 
 [node name="Anim" type="AnimatedSprite" parent="Container/PortraitRect"]
 scale = Vector2( 1.5, 1.5 )
-z_index = 1
+z_index = -4
 frames = ExtResource( 11 )
 animation = "idle_front"
-frame = 3
+frame = 2
 playing = true
 centered = false
 
