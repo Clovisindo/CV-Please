@@ -170,16 +170,6 @@ margin_right = -69.0
 margin_bottom = -57.0
 text = "Terminar Día"
 
-[node name="CurrentMonth" type="RichTextLabel" parent="MainScene"]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -68.0
-margin_top = 7.0
-margin_right = 68.0
-margin_bottom = 43.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-
 [node name="MainComputer" parent="MainScene" instance=ExtResource( 7 )]
 hint_tooltip = "Start to work"
 custom_styles/disabled = SubResource( 3 )
