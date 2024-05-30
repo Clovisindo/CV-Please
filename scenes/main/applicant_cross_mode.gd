@@ -14,6 +14,7 @@ export(CrossModeStatus) var current_status
 
 var is_hovered = false
 var event_fired = false
+var is_current_cross_mode = false
 
 
 func enable_cross_mode():
@@ -31,26 +32,21 @@ func disable_cross_mode():
 func _on_ApplicantCrossMode_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		event_fired = true
-		if current_status == CrossModeStatus.ENABLE:
+		if current_status == CrossModeStatus.ENABLE && is_current_cross_mode == true:
 			_process_as_enable(event)
-		if current_status == CrossModeStatus.DISABLE:
+		if current_status == CrossModeStatus.DISABLE && is_current_cross_mode == false:
 			_process_as_disable(event)
-
-
-# func _gui_input(event: InputEvent) -> void:
-# 	if current_status == CrossModeStatus.ENABLE:
-# 		_process_as_enable(event)
-# 	if current_status == CrossModeStatus.DISABLE:
-# 		_process_as_disable(event)
 
 
 func _process_as_enable(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		is_current_cross_mode = false
 		emit_signal("disable_cross_mode")
 
 
 func _process_as_disable(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+		is_current_cross_mode = true
 		emit_signal("enable_cross_mode")
 
 
@@ -62,6 +58,7 @@ func on_enable_button_cross_mode():
 func on_disable_button_cross_mode():
 	self.visible = false
 	self.disabled = true
+	is_current_cross_mode = false
 
 
 func _on_ApplicantCrossMode_mouse_exited() -> void:
