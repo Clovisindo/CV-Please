@@ -92,6 +92,7 @@ func on_load_company_validation():
 
 
 func on_unload_company_validation():
+	company_computer.reset_to_reopen()
 	close_panel_tween(company_computer_decision, company_computer)
 	set_process_unhandled_input(true)
 

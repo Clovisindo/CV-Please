@@ -276,6 +276,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 18 )
 animation = "idle"
+frame = 4
 playing = true
 
 [node name="CompanionAnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -284,7 +285,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 20 )
 animation = "idle"
-frame = 5
+frame = 3
 playing = true
 
 [node name="Companion2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -293,7 +294,6 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 19 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="Computer1AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -301,7 +301,6 @@ position = Vector2( 800, 444.75 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 21 )
-frame = 8
 playing = true
 
 [node name="Computer2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -309,8 +308,9 @@ position = Vector2( 715, 460 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 22 )
-frame = 7
+frame = 11
 playing = true
 
+[connection signal="gui_input" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_gui_input"]
 [connection signal="mouse_entered" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_mouse_entered"]
 [connection signal="mouse_exited" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_mouse_exited"]

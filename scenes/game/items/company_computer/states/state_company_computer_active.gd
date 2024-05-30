@@ -16,16 +16,6 @@ func enter():
 	get_parent().get_parent().disabled = false
 
 
-func panel_open():
-	if current_status == PanelStatus.CLOSED:
-		current_status = PanelStatus.OPEN
-
-
-func panel_closed():
-	if current_status == PanelStatus.OPEN:
-		current_status = PanelStatus.CLOSED
-
-
 func disable_company_computer():
 	emit_signal("transitioned", "idle")
 

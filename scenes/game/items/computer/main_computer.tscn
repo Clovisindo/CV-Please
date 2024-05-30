@@ -46,3 +46,7 @@ current_status = 1
 [node name="MainComputer" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[connection signal="gui_input" from="." to="." method="_on_MainComputerButton_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_MainComputerButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_MainComputerButton_mouse_exited"]
