@@ -18,4 +18,5 @@ func _end_list_applicants():
 
 
 func _on_button_ok_pressed():
+	$ButtonEffectSFX.playing = true
 	emit_signal("load_next")

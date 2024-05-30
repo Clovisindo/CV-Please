@@ -10,4 +10,5 @@ func _ready() -> void:
 
 
 func _on_button_ok_pressed():
+	$ButtonEffectSFX.playing = true
 	emit_signal("load_payment_panel")

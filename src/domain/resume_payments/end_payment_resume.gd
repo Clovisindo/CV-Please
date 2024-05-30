@@ -14,6 +14,7 @@ func _ready() -> void:
 
 
 func _on_button_ok_pressed():
+	$ButtonEffectSFX.playing = true
 	emit_signal("apply_global")
 	emit_signal("apply_global_npay")
 	emit_signal("load_next_day_scene")

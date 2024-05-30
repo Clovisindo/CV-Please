@@ -81,6 +81,7 @@ func _process_as_idle(event):
 		&& is_active
 	):
 		payment_select()
+		$ButtonEffectSFX.playing = true
 
 
 func _process_as_selected(event):
@@ -91,6 +92,7 @@ func _process_as_selected(event):
 		&& is_active
 	):
 		payment_idle()
+		$ButtonEffectSFX.playing = true
 
 
 func _on_DetaiPaymentlPanel_mouse_exited() -> void:

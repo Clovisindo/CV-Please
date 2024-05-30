@@ -44,6 +44,7 @@ func _process_idle():
 	current_status = JobSpecialConditionStatus.IDLE
 	rect_position.x = 0
 	$SpecialConditionRText.add_color_override("default_color", Color(1, 1, 1, 1))
+	
 
 
 func requisite_selected():
@@ -83,6 +84,7 @@ func _process_as_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if job_offer:
 			job_offer.condition_checked(self)
+			$ButtonEffectSFX.playing = true
 		current_status = JobSpecialConditionStatus.SELECTED
 		$SpecialConditionRText.add_color_override("default_color", Color(0, 0.392157, 0, 1))
 

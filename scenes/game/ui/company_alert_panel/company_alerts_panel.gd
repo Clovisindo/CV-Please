@@ -27,6 +27,7 @@ func _show_panel_alert(message):
 
 func _hide_panel_alert():
 	self.visible = false
+	$ButtonEffectSFX.playing = true
 
 
 func _set_size_by_text():

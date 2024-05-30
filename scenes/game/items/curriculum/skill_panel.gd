@@ -128,6 +128,7 @@ func _process_as_idle(event):
 		$SkillText.add_color_override("default_color", Color(0, 0.392157, 0, 1))
 		if cv:
 			cv.skill_checked(self)
+			$ButtonEffectSFX.playing = true
 
 
 func _process_as_selected(event):
@@ -143,6 +144,7 @@ func _process_as_disabled(event):
 func _process_as_cross_idle(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		skill_cross_progress()
+		$ButtonEffectSFX.playing = true
 		emit_signal("send_cross_question")
 
 

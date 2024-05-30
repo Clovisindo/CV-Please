@@ -41,12 +41,14 @@ func _on_ApplicantCrossMode_gui_input(event: InputEvent) -> void:
 func _process_as_enable(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		is_current_cross_mode = false
+		$ButtonEffectSFX.playing = true
 		emit_signal("disable_cross_mode")
 
 
 func _process_as_disable(event):
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		is_current_cross_mode = true
+		$ButtonEffectSFX.playing = true
 		emit_signal("enable_cross_mode")
 
 

@@ -14,6 +14,7 @@ func _on_MainComputerButton_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if !event_fired:
 			event_fired = true
+			$ButtonEffectSFX.playing = true
 			$StateMachine.current_state.handle_input(event)
 
 

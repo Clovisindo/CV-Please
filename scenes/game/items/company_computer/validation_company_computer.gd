@@ -13,12 +13,15 @@ func _ready():
 
 
 func _on_button_ok_pressed():
+	$ButtonEffectSFX.playing = true
 	emit_signal("decision_made", ApplicantResult.Status.keys()[ApplicantResult.Status.VALID])
 
 
 func _on_button_no_ok_pressed():
+	$ButtonEffectSFX.playing = true
 	emit_signal("decision_made", ApplicantResult.Status.keys()[ApplicantResult.Status.NOT_VALID])
 
 
 func _on_button_cancel():
+	$ButtonEffectSFX.playing = true
 	emit_signal("decision_cancel")

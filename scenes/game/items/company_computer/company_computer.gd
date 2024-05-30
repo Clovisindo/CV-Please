@@ -26,6 +26,7 @@ func _on_CompanyComputerButton_gui_input(event: InputEvent) -> void:
 	):
 		if !event_fired:
 			event_fired = true
+			$ButtonEffectSFX.playing = true
 			$StateMachine.current_state.handle_input(event)
 
 

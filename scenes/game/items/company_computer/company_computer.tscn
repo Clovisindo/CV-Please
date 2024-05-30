@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/game/items/company_computer/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/SFX/click3.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scenes/game/items/company_computer/company_computer.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/items/company_computer/states/state_company_computer_idle.gd" type="Script" id=7]
 [ext_resource path="res://scenes/game/items/company_computer/states/state_company_computer_active.gd" type="Script" id=8]
@@ -42,6 +43,9 @@ script = ExtResource( 7 )
 [node name="active" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 current_status = 1
+
+[node name="ButtonEffectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
 [connection signal="gui_input" from="." to="." method="_on_CompanyComputerButton_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_CompanyComputerButton_mouse_entered"]

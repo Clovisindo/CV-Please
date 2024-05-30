@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/game/items/job_offer/job_requisite.gd" type="Script" id=1]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=2]
+[ext_resource path="res://assets/audio/SFX/click3.ogg" type="AudioStream" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -33,6 +34,9 @@ fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="ButtonEffectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_RequisitePanel_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_RequisitePanel_mouse_exited"]
