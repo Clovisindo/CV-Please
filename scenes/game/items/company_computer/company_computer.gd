@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func _on_CompanyComputerButton_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if event is InputEventMouseButton && Input.is_mouse_button_pressed(BUTTON_LEFT) && self.disabled == false:
 		if !event_fired:
 			event_fired = true
 			$StateMachine.current_state.handle_input(event)
