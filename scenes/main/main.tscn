@@ -160,6 +160,7 @@ margin_bottom = -70.5194
 custom_styles/panel = SubResource( 1 )
 
 [node name="EndWorkingDayButton" type="Button" parent="MainScene"]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -278,7 +279,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 18 )
 animation = "idle"
-frame = 3
+frame = 5
 playing = true
 
 [node name="CompanionAnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -287,7 +288,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 20 )
 animation = "idle"
-frame = 2
+frame = 4
 playing = true
 
 [node name="Companion2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -296,7 +297,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 19 )
 animation = "idle"
-frame = 5
+frame = 1
 playing = true
 
 [node name="Computer1AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -304,7 +305,7 @@ position = Vector2( 800, 444.75 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 21 )
-frame = 11
+frame = 7
 playing = true
 
 [node name="Computer2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -312,7 +313,7 @@ position = Vector2( 715, 460 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 22 )
-frame = 10
+frame = 6
 playing = true
 
 [connection signal="gui_input" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_gui_input"]

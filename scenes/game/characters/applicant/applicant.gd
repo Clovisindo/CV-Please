@@ -18,6 +18,7 @@ var cv: Curriculum
 var job_offer: JobOffer
 var evaluation: ApplicantResult
 var cross_questions: Array
+var dummy_response: Array
 var detail_validations: Array
 var applicant_name = "Default name"
 var image_path
@@ -57,6 +58,7 @@ func add_data(
 	timeline_jobs: Array,
 	condition: Resource,
 	cross_data: Array,
+	dummy_data:Array,
 	category: String,
 	valid: bool,
 	payment: int,
@@ -82,6 +84,8 @@ func add_data(
 		job_offer.add_condition(condition)
 	if cross_data:
 		cross_questions = cross_data
+	if dummy_data:
+		dummy_response = dummy_data
 	if category:
 		category_job = category
 		job_offer.set_type_job_label(company_name, category_job)
@@ -118,6 +122,9 @@ func get_cross_question(requisite_text, skill_text):
 			return cross_data
 	return null
 
+
+func get_cross_dummy_response():
+	return dummy_response
 
 func add_turn_count(value):
 	turns_count += value
