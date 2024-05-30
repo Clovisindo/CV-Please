@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Farm Frolics.ogg-6979f531375666af0723b2597a425f14.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/Music/Farm Frolics.ogg"
+dest_files=[ "res://.import/Farm Frolics.ogg-6979f531375666af0723b2597a425f14.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

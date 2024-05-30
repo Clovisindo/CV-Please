@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/main/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Kenney Pixel.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=3]
 [ext_resource path="res://assets/sprites/UI/MainMenuBG.png" type="Texture" id=4]
+[ext_resource path="res://assets/audio/Music/Alpha Dance.ogg" type="AudioStream" id=5]
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 4 )
@@ -69,3 +70,8 @@ margin_bottom = -80.0
 rect_rotation = -3.5
 theme = ExtResource( 3 )
 text = "Close"
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.0
+autoplay = true

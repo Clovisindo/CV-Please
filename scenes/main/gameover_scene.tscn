@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/main/gameover_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Main_font_Kenney_Pixel.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=3]
 [ext_resource path="res://assets/sprites/UI/GameOverBG.png" type="Texture" id=4]
+[ext_resource path="res://assets/audio/Music/Game Over.ogg" type="AudioStream" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -45,3 +46,8 @@ margin_bottom = 359.0
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="GameOverSceneMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = true

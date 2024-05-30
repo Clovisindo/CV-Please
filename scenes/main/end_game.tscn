@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/main/end_game_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/UI/EndGameBG.png" type="Texture" id=2]
 [ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=3]
+[ext_resource path="res://assets/audio/Music/Drumming Sticks.ogg" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -36,3 +37,8 @@ theme = ExtResource( 3 )
 [node name="EndGameRichTextLavel" type="RichTextLabel" parent="PanelContainer"]
 margin_right = 617.0
 margin_bottom = 359.0
+
+[node name="EndGameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -4.0
+autoplay = true
