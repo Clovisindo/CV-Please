@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scenes/main/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/characters/applicant/applicant.tscn" type="PackedScene" id=2]
@@ -30,6 +30,18 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.00784314, 0, 0, 0 )
 
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.905882, 0.054902, 0.054902, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxFlat" id=8]
@@ -58,10 +70,10 @@ region_rect = Rect2( 0, 0, 105, 21 )
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color( 0.905882, 0.054902, 0.054902, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=12]
@@ -116,17 +128,17 @@ theme = ExtResource( 6 )
 
 [node name="CVContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 916.0
+margin_left = 908.0
 margin_top = 19.0
-margin_right = 1416.0
+margin_right = 1408.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 
 [node name="JobOfferContainer" type="PanelContainer" parent="MainScene"]
 visible = false
-margin_left = 197.0
+margin_left = 189.0
 margin_top = 19.0
-margin_right = 697.0
+margin_right = 689.0
 margin_bottom = 619.0
 theme = ExtResource( 6 )
 
@@ -160,18 +172,25 @@ margin_bottom = -70.5194
 custom_styles/panel = SubResource( 1 )
 
 [node name="EndWorkingDayButton" type="Button" parent="MainScene"]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -163.0
-margin_top = -157.0
-margin_right = -69.0
-margin_bottom = -57.0
-text = "Terminar Día"
+margin_left = -294.0
+margin_top = -891.0
+margin_right = -200.0
+margin_bottom = -791.0
+theme = ExtResource( 6 )
+custom_fonts/font = ExtResource( 12 )
+text = "End Day"
 
 [node name="MainComputer" parent="MainScene" instance=ExtResource( 7 )]
+margin_left = 754.0
+margin_right = 846.0
+margin_bottom = 472.0
 hint_tooltip = "Start to work"
+custom_styles/hover = SubResource( 16 )
 custom_styles/disabled = SubResource( 3 )
 
 [node name="CompanyComputer" parent="MainScene" instance=ExtResource( 8 )]
@@ -195,10 +214,14 @@ visible = false
 
 [node name="CompanyAlertsPanel" type="Panel" parent="MainScene"]
 visible = false
-margin_left = 556.0
-margin_top = 156.0
-margin_right = 1093.0
-margin_bottom = 256.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -270.0
+margin_top = -341.0
+margin_right = 267.0
+margin_bottom = -241.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 theme = ExtResource( 6 )
@@ -229,7 +252,7 @@ text = "Close"
 [node name="ApplicantCrossMode" type="Button" parent="MainScene"]
 visible = false
 margin_left = 763.0
-margin_top = 304.0
+margin_top = 274.0
 margin_right = 836.0
 margin_bottom = 357.0
 theme = ExtResource( 6 )
@@ -276,6 +299,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 18 )
 animation = "idle"
+frame = 4
 playing = true
 
 [node name="CompanionAnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -284,7 +308,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 20 )
 animation = "idle"
-frame = 5
+frame = 3
 playing = true
 
 [node name="Companion2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -293,7 +317,6 @@ scale = Vector2( 1.5, 1.5 )
 z_index = -2
 frames = ExtResource( 19 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="Computer1AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -301,7 +324,7 @@ position = Vector2( 800, 444.75 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 21 )
-frame = 8
+frame = 6
 playing = true
 
 [node name="Computer2AnimatedSprite" type="AnimatedSprite" parent="AnimsStatic"]
@@ -309,8 +332,9 @@ position = Vector2( 715, 460 )
 scale = Vector2( 1.75, 1.67857 )
 z_index = -2
 frames = ExtResource( 22 )
-frame = 7
+frame = 5
 playing = true
 
+[connection signal="gui_input" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_gui_input"]
 [connection signal="mouse_entered" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_mouse_entered"]
 [connection signal="mouse_exited" from="MainScene/ApplicantCrossMode" to="MainScene/ApplicantCrossMode" method="_on_ApplicantCrossMode_mouse_exited"]

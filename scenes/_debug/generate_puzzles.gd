@@ -59,11 +59,6 @@ func _ready():
 		)
 
 
-#	# Carga de ficheros de recursos
-#	for level_tres in PuzzleManager.get_all_puzzle():
-#		$"../LoadedLevelsOpButton".get_popup().add_item(str(level_tres.applicant_name))
-
-
 func _load_data_form():
 	#applicant
 	applicant_name = $"../Panel/AppNameLineEdit".text

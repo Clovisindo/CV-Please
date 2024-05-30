@@ -10,7 +10,7 @@ var game_over_text
 func _ready():
 	$GameOverButton.connect("pressed", self, "_on_start_button_ok_pressed")
 	game_over_text = load_resource_end_game()
-	$GameOverRichTextLabel.text = String(game_over_text.gameover_text)
+	$PanelContainer/GameOverRichTextLabel.text = String(game_over_text.gameover_text)
 
 
 func load_resource_end_game():

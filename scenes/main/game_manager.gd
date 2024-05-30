@@ -92,6 +92,7 @@ func on_load_company_validation():
 
 
 func on_unload_company_validation():
+	company_computer.reset_to_reopen()
 	close_panel_tween(company_computer_decision, company_computer)
 	set_process_unhandled_input(true)
 
@@ -175,14 +176,15 @@ func execute_cross_question():
 			)
 		#mandamos al acabar todas las skills y requisites al estado previo
 		else:
+			var dummy_response = applicant_list[current_applicant_index].get_cross_dummy_response()[0]
 			current_interaction_dialog.add_interaction_line(
-				QuestionAnswer.new("dummy", "dummy response")
+				QuestionAnswer.new(dummy_response.response1, dummy_response.response2)
 			)
 			emit_signal(
 				"emit_message_to_player_dialog_box",
 				applicant_list[current_applicant_index].applicant_name,
-				"dummy",
-				"dummy response",
+				dummy_response.response1,
+				dummy_response.response2,
 				EnumUtils.TypeDialogBox.PLAYER
 			)
 			applicant_list[current_applicant_index].add_turn_count(TURN_VALUE_SKILL)  #castigamos solo con un turno
@@ -311,6 +313,7 @@ func _instantiate_panels():
 			puzzle.timeline_jobs,
 			puzzle.special_condition,
 			puzzle.cross_questions,
+			puzzle.dummy_comments,
 			puzzle.category_job,
 			puzzle.validate_solution,
 			puzzle.payment_salary,

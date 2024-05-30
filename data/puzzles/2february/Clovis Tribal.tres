@@ -41,7 +41,7 @@ value_nok = -20
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 2 )
-response1 = "Already talk about that"
+response1 = "What can you contribute with this?"
 response2 = "Don't know what to say"
 
 [sub_resource type="Resource" id=8]
