@@ -313,7 +313,7 @@ func _instantiate_panels():
 			puzzle.timeline_jobs,
 			puzzle.special_condition,
 			puzzle.cross_questions,
-			puzzle.dummy_comments,	
+			puzzle.dummy_comments,
 			puzzle.category_job,
 			puzzle.validate_solution,
 			puzzle.payment_salary,

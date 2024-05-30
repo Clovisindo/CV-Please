@@ -58,7 +58,7 @@ func add_data(
 	timeline_jobs: Array,
 	condition: Resource,
 	cross_data: Array,
-	dummy_data:Array,
+	dummy_data: Array,
 	category: String,
 	valid: bool,
 	payment: int,
@@ -125,6 +125,7 @@ func get_cross_question(requisite_text, skill_text):
 
 func get_cross_dummy_response():
 	return dummy_response
+
 
 func add_turn_count(value):
 	turns_count += value

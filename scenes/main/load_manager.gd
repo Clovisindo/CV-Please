@@ -14,7 +14,7 @@ func load_scene(current_scene, next_scene):
 
 	current_scene.queue_free()
 
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 
 	while true:
 		var error = loader.poll()
@@ -31,4 +31,4 @@ func load_scene(current_scene, next_scene):
 			print("error ocurred while loading chunks of new scene data")
 			return
 
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(0.03), "timeout")

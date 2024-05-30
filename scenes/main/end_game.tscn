@@ -34,6 +34,5 @@ margin_bottom = 179.5
 theme = ExtResource( 3 )
 
 [node name="EndGameRichTextLavel" type="RichTextLabel" parent="PanelContainer"]
-margin_top = 47.0
 margin_right = 617.0
-margin_bottom = 333.0
+margin_bottom = 359.0

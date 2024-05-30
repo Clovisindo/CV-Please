@@ -9,16 +9,21 @@ type_event = 0
 date_month = 1
 event_message = "Take a moment to read the instructions each new day.
 
-On the computer you'll have access to the job offer and the applicant's CV information.
-Evaluate each offer and the applicant, to make the best decision for the companies.You can ask the candidate about the requirements of the offer and their skills.
+When a new applicant arrives, You can click in your computer(center) and open Job Offer and CV panels information.
+You can click in each option to ask something to the applicant, evaluate each response in order to validate their application, think always in the best decision for the companies.
+Also You can click in the applicant, to activate the cross question mode, and ask question about two terms( a requisite from the job offer and a skill from the CV), It's usually effective in getting them to tell the truth.
 
-You can also ask by comparing their skills with the requirements, It's usually effective in getting them to tell the truth.
-
-Although salary information is shown, today's requests will nott discuss those topics.
+Some information can't be used to ask question, like previous jobs, you 'll see interactive options move when you put your mouse on it.
+ 
+Although salary information is shown, today's requests will not discuss those topics.
 Every question you ask takes time, and we will evaluate you based on your performance, both in time and results.
 
-Go ahead and proceed with today's candidates.
-"
+Once you have a clear decision, You can click in the company computer( the one in your left) and accept or decline the applicant.
+
+When you finish with all the applicants, click in the \"End day\" button ( top right) to follow with another day.
+
+
+Go ahead and proceed with today's candidates."
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 1 )
