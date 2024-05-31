@@ -13,13 +13,14 @@ event_message = "You have done a good job this month, the salary charged by each
 script = ExtResource( 1 )
 type_event = 2
 date_month = 1
-event_message = "You will be penalized this month for not looking out for the companies' interests.- -150€"
+event_message = "You will be penalized this month for not looking out for the companies' interests.-150€"
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 1 )
 type_event = 1
 date_month = 1
-event_message = "asdad"
+event_message = "You will be rewarded this month for helping the company.+150€
+"
 
 [resource]
 script = ExtResource( 2 )
