@@ -35,6 +35,7 @@ func _ready():
 	company_computer = $MainScene/CompanyComputer
 	datetime_panel = $MainScene/DateTimePanel
 	datetime_panel.set_current_month(Global.current_month)
+	$AnimsStatic/NPCAnimatedSprite.frames = Global.get_npcs_anim_resource()
 	_instantiate_panels()
 	_wire_events()
 	_load_next_applicant()

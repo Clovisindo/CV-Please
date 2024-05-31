@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/random3.png-1c712af6ea58b1fab9ec311419269803.stex"
+path="res://.import/random4.png-1de14bda5d3c3f477268f80bae20133a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/UI_characters/random3.png"
-dest_files=[ "res://.import/random3.png-1c712af6ea58b1fab9ec311419269803.stex" ]
+source_file="res://assets/sprites/UI/UI_characters/npcs/4april/random4.png"
+dest_files=[ "res://.import/random4.png-1de14bda5d3c3f477268f80bae20133a.stex" ]
 
 [params]
 

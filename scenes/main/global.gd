@@ -6,6 +6,7 @@ const LEVELS_DIR_RESUME = "/resume/"
 const LEVELS_DIR_EXTRA = "/extra/"
 const TRES_SUFIX = ".tres"
 const LEVELS_DIR_PENALTY = "res://data/events/penalty_payments/"
+const NPCS_DIR = "res://assets/sprites/UI/UI_characters/npcs/"
 
 var current_applicants_result = []
 
@@ -41,6 +42,23 @@ func get_events_by_month(type_resource):
 					var event = ResourceLoader.load(current_dir + file_name)
 					if event is MonthEvents || event is EventsExtra:
 						return event
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+
+func get_npcs_anim_resource():
+	var dir = Directory.new()
+	var current_dir = NPCS_DIR + _get_month_value(current_month) + "/"
+	if dir.open(current_dir) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		var regex = RegEx.new()
+		regex.compile(".*\\.tres")
+		while file_name != "":
+			if regex.search(file_name) && file_name == "npc_frames.tres":
+				if not dir.current_is_dir():
+					var resource = ResourceLoader.load(current_dir + file_name)
+					return resource
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
