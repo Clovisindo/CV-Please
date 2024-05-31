@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Sad Town.ogg-124206bafdf3552a3aa41f119a3ee9d5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/Music/Sad Town.ogg"
+dest_files=[ "res://.import/Sad Town.ogg-124206bafdf3552a3aa41f119a3ee9d5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

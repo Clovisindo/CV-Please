@@ -1,0 +1,111 @@
+[gd_resource type="Resource" load_steps=19 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=4]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+type_special_condition = 1
+value_text_ok = "Good job, She isn't the corrent applicant for the job."
+value_text_nok = "Big mistake, She can't do the job."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+response1 = "What can you tell me about this?"
+response2 = "I don't know."
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 4 )
+textUI = "Converting written or spoken content from one language to another while preserving the original meaning and tone."
+textUI_secondary = ""
+question = "Do you have experience with this?"
+answer = "Yes, it is the main topic to be discussed in my work."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 4 )
+textUI = "Cultural nuances, in order to produce accurate and natural-sounding translations."
+textUI_secondary = ""
+question = "Do you have experience with these topics?"
+answer = "Yes, and we always talk to the client who has the last word."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+textUI = "Review and fix text translated by AI."
+textUI_secondary = ""
+question = "Any problem with this?"
+answer = "I am not going to work under these conditions, I am hurting all the locators if I accept this job."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 4 )
+textUI = "Adhering to deadlines and managing multiple projects simultaneously."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "I can handle this, I already work with multiple project."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+textUI = "Communicating effectively with clients to understand their specific needs and preferences."
+textUI_secondary = ""
+question = "Why do you think it is important?"
+answer = "Communication is very important in this work, there are many critical points that we cannot make a unilateral decision of interpretation."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 4 )
+textUI = "English philology and C2 certificate in oficial english school."
+textUI_secondary = ""
+question = "Tell me about this."
+answer = "My studies that validate my knowledge for work."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+textUI = "Work in TV series, videogames and films projects."
+textUI_secondary = ""
+question = "Have you worked in all these media?"
+answer = "Yes, I have multiple projects that support my work."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 6 )
+jobDescription = "Locator freelance"
+timejob = "(2018-present)"
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 5 )
+validation_response = [ SubResource( 12 ) ]
+description = ""
+dummy_comments = [ SubResource( 3 ) ]
+applicant_name = "Alicia Nieves"
+appl_image = ""
+validate_solution = false
+company_name = "AssOciated Locators"
+category_job = "Spanish Locator"
+payment_salary = 450
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
+cross_questions = [  ]
+salary_offer = 1800
+skills_answers = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ]
+timeline_jobs = [ SubResource( 11 ) ]
+min_salary = 1800
+detail_validations = [ SubResource( 1 ), SubResource( 2 ) ]

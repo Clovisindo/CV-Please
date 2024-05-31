@@ -1,0 +1,130 @@
+[gd_resource type="Resource" load_steps=22 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=4]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+textUI = "Write and record original music for Albums, EPs, and Singles."
+textUI_secondary = "Collaborating with other artists, such as producers, vocalists, and instrumentalists."
+question = "But it is different to create and interpret"
+answer = "I really... have no experience working as an interpreter."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 0
+value_text_ok = "The company is very pleased  with the applicant."
+value_text_nok = "The company is very upset  with the you, that applicant was perfect."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+response1 = "What do You say about this two terms?"
+response2 = "I don't know what to say."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 4 )
+textUI = "Perform, and record songs, create arrangements, and produce music."
+textUI_secondary = ""
+question = "What experience do you have with this?"
+answer = "I know the entire production process from start to finish."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 4 )
+textUI = "Play a variety of instruments, such as guitars, pianos, drums, or synthesizers."
+textUI_secondary = ""
+question = "What instruments do you work with?"
+answer = "Guitar, bass, piano and synthesizers."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 4 )
+textUI = "Performing live at concerts, recitals, competitions, and other events."
+textUI_secondary = ""
+question = "You have experience?"
+answer = "Yes, I have worked with live music on many occasions."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 4 )
+textUI = "Collaborating with other artists, such as producers, vocalists, and instrumentalists."
+textUI_secondary = ""
+question = "Tell me about this."
+answer = "Yes, I have work experience performing music by other artists."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 4 )
+textUI = "Teaching music to students."
+textUI_secondary = ""
+question = "Do you teach?"
+answer = "Yes, I give private classes."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 4 )
+textUI = "Write and record original music for Albums, EPs, and Singles."
+textUI_secondary = ""
+question = "Are you in charge of the entire process?"
+answer = "Yes I have produced my own original music."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 4 )
+textUI = "Perform live concerts."
+textUI_secondary = ""
+question = "Have you done live music concerts?"
+answer = "Also related to my own music."
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 4 )
+textUI = "Knowledgeable in music production and recording software."
+textUI_secondary = ""
+question = "Do you have experience with this?"
+answer = "I do know the software that is used and I work well with it."
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 6 )
+jobDescription = "Musician:  Play it more Records"
+timejob = "(2018 - 2021)"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 6 )
+jobDescription = "Music Teacher:  Freelance"
+timejob = "(2022 - Present)"
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 5 )
+validation_response = [ SubResource( 15 ) ]
+description = ""
+dummy_comments = [ SubResource( 4 ) ]
+applicant_name = "Lian Redmond"
+appl_image = ""
+validate_solution = true
+company_name = "Wax records"
+category_job = "Mussician"
+payment_salary = 400
+work_type = 0
+difficulty = 2
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+cross_questions = [ SubResource( 1 ) ]
+salary_offer = 3000
+skills_answers = [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ]
+timeline_jobs = [ SubResource( 13 ), SubResource( 14 ) ]
+min_salary = 3000
+detail_validations = [ SubResource( 2 ), SubResource( 3 ) ]

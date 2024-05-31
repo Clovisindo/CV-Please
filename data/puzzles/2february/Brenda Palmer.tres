@@ -1,0 +1,111 @@
+[gd_resource type="Resource" load_steps=19 format=2]
+
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+type_special_condition = 0
+value_text_ok = "The applicant was good even though she has no experience."
+value_text_nok = "A serious mistake, the candidate was valid and cheap."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+type_special_condition = 2
+value_text_ok = "Real quick interview!nice job."
+value_text_nok = "Need to be more quick"
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+response1 = "Do you have experience with these?"
+response2 = "It's something I can't explain."
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+textUI = "Provide food, water and other basic necessities for the animals."
+textUI_secondary = ""
+question = "What do you think of the requirement?"
+answer = "It's okay, I love animals."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Clean and sanitize cages and equipment."
+textUI_secondary = ""
+question = "They need you to clean the cages."
+answer = "It's fine if they provide the materials."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Administer medications and vaccinations to the animals."
+textUI_secondary = ""
+question = "Do you have training administering medications and vaccines?"
+answer = "Yes, in my studies as a veterinarian."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Work with a budget and make sure you choose animals that you can save, not spend resources on impossible cases."
+textUI_secondary = ""
+question = "Are you ok with this?"
+answer = "No...but i'll try to save all animals I could."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Veterinary Science."
+textUI_secondary = ""
+question = "How many years have you studied?"
+answer = "Four years."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "Rescue and Rehabilitation."
+textUI_secondary = ""
+question = "What you can tell me about that?"
+answer = "It's my specialization."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+textUI = "Disinfecting and cleaning animal enclosures, and analize rare behaviours in animals."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "Not much, I think there is nothing more to explain."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 6 )
+jobDescription = "No experience"
+timejob = ""
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 2 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 1 )
+validation_response = [ SubResource( 12 ) ]
+description = ""
+dummy_comments = [ SubResource( 3 ) ]
+applicant_name = "Brenda Palmer"
+appl_image = ""
+validate_solution = true
+company_name = "Loving animals center"
+category_job = "Animal Caretaker"
+payment_salary = 300
+work_type = 0
+difficulty = 1
+level_day = 1
+time_limit = 3
+requisites_answers = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
+cross_questions = [  ]
+salary_offer = 15000
+skills_answers = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ]
+timeline_jobs = [ SubResource( 11 ) ]
+min_salary = 15000
+detail_validations = [ SubResource( 1 ), SubResource( 2 ) ]

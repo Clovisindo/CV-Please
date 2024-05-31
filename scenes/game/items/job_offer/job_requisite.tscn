@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/game/items/job_offer/job_requisite.gd" type="Script" id=1]
+[ext_resource path="res://assets/themes/digital_panels.tres" type="Theme" id=2]
+[ext_resource path="res://assets/audio/SFX/click3.ogg" type="AudioStream" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="RequisitePanel" type="Panel"]
+margin_right = 444.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RequisiteText" type="RichTextLabel" parent="."]
+anchor_left = 0.0211268
+anchor_top = 0.0769231
+anchor_right = 0.982394
+anchor_bottom = 0.897436
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+tab_size = 11
+text = "Requisite 1"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ButtonEffectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_RequisitePanel_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_RequisitePanel_mouse_exited"]

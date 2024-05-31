@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_event_extra_payment.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_events_extra.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+type_payment = 4
+date_month = 1
+payment_message = "Cold and flu medicaments."
+payment_value = -30
+
+[resource]
+script = ExtResource( 2 )
+events_list = [ SubResource( 2 ) ]

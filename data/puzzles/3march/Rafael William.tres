@@ -1,0 +1,111 @@
+[gd_resource type="Resource" load_steps=19 format=2]
+
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=3]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_timeline_job.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+type_special_condition = 0
+value_text_ok = "The company is very pleased  with the applicant."
+value_text_nok = "The company is very upset  with the you, that applicant was perfect."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 4 )
+type_special_condition = 2
+value_text_ok = "Good job on time."
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+response1 = "What can you contribute with this?"
+response2 = "It's something I don't know what to say."
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+textUI = "Experience in various voice-over jobs in series, animation, commercials and video games."
+textUI_secondary = ""
+question = "Do you have this experience?"
+answer = "Yes, I worked in \"Delayed crime\" TV series, \"Super dogs\" animation and the videogame \"Political warfare\" as main character."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Work without visual references."
+textUI_secondary = ""
+question = "Is this a problem?"
+answer = "Well...I've never worked like this, it can be difficult."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Limited and reduced recording time."
+textUI_secondary = ""
+question = "The company notifies this situation."
+answer = "It seems excessive to me for what they pay and the lack of transparency... but I need the job."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Availability for re-recordings with less than twelve hours notice."
+textUI_secondary = ""
+question = "Any problem with this requirement?"
+answer = "I've never worked like this, but I'll accept because it's a prestigious place, to start to work here."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Wide vocal range."
+textUI_secondary = ""
+question = "Do you have examples to send to the company?"
+answer = "Yes, I'll send it you now."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "Multitude of accents and styles."
+textUI_secondary = ""
+question = "What can you tell me about this?"
+answer = "I work with several registers and voice styles."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+textUI = "Singing and dramatic arts experience."
+textUI_secondary = ""
+question = "Where did you get this experience?"
+answer = "I studied dramatic art at a professional school."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 6 )
+jobDescription = "Education: Ghost Opera professional school."
+timejob = "(2018-2022)"
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 2 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 1 )
+validation_response = [ SubResource( 12 ) ]
+description = ""
+dummy_comments = [ SubResource( 3 ) ]
+applicant_name = "Rafael William"
+appl_image = ""
+validate_solution = true
+company_name = "Secret"
+category_job = "Voice actor secret project"
+payment_salary = 350
+work_type = 0
+difficulty = 0
+level_day = 0
+time_limit = 3
+requisites_answers = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
+cross_questions = [  ]
+salary_offer = 1500
+skills_answers = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ]
+timeline_jobs = [ SubResource( 11 ) ]
+min_salary = 1500
+detail_validations = [ SubResource( 1 ), SubResource( 2 ) ]

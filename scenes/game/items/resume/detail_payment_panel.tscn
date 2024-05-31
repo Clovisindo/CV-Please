@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/game/items/resume/detail_payment_panel.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/SFX/click3.ogg" type="AudioStream" id=2]
+
+[node name="DetaiPaymentlPanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="TextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="ButtonEffectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_DetaiPaymentlPanel_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_DetaiPaymentlPanel_mouse_exited"]

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_events.gd" type="Script" id=1]
+[ext_resource path="res://src/levels/month_events.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+type_event = 0
+date_month = 1
+event_message = "You have done a good job this month, the salary charged by each candidate will be increased."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+type_event = 2
+date_month = 1
+event_message = "You will be penalized this month for not looking out for the companies' interests. - 150€"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+type_event = 1
+date_month = 1
+event_message = "You will be rewarded this month for helping the company.+150€"
+
+[resource]
+script = ExtResource( 2 )
+events_list = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ]

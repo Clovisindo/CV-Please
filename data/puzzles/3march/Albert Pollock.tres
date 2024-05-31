@@ -1,0 +1,121 @@
+[gd_resource type="Resource" load_steps=20 format=2]
+
+[ext_resource path="res://src/domain/resources/resource_validation_response.gd" type="Script" id=1]
+[ext_resource path="res://src/domain/resources/resource_dummy_responses.gd" type="Script" id=2]
+[ext_resource path="res://src/domain/resources/resource_detail_payment.gd" type="Script" id=3]
+[ext_resource path="res://src/levels/puzzle.gd" type="Script" id=4]
+[ext_resource path="res://src/domain/resources/resource_question_answer.gd" type="Script" id=5]
+[ext_resource path="res://src/domain/resources/resource_special_condition.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+type_special_condition = 0
+value_text_ok = "This candidate was selected by us, he is doing an excellent job."
+value_text_nok = "We are very dissatisfied with his work, the candidate had our approval."
+value_ok = 20
+value_nok = -20
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+type_special_condition = 2
+value_text_ok = "Good job on time"
+value_text_nok = "Need to be more quick."
+value_ok = 10
+value_nok = -10
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+response1 = "Ehm well... I don't know."
+response2 = "Yes sure... I will check it!"
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+textUI = "Senior programmer +3 years experience."
+textUI_secondary = ""
+question = "What experience do you have? I don't see previous jobs on your CV."
+answer = "I am self-taught, I believe that the educational system does not work, and I have my projects that prove my experience."
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+textUI = "Created software design specifications and analyzed user requirements."
+textUI_secondary = ""
+question = "What design patterns have you used?"
+answer = "Some of them: MVC, factory , decorator, flywighter, memento, lambdas and regex are my second language."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+textUI = "Java, Ruby on Rails, JavaScript, swift, and HTML/CSS."
+textUI_secondary = ""
+question = "Do you have experience with these programming languages?"
+answer = "Yes, I have more than 10 years of experience with them."
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 5 )
+textUI = "Optimized code to improve performance and scalability."
+textUI_secondary = ""
+question = "Are you able to design scalable code?"
+answer = "Yes, also now everything with the cloud is easier, you hire more machines and that's it."
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 5 )
+textUI = "Provided technical assistance to clients and staff in troubleshooting and resolving software issues."
+textUI_secondary = ""
+question = "You will also have contact with the client as support."
+answer = "No problem, I'm an excellent communicator."
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+textUI = "CEO of FarmBiller, creators of the App that helps you with your farm."
+textUI_secondary = ""
+question = "I don't understand... you are a CEO and you are looking for a job?"
+answer = "It is the company under which I have developed my own App."
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 5 )
+textUI = "3rd generation farmer, developed an APP that cares for and monitors animals, increasing their production."
+textUI_secondary = ""
+question = "How does this work?"
+answer = "The application monitors the status of the animals, and informs you of their best production conditions."
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+textUI = "Working on two new projects, CookierEggs and Musicky."
+textUI_secondary = ""
+question = "Can you talk about them?"
+answer = "I can't tell you much because I'm in production, but they have to do with cooking eggs with strange elements, and the other is a music community platform that pays its creators for views."
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 6 )
+special_condition = 0
+condition_name = "Accept our applicant."
+question_player = "It sounds like you have a recommendation from the company."
+response_applicant = "Yes, I met the manager at an event and he loved my projects."
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 1 )
+validationOKResp = ""
+validationNOKResp = ""
+
+[resource]
+script = ExtResource( 4 )
+validation_response = [ SubResource( 12 ) ]
+description = ""
+dummy_comments = [ SubResource( 3 ) ]
+applicant_name = "Albert Pollock"
+appl_image = ""
+validate_solution = true
+company_name = "CleanSoft solutions"
+category_job = "Senior programmer"
+payment_salary = 350
+work_type = 0
+difficulty = 1
+level_day = 2
+time_limit = 3
+requisites_answers = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ]
+cross_questions = [  ]
+salary_offer = 30000
+special_condition = SubResource( 13 )
+skills_answers = [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ]
+timeline_jobs = [  ]
+min_salary = 30000
+detail_validations = [ SubResource( 1 ), SubResource( 2 ) ]

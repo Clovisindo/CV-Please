@@ -8,15 +8,493 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Panel",
+"class": "Applicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/applicant.gd"
+}, {
+"base": "Button",
+"class": "ApplicantCrossMode",
+"language": "GDScript",
+"path": "res://scenes/main/applicant_cross_mode.gd"
+}, {
+"base": "Node",
+"class": "ApplicantResult",
+"language": "GDScript",
+"path": "res://src/domain/applicant_result.gd"
+}, {
+"base": "Button",
+"class": "ButtonInteractionDialog",
+"language": "GDScript",
+"path": "res://scenes/game/ui/interaction_dialog/button_interaction_dialog.gd"
+}, {
+"base": "Button",
+"class": "CompanyComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/company_computer/company_computer.gd"
+}, {
+"base": "Control",
+"class": "Curriculum",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/curriculum.gd"
+}, {
+"base": "Panel",
+"class": "DateTimePanel",
+"language": "GDScript",
+"path": "res://scenes/game/ui/date_time_panel/date_time_panel.gd"
+}, {
+"base": "Control",
+"class": "DecisionApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/ui/decision_applicant/decision_button.gd"
+}, {
+"base": "Node",
+"class": "DetailApplicantResume",
+"language": "GDScript",
+"path": "res://src/domain/resume_payments/detail_applicant_result.gd"
+}, {
+"base": "Panel",
+"class": "DetailPaymentPanel",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/detail_payment_panel.gd"
+}, {
+"base": "Panel",
+"class": "DetailResumePanel",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/detail_resume_panel.gd"
+}, {
+"base": "MarginContainer",
+"class": "DialogBox",
+"language": "GDScript",
+"path": "res://scenes/game/ui/dialog_box/dialog_box.gd"
+}, {
+"base": "Panel",
+"class": "EndGameManager",
+"language": "GDScript",
+"path": "res://scenes/main/end_game_manager.gd"
+}, {
+"base": "Button",
+"class": "EndPaymentResume",
+"language": "GDScript",
+"path": "res://src/domain/resume_payments/end_payment_resume.gd"
+}, {
+"base": "Object",
+"class": "EnumUtils",
+"language": "GDScript",
+"path": "res://src/enum.gd"
+}, {
+"base": "Resource",
+"class": "EventsExtra",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_events_extra.gd"
+}, {
+"base": "Node2D",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://scenes/main/game_manager.gd"
+}, {
+"base": "Panel",
+"class": "GameOverManager",
+"language": "GDScript",
+"path": "res://scenes/main/gameover_manager.gd"
+}, {
+"base": "Control",
+"class": "InteractionDialog",
+"language": "GDScript",
+"path": "res://scenes/game/ui/interaction_dialog/interaction_dialog.gd"
+}, {
+"base": "Control",
+"class": "InteractionLine",
+"language": "GDScript",
+"path": "res://scenes/game/ui/interaction_dialog/interaction_line.gd"
+}, {
+"base": "Control",
+"class": "JobOffer",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_offer.gd"
+}, {
+"base": "Panel",
+"class": "JobRequisite",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_requisite.gd"
+}, {
+"base": "Panel",
+"class": "JobSpecialCondition",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/job_special_condition.gd"
+}, {
+"base": "Panel",
+"class": "JobTimelineWork",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/job_timeline_work.gd"
+}, {
+"base": "Button",
+"class": "MainComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/main_computer.gd"
+}, {
+"base": "Panel",
+"class": "MainMenuManager",
+"language": "GDScript",
+"path": "res://scenes/main/main_menu.gd"
+}, {
+"base": "Resource",
+"class": "MonthEvents",
+"language": "GDScript",
+"path": "res://src/levels/month_events.gd"
+}, {
+"base": "Button",
+"class": "NextApplicantResume",
+"language": "GDScript",
+"path": "res://src/domain/resume_payments/next_applicant_resume_button.gd"
+}, {
+"base": "Button",
+"class": "NextPaymentResume",
+"language": "GDScript",
+"path": "res://src/domain/resume_payments/next_payment_resume.gd"
+}, {
+"base": "Node",
+"class": "PaymentResume",
+"language": "GDScript",
+"path": "res://src/domain/resume_payments/payment_month_resume.gd"
+}, {
+"base": "Resource",
+"class": "Puzzle",
+"language": "GDScript",
+"path": "res://src/levels/puzzle.gd"
+}, {
+"base": "Object",
+"class": "QuestionAnswer",
+"language": "GDScript",
+"path": "res://src/domain/question_answer.gd"
+}, {
+"base": "Resource",
+"class": "ResourceDummyResponse",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_dummy_responses.gd"
+}, {
+"base": "Resource",
+"class": "ResourceEndgame",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_end_game.gd"
+}, {
+"base": "Resource",
+"class": "ResourceEvents",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_events.gd"
+}, {
+"base": "Resource",
+"class": "ResourceExtraPayments",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_event_extra_payment.gd"
+}, {
+"base": "Resource",
+"class": "ResourceGameOver",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_gameover_events.gd"
+}, {
+"base": "Resource",
+"class": "ResourcePaymentPanel",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_detail_payment.gd"
+}, {
+"base": "Resource",
+"class": "ResourceQuestAnsw",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_question_answer.gd"
+}, {
+"base": "Resource",
+"class": "ResourceSpecialCondition",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_special_condition.gd"
+}, {
+"base": "Resource",
+"class": "ResourceTimelineJob",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_timeline_job.gd"
+}, {
+"base": "Resource",
+"class": "ResourceValidationResponse",
+"language": "GDScript",
+"path": "res://src/domain/resources/resource_validation_response.gd"
+}, {
+"base": "Control",
+"class": "ResumeManager",
+"language": "GDScript",
+"path": "res://scenes/game/items/resume/resume_manager.gd"
+}, {
+"base": "Panel",
+"class": "SkillPanel",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/skill_panel.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/states/state.gd"
+}, {
+"base": "State",
+"class": "StateApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantEntrance",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_aplicant_entrance.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantEvaluated",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantExit",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_exit.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantReviewing",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd"
+}, {
+"base": "StateApplicant",
+"class": "StateApplicantWaiting",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/states/state_applicant_waiting.gd"
+}, {
+"base": "State",
+"class": "StateCV",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVActive",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_active.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVApproved",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_approved.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVIdle",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_idle.gd"
+}, {
+"base": "StateCV",
+"class": "StateCVRejected",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/states/state_cv_rejected.gd"
+}, {
+"base": "State",
+"class": "StateCompanyComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/company_computer/states/state_company_computer.gd"
+}, {
+"base": "StateCompanyComputer",
+"class": "StateCompanyComputerActive",
+"language": "GDScript",
+"path": "res://scenes/game/items/company_computer/states/state_company_computer_active.gd"
+}, {
+"base": "StateCompanyComputer",
+"class": "StateCompanyComputerIdle",
+"language": "GDScript",
+"path": "res://scenes/game/items/company_computer/states/state_company_computer_idle.gd"
+}, {
+"base": "State",
+"class": "StateComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/states/state_computer.gd"
+}, {
+"base": "StateComputer",
+"class": "StateComputerActive",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/states/state_computer_active.gd"
+}, {
+"base": "StateComputer",
+"class": "StateComputerIdle",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/states/state_computer_idle.gd"
+}, {
+"base": "State",
+"class": "StateJobOffer",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/states/state_job_offer.gd"
+}, {
+"base": "StateJobOffer",
+"class": "StateJobOfferMatched",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/states/state_job_offer_matched.gd"
+}, {
+"base": "StateJobOffer",
+"class": "StateJobOfferNotMatched",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/states/state_job_offer_not_matched.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://src/states/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineApplicant",
+"language": "GDScript",
+"path": "res://scenes/game/characters/applicant/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineCV",
+"language": "GDScript",
+"path": "res://scenes/game/items/curriculum/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineCompanyComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/company_computer/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/computer/state_machine.gd"
+}, {
+"base": "StateMachine",
+"class": "StateMachineJobOffer",
+"language": "GDScript",
+"path": "res://scenes/game/items/job_offer/state_machine.gd"
+}, {
+"base": "Panel",
+"class": "ValidationCompanyComputer",
+"language": "GDScript",
+"path": "res://scenes/game/items/company_computer/validation_company_computer.gd"
+} ]
+_global_script_class_icons={
+"Applicant": "",
+"ApplicantCrossMode": "",
+"ApplicantResult": "",
+"ButtonInteractionDialog": "",
+"CompanyComputer": "",
+"Curriculum": "",
+"DateTimePanel": "",
+"DecisionApplicant": "",
+"DetailApplicantResume": "",
+"DetailPaymentPanel": "",
+"DetailResumePanel": "",
+"DialogBox": "",
+"EndGameManager": "",
+"EndPaymentResume": "",
+"EnumUtils": "",
+"EventsExtra": "",
+"GameManager": "",
+"GameOverManager": "",
+"InteractionDialog": "",
+"InteractionLine": "",
+"JobOffer": "",
+"JobRequisite": "",
+"JobSpecialCondition": "",
+"JobTimelineWork": "",
+"MainComputer": "",
+"MainMenuManager": "",
+"MonthEvents": "",
+"NextApplicantResume": "",
+"NextPaymentResume": "",
+"PaymentResume": "",
+"Puzzle": "",
+"QuestionAnswer": "",
+"ResourceDummyResponse": "",
+"ResourceEndgame": "",
+"ResourceEvents": "",
+"ResourceExtraPayments": "",
+"ResourceGameOver": "",
+"ResourcePaymentPanel": "",
+"ResourceQuestAnsw": "",
+"ResourceSpecialCondition": "",
+"ResourceTimelineJob": "",
+"ResourceValidationResponse": "",
+"ResumeManager": "",
+"SkillPanel": "",
+"State": "",
+"StateApplicant": "",
+"StateApplicantEntrance": "",
+"StateApplicantEvaluated": "",
+"StateApplicantExit": "",
+"StateApplicantReviewing": "",
+"StateApplicantWaiting": "",
+"StateCV": "",
+"StateCVActive": "",
+"StateCVApproved": "",
+"StateCVIdle": "",
+"StateCVRejected": "",
+"StateCompanyComputer": "",
+"StateCompanyComputerActive": "",
+"StateCompanyComputerIdle": "",
+"StateComputer": "",
+"StateComputerActive": "",
+"StateComputerIdle": "",
+"StateJobOffer": "",
+"StateJobOfferMatched": "",
+"StateJobOfferNotMatched": "",
+"StateMachine": "",
+"StateMachineApplicant": "",
+"StateMachineCV": "",
+"StateMachineCompanyComputer": "",
+"StateMachineComputer": "",
+"StateMachineJobOffer": "",
+"ValidationCompanyComputer": ""
+}
+
 [application]
 
 config/name="CV-Please!"
-run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://scenes/main/main_menu.tscn"
+config/icon="res://assets/icon.png"
+res://scenes/main/main.tscnconfig/icon="res://assets/icon.png"
+
+[autoload]
+
+Global="*res://scenes/main/global.gd"
+PuzzleManager="*res://src/levels/puzzle_manager.gd"
+LoadManager="*res://scenes/main/load_manager.gd"
+
+[display]
+
+window/size/width=1600
+window/size/height=900
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[global]
+
+snap=false
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [physics]
 
@@ -24,4 +502,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_environment="res://scenes/main/default_env.tres"

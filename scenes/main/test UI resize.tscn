@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/UI/Main_scene_bg.PNG" type="Texture" id=2]
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 956, 548 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 2 )
+centered = false
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )

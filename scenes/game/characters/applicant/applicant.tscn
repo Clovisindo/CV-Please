@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/game/characters/applicant/applicant.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_waiting.gd" type="Script" id=2]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_reviewing.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_evaluated.gd" type="Script" id=4]
+[ext_resource path="res://scenes/game/characters/applicant/state_machine.gd" type="Script" id=5]
+[ext_resource path="res://assets/icon.png" type="Texture" id=6]
+[ext_resource path="res://scenes/game/items/curriculum/curriculum.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_applicant_exit.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/items/job_offer/job_offer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/characters/applicant/states/state_aplicant_entrance.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/characters/Chris Redfall/frames_anim.tres" type="SpriteFrames" id=11]
+[ext_resource path="res://assets/sprites/characters/Chris Redfall/texture.png" type="Texture" id=12]
+
+[node name="Applicant" type="Panel"]
+anchor_right = 0.146484
+anchor_bottom = 0.0833333
+size_flags_horizontal = 5
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+portrait_texture = ExtResource( 6 )
+curriculum_scene = ExtResource( 7 )
+job_offer_scene = ExtResource( 9 )
+
+[node name="Container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PortraitRect" type="TextureRect" parent="Container"]
+margin_right = 115.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Portrait" type="Sprite" parent="Container/PortraitRect"]
+visible = false
+texture = ExtResource( 12 )
+centered = false
+
+[node name="Anim" type="AnimatedSprite" parent="Container/PortraitRect"]
+scale = Vector2( 1.5, 1.5 )
+z_index = -4
+frames = ExtResource( 11 )
+animation = "idle_front"
+frame = 2
+playing = true
+centered = false
+
+[node name="Name" type="RichTextLabel" parent="Container"]
+margin_left = 119.0
+margin_right = 234.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+initial_state = NodePath("Waiting")
+
+[node name="Waiting" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Reviewing" type="Node" parent="StateMachine"]
+script = ExtResource( 3 )
+
+[node name="Evaluated" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Exit" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="Entrance" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
