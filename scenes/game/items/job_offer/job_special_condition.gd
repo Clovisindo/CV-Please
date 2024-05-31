@@ -44,7 +44,6 @@ func _process_idle():
 	current_status = JobSpecialConditionStatus.IDLE
 	rect_position.x = 0
 	$SpecialConditionRText.add_color_override("default_color", Color(1, 1, 1, 1))
-	
 
 
 func requisite_selected():
