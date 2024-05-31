@@ -200,12 +200,14 @@ margin_left = 653.0
 margin_top = 410.0
 margin_right = 753.0
 margin_bottom = 510.0
+hint_tooltip = "Validate applicant"
 
 [node name="ChatLogKeyboard" type="Button" parent="MainScene"]
 margin_left = 759.0
 margin_top = 481.0
 margin_right = 840.0
 margin_bottom = 516.0
+hint_tooltip = "Chat log"
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
 custom_styles/normal = SubResource( 10 )
@@ -260,6 +262,8 @@ margin_left = 763.0
 margin_top = 274.0
 margin_right = 836.0
 margin_bottom = 357.0
+hint_tooltip = "Activate cross mode
+"
 theme = ExtResource( 6 )
 custom_styles/hover = SubResource( 11 )
 custom_styles/pressed = SubResource( 12 )
