@@ -46,6 +46,7 @@ func get_events_by_month(type_resource):
 	else:
 		print("An error occurred when trying to access the path.")
 
+
 func get_npcs_anim_resource():
 	var dir = Directory.new()
 	var current_dir = NPCS_DIR + _get_month_value(current_month) + "/"
